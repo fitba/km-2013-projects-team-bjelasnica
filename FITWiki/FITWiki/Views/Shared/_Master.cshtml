@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Html.Partial("_Resources")
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
+                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </a><a class="brand" href="#">FIT Wiki</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="#">Naslovnica</a></li>
+                        <li><a href="#">Korisnici</a></li>
+                        <li><a href="#">Članci</a></li>
+                    </ul>
+                    <ul class="nav pull-right">
+                        <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Prijava<strong
+                            class="caret"></strong></a>
+                            <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+                                <form method="post" action="login" accept-charset="UTF-8">
+                                    <input style="margin-bottom: 15px;" type="text" placeholder="Korisničko ime" id="username"
+                                        name="username">
+                                    <input style="margin-bottom: 15px;" type="password" placeholder="Lozinka" id="password"
+                                        name="password">
+                                    <input style="float: left; margin-right: 10px;" type="checkbox" name="remember-me"
+                                        id="remember-me" value="1">
+                                    <label class="string optional" for="user_remember_me">
+                                        Remember me</label>
+                                    <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Sign In">
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span2">
+                <div class="well" style="padding: 8px 0;">
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Opcije</li>
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Library</a></li>
+                        <li><a href="#">Applications</a></li>
+                        <li class="nav-header">Another list header</li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="span9">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container">
+            <div class="row-fluid footer">
+                <p>
+                    Copyright &copy; 2013 Fakultet informacijskih tehnologija ukoliko nije drugačije
+                    označeno. Sva prava pridržana.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
