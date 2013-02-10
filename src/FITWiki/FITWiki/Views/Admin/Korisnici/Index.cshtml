@@ -1,0 +1,70 @@
+﻿@model IEnumerable<FITWiki.Models.Korisnici>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+<fieldset>
+    <legend>Korisnici</legend>
+</fieldset>
+
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prezime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KorisnickoIme)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatumRegistracije)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aktivan)
+        </th>
+        <th></th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prezime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KorisnickoIme)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatumRegistracije)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Aktivan)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.KorisnikID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.KorisnikID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.KorisnikID })
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="form-horizontal">
+        @Html.ActionLink("Novi korisnik", "Create", null, new { @class = "btn" })
+</div>
