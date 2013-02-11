@@ -4,125 +4,83 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Master.cshtml";
 }
-
-<h2>Edit</h2>
-
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Korisnici</legend>
+        <legend>Izmjena podataka</legend>
+        <div class="form-horizontal">
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelFor(model => model.Ime)
+                </div>
+                <div class="controls">
+                    @Html.EditorFor(model => model.Ime)
+                    @Html.ValidationMessageFor(model => model.Ime)
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelFor(model => model.Prezime)
+                </div>
+                <div class="controls">
+                    @Html.EditorFor(model => model.Prezime)
+                    @Html.ValidationMessageFor(model => model.Prezime)
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelFor(model => model.Spol)
+                </div>
+                <div class="controls">
+                    @Html.RadioButtonFor(model => model.Spol, "M", false) M  
+                    @Html.RadioButtonFor(model => model.Spol, "Ž", false) Ž 
+                    @Html.ValidationMessageFor(model => model.Spol)
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelFor(model => model.DatumRodjenja)
+                </div>
+                <div class="controls">
+                    @Html.EditorFor(model => model.DatumRodjenja)
+                    @Html.ValidationMessageFor(model => model.DatumRodjenja)
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelFor(model => model.Mail)
+                </div>
+                <div class="controls">
+                    @Html.EditorFor(model => model.Mail)
+                    @Html.ValidationMessageFor(model => model.Mail)
+                </div>
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.KorisnikID)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.KorisnikID)
-            @Html.ValidationMessageFor(model => model.KorisnikID)
-        </div>
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelFor(model => model.KorisnickoIme)
+                </div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.KorisnickoIme, null, new { disabled = "disabled" })
+                    @Html.ActionLink("Promijeni lozinku", "ChangePassword", new { id = Model.KorisnikID })
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Ime)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Ime)
-            @Html.ValidationMessageFor(model => model.Ime)
-        </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <label class="checkbox">
+                        @Html.CheckBoxFor(model => model.Aktivan, new { @checked = "ckecked" })
+                        @Html.LabelFor(model => model.Aktivan)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Prezime)
+                    </label>
+                </div>
+            </div>
+            <div class="form-actions">
+                @Html.ActionLink("Nazad", "Index", null, new { @class = "btn" })
+                <input type="submit" value="Save" title="Sačuvaj" class="btn btn-primary" />
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Prezime)
-            @Html.ValidationMessageFor(model => model.Prezime)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Mail)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Mail)
-            @Html.ValidationMessageFor(model => model.Mail)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Spol)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Spol)
-            @Html.ValidationMessageFor(model => model.Spol)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.DatumRodjenja)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.DatumRodjenja)
-            @Html.ValidationMessageFor(model => model.DatumRodjenja)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.DatumRegistracije)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.DatumRegistracije)
-            @Html.ValidationMessageFor(model => model.DatumRegistracije)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PosljednjaPrijava)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PosljednjaPrijava)
-            @Html.ValidationMessageFor(model => model.PosljednjaPrijava)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.KorisnickoIme)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.KorisnickoIme)
-            @Html.ValidationMessageFor(model => model.KorisnickoIme)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.LozinkaHash)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.LozinkaHash)
-            @Html.ValidationMessageFor(model => model.LozinkaHash)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.LozinkaSalt)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.LozinkaSalt)
-            @Html.ValidationMessageFor(model => model.LozinkaSalt)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Aktivan)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Aktivan)
-            @Html.ValidationMessageFor(model => model.Aktivan)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.DatumIzmjene)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.DatumIzmjene)
-            @Html.ValidationMessageFor(model => model.DatumIzmjene)
-        </div>
-
-        <p>
-            <input type="submit" value="Save" />
-        </p>
     </fieldset>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

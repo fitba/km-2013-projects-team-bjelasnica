@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
@@ -117,6 +118,40 @@ namespace FITWiki.Controllers
             return RedirectToAction("Index");
         }
 
+        //
+        // GET: /Korisnici/ChangePassword/5
+
+        public ActionResult ChangePassword(int id = 0)
+        {
+            Korisnici korisnici = db.Korisnicis.Find(id);
+            if (korisnici == null)
+            {
+                return HttpNotFound();
+            }
+            return View(korisnici);
+        }
+
+        //
+        // POST: /Korisnici/ChangePassword/5
+
+        [HttpPost]
+        public ActionResult ChangePassword(int id, string lozinka)
+        {
+            string salt = GenerateSaltValue();
+            string hash = HashPassword(lozinka, salt);
+            using (var context = new FITWikiContext())
+            {
+                SqlParameterCollection parametri = new SqlCommand().Parameters;
+                parametri.Add(new SqlParameter("@KorisnikID", id));
+                parametri.Add(new SqlParameter("@LozinkaSalt", salt));
+                parametri.Add(new SqlParameter("@LozinkaHash", hash));
+
+                context.Database.ExecuteSqlCommand("sp_Korisnici_ChangePassword @KorisnikID, @LozinkaSalt, @LozinkaHash", parametri);
+            }
+
+            return RedirectToAction("Index");  
+        }
+    
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

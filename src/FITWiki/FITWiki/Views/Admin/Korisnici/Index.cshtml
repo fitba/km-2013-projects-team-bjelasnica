@@ -8,8 +8,12 @@
 <fieldset>
     <legend>Korisnici</legend>
 </fieldset>
-
-
+<form class="form-inline">
+    <input type="text" class="input-large" placeholder="Ime i prezime">
+    <input type="text" class="input-large" placeholder="Email">
+   
+    <button type="submit" class="btn">Pretraga</button>
+</form>
 <table class="table table-striped">
     <tr>
         <th>
@@ -32,7 +36,6 @@
         </th>
         <th></th>
     </tr>
-
 
     @foreach (var item in Model)
     {
