@@ -1,4 +1,5 @@
-﻿@model IEnumerable<FITWiki.Models.Korisnici>
+﻿@model PagedList.IPagedList<FITWiki.Models.Korisnici>
+@*@model IEnumerable<FITWiki.Models.Korisnici>*@
 
 @{
     ViewBag.Title = "Index";
@@ -9,30 +10,31 @@
     <legend>Korisnici</legend>
 </fieldset>
 <form class="form-inline">
-    <input type="text" class="input-large" placeholder="Ime i prezime">
-    <input type="text" class="input-large" placeholder="Email">
-   
-    <button type="submit" class="btn">Pretraga</button>
+    <input type="text" class="input-large" id="imePrezime" name="imePrezime" placeholder="Ime i prezime">
+   @* @Html.TextBox("imePrezime", ViewBag.CurrentFilterIP as string)*@
+    <input type="text" class="input-large" id="mail" name="mail" placeholder="Email">
+    <button type="submit" class="btn" id="Index">Pretraga</button>
 </form>
 <table class="table table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Ime)
+           @Html.ActionLink("Prezime", "Index", new { sortOrder=ViewBag.ImePrezimeSortParm, currentFilterIP=ViewBag.CurrentFilterIP })
+        </th>
+         <th>
+            @Html.DisplayNameFor(model => model[0].Ime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Prezime)
+            @Html.DisplayNameFor(model => model[0].KorisnickoIme)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.KorisnickoIme)
+            @Html.DisplayNameFor(model => model[0].Mail)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Mail)
+             @Html.ActionLink("Registracija", "Index", new { sortOrder=ViewBag.DatumSortParm, currentFilterIP=ViewBag.CurrentFilterIP })
+
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DatumRegistracije)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Aktivan)
+            @Html.DisplayNameFor(model => model[0].Aktivan)
         </th>
         <th></th>
     </tr>
@@ -41,10 +43,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Ime)
+                @Html.DisplayFor(modelItem => item.Prezime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Prezime)
+                @Html.DisplayFor(modelItem => item.Ime)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.KorisnickoIme)
@@ -61,13 +63,44 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.KorisnikID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.KorisnikID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.KorisnikID })
+                @Html.ActionLink("Details", "Details", new { id = item.KorisnikID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.KorisnikID })
             </td>
         </tr>
     }
-
 </table>
+
+<div>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+    of @Model.PageCount
+     
+    @if (Model.HasPreviousPage)
+    {
+        @Html.ActionLink("<<", "Index", new { page = 1, sortOrder = ViewBag.CurrentSort, currentFilterIP=ViewBag.CurrentFilterIP  })
+        @Html.Raw(" ");
+        @Html.ActionLink("< Prev", "Index", new { page = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilterIP=ViewBag.CurrentFilterIP  })
+    }
+    else
+    {
+        @:<<
+        @Html.Raw(" ");
+        @:< Prev
+    }
+     
+    @if (Model.HasNextPage)
+    {
+        @Html.ActionLink("Next >", "Index", new { page = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilterIP=ViewBag.CurrentFilterIP  })
+        @Html.Raw(" ");
+        @Html.ActionLink(">>", "Index", new { page = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilterIP=ViewBag.CurrentFilterIP  })
+    }
+    else
+    {
+        @:Next >
+        @Html.Raw(" ")
+        @:>>
+    }
+</div>
+
 <div class="form-horizontal">
         @Html.ActionLink("Novi korisnik", "Create", null, new { @class = "btn" })
 </div>

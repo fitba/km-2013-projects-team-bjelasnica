@@ -9,8 +9,11 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using FITWiki.Models;
+
+using PagedList;
 
 namespace FITWiki.Controllers
 {
@@ -21,9 +24,52 @@ namespace FITWiki.Controllers
         //
         // GET: /Korisnici/
 
-        public ActionResult Index()
+        public ActionResult Index(int? page, string currentFilterIP = "", string currentFilterM = "",  
+                                  string imePrezime="", string mail="", string sortOrder="")
         {
-            return View(db.Korisnicis.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.PrezimeSortParm = String.IsNullOrEmpty(sortOrder) ? "Prezime desc" : "";
+            ViewBag.DatumSortParm = sortOrder == "Datum" ? "Datum desc" : "Datum";
+
+            //if (Request.HttpMethod == "GET")
+            //{
+            //    imePrezime = currentFilterIP;
+            //    mail = currentFilterM;
+            //}
+            //else
+            //{
+            //    page = 1;
+            //}
+
+            ViewBag.currentFilterIP = imePrezime;
+            ViewBag.currentFilterM = mail;
+
+            using (var context = new FITWikiContext())
+            {
+                IEnumerable<Korisnici> korisnici = context.Database.SqlQuery<Korisnici>("EXEC sp_Korisnici_SelectByNameMail @ImePrezime, @Mail",
+                    new SqlParameter("@ImePrezime", imePrezime),
+                    new SqlParameter("@Mail", mail)).ToList();
+
+                switch (sortOrder)
+                {
+                    case "Prezime desc":
+                        korisnici = korisnici.OrderByDescending(k => k.Prezime);
+                        break;
+                    case "Datum":
+                        korisnici = korisnici.OrderBy(k => k.DatumRegistracije);
+                        break;
+                    case "Datum desc":
+                        korisnici = korisnici.OrderByDescending(k => k.DatumRegistracije);
+                        break;
+                    default:
+                        korisnici = korisnici.OrderBy(k => k.Prezime);
+                        break;
+                }
+
+                int pageSize = 3;
+                int pageNumber = (page ?? 1);
+                return View(korisnici.ToPagedList(pageNumber, pageSize));
+            }
         }
 
         //
