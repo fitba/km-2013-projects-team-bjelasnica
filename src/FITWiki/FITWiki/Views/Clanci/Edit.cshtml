@@ -1,0 +1,140 @@
+﻿@model FITWiki.Models.Clanci
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Clanci</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ClanakID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ClanakID)
+            @Html.ValidationMessageFor(model => model.ClanakID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Naslov)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Naslov)
+            @Html.ValidationMessageFor(model => model.Naslov)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Autori)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Autori)
+            @Html.ValidationMessageFor(model => model.Autori)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Sazetak)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Sazetak)
+            @Html.ValidationMessageFor(model => model.Sazetak)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Tekst)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Tekst)
+            @Html.ValidationMessageFor(model => model.Tekst)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.KljucneRijeci)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.KljucneRijeci)
+            @Html.ValidationMessageFor(model => model.KljucneRijeci)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VrstaID, "VrsteClanaka")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("VrstaID", String.Empty)
+            @Html.ValidationMessageFor(model => model.VrstaID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TemaID, "Teme")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("TemaID", String.Empty)
+            @Html.ValidationMessageFor(model => model.TemaID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.KorisnikID, "Korisnici")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("KorisnikID", String.Empty)
+            @Html.ValidationMessageFor(model => model.KorisnikID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Slike)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Slike)
+            @Html.ValidationMessageFor(model => model.Slike)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Status)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Status)
+            @Html.ValidationMessageFor(model => model.Status)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Izmjene)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Izmjene)
+            @Html.ValidationMessageFor(model => model.Izmjene)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DatumKreiranja)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DatumKreiranja)
+            @Html.ValidationMessageFor(model => model.DatumKreiranja)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DatumIzmjene)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DatumIzmjene)
+            @Html.ValidationMessageFor(model => model.DatumIzmjene)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

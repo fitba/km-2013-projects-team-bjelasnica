@@ -1,0 +1,114 @@
+﻿@model FITWiki.Models.Clanci
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Clanci</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ClanakID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ClanakID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Naslov)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Naslov)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Autori)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Autori)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Sazetak)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sazetak)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Tekst)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tekst)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.KljucneRijeci)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.KljucneRijeci)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.VrsteClanaka.Naziv)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.VrsteClanaka.Naziv)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Teme.Naziv)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Teme.Naziv)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Korisnici.Ime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Korisnici.Ime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Slike)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Slike)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Status)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Status)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Izmjene)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Izmjene)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DatumKreiranja)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DatumKreiranja)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DatumIzmjene)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DatumIzmjene)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

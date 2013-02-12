@@ -1,0 +1,100 @@
+﻿@model FITWiki.Models.Clanci
+
+@{
+    ViewBag.Title = "Novi članak";
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Novi članak</legend>
+
+        <div class="form-horizontal">
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelFor(model => model.Naslov)
+                </div>
+                <div class="controls">
+                    @Html.EditorFor(model => model.Naslov)
+                    @Html.ValidationMessageFor(model => model.Naslov)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelFor(model => model.VrstaID, "Vrsta članka")
+                </div>
+                <div class="controls">
+                    @Html.DropDownList("VrstaID", String.Empty)
+                    @Html.ValidationMessageFor(model => model.VrstaID)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelFor(model => model.TemaID, "Tema")
+                </div>
+                <div class="controls">
+                    @Html.DropDownList("TemaID", String.Empty)
+                    @Html.ValidationMessageFor(model => model.TemaID)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelFor(model => model.Autori)
+                </div>
+                <div class="controls">
+                    @Html.EditorFor(model => model.Autori)
+                    @Html.ValidationMessageFor(model => model.Autori)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelFor(model => model.KljucneRijeci, "Ključne riječi")
+                </div>
+                <div class="controls">
+                    @Html.EditorFor(model => model.KljucneRijeci)
+                    @Html.ValidationMessageFor(model => model.KljucneRijeci)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <table>
+                        <tr>
+                            <td>
+                                <label class="checkbox">
+                                    @Html.CheckBoxFor(model => model.Izmjene, new { @checked = "ckecked" })
+                                    @Html.LabelFor(model => model.Izmjene)
+                                </label>
+                            </td>
+                            <td>
+                                <label class="checkbox">
+
+                                    @Html.CheckBoxFor(model => model.Status, new { @checked = "ckecked" })
+                                    @Html.LabelFor(model => model.Status)
+                                </label>
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <label>Sažetak</label>
+             @Html.TextAreaFor(model => model.Sazetak, new {@class="ckeditor" })
+            <br />
+            <label>Članak</label>
+            @Html.TextAreaFor(model => model.Tekst, new {@class="ckeditor" })
+
+            <br />
+            @Html.ActionLink("Nazad", "Index", null, new { @class = "btn" })
+            <button type="submit" class="btn btn-primary">Sačuvaj</button>
+        </div>
+    </fieldset>
+}

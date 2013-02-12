@@ -23,8 +23,8 @@ namespace FITWiki.Models
         public int KorisnikID { get; set; }
         public string Slike { get; set; }
         public byte[] Dokument { get; set; }
-        public Nullable<bool> Status { get; set; }
-        public Nullable<bool> Izmjene { get; set; }
+        public bool Status { get; set; }
+        public bool Izmjene { get; set; }
         public System.DateTime DatumKreiranja { get; set; }
         public System.DateTime DatumIzmjene { get; set; }
         public virtual Korisnici Korisnici { get; set; }
