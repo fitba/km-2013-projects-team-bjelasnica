@@ -404,11 +404,11 @@
     <Content Include="Views\Admin\Korisnici\Edit.cshtml" />
     <Content Include="Views\Admin\Korisnici\Delete.cshtml" />
     <Content Include="Views\Admin\Korisnici\ChangePassword.cshtml" />
-    <Content Include="Views\Clanci\Create.cshtml" />
-    <Content Include="Views\Clanci\Delete.cshtml" />
-    <Content Include="Views\Clanci\Details.cshtml" />
-    <Content Include="Views\Clanci\Edit.cshtml" />
-    <Content Include="Views\Clanci\Index.cshtml" />
+    <Content Include="Views\Admin\Clanci\Create.cshtml" />
+    <Content Include="Views\Admin\Clanci\Delete.cshtml" />
+    <Content Include="Views\Admin\Clanci\Details.cshtml" />
+    <Content Include="Views\Admin\Clanci\Edit.cshtml" />
+    <Content Include="Views\Admin\Clanci\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
