@@ -198,3 +198,7 @@ C:\Users\Larisa\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITWiki\FI
 C:\Users\Larisa\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITWiki\FITWiki\bin\PagedList.Mvc.dll
 C:\Users\Larisa\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITWiki\FITWiki\bin\PagedList.xml
 C:\Users\Larisa\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITWiki\FITWiki\bin\PagedList.Mvc.xml
+C:\Users\larisa.FIT\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITWiki\FITWiki\bin\PagedList.dll
+C:\Users\larisa.FIT\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITWiki\FITWiki\bin\PagedList.Mvc.dll
+C:\Users\larisa.FIT\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITWiki\FITWiki\bin\PagedList.xml
+C:\Users\larisa.FIT\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITWiki\FITWiki\bin\PagedList.Mvc.xml

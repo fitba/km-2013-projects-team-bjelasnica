@@ -171,6 +171,7 @@
     <Compile Include="Controllers\ClanciController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KorisniciController.cs" />
+    <Compile Include="Controllers\QAController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -418,6 +419,10 @@
     <Content Include="Views\Admin\Clanci\Details.cshtml" />
     <Content Include="Views\Admin\Clanci\Edit.cshtml" />
     <Content Include="Views\Admin\Clanci\Index.cshtml" />
+    <Content Include="Views\Users\QA\Clanci.cshtml" />
+    <Content Include="Views\Users\QA\CreateQuestion.cshtml" />
+    <Content Include="Views\Users\QA\CreateQuestionFor.cshtml" />
+    <Content Include="Views\Users\QA\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

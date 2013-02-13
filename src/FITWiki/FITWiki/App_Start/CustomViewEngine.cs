@@ -11,7 +11,8 @@ namespace FITWiki.App_Start
         public CustomViewEngine()
         {
             var viewLocations = new[] {  
-            "~/Views/Admin/{1}/{0}.cshtml"
+            "~/Views/Admin/{1}/{0}.cshtml",
+            "~/Views/Users/{1}/{0}.cshtml"
         };
 
             this.PartialViewLocationFormats = viewLocations;

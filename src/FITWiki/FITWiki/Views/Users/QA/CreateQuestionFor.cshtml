@@ -1,0 +1,129 @@
+﻿@model FITWiki.Models.Clanci
+
+@{
+    ViewBag.Title = "CreateQuestionFor";
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+<h2>CreateQuestionFor</h2>
+
+<fieldset>
+    <legend>Clanci</legend>
+
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Naslov)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Naslov)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Autori)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Autori)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Sazetak)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sazetak)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Tekst)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tekst)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.KljucneRijeci)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.KljucneRijeci)
+    </div>
+
+    <div class="display-label">
+       <label>Vrsta članka</label>
+    </div>
+    <div class="display-field">
+        <label>@ViewBag.VrstaNaslov</label>
+    </div>
+
+    <div class="display-label">
+        <label>Tema članka</label>
+    </div>
+    <div class="display-field">
+        <label>@ViewBag.TemaNaslov</label>
+    </div>
+
+    <div class="display-label">
+          <label>Korisnik:</label>
+    </div>
+    <div class="display-field">
+       <label>@ViewBag.Korisnik</label>
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Slike)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Slike)
+    </div>
+
+
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DatumKreiranja)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DatumKreiranja)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DatumIzmjene)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DatumIzmjene)
+    </div>
+
+    @using (Html.BeginForm("InsertQuestionFor","QA"))
+{
+    @Html.ValidationSummary(true)
+        @Html.Hidden("TemaID",Model.TemaID)
+        @Html.Hidden("ClanakID",Model.ClanakID)
+
+    <fieldset>
+        <legend></legend>
+
+        <div class="form-horizontal">
+
+            <div class="control-group">
+                <div class="control-label">
+                    <label>Unesite komentar na clanak</label>
+                </div>
+                <div class="controls" >
+                <textarea id="IdTextArae" name="pitanje" ></textarea>
+                </div>
+            </div>
+
+    
+                <div class="form-actions">
+                @Html.ActionLink("Nazad", "Clanci", null, new { @class = "btn" })
+                <button type="submit" class="btn btn-primary">Sačuvaj</button>
+            </div>
+
+        </div>
+    </fieldset>
+    
+}
+
+
+
+</fieldset>
+
+
+
