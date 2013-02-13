@@ -423,6 +423,7 @@
     <Content Include="Views\Users\QA\CreateQuestion.cshtml" />
     <Content Include="Views\Users\QA\CreateQuestionFor.cshtml" />
     <Content Include="Views\Users\QA\Index.cshtml" />
+    <Content Include="Views\Users\QA\Question.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
