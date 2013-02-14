@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
 using FITWiki.Models;
-
 using PagedList;
 
 namespace FITWiki.Controllers
@@ -21,54 +22,41 @@ namespace FITWiki.Controllers
     {
         private FITWikiContext db = new FITWikiContext();
 
-        //
-        // GET: /Korisnici/
-
-        public ActionResult Index(int? page, string currentFilterIP = "", string currentFilterM = "",  
-                                  string imePrezime="", string mail="", string sortOrder="")
+        public ActionResult Index(KorisniciPretraga model)
         {
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.PrezimeSortParm = String.IsNullOrEmpty(sortOrder) ? "Prezime desc" : "";
-            ViewBag.DatumSortParm = sortOrder == "Datum" ? "Datum desc" : "Datum";
+            if (model.ImePrezime == null)
+                model.ImePrezime = "";
+            if (model.Mail == null)
+                model.Mail = "";
 
-            //if (Request.HttpMethod == "GET")
-            //{
-            //    imePrezime = currentFilterIP;
-            //    mail = currentFilterM;
-            //}
-            //else
-            //{
-            //    page = 1;
-            //}
-
-            ViewBag.currentFilterIP = imePrezime;
-            ViewBag.currentFilterM = mail;
+            int page = 0;
+            if (Request["page"] != null)
+                int.TryParse(Request["page"], out page);
 
             using (var context = new FITWikiContext())
             {
-                IEnumerable<Korisnici> korisnici = context.Database.SqlQuery<Korisnici>("EXEC sp_Korisnici_SelectByNameMail @ImePrezime, @Mail",
-                    new SqlParameter("@ImePrezime", imePrezime),
-                    new SqlParameter("@Mail", mail)).ToList();
-
-                switch (sortOrder)
+                using (context.Database.Connection)
                 {
-                    case "Prezime desc":
-                        korisnici = korisnici.OrderByDescending(k => k.Prezime);
-                        break;
-                    case "Datum":
-                        korisnici = korisnici.OrderBy(k => k.DatumRegistracije);
-                        break;
-                    case "Datum desc":
-                        korisnici = korisnici.OrderByDescending(k => k.DatumRegistracije);
-                        break;
-                    default:
-                        korisnici = korisnici.OrderBy(k => k.Prezime);
-                        break;
-                }
+                    context.Database.Connection.Open();
+                    DbCommand cmd = context.Database.Connection.CreateCommand();
+                    cmd.CommandText = "sp_Korisnici_SelectByNameMail";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@ImePrezime", model.ImePrezime));
+                    cmd.Parameters.Add(new SqlParameter("@Mail", model.Mail));
+                    cmd.Parameters.Add(new SqlParameter("@Offset", page*2));
+                    cmd.Parameters.Add(new SqlParameter("@MaxRows", 2));
+                    var totalCount = new SqlParameter("@TotalRows", 0) { Direction = ParameterDirection.Output };
+                    cmd.Parameters.Add(totalCount);
 
-                int pageSize = 3;
-                int pageNumber = (page ?? 1);
-                return View(korisnici.ToPagedList(pageNumber, pageSize));
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        model.Rezultat = DataReaderExtensions.MapToList<Korisnici>(reader);
+                    }
+
+                    model.RowCount = (totalCount.Value == null) ? 0 : Convert.ToInt32(totalCount.Value);
+                    
+                    return PartialView(model);
+                }
             }
         }
 

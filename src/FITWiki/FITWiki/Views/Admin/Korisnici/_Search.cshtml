@@ -1,0 +1,23 @@
+﻿@model FITWiki.Models.KorisniciPretraga
+@{
+    if (Model.Rezultat != null && Model.Rezultat.Count > 0)
+    {
+            var grid = new WebGrid(canPage: true, rowsPerPage: 2, canSort: true, ajaxUpdateContainerId: "grid");
+            grid.Bind(Model.Rezultat, rowCount: Model.RowCount, autoSortAndPage: false);
+            grid.Pager(WebGridPagerModes.All);
+
+            @grid.GetHtml(htmlAttributes: new { id = "grid" },
+            columns: grid.Columns(
+                grid.Column("Ime"),
+                grid.Column("Prezime"),
+                grid.Column("KorisnickoIme"),
+                grid.Column("Mail")
+            ),
+            tableStyle: "table table-striped"
+            );
+    }
+    else
+    {
+        <span>Nema rezultata</span>
+    }
+}

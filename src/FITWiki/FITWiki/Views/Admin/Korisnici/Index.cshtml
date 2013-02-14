@@ -1,5 +1,4 @@
-﻿@model PagedList.IPagedList<FITWiki.Models.Korisnici>
-@*@model IEnumerable<FITWiki.Models.Korisnici>*@
+﻿@model FITWiki.Models.KorisniciPretraga
 
 @{
     ViewBag.Title = "Index";
@@ -9,96 +8,16 @@
 <fieldset>
     <legend>Korisnici</legend>
 </fieldset>
-<form class="form-inline">
-    <input type="text" class="input-large" id="imePrezime" name="imePrezime" placeholder="Ime i prezime">
-   @* @Html.TextBox("imePrezime", ViewBag.CurrentFilterIP as string)*@
-    <input type="text" class="input-large" id="mail" name="mail" placeholder="Email">
-    <button type="submit" class="btn" id="Index">Pretraga</button>
-</form>
-<table class="table table-striped">
-    <tr>
-        <th>
-           @Html.ActionLink("Prezime", "Index", new { sortOrder=ViewBag.ImePrezimeSortParm, currentFilterIP=ViewBag.CurrentFilterIP })
-        </th>
-         <th>
-            @Html.DisplayNameFor(model => model[0].Ime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model[0].KorisnickoIme)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model[0].Mail)
-        </th>
-        <th>
-             @Html.ActionLink("Registracija", "Index", new { sortOrder=ViewBag.DatumSortParm, currentFilterIP=ViewBag.CurrentFilterIP })
 
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model[0].Aktivan)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Prezime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KorisnickoIme)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DatumRegistracije)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.Aktivan)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.KorisnikID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.KorisnikID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.KorisnikID })
-            </td>
-        </tr>
-    }
-</table>
-
-<div>
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
-    of @Model.PageCount
-     
-    @if (Model.HasPreviousPage)
-    {
-        @Html.ActionLink("<<", "Index", new { page = 1, sortOrder = ViewBag.CurrentSort, currentFilterIP=ViewBag.CurrentFilterIP  })
-        @Html.Raw(" ");
-        @Html.ActionLink("< Prev", "Index", new { page = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilterIP=ViewBag.CurrentFilterIP  })
-    }
-    else
-    {
-        @:<<
-        @Html.Raw(" ");
-        @:< Prev
-    }
-     
-    @if (Model.HasNextPage)
-    {
-        @Html.ActionLink("Next >", "Index", new { page = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilterIP=ViewBag.CurrentFilterIP  })
-        @Html.Raw(" ");
-        @Html.ActionLink(">>", "Index", new { page = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilterIP=ViewBag.CurrentFilterIP  })
-    }
-    else
-    {
-        @:Next >
-        @Html.Raw(" ")
-        @:>>
-    }
+@using (Ajax.BeginForm("Index", "Korisnici", new AjaxOptions { UpdateTargetId = "data-grid", HttpMethod = "Post" }))
+{
+        @Html.TextBoxFor(m => m.ImePrezime, null, new { @class = "input-large" })
+        @Html.TextBoxFor(m => m.Mail, null, new { @class = "input-large" })
+        <button type="submit" class="btn" id="Index">Pretraga</button>
+}
+<br />
+<div id="data-grid">
+       @Html.Partial("_Search", Model)
 </div>
 
 <div class="form-horizontal">

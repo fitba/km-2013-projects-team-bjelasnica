@@ -180,8 +180,10 @@
     <Compile Include="Models\Clanci.cs" />
     <Compile Include="Models\ClanciKomentari.cs" />
     <Compile Include="Models\ClanciOcjene.cs" />
+    <Compile Include="Models\DataReaderExtensions.cs" />
     <Compile Include="Models\FITWikiContext.cs" />
     <Compile Include="Models\Korisnici.cs" />
+    <Compile Include="Models\KorisniciPretraga.cs" />
     <Compile Include="Models\KorisniciUloge.cs" />
     <Compile Include="Models\Mapping\AktivnostiMap.cs" />
     <Compile Include="Models\Mapping\ClanciKomentariMap.cs" />
@@ -408,7 +410,6 @@
     <Content Include="Views\Shared\_Master.cshtml" />
     <Content Include="Views\Shared\_Resources.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Admin\Korisnici\Index.cshtml" />
     <Content Include="Views\Admin\Korisnici\Details.cshtml" />
     <Content Include="Views\Admin\Korisnici\Create.cshtml" />
     <Content Include="Views\Admin\Korisnici\Edit.cshtml" />
@@ -424,6 +425,8 @@
     <Content Include="Views\Users\QA\CreateQuestionFor.cshtml" />
     <Content Include="Views\Users\QA\Index.cshtml" />
     <Content Include="Views\Users\QA\Question.cshtml" />
+    <Content Include="Views\Admin\Korisnici\_Search.cshtml" />
+    <Content Include="Views\Admin\Korisnici\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
