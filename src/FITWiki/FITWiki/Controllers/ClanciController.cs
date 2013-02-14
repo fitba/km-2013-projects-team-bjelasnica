@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -16,10 +18,32 @@ namespace FITWiki.Controllers
         //
         // GET: /Clanci/
 
-        public ActionResult Index()
+        public ActionResult Index(int VrstaID = 0, string naslov = "", string kRijeci = "")
         {
-            var clancis = db.Clancis.Include(c => c.Korisnici).Include(c => c.Teme).Include(c => c.VrsteClanaka);
-            return View(clancis.ToList());
+
+            using (var context = new FITWikiContext())
+            {
+                context.Database.Connection.Open();
+                DbCommand cmd = context.Database.Connection.CreateCommand();
+                cmd.CommandText = "sp_Clanci_SelectByVrstaNazivKRijeci";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@VrstaID", VrstaID));
+                cmd.Parameters.Add(new SqlParameter("@Naslov", naslov));
+                cmd.Parameters.Add(new SqlParameter("@KRijeci", kRijeci));
+                cmd.Parameters.Add(new SqlParameter("@Offset", 0));
+                cmd.Parameters.Add(new SqlParameter("@Maxrows", 10));
+                var totalCount = new SqlParameter("@TotalRows", 0) { Direction = ParameterDirection.Output };
+                cmd.Parameters.Add(totalCount);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    IEnumerable<Clanci> clanci = DataReaderExtensions.MapToList<Clanci>(reader);
+                    return View(clanci.ToList());
+                }
+                
+                
+            }
         }
 
         //

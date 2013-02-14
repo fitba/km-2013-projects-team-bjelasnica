@@ -5,31 +5,22 @@
     Layout = "~/Views/Shared/_Master.cshtml";
 }
 
-<h2>Index</h2>
+<fieldset>
+    <legend>Članci</legend>
+</fieldset>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<form class="form-inline">
+    
+    @Html.DropDownList("VrstaID", String.Empty)
+    <input type="text" class="input-large" id="naslov" name="naslov" placeholder="Naslov">
+    <input type="text" class="input-large" id="kRijeci" name="kRijeci" placeholder="Ključne riječi">
+    <button type="submit" class="btn" id="Index">Pretraga</button>
+</form>
 <table>
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ClanakID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Naslov)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Autori)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sazetak)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tekst)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.KljucneRijeci)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.VrsteClanaka.Naziv)
         </th>
@@ -37,46 +28,15 @@
             @Html.DisplayNameFor(model => model.Teme.Naziv)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Korisnici.Ime)
+            @Html.DisplayNameFor(model => model.Naslov)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Slike)
+            @Html.DisplayNameFor(model => model.Autori)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Izmjene)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DatumKreiranja)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DatumIzmjene)
-        </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ClanakID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Naslov)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Autori)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sazetak)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tekst)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KljucneRijeci)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.VrsteClanaka.Naziv)
         </td>
@@ -84,27 +44,16 @@
             @Html.DisplayFor(modelItem => item.Teme.Naziv)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Korisnici.Ime)
+            @Html.DisplayFor(modelItem => item.Naslov)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Slike)
+            @Html.DisplayFor(modelItem => item.Autori)
         </td>
+        
         <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Izmjene)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DatumKreiranja)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DatumIzmjene)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ClanakID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ClanakID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ClanakID })
         </td>
     </tr>
 }

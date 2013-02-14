@@ -254,3 +254,7 @@ C:\Users\Elmin\Desktop\km-2013-projects-team-bjelasnica-master\km-2013-projects-
 C:\Users\Elmin\Desktop\km-2013-projects-team-bjelasnica-master\km-2013-projects-team-bjelasnica\src\FITWiki\FITWiki\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 C:\Users\Elmin\Desktop\km-2013-projects-team-bjelasnica-master\km-2013-projects-team-bjelasnica\src\FITWiki\FITWiki\obj\Debug\FITWiki.dll
 C:\Users\Elmin\Desktop\km-2013-projects-team-bjelasnica-master\km-2013-projects-team-bjelasnica\src\FITWiki\FITWiki\obj\Debug\FITWiki.pdb
+C:\Users\admir\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITWiki\FITWiki\bin\PagedList.dll
+C:\Users\admir\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITWiki\FITWiki\bin\PagedList.Mvc.dll
+C:\Users\admir\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITWiki\FITWiki\bin\PagedList.xml
+C:\Users\admir\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITWiki\FITWiki\bin\PagedList.Mvc.xml

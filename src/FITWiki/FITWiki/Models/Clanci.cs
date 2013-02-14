@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace FITWiki.Models
 {
@@ -15,8 +16,10 @@ namespace FITWiki.Models
         public int ClanakID { get; set; }
         public string Naslov { get; set; }
         public string Autori { get; set; }
+        [DisplayName("Sažetak")]
         public string Sazetak { get; set; }
         public string Tekst { get; set; }
+        [DisplayName("Kljuène rijeèi")]
         public string KljucneRijeci { get; set; }
         public int VrstaID { get; set; }
         public int TemaID { get; set; }
