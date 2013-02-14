@@ -2,22 +2,33 @@
 @{
     if (Model.Rezultat != null && Model.Rezultat.Count > 0)
     {
-            var grid = new WebGrid(canPage: true, rowsPerPage: 2, canSort: true, ajaxUpdateContainerId: "grid");
+            var grid = new WebGrid(canPage: true, rowsPerPage: Model.PageSize, canSort: false, ajaxUpdateContainerId: "grid");
             grid.Bind(Model.Rezultat, rowCount: Model.RowCount, autoSortAndPage: false);
-            grid.Pager(WebGridPagerModes.All);
-
+            grid.Pager();
             @grid.GetHtml(htmlAttributes: new { id = "grid" },
             columns: grid.Columns(
-                grid.Column("Ime"),
                 grid.Column("Prezime"),
-                grid.Column("KorisnickoIme"),
-                grid.Column("Mail")
+                grid.Column("Ime"),
+                grid.Column("KorisnickoIme", "Korisničko ime"),
+                grid.Column("Mail"),
+                grid.Column("DatumRegistracije", "Registracija"),                
+                grid.Column(format: @<text>
+                @Html.ActionLink("Edit",   "Edit",   new { ID=item.KorisnikID} )
+                |
+                @Html.ActionLink("Details", "Details", new { ID=item.KorisnikID} )
+                |
+                @Html.ActionLink("Delete", "Delete", new { ID=item.KorisnikID} )
+               </text>)
+
             ),
             tableStyle: "table table-striped"
             );
     }
     else
     {
-        <span>Nema rezultata</span>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        Nema rezultata
+    </div>
     }
 }

@@ -31,7 +31,10 @@ namespace FITWiki.Controllers
 
             int page = 0;
             if (Request["page"] != null)
+            {
                 int.TryParse(Request["page"], out page);
+                page--; //Indeks umjesto rednog broja
+            }
 
             using (var context = new FITWikiContext())
             {
@@ -43,7 +46,7 @@ namespace FITWiki.Controllers
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@ImePrezime", model.ImePrezime));
                     cmd.Parameters.Add(new SqlParameter("@Mail", model.Mail));
-                    cmd.Parameters.Add(new SqlParameter("@Offset", page*2));
+                    cmd.Parameters.Add(new SqlParameter("@Offset", page*model.PageSize));
                     cmd.Parameters.Add(new SqlParameter("@MaxRows", 2));
                     var totalCount = new SqlParameter("@TotalRows", 0) { Direction = ParameterDirection.Output };
                     cmd.Parameters.Add(totalCount);

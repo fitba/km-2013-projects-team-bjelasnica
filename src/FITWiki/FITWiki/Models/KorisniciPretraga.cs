@@ -11,11 +11,14 @@ namespace FITWiki.Models
         {
             ImePrezime = "";
             Mail = "";
+            PageSize = 2;
         }
 
         public string ImePrezime { get; set; }
         public string Mail { get; set; }
         public List<Korisnici> Rezultat { get; set; }
         public int RowCount { get; set; }
+        public int PageSize { get; set; }
+
     }
 }
