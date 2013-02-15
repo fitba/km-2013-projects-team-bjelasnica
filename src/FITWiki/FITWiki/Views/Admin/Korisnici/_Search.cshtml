@@ -1,6 +1,7 @@
 ﻿@model FITWiki.Models.KorisniciPretraga
+
 @{
-    if (Model.Rezultat != null && Model.Rezultat.Count > 0)
+    if (Model != null && Model.Rezultat.Count > 0)
     {
             var grid = new WebGrid(canPage: true, rowsPerPage: Model.PageSize, canSort: false, ajaxUpdateContainerId: "grid");
             grid.Bind(Model.Rezultat, rowCount: Model.RowCount, autoSortAndPage: false);

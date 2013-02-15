@@ -24,16 +24,12 @@ namespace FITWiki.Controllers
 
         public ActionResult Index(KorisniciPretraga model)
         {
-            if (model.ImePrezime == null)
-                model.ImePrezime = "";
-            if (model.Mail == null)
-                model.Mail = "";
-
             int page = 0;
             if (Request["page"] != null)
             {
                 int.TryParse(Request["page"], out page);
                 page--; //Indeks umjesto rednog broja
+
             }
 
             using (var context = new FITWikiContext())
@@ -46,8 +42,8 @@ namespace FITWiki.Controllers
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@ImePrezime", model.ImePrezime));
                     cmd.Parameters.Add(new SqlParameter("@Mail", model.Mail));
-                    cmd.Parameters.Add(new SqlParameter("@Offset", page*model.PageSize));
-                    cmd.Parameters.Add(new SqlParameter("@MaxRows", 2));
+                    cmd.Parameters.Add(new SqlParameter("@Offset", page * model.PageSize));
+                    cmd.Parameters.Add(new SqlParameter("@MaxRows", model.PageSize));
                     var totalCount = new SqlParameter("@TotalRows", 0) { Direction = ParameterDirection.Output };
                     cmd.Parameters.Add(totalCount);
 
@@ -57,7 +53,6 @@ namespace FITWiki.Controllers
                     }
 
                     model.RowCount = (totalCount.Value == null) ? 0 : Convert.ToInt32(totalCount.Value);
-                    
                     return PartialView(model);
                 }
             }
