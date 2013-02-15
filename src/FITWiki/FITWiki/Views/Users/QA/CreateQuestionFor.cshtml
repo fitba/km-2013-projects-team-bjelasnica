@@ -89,6 +89,17 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.DatumIzmjene)
     </div>
+    
+    @foreach (var item in ViewBag.ListaSvihPitanjaZaClanak)
+    {
+        <div style="border:1px solid #808080; min-height:40px; margin-top:10px;">
+
+            <div style="float:left; border-right:1px solid #808080;min-height:30px; padding:5px;">@item.KorisnikID</div>
+         <div style="float:left;padding:5px;">@item.Tekst</div>
+        </div>
+        
+    }
+
 
     @using (Html.BeginForm("InsertQuestionFor","QA"))
 {

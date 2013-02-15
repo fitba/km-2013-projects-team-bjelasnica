@@ -80,15 +80,16 @@ namespace FITWiki.Controllers
 
                 VrsteClanaka vrsta = db.VrsteClanakas.Find(clanci.VrstaID);
                 ViewBag.VrstaNaslov = vrsta.Naziv;
-                ViewBag.ClanakID = id;
                 Teme tema = db.Temes.Find(clanci.TemaID);
                 ViewBag.TemaNaslov = vrsta.Naziv;
-                ViewBag.TemaID = tema.TemaID;
                 Korisnici korisnik = db.Korisnicis.Find(clanci.KorisnikID);
                 ViewBag.Korisnik = korisnik.Ime + " " + korisnik.Prezime;
 
+                string SP = string.Format("EXEC sp_GetAllQuestionsForClanak '{0}'", id);
+                  List<Pitanja> listaPitanja = db.Database.SqlQuery<Pitanja>(SP).ToList();
 
 
+                  ViewBag.ListaSvihPitanjaZaClanak = listaPitanja;
 
 
                 return View(clanci);
@@ -102,34 +103,12 @@ namespace FITWiki.Controllers
         {
             if (TemaID.HasValue && ClanakID.HasValue)
             {
-            //      using (var context = new FITWikiContext())
-            //{
-            //     SqlParameterCollection parametri = new SqlCommand().Parameters;
-            //     parametri.Add(new SqlParameter("@TextPitanja", pitanje));
-            //     parametri.Add(new SqlParameter("@KorisnikID", 2));//dodati iz sesije
-            //     parametri.Add(new SqlParameter("@ClanakID", ClanakID));
-            //     parametri.Add(new SqlParameter("@TemaID", TemaID));
-            //     parametri.Add(new SqlParameter("@DatumKreiranja", DateTime.Now));
-            //     parametri.Add(new SqlParameter("@DatumIzmjene", DateTime.Now));
-            //     parametri.Add(new SqlParameter("@Pozitivni", 0));
-            //     parametri.Add(new SqlParameter("@Negativni", 0));
+                
+                    string SP = string.Format("EXEC dbo.InsertPitanjeForQuestion '{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}'", pitanje, 4, ClanakID, TemaID, DateTime.Now.ToString("s"), DateTime.Now.ToString("s"), 0, 0);
+                    db.Database.ExecuteSqlCommand(SP);
 
-            //     context.Database.ExecuteSqlCommand("InsertPitanjeForQuestion @TextPitanja, @KorisnikID, @ClanakID,@TemaID,@DatumKreiranja,@DatumIzmjene,@Pozitivni,@Negativni", parametri);
-            // }
-
-
-                using (var context = new FITWikiContext())
-                {
-                    SqlParameterCollection parametri = new SqlCommand().Parameters;
-                    parametri.Add(new SqlParameter("@Naziv", "Cistacica"));
-                    parametri.Add(new SqlParameter("@DatumKreiranja", DateTime.Now));
-                    parametri.Add(new SqlParameter("@DatumIzmjene", DateTime.Now));
-
-                    context.Database.ExecuteSqlCommand("InsertUloga @Naziv, @DatumKreiranja, @DatumIzmjene", parametri);
-                }
-
-
-
+                
+               
 
             }
             else

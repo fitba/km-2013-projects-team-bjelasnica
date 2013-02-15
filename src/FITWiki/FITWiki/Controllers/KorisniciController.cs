@@ -87,6 +87,7 @@ namespace FITWiki.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 korisnici.LozinkaSalt = GenerateSaltValue();
                 korisnici.LozinkaHash = HashPassword(korisnici.Lozinka, korisnici.LozinkaSalt);
                 db.Korisnicis.Add(korisnici);
