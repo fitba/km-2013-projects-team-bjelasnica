@@ -206,6 +206,7 @@
     <Compile Include="Models\Pitanja.cs" />
     <Compile Include="Models\PitanjaGlasovi.cs" />
     <Compile Include="Models\Pretrage.cs" />
+    <Compile Include="Models\PitanjaKorisnici.cs" />
     <Compile Include="Models\Teme.cs" />
     <Compile Include="Models\Uloge.cs" />
     <Compile Include="Models\VrsteClanaka.cs" />
@@ -364,8 +365,10 @@
     <Content Include="Content\css\bootstrap-responsive.min.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\images\dislike.png" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\images\like.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -427,6 +430,7 @@
     <Content Include="Views\Admin\Korisnici\_Search.cshtml" />
     <Content Include="Views\Admin\Korisnici\Index.cshtml" />
     <Content Include="Views\Admin\Clanci\Index.cshtml" />
+    <Content Include="Views\Users\QA\GetVersions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

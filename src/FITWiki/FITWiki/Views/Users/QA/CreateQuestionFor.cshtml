@@ -4,108 +4,86 @@
     ViewBag.Title = "CreateQuestionFor";
     Layout = "~/Views/Shared/_Master.cshtml";
 }
-
-<h2>CreateQuestionFor</h2>
-
-<fieldset>
-    <legend>Clanci</legend>
+<br />
 
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Naslov)
+<div style="border: 1px solid #808080; padding: 10px;">
+
+    <div>
+        <div style="float: left;">
+            <h4>@Html.DisplayFor(model => model.Naslov)</h4>
+        </div>
+        <div style="float: left; margin-top: 13px; margin-left: 10px;">
+            <label>
+                (@Html.DisplayFor(model => model.Autori))
+            </label>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div style="border-top: 1px solid #e1e0e0;"></div>
+    <div class="display-field">
+        <label>Tema: @ViewBag.TemaNaslov</label>
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Naslov)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Autori)
+        <label>Tip: @ViewBag.VrstaNaslov</label>
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Autori)
+        <label>Ključne riječi: @Html.DisplayFor(model => model.KljucneRijeci)</label>
     </div>
-
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Sazetak)
+        @Html.DisplayNameFor(model => model.Sazetak)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Sazetak)
     </div>
+    <div style="border-top: 1px solid #e1e0e0; margin: 5px 0px;"></div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Tekst)
-    </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Tekst)
     </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.KljucneRijeci)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.KljucneRijeci)
-    </div>
-
-    <div class="display-label">
-       <label>Vrsta članka</label>
-    </div>
-    <div class="display-field">
-        <label>@ViewBag.VrstaNaslov</label>
-    </div>
-
-    <div class="display-label">
-        <label>Tema članka</label>
-    </div>
-    <div class="display-field">
-        <label>@ViewBag.TemaNaslov</label>
-    </div>
-
-    <div class="display-label">
-          <label>Korisnik:</label>
-    </div>
-    <div class="display-field">
-       <label>@ViewBag.Korisnik</label>
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Slike)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Slike)
-    </div>
-
-
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.DatumKreiranja)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.DatumKreiranja)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.DatumIzmjene)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.DatumIzmjene)
-    </div>
-    
-    @foreach (var item in ViewBag.ListaSvihPitanjaZaClanak)
-    {
-        <div style="border:1px solid #808080; min-height:40px; margin-top:10px;">
-
-            <div style="float:left; border-right:1px solid #808080;min-height:30px; padding:5px;">@item.KorisnikID</div>
-         <div style="float:left;padding:5px;">@item.Tekst</div>
+    <br />
+    <div style="border-top: 1px solid #e1e0e0; margin: 5px 0px;"></div>
+    <div style="background-color: #e1e0e0;">
+        <div class="display-label">
+            <label>Korisnik: @ViewBag.Korisnik on   @Html.DisplayFor(model => model.DatumKreiranja), last chage on   @Html.DisplayFor(model => model.DatumIzmjene) </label>
         </div>
+
+    </div>
+
+
+</div>
+@foreach (var item in ViewBag.ListaSvihPitanjaZaClanak)
+{
+    <div style="border: 1px solid #808080;  margin-top: 10px; overflow:auto; ">
+
+        <div style="float: left; padding: 5px;width:12%;">@item.ime @item.prezime</div>
+        <div style="float: left; padding: 5px;  width:78%; border-left:1px solid #808080; min-height:57px;">@item.Tekst</div>
+       
+         <div id="likeIdislikeBox"style="float: right;" >
+            <div id="like" style="float: left; margin: 5px; ">
+                <img src="~/Content/images/like.png" />
+              <label>@item.Pozitivni</label>
+            </div>
+            <div id="dislike" style="float: left;margin: 5px;">
+                <img src="~/Content/images/dislike.png" />
+              <label>@item.Negativni</label>
+            </div>
+        </div>
+
+    </div>
+            
         
-    }
+@*Ime, p.DatumKreiranja,p.Tekst,p.Negativni,p.Pozitivni cek dok vidim radil ovo uopste*@
+        
+}
 
 
-    @using (Html.BeginForm("InsertQuestionFor","QA"))
+@using (Html.BeginForm("InsertQuestionFor", "QA"))
 {
     @Html.ValidationSummary(true)
-        @Html.Hidden("TemaID",Model.TemaID)
-        @Html.Hidden("ClanakID",Model.ClanakID)
+    @Html.Hidden("TemaID", Model.TemaID)
+    @Html.Hidden("ClanakID", Model.ClanakID)
 
     <fieldset>
         <legend></legend>
@@ -116,13 +94,13 @@
                 <div class="control-label">
                     <label>Unesite komentar na clanak</label>
                 </div>
-                <div class="controls" >
-                <textarea id="IdTextArae" name="pitanje" ></textarea>
+                <div class="controls">
+                    <textarea id="IdTextArae" name="pitanje" rows="7" class="input-xxlarge"></textarea>
                 </div>
             </div>
 
-    
-                <div class="form-actions">
+
+            <div class="form-actions">
                 @Html.ActionLink("Nazad", "Clanci", null, new { @class = "btn" })
                 <button type="submit" class="btn btn-primary">Sačuvaj</button>
             </div>
@@ -132,9 +110,6 @@
     
 }
 
-
-
-</fieldset>
 
 
 

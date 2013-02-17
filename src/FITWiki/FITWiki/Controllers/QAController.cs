@@ -6,12 +6,13 @@ using System.Web;
 using System.Web.Mvc;
 using FITWiki.Models;
 using System.Globalization;
+using System.Data.Metadata.Edm;
 namespace FITWiki.Controllers
 {
     public class QAController : Controller
     {
         private FITWikiContext db = new FITWikiContext();
-
+       
         int IdClanka;
 
         //
@@ -22,23 +23,45 @@ namespace FITWiki.Controllers
             return View();
         }
 
+
+        public ActionResult GetVersions(int OS)
+        {
+            if (OS != -1)
+            {
+                string SP = string.Format("EXEC dbo.sp_GetAllTemeZaOblast '{0}'", OS);
+                List<Teme> ListaTema = db.Database.SqlQuery<Teme>(SP).ToList();
+                ViewBag.ListaTema = ListaTema;
+            }
+     
+
+            return View();
+        }
+
+
         public ActionResult CreateQuestion()
         {
-            List<Teme> ListaTema = db.Temes.ToList();
 
-            ViewBag.ListaTema = ListaTema;
+
+            string SP = string.Format("EXEC dbo.sp_GetAllOblasti");
+            List<Oblasti> ListaOblasti = db.Database.SqlQuery<Oblasti>(SP).ToList();
+
+            ViewBag.ListaOblasti = ListaOblasti;
+
+
 
             return View();
         }
 
 
         [HttpPost]
-        public ActionResult CreateQuestion(Pitanja pitanja)
+        public ActionResult CreateQuestion(string txtPitanja,string temaID)
         {
             if (ModelState.IsValid)
             {
-
-                pitanja.KorisnikID = 2; // iz sesije ili cokie-a pokupiti, samo radi testiranja
+                Pitanja pitanja = new Pitanja();
+                pitanja.TemaID = int.Parse(temaID);
+                pitanja.Tekst = txtPitanja;
+                pitanja.KorisnikID = 4; // iz sesije ili cokie-a pokupiti, samo radi testiranja
                 pitanja.DatumIzmjene = DateTime.Now;
                 pitanja.DatumKreiranja = DateTime.Now;
                 pitanja.Status = true;
@@ -49,12 +72,7 @@ namespace FITWiki.Controllers
                 return RedirectToAction("Index");
             }
 
-
-
-            ViewBag.ClanakID = new SelectList(db.Clancis, "ClanakID", "Naslov", pitanja.ClanakID);
-            ViewBag.KorisnikID = new SelectList(db.Korisnicis, "KorisnikID", "Ime", pitanja.KorisnikID);
-            ViewBag.TemaID = new SelectList(db.Temes, "TemaID", "Naziv", pitanja.TemaID);
-            return View(pitanja);
+            return View();
         }
 
         public ActionResult Clanci()
@@ -81,15 +99,17 @@ namespace FITWiki.Controllers
                 VrsteClanaka vrsta = db.VrsteClanakas.Find(clanci.VrstaID);
                 ViewBag.VrstaNaslov = vrsta.Naziv;
                 Teme tema = db.Temes.Find(clanci.TemaID);
-                ViewBag.TemaNaslov = vrsta.Naziv;
+                ViewBag.TemaNaslov = tema.Naziv;
                 Korisnici korisnik = db.Korisnicis.Find(clanci.KorisnikID);
                 ViewBag.Korisnik = korisnik.Ime + " " + korisnik.Prezime;
 
                 string SP = string.Format("EXEC sp_GetAllQuestionsForClanak '{0}'", id);
-                  List<Pitanja> listaPitanja = db.Database.SqlQuery<Pitanja>(SP).ToList();
+               List<PitanjaKorisnici> listaPitanja = db.Database.SqlQuery<PitanjaKorisnici>(SP).ToList();
+                
+          //  string SP = string.Format("EXEC dbo.sp_GetImeIprezime");
+             //   List<suda> test = db.Database.SqlQuery<suda>(SP).ToList();
 
-
-                  ViewBag.ListaSvihPitanjaZaClanak = listaPitanja;
+                ViewBag.ListaSvihPitanjaZaClanak = listaPitanja; 
 
 
                 return View(clanci);

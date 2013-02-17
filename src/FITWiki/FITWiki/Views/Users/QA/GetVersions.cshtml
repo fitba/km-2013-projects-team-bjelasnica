@@ -1,0 +1,12 @@
+﻿@model FITWiki.Models.Teme
+           
+@{
+    <select id="Version" name="Version">
+        @foreach (var item in ViewBag.ListaTema)
+        {
+            <option value="@item.TemaID">@item.Naziv</option>
+        }
+    </select>
+}
+
+

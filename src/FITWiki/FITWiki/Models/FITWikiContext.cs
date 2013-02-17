@@ -15,7 +15,7 @@ namespace FITWiki.Models
             : base("Name=FITWikiContext")
         {
         }
-
+        // ovako samo duplo vise vremena, ma znam al tako je moralo, adem zahtjevao code first
         public DbSet<Aktivnosti> Aktivnostis { get; set; }
         public DbSet<Clanci> Clancis { get; set; }
         public DbSet<ClanciKomentari> ClanciKomentaris { get; set; }
