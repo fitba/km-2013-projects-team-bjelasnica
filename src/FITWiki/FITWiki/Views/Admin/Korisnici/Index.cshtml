@@ -8,18 +8,18 @@
 <fieldset>
     <legend>Korisnici</legend>
 
-    @using (Ajax.BeginForm("Index", "Korisnici", new AjaxOptions { UpdateTargetId = "data-grid", HttpMethod = "Post" }))
+    @using (Ajax.BeginForm("Index", "Korisnici", new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "data-grid" }, new { id = "filter" }))
     {   
         <div class="input-append">
             @Html.TextBoxFor(m=>m.ImePrezime, null, new {@class="input-large", @placeholder="Ime Prezime"})
-            @Html.TextBoxFor(m=>m.Mail, null, new {@class="input-large", @placeholder="Mail"})
+            @Html.TextBoxFor(m => m.Mail, null, new { @class = "input-large", @placeholder = "Mail" })
             <button type="submit" class="btn btn-inverse" id="Index">Pretraga</button>
         </div>
         <div id="data-grid">
             @Html.Partial("_Search", Model)
         </div>
     }
-   
+
 </fieldset>
 
 <div class="form-horizontal">

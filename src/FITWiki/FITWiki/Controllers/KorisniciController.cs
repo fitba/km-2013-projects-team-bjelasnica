@@ -24,13 +24,7 @@ namespace FITWiki.Controllers
 
         public ActionResult Index(KorisniciPretraga model)
         {
-            int page = 0;
-            if (Request["page"] != null)
-            {
-                int.TryParse(Request["page"], out page);
-                page--; //Indeks umjesto rednog broja
-
-            }
+            int page = model.Page-1;
 
             using (var context = new FITWikiContext())
             {
@@ -174,12 +168,19 @@ namespace FITWiki.Controllers
             string hash = HashPassword(lozinka, salt);
             using (var context = new FITWikiContext())
             {
-                SqlParameterCollection parametri = new SqlCommand().Parameters;
-                parametri.Add(new SqlParameter("@KorisnikID", id));
-                parametri.Add(new SqlParameter("@LozinkaSalt", salt));
-                parametri.Add(new SqlParameter("@LozinkaHash", hash));
+                using (context.Database.Connection)
+                {
+                    context.Database.Connection.Open();
+                    DbCommand cmd = context.Database.Connection.CreateCommand();
+                    cmd.CommandText = "sp_Korisnici_ChangePassword";
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                context.Database.ExecuteSqlCommand("sp_Korisnici_ChangePassword @KorisnikID, @LozinkaSalt, @LozinkaHash", parametri);
+                    cmd.Parameters.Add(new SqlParameter("@KorisnikID", id));
+                    cmd.Parameters.Add(new SqlParameter("@LozinkaSalt", salt));
+                    cmd.Parameters.Add(new SqlParameter("@LozinkaHash", hash));
+
+                    cmd.ExecuteNonQuery();
+                }
             }
 
             return RedirectToAction("Index");  

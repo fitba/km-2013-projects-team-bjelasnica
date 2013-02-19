@@ -15,6 +15,7 @@ namespace FITWiki.Models
             ImePrezime = "";
             Mail = "";
             PageSize = 2;
+            Page = 1;
         }
 
         public string Mail
@@ -39,6 +40,7 @@ namespace FITWiki.Models
         public List<Korisnici> Rezultat { get; set; }
         public int RowCount { get; set; }
         public int PageSize { get; set; }
+        public int Page{ get; set; }
        
       
     }
