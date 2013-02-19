@@ -84,6 +84,9 @@ namespace FITWiki.Models
         [DataType(DataType.Password)]
         [Compare("Lozinka", ErrorMessage = "Unijeli ste pogrešnu lozinku.")]
         public string PotvrdaLozinke { get; set; }
+
+        [NotMapped]
+        public string[] Uloge { get; set; }
         #endregion
     }
 }

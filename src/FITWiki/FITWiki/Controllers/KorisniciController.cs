@@ -47,6 +47,7 @@ namespace FITWiki.Controllers
                     }
 
                     model.RowCount = (totalCount.Value == null) ? 0 : Convert.ToInt32(totalCount.Value);
+                    
                     return PartialView(model);
                 }
             }
@@ -70,6 +71,7 @@ namespace FITWiki.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.Uloge = db.Uloges.ToList();
             return View();
         }
 
@@ -84,8 +86,18 @@ namespace FITWiki.Controllers
                 
                 korisnici.LozinkaSalt = GenerateSaltValue();
                 korisnici.LozinkaHash = HashPassword(korisnici.Lozinka, korisnici.LozinkaSalt);
+
+                //Uloge
+                foreach (var u in korisnici.Uloge)
+                {
+                    KorisniciUloge novaUloga = new KorisniciUloge();
+                    novaUloga.UlogaID = Convert.ToInt32(u);
+                    korisnici.KorisniciUloges.Add(novaUloga);
+                }
+
                 db.Korisnicis.Add(korisnici);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 

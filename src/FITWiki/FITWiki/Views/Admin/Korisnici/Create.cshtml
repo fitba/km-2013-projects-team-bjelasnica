@@ -86,6 +86,21 @@
                 </div>
             </div>
             <div class="control-group">
+                <div class="control-label">
+                    Uloge
+                </div>
+                <div class="controls">
+                    @foreach (var o in ViewBag.Uloge)
+                    {
+                        var optionValue = "Uloge_" + o.UlogaID; 
+                  
+                        <input type="checkbox" id="@optionValue" name="Uloge" value="@o.UlogaID"/>
+                        <label for="@optionValue">@o.Naziv</label>
+                        <br />
+                    }
+                </div>
+            </div>
+            <div class="control-group">
                 <div class="controls">
                     <label class="checkbox">
                         @Html.CheckBoxFor(model => model.Aktivan, new { @checked = "ckecked"})
