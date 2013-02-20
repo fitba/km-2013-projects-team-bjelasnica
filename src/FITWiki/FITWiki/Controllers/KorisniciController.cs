@@ -71,8 +71,9 @@ namespace FITWiki.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.Uloge = db.Uloges.ToList();
-            return View();
+            Korisnici korisnici = new Korisnici();
+            korisnici.Uloge = db.Uloges.ToList();
+            return View(korisnici);
         }
 
         //
@@ -91,7 +92,7 @@ namespace FITWiki.Controllers
                 foreach (var u in korisnici.Uloge)
                 {
                     KorisniciUloge novaUloga = new KorisniciUloge();
-                    novaUloga.UlogaID = Convert.ToInt32(u);
+                    novaUloga.UlogaID = u.UlogaID;
                     korisnici.KorisniciUloges.Add(novaUloga);
                 }
 

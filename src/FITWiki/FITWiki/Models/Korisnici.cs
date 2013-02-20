@@ -86,7 +86,7 @@ namespace FITWiki.Models
         public string PotvrdaLozinke { get; set; }
 
         [NotMapped]
-        public string[] Uloge { get; set; }
+        public List<Uloge> Uloge { get; set; }
         #endregion
     }
 }

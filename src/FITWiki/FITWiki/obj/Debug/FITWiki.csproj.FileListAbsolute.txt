@@ -259,3 +259,4 @@ C:\Users\admir\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITWiki\FIT
 C:\Users\admir\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITWiki\FITWiki\bin\PagedList.xml
 C:\Users\admir\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITWiki\FITWiki\bin\PagedList.Mvc.xml
 C:\Users\Elmin\Desktop\km-2013-projects-team-bjelasnica-master\km-2013-projects-team-bjelasnica\src\FITWiki\FITWiki\obj\Debug\FITWiki.csprojResolveAssemblyReference.cache
+C:\Users\larisa.FIT\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITWiki\FITWiki\bin\MvcCheckBoxList.dll
