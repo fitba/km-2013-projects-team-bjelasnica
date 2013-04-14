@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FITKMS", "FITKMS\FITKMS.csproj", "{36DE1AFA-0F0E-4A04-B571-F82BC3929F54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FITKMS_business", "FITKMS_business\FITKMS_business.csproj", "{23E4FDC0-C194-41B8-9B38-2CD76CFE1862}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36DE1AFA-0F0E-4A04-B571-F82BC3929F54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36DE1AFA-0F0E-4A04-B571-F82BC3929F54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36DE1AFA-0F0E-4A04-B571-F82BC3929F54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36DE1AFA-0F0E-4A04-B571-F82BC3929F54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23E4FDC0-C194-41B8-9B38-2CD76CFE1862}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23E4FDC0-C194-41B8-9B38-2CD76CFE1862}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23E4FDC0-C194-41B8-9B38-2CD76CFE1862}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23E4FDC0-C194-41B8-9B38-2CD76CFE1862}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

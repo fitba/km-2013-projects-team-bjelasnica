@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FITKMSModelStoreContainer" CdmEntityContainer="FITKMSEntities">
+    <EntitySetMapping Name="Aktivnosti">
+      <EntityTypeMapping TypeName="FITKMSModel.Aktivnosti">
+        <MappingFragment StoreEntitySet="Aktivnosti">
+          <ScalarProperty Name="AktivnostID" ColumnName="AktivnostID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clanci">
+      <EntityTypeMapping TypeName="FITKMSModel.Clanci">
+        <MappingFragment StoreEntitySet="Clanci">
+          <ScalarProperty Name="ClanakID" ColumnName="ClanakID" />
+          <ScalarProperty Name="Naslov" ColumnName="Naslov" />
+          <ScalarProperty Name="Autori" ColumnName="Autori" />
+          <ScalarProperty Name="Tekst" ColumnName="Tekst" />
+          <ScalarProperty Name="KljucneRijeci" ColumnName="KljucneRijeci" />
+          <ScalarProperty Name="VrstaID" ColumnName="VrstaID" />
+          <ScalarProperty Name="TemaID" ColumnName="TemaID" />
+          <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+          <ScalarProperty Name="Slike" ColumnName="Slike" />
+          <ScalarProperty Name="Dokument" ColumnName="Dokument" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Izmjene" ColumnName="Izmjene" />
+          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+          <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClanciKomentari">
+      <EntityTypeMapping TypeName="FITKMSModel.ClanciKomentari">
+        <MappingFragment StoreEntitySet="ClanciKomentari">
+          <ScalarProperty Name="ClanakKomentarID" ColumnName="ClanakKomentarID" />
+          <ScalarProperty Name="Komentar" ColumnName="Komentar" />
+          <ScalarProperty Name="ClanakID" ColumnName="ClanakID" />
+          <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+          <ScalarProperty Name="Pozitivni" ColumnName="Pozitivni" />
+          <ScalarProperty Name="Negativni" ColumnName="Negativni" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+          <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClanciOcjene">
+      <EntityTypeMapping TypeName="FITKMSModel.ClanciOcjene">
+        <MappingFragment StoreEntitySet="ClanciOcjene">
+          <ScalarProperty Name="ClanakOcjenaID" ColumnName="ClanakOcjenaID" />
+          <ScalarProperty Name="Ocjena" ColumnName="Ocjena" />
+          <ScalarProperty Name="ClanakID" ColumnName="ClanakID" />
+          <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+          <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Korisnici">
+      <EntityTypeMapping TypeName="FITKMSModel.Korisnici">
+        <MappingFragment StoreEntitySet="Korisnici">
+          <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Spol" ColumnName="Spol" />
+          <ScalarProperty Name="DatumRodjenja" ColumnName="DatumRodjenja" />
+          <ScalarProperty Name="DatumRegistracije" ColumnName="DatumRegistracije" />
+          <ScalarProperty Name="PosljednjaPrijava" ColumnName="PosljednjaPrijava" />
+          <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+          <ScalarProperty Name="LozinkaHash" ColumnName="LozinkaHash" />
+          <ScalarProperty Name="LozinkaSalt" ColumnName="LozinkaSalt" />
+          <ScalarProperty Name="Slika" ColumnName="Slika" />
+          <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+          <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KorisniciUloge">
+      <EntityTypeMapping TypeName="FITKMSModel.KorisniciUloge">
+        <MappingFragment StoreEntitySet="KorisniciUloge">
+          <ScalarProperty Name="KorisnikUlogaID" ColumnName="KorisnikUlogaID" />
+          <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+          <ScalarProperty Name="UlogaID" ColumnName="UlogaID" />
+          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+          <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Oblasti">
+      <EntityTypeMapping TypeName="FITKMSModel.Oblasti">
+        <MappingFragment StoreEntitySet="Oblasti">
+          <ScalarProperty Name="OblastID" ColumnName="OblastID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+          <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Odgovori">
+      <EntityTypeMapping TypeName="FITKMSModel.Odgovori">
+        <MappingFragment StoreEntitySet="Odgovori">
+          <ScalarProperty Name="OdgovorID" ColumnName="OdgovorID" />
+          <ScalarProperty Name="Tekst" ColumnName="Tekst" />
+          <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+          <ScalarProperty Name="PitanjeID" ColumnName="PitanjeID" />
+          <ScalarProperty Name="Pozitivni" ColumnName="Pozitivni" />
+          <ScalarProperty Name="Negativni" ColumnName="Negativni" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+          <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OdgovoriGlasovi">
+      <EntityTypeMapping TypeName="FITKMSModel.OdgovoriGlasovi">
+        <MappingFragment StoreEntitySet="OdgovoriGlasovi">
+          <ScalarProperty Name="GlasID" ColumnName="GlasID" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+          <ScalarProperty Name="OdgovorID" ColumnName="OdgovorID" />
+          <ScalarProperty Name="Pozitivni" ColumnName="Pozitivni" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pitanja">
+      <EntityTypeMapping TypeName="FITKMSModel.Pitanja">
+        <MappingFragment StoreEntitySet="Pitanja">
+          <ScalarProperty Name="PitanjeID" ColumnName="PitanjeID" />
+          <ScalarProperty Name="Naslov" ColumnName="Naslov" />
+          <ScalarProperty Name="Tekst" ColumnName="Tekst" />
+          <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+          <ScalarProperty Name="ClanakID" ColumnName="ClanakID" />
+          <ScalarProperty Name="TemaID" ColumnName="TemaID" />
+          <ScalarProperty Name="Pozitivni" ColumnName="Pozitivni" />
+          <ScalarProperty Name="Negativni" ColumnName="Negativni" />
+          <ScalarProperty Name="BrojPregleda" ColumnName="BrojPregleda" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+          <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PitanjaGlasovi">
+      <EntityTypeMapping TypeName="FITKMSModel.PitanjaGlasovi">
+        <MappingFragment StoreEntitySet="PitanjaGlasovi">
+          <ScalarProperty Name="GlasID" ColumnName="GlasID" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+          <ScalarProperty Name="PitanjeID" ColumnName="PitanjeID" />
+          <ScalarProperty Name="Pozitivni" ColumnName="Pozitivni" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pretrage">
+      <EntityTypeMapping TypeName="FITKMSModel.Pretrage">
+        <MappingFragment StoreEntitySet="Pretrage">
+          <ScalarProperty Name="PretragaID" ColumnName="PretragaID" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="AktivnostID" ColumnName="AktivnostID" />
+          <ScalarProperty Name="TekstPretrage" ColumnName="TekstPretrage" />
+          <ScalarProperty Name="ClanakID" ColumnName="ClanakID" />
+          <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tagovi">
+      <EntityTypeMapping TypeName="FITKMSModel.Tagovi">
+        <MappingFragment StoreEntitySet="Tagovi">
+          <ScalarProperty Name="TagID" ColumnName="TagID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teme">
+      <EntityTypeMapping TypeName="FITKMSModel.Teme">
+        <MappingFragment StoreEntitySet="Teme">
+          <ScalarProperty Name="TemaID" ColumnName="TemaID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="OblastID" ColumnName="OblastID" />
+          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+          <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uloge">
+      <EntityTypeMapping TypeName="FITKMSModel.Uloge">
+        <MappingFragment StoreEntitySet="Uloge">
+          <ScalarProperty Name="UlogaID" ColumnName="UlogaID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+          <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VrsteClanaka">
+      <EntityTypeMapping TypeName="FITKMSModel.VrsteClanaka">
+        <MappingFragment StoreEntitySet="VrsteClanaka">
+          <ScalarProperty Name="VrstaID" ColumnName="VrstaID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+          <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ClanciTagovi" TypeName="FITKMSModel.ClanciTagovi" StoreEntitySet="ClanciTagovi">
+      <EndProperty Name="Clanci">
+        <ScalarProperty Name="ClanakID" ColumnName="ClanakID" />
+      </EndProperty>
+      <EndProperty Name="Tagovi">
+        <ScalarProperty Name="TagID" ColumnName="TagID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PitanjaTagovi" TypeName="FITKMSModel.PitanjaTagovi" StoreEntitySet="PitanjaTagovi">
+      <EndProperty Name="Pitanja">
+        <ScalarProperty Name="PitanjeID" ColumnName="PitanjeID" />
+      </EndProperty>
+      <EndProperty Name="Tagovi">
+        <ScalarProperty Name="TagID" ColumnName="TagID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="fsp_VrsteClanaka_SelectByStatus" FunctionName="FITKMSModel.Store.fsp_VrsteClanaka_SelectByStatus" />
+  </EntityContainerMapping>
+</Mapping>

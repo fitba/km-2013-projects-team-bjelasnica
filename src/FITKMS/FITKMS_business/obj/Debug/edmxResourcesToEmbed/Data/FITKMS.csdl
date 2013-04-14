@@ -1,0 +1,596 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FITKMSModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="FITKMSEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Aktivnosti" EntityType="FITKMSModel.Aktivnosti" />
+    <EntitySet Name="Clanci" EntityType="FITKMSModel.Clanci" />
+    <EntitySet Name="ClanciKomentari" EntityType="FITKMSModel.ClanciKomentari" />
+    <EntitySet Name="ClanciOcjene" EntityType="FITKMSModel.ClanciOcjene" />
+    <EntitySet Name="Korisnici" EntityType="FITKMSModel.Korisnici" />
+    <EntitySet Name="KorisniciUloge" EntityType="FITKMSModel.KorisniciUloge" />
+    <EntitySet Name="Oblasti" EntityType="FITKMSModel.Oblasti" />
+    <EntitySet Name="Odgovori" EntityType="FITKMSModel.Odgovori" />
+    <EntitySet Name="OdgovoriGlasovi" EntityType="FITKMSModel.OdgovoriGlasovi" />
+    <EntitySet Name="Pitanja" EntityType="FITKMSModel.Pitanja" />
+    <EntitySet Name="PitanjaGlasovi" EntityType="FITKMSModel.PitanjaGlasovi" />
+    <EntitySet Name="Pretrage" EntityType="FITKMSModel.Pretrage" />
+    <EntitySet Name="Tagovi" EntityType="FITKMSModel.Tagovi" />
+    <EntitySet Name="Teme" EntityType="FITKMSModel.Teme" />
+    <EntitySet Name="Uloge" EntityType="FITKMSModel.Uloge" />
+    <EntitySet Name="VrsteClanaka" EntityType="FITKMSModel.VrsteClanaka" />
+    <AssociationSet Name="FK_Pretrage_Aktivnosti" Association="FITKMSModel.FK_Pretrage_Aktivnosti">
+      <End Role="Aktivnosti" EntitySet="Aktivnosti" />
+      <End Role="Pretrage" EntitySet="Pretrage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Clanci_Korisnici" Association="FITKMSModel.FK_Clanci_Korisnici">
+      <End Role="Korisnici" EntitySet="Korisnici" />
+      <End Role="Clanci" EntitySet="Clanci" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Clanci_Teme" Association="FITKMSModel.FK_Clanci_Teme">
+      <End Role="Teme" EntitySet="Teme" />
+      <End Role="Clanci" EntitySet="Clanci" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Clanci_VrsteClanaka" Association="FITKMSModel.FK_Clanci_VrsteClanaka">
+      <End Role="VrsteClanaka" EntitySet="VrsteClanaka" />
+      <End Role="Clanci" EntitySet="Clanci" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClanciKomentari_Clanci" Association="FITKMSModel.FK_ClanciKomentari_Clanci">
+      <End Role="Clanci" EntitySet="Clanci" />
+      <End Role="ClanciKomentari" EntitySet="ClanciKomentari" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClanciOcjene_Clanci" Association="FITKMSModel.FK_ClanciOcjene_Clanci">
+      <End Role="Clanci" EntitySet="Clanci" />
+      <End Role="ClanciOcjene" EntitySet="ClanciOcjene" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pitanja_Clanci" Association="FITKMSModel.FK_Pitanja_Clanci">
+      <End Role="Clanci" EntitySet="Clanci" />
+      <End Role="Pitanja" EntitySet="Pitanja" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClanciKomentari_Korisnici" Association="FITKMSModel.FK_ClanciKomentari_Korisnici">
+      <End Role="Korisnici" EntitySet="Korisnici" />
+      <End Role="ClanciKomentari" EntitySet="ClanciKomentari" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClanciOcjene_Korisnici" Association="FITKMSModel.FK_ClanciOcjene_Korisnici">
+      <End Role="Korisnici" EntitySet="Korisnici" />
+      <End Role="ClanciOcjene" EntitySet="ClanciOcjene" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KorisniciUloge_Korisnici" Association="FITKMSModel.FK_KorisniciUloge_Korisnici">
+      <End Role="Korisnici" EntitySet="Korisnici" />
+      <End Role="KorisniciUloge" EntitySet="KorisniciUloge" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Odgovori_Korisnici" Association="FITKMSModel.FK_Odgovori_Korisnici">
+      <End Role="Korisnici" EntitySet="Korisnici" />
+      <End Role="Odgovori" EntitySet="Odgovori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OdgovoriGlasovi_Korisnici" Association="FITKMSModel.FK_OdgovoriGlasovi_Korisnici">
+      <End Role="Korisnici" EntitySet="Korisnici" />
+      <End Role="OdgovoriGlasovi" EntitySet="OdgovoriGlasovi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pitanja_Korisnici" Association="FITKMSModel.FK_Pitanja_Korisnici">
+      <End Role="Korisnici" EntitySet="Korisnici" />
+      <End Role="Pitanja" EntitySet="Pitanja" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PitanjaGlasovi_Korisnici" Association="FITKMSModel.FK_PitanjaGlasovi_Korisnici">
+      <End Role="Korisnici" EntitySet="Korisnici" />
+      <End Role="PitanjaGlasovi" EntitySet="PitanjaGlasovi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KorisniciUloge_Uloge" Association="FITKMSModel.FK_KorisniciUloge_Uloge">
+      <End Role="Uloge" EntitySet="Uloge" />
+      <End Role="KorisniciUloge" EntitySet="KorisniciUloge" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teme_Oblasti" Association="FITKMSModel.FK_Teme_Oblasti">
+      <End Role="Oblasti" EntitySet="Oblasti" />
+      <End Role="Teme" EntitySet="Teme" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Odgovori_Pitanja" Association="FITKMSModel.FK_Odgovori_Pitanja">
+      <End Role="Pitanja" EntitySet="Pitanja" />
+      <End Role="Odgovori" EntitySet="Odgovori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OdgovoriGlasovi_Odgovori" Association="FITKMSModel.FK_OdgovoriGlasovi_Odgovori">
+      <End Role="Odgovori" EntitySet="Odgovori" />
+      <End Role="OdgovoriGlasovi" EntitySet="OdgovoriGlasovi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pitanja_Teme" Association="FITKMSModel.FK_Pitanja_Teme">
+      <End Role="Teme" EntitySet="Teme" />
+      <End Role="Pitanja" EntitySet="Pitanja" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PitanjaGlasovi_Pitanja" Association="FITKMSModel.FK_PitanjaGlasovi_Pitanja">
+      <End Role="Pitanja" EntitySet="Pitanja" />
+      <End Role="PitanjaGlasovi" EntitySet="PitanjaGlasovi" />
+    </AssociationSet>
+    <AssociationSet Name="ClanciTagovi" Association="FITKMSModel.ClanciTagovi">
+      <End Role="Clanci" EntitySet="Clanci" />
+      <End Role="Tagovi" EntitySet="Tagovi" />
+    </AssociationSet>
+    <AssociationSet Name="PitanjaTagovi" Association="FITKMSModel.PitanjaTagovi">
+      <End Role="Pitanja" EntitySet="Pitanja" />
+      <End Role="Tagovi" EntitySet="Tagovi" />
+    </AssociationSet>
+    <FunctionImport Name="fsp_VrsteClanaka_SelectByStatus" EntitySet="VrsteClanaka" ReturnType="Collection(FITKMSModel.VrsteClanaka)">
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="Aktivnosti">
+    <Key>
+      <PropertyRef Name="AktivnostID" />
+    </Key>
+    <Property Name="AktivnostID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Pretrage" Relationship="FITKMSModel.FK_Pretrage_Aktivnosti" FromRole="Aktivnosti" ToRole="Pretrage" />
+  </EntityType>
+  <EntityType Name="Clanci">
+    <Key>
+      <PropertyRef Name="ClanakID" />
+    </Key>
+    <Property Name="ClanakID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Naslov" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Autori" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Tekst" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="KljucneRijeci" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="VrstaID" Type="Int32" Nullable="false" />
+    <Property Name="TemaID" Type="Int32" Nullable="false" />
+    <Property Name="KorisnikID" Type="Int32" Nullable="false" />
+    <Property Name="Slike" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Dokument" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="Izmjene" Type="Boolean" />
+    <Property Name="DatumKreiranja" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DatumIzmjene" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Korisnici" Relationship="FITKMSModel.FK_Clanci_Korisnici" FromRole="Clanci" ToRole="Korisnici" />
+    <NavigationProperty Name="Teme" Relationship="FITKMSModel.FK_Clanci_Teme" FromRole="Clanci" ToRole="Teme" />
+    <NavigationProperty Name="VrsteClanaka" Relationship="FITKMSModel.FK_Clanci_VrsteClanaka" FromRole="Clanci" ToRole="VrsteClanaka" />
+    <NavigationProperty Name="ClanciKomentari" Relationship="FITKMSModel.FK_ClanciKomentari_Clanci" FromRole="Clanci" ToRole="ClanciKomentari" />
+    <NavigationProperty Name="ClanciOcjene" Relationship="FITKMSModel.FK_ClanciOcjene_Clanci" FromRole="Clanci" ToRole="ClanciOcjene" />
+    <NavigationProperty Name="Pitanja" Relationship="FITKMSModel.FK_Pitanja_Clanci" FromRole="Clanci" ToRole="Pitanja" />
+    <NavigationProperty Name="Tagovi" Relationship="FITKMSModel.ClanciTagovi" FromRole="Clanci" ToRole="Tagovi" />
+  </EntityType>
+  <EntityType Name="ClanciKomentari">
+    <Key>
+      <PropertyRef Name="ClanakKomentarID" />
+    </Key>
+    <Property Name="ClanakKomentarID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Komentar" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ClanakID" Type="Int32" Nullable="false" />
+    <Property Name="KorisnikID" Type="Int32" Nullable="false" />
+    <Property Name="Pozitivni" Type="Int32" />
+    <Property Name="Negativni" Type="Int32" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="DatumKreiranja" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DatumIzmjene" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Clanci" Relationship="FITKMSModel.FK_ClanciKomentari_Clanci" FromRole="ClanciKomentari" ToRole="Clanci" />
+    <NavigationProperty Name="Korisnici" Relationship="FITKMSModel.FK_ClanciKomentari_Korisnici" FromRole="ClanciKomentari" ToRole="Korisnici" />
+  </EntityType>
+  <EntityType Name="ClanciOcjene">
+    <Key>
+      <PropertyRef Name="ClanakOcjenaID" />
+    </Key>
+    <Property Name="ClanakOcjenaID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Ocjena" Type="Int32" Nullable="false" />
+    <Property Name="ClanakID" Type="Int32" Nullable="false" />
+    <Property Name="KorisnikID" Type="Int32" Nullable="false" />
+    <Property Name="DatumKreiranja" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DatumIzmjene" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Clanci" Relationship="FITKMSModel.FK_ClanciOcjene_Clanci" FromRole="ClanciOcjene" ToRole="Clanci" />
+    <NavigationProperty Name="Korisnici" Relationship="FITKMSModel.FK_ClanciOcjene_Korisnici" FromRole="ClanciOcjene" ToRole="Korisnici" />
+  </EntityType>
+  <EntityType Name="Korisnici">
+    <Key>
+      <PropertyRef Name="KorisnikID" />
+    </Key>
+    <Property Name="KorisnikID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Ime" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Prezime" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Mail" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Spol" Type="String" Nullable="false" MaxLength="1" Unicode="true" FixedLength="true" />
+    <Property Name="DatumRodjenja" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DatumRegistracije" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PosljednjaPrijava" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="KorisnickoIme" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="LozinkaHash" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="LozinkaSalt" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Slika" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Aktivan" Type="Boolean" Nullable="false" />
+    <Property Name="DatumIzmjene" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Clanci" Relationship="FITKMSModel.FK_Clanci_Korisnici" FromRole="Korisnici" ToRole="Clanci" />
+    <NavigationProperty Name="ClanciKomentari" Relationship="FITKMSModel.FK_ClanciKomentari_Korisnici" FromRole="Korisnici" ToRole="ClanciKomentari" />
+    <NavigationProperty Name="ClanciOcjene" Relationship="FITKMSModel.FK_ClanciOcjene_Korisnici" FromRole="Korisnici" ToRole="ClanciOcjene" />
+    <NavigationProperty Name="KorisniciUloge" Relationship="FITKMSModel.FK_KorisniciUloge_Korisnici" FromRole="Korisnici" ToRole="KorisniciUloge" />
+    <NavigationProperty Name="Odgovori" Relationship="FITKMSModel.FK_Odgovori_Korisnici" FromRole="Korisnici" ToRole="Odgovori" />
+    <NavigationProperty Name="OdgovoriGlasovi" Relationship="FITKMSModel.FK_OdgovoriGlasovi_Korisnici" FromRole="Korisnici" ToRole="OdgovoriGlasovi" />
+    <NavigationProperty Name="Pitanja" Relationship="FITKMSModel.FK_Pitanja_Korisnici" FromRole="Korisnici" ToRole="Pitanja" />
+    <NavigationProperty Name="PitanjaGlasovi" Relationship="FITKMSModel.FK_PitanjaGlasovi_Korisnici" FromRole="Korisnici" ToRole="PitanjaGlasovi" />
+  </EntityType>
+  <EntityType Name="KorisniciUloge">
+    <Key>
+      <PropertyRef Name="KorisnikUlogaID" />
+      <PropertyRef Name="KorisnikID" />
+      <PropertyRef Name="UlogaID" />
+    </Key>
+    <Property Name="KorisnikUlogaID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="KorisnikID" Type="Int32" Nullable="false" />
+    <Property Name="UlogaID" Type="Int32" Nullable="false" />
+    <Property Name="DatumKreiranja" Type="DateTime" Precision="3" />
+    <Property Name="DatumIzmjene" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Korisnici" Relationship="FITKMSModel.FK_KorisniciUloge_Korisnici" FromRole="KorisniciUloge" ToRole="Korisnici" />
+    <NavigationProperty Name="Uloge" Relationship="FITKMSModel.FK_KorisniciUloge_Uloge" FromRole="KorisniciUloge" ToRole="Uloge" />
+  </EntityType>
+  <EntityType Name="Oblasti">
+    <Key>
+      <PropertyRef Name="OblastID" />
+    </Key>
+    <Property Name="OblastID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="DatumKreiranja" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DatumIzmjene" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Teme" Relationship="FITKMSModel.FK_Teme_Oblasti" FromRole="Oblasti" ToRole="Teme" />
+  </EntityType>
+  <EntityType Name="Odgovori">
+    <Key>
+      <PropertyRef Name="OdgovorID" />
+    </Key>
+    <Property Name="OdgovorID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Tekst" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="KorisnikID" Type="Int32" Nullable="false" />
+    <Property Name="PitanjeID" Type="Int32" Nullable="false" />
+    <Property Name="Pozitivni" Type="Int32" />
+    <Property Name="Negativni" Type="Int32" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="DatumKreiranja" Type="DateTime" Precision="3" />
+    <Property Name="DatumIzmjene" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Korisnici" Relationship="FITKMSModel.FK_Odgovori_Korisnici" FromRole="Odgovori" ToRole="Korisnici" />
+    <NavigationProperty Name="Pitanja" Relationship="FITKMSModel.FK_Odgovori_Pitanja" FromRole="Odgovori" ToRole="Pitanja" />
+    <NavigationProperty Name="OdgovoriGlasovi" Relationship="FITKMSModel.FK_OdgovoriGlasovi_Odgovori" FromRole="Odgovori" ToRole="OdgovoriGlasovi" />
+  </EntityType>
+  <EntityType Name="OdgovoriGlasovi">
+    <Key>
+      <PropertyRef Name="GlasID" />
+    </Key>
+    <Property Name="GlasID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Datum" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="KorisnikID" Type="Int32" Nullable="false" />
+    <Property Name="OdgovorID" Type="Int32" Nullable="false" />
+    <Property Name="Pozitivni" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Korisnici" Relationship="FITKMSModel.FK_OdgovoriGlasovi_Korisnici" FromRole="OdgovoriGlasovi" ToRole="Korisnici" />
+    <NavigationProperty Name="Odgovori" Relationship="FITKMSModel.FK_OdgovoriGlasovi_Odgovori" FromRole="OdgovoriGlasovi" ToRole="Odgovori" />
+  </EntityType>
+  <EntityType Name="Pitanja">
+    <Key>
+      <PropertyRef Name="PitanjeID" />
+    </Key>
+    <Property Name="PitanjeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Naslov" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="Tekst" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="KorisnikID" Type="Int32" Nullable="false" />
+    <Property Name="ClanakID" Type="Int32" />
+    <Property Name="TemaID" Type="Int32" />
+    <Property Name="Pozitivni" Type="Int32" />
+    <Property Name="Negativni" Type="Int32" />
+    <Property Name="BrojPregleda" Type="Int32" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="DatumKreiranja" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DatumIzmjene" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Clanci" Relationship="FITKMSModel.FK_Pitanja_Clanci" FromRole="Pitanja" ToRole="Clanci" />
+    <NavigationProperty Name="Korisnici" Relationship="FITKMSModel.FK_Pitanja_Korisnici" FromRole="Pitanja" ToRole="Korisnici" />
+    <NavigationProperty Name="Odgovori" Relationship="FITKMSModel.FK_Odgovori_Pitanja" FromRole="Pitanja" ToRole="Odgovori" />
+    <NavigationProperty Name="Teme" Relationship="FITKMSModel.FK_Pitanja_Teme" FromRole="Pitanja" ToRole="Teme" />
+    <NavigationProperty Name="PitanjaGlasovi" Relationship="FITKMSModel.FK_PitanjaGlasovi_Pitanja" FromRole="Pitanja" ToRole="PitanjaGlasovi" />
+    <NavigationProperty Name="Tagovi" Relationship="FITKMSModel.PitanjaTagovi" FromRole="Pitanja" ToRole="Tagovi" />
+  </EntityType>
+  <EntityType Name="PitanjaGlasovi">
+    <Key>
+      <PropertyRef Name="GlasID" />
+    </Key>
+    <Property Name="GlasID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Datum" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="KorisnikID" Type="Int32" Nullable="false" />
+    <Property Name="PitanjeID" Type="Int32" Nullable="false" />
+    <Property Name="Pozitivni" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Korisnici" Relationship="FITKMSModel.FK_PitanjaGlasovi_Korisnici" FromRole="PitanjaGlasovi" ToRole="Korisnici" />
+    <NavigationProperty Name="Pitanja" Relationship="FITKMSModel.FK_PitanjaGlasovi_Pitanja" FromRole="PitanjaGlasovi" ToRole="Pitanja" />
+  </EntityType>
+  <EntityType Name="Pretrage">
+    <Key>
+      <PropertyRef Name="PretragaID" />
+    </Key>
+    <Property Name="PretragaID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Datum" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AktivnostID" Type="Int32" Nullable="false" />
+    <Property Name="TekstPretrage" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="ClanakID" Type="Int32" />
+    <Property Name="KorisnikID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Aktivnosti" Relationship="FITKMSModel.FK_Pretrage_Aktivnosti" FromRole="Pretrage" ToRole="Aktivnosti" />
+  </EntityType>
+  <EntityType Name="Tagovi">
+    <Key>
+      <PropertyRef Name="TagID" />
+    </Key>
+    <Property Name="TagID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Opis" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Clanci" Relationship="FITKMSModel.ClanciTagovi" FromRole="Tagovi" ToRole="Clanci" />
+    <NavigationProperty Name="Pitanja" Relationship="FITKMSModel.PitanjaTagovi" FromRole="Tagovi" ToRole="Pitanja" />
+  </EntityType>
+  <EntityType Name="Teme">
+    <Key>
+      <PropertyRef Name="TemaID" />
+    </Key>
+    <Property Name="TemaID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="OblastID" Type="Int32" />
+    <Property Name="DatumKreiranja" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DatumIzmjene" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Clanci" Relationship="FITKMSModel.FK_Clanci_Teme" FromRole="Teme" ToRole="Clanci" />
+    <NavigationProperty Name="Oblasti" Relationship="FITKMSModel.FK_Teme_Oblasti" FromRole="Teme" ToRole="Oblasti" />
+    <NavigationProperty Name="Pitanja" Relationship="FITKMSModel.FK_Pitanja_Teme" FromRole="Teme" ToRole="Pitanja" />
+  </EntityType>
+  <EntityType Name="Uloge">
+    <Key>
+      <PropertyRef Name="UlogaID" />
+    </Key>
+    <Property Name="UlogaID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="DatumKreiranja" Type="DateTime" Precision="3" />
+    <Property Name="DatumIzmjene" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="KorisniciUloge" Relationship="FITKMSModel.FK_KorisniciUloge_Uloge" FromRole="Uloge" ToRole="KorisniciUloge" />
+  </EntityType>
+  <EntityType Name="VrsteClanaka">
+    <Key>
+      <PropertyRef Name="VrstaID" />
+    </Key>
+    <Property Name="VrstaID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="DatumKreiranja" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DatumIzmjene" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Clanci" Relationship="FITKMSModel.FK_Clanci_VrsteClanaka" FromRole="VrsteClanaka" ToRole="Clanci" />
+  </EntityType>
+  <Association Name="FK_Pretrage_Aktivnosti">
+    <End Role="Aktivnosti" Type="FITKMSModel.Aktivnosti" Multiplicity="1" />
+    <End Role="Pretrage" Type="FITKMSModel.Pretrage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aktivnosti">
+        <PropertyRef Name="AktivnostID" />
+      </Principal>
+      <Dependent Role="Pretrage">
+        <PropertyRef Name="AktivnostID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Clanci_Korisnici">
+    <End Role="Korisnici" Type="FITKMSModel.Korisnici" Multiplicity="1" />
+    <End Role="Clanci" Type="FITKMSModel.Clanci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Korisnici">
+        <PropertyRef Name="KorisnikID" />
+      </Principal>
+      <Dependent Role="Clanci">
+        <PropertyRef Name="KorisnikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Clanci_Teme">
+    <End Role="Teme" Type="FITKMSModel.Teme" Multiplicity="1" />
+    <End Role="Clanci" Type="FITKMSModel.Clanci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teme">
+        <PropertyRef Name="TemaID" />
+      </Principal>
+      <Dependent Role="Clanci">
+        <PropertyRef Name="TemaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Clanci_VrsteClanaka">
+    <End Role="VrsteClanaka" Type="FITKMSModel.VrsteClanaka" Multiplicity="1" />
+    <End Role="Clanci" Type="FITKMSModel.Clanci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VrsteClanaka">
+        <PropertyRef Name="VrstaID" />
+      </Principal>
+      <Dependent Role="Clanci">
+        <PropertyRef Name="VrstaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClanciKomentari_Clanci">
+    <End Role="Clanci" Type="FITKMSModel.Clanci" Multiplicity="1" />
+    <End Role="ClanciKomentari" Type="FITKMSModel.ClanciKomentari" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clanci">
+        <PropertyRef Name="ClanakID" />
+      </Principal>
+      <Dependent Role="ClanciKomentari">
+        <PropertyRef Name="ClanakID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClanciOcjene_Clanci">
+    <End Role="Clanci" Type="FITKMSModel.Clanci" Multiplicity="1" />
+    <End Role="ClanciOcjene" Type="FITKMSModel.ClanciOcjene" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clanci">
+        <PropertyRef Name="ClanakID" />
+      </Principal>
+      <Dependent Role="ClanciOcjene">
+        <PropertyRef Name="ClanakID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pitanja_Clanci">
+    <End Role="Clanci" Type="FITKMSModel.Clanci" Multiplicity="0..1" />
+    <End Role="Pitanja" Type="FITKMSModel.Pitanja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clanci">
+        <PropertyRef Name="ClanakID" />
+      </Principal>
+      <Dependent Role="Pitanja">
+        <PropertyRef Name="ClanakID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClanciKomentari_Korisnici">
+    <End Role="Korisnici" Type="FITKMSModel.Korisnici" Multiplicity="1" />
+    <End Role="ClanciKomentari" Type="FITKMSModel.ClanciKomentari" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Korisnici">
+        <PropertyRef Name="KorisnikID" />
+      </Principal>
+      <Dependent Role="ClanciKomentari">
+        <PropertyRef Name="KorisnikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClanciOcjene_Korisnici">
+    <End Role="Korisnici" Type="FITKMSModel.Korisnici" Multiplicity="1" />
+    <End Role="ClanciOcjene" Type="FITKMSModel.ClanciOcjene" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Korisnici">
+        <PropertyRef Name="KorisnikID" />
+      </Principal>
+      <Dependent Role="ClanciOcjene">
+        <PropertyRef Name="KorisnikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KorisniciUloge_Korisnici">
+    <End Role="Korisnici" Type="FITKMSModel.Korisnici" Multiplicity="1" />
+    <End Role="KorisniciUloge" Type="FITKMSModel.KorisniciUloge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Korisnici">
+        <PropertyRef Name="KorisnikID" />
+      </Principal>
+      <Dependent Role="KorisniciUloge">
+        <PropertyRef Name="KorisnikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Odgovori_Korisnici">
+    <End Role="Korisnici" Type="FITKMSModel.Korisnici" Multiplicity="1" />
+    <End Role="Odgovori" Type="FITKMSModel.Odgovori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Korisnici">
+        <PropertyRef Name="KorisnikID" />
+      </Principal>
+      <Dependent Role="Odgovori">
+        <PropertyRef Name="KorisnikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OdgovoriGlasovi_Korisnici">
+    <End Role="Korisnici" Type="FITKMSModel.Korisnici" Multiplicity="1" />
+    <End Role="OdgovoriGlasovi" Type="FITKMSModel.OdgovoriGlasovi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Korisnici">
+        <PropertyRef Name="KorisnikID" />
+      </Principal>
+      <Dependent Role="OdgovoriGlasovi">
+        <PropertyRef Name="KorisnikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pitanja_Korisnici">
+    <End Role="Korisnici" Type="FITKMSModel.Korisnici" Multiplicity="1" />
+    <End Role="Pitanja" Type="FITKMSModel.Pitanja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Korisnici">
+        <PropertyRef Name="KorisnikID" />
+      </Principal>
+      <Dependent Role="Pitanja">
+        <PropertyRef Name="KorisnikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PitanjaGlasovi_Korisnici">
+    <End Role="Korisnici" Type="FITKMSModel.Korisnici" Multiplicity="1" />
+    <End Role="PitanjaGlasovi" Type="FITKMSModel.PitanjaGlasovi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Korisnici">
+        <PropertyRef Name="KorisnikID" />
+      </Principal>
+      <Dependent Role="PitanjaGlasovi">
+        <PropertyRef Name="KorisnikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KorisniciUloge_Uloge">
+    <End Role="Uloge" Type="FITKMSModel.Uloge" Multiplicity="1" />
+    <End Role="KorisniciUloge" Type="FITKMSModel.KorisniciUloge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uloge">
+        <PropertyRef Name="UlogaID" />
+      </Principal>
+      <Dependent Role="KorisniciUloge">
+        <PropertyRef Name="UlogaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teme_Oblasti">
+    <End Role="Oblasti" Type="FITKMSModel.Oblasti" Multiplicity="0..1" />
+    <End Role="Teme" Type="FITKMSModel.Teme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Oblasti">
+        <PropertyRef Name="OblastID" />
+      </Principal>
+      <Dependent Role="Teme">
+        <PropertyRef Name="OblastID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Odgovori_Pitanja">
+    <End Role="Pitanja" Type="FITKMSModel.Pitanja" Multiplicity="1" />
+    <End Role="Odgovori" Type="FITKMSModel.Odgovori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pitanja">
+        <PropertyRef Name="PitanjeID" />
+      </Principal>
+      <Dependent Role="Odgovori">
+        <PropertyRef Name="PitanjeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OdgovoriGlasovi_Odgovori">
+    <End Role="Odgovori" Type="FITKMSModel.Odgovori" Multiplicity="1" />
+    <End Role="OdgovoriGlasovi" Type="FITKMSModel.OdgovoriGlasovi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Odgovori">
+        <PropertyRef Name="OdgovorID" />
+      </Principal>
+      <Dependent Role="OdgovoriGlasovi">
+        <PropertyRef Name="OdgovorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pitanja_Teme">
+    <End Role="Teme" Type="FITKMSModel.Teme" Multiplicity="0..1" />
+    <End Role="Pitanja" Type="FITKMSModel.Pitanja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teme">
+        <PropertyRef Name="TemaID" />
+      </Principal>
+      <Dependent Role="Pitanja">
+        <PropertyRef Name="TemaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PitanjaGlasovi_Pitanja">
+    <End Role="Pitanja" Type="FITKMSModel.Pitanja" Multiplicity="1" />
+    <End Role="PitanjaGlasovi" Type="FITKMSModel.PitanjaGlasovi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pitanja">
+        <PropertyRef Name="PitanjeID" />
+      </Principal>
+      <Dependent Role="PitanjaGlasovi">
+        <PropertyRef Name="PitanjeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClanciTagovi">
+    <End Role="Clanci" Type="FITKMSModel.Clanci" Multiplicity="*" />
+    <End Role="Tagovi" Type="FITKMSModel.Tagovi" Multiplicity="*" />
+  </Association>
+  <Association Name="PitanjaTagovi">
+    <End Role="Pitanja" Type="FITKMSModel.Pitanja" Multiplicity="*" />
+    <End Role="Tagovi" Type="FITKMSModel.Tagovi" Multiplicity="*" />
+  </Association>
+</Schema>

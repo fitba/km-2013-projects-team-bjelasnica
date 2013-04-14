@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e97044f25aa94ffcb3776ec696dcda78" Name="Diagram1">
+        <EntityTypeShape EntityType="FITKMSModel.Aktivnosti" Width="1.5" PointX="5.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FITKMSModel.Clanci" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FITKMSModel.ClanciKomentari" Width="1.5" PointX="8.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="FITKMSModel.ClanciOcjene" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FITKMSModel.Korisnici" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FITKMSModel.KorisniciUloge" Width="1.5" PointX="6" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FITKMSModel.Oblasti" Width="1.5" PointX="1.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="FITKMSModel.Odgovori" Width="1.5" PointX="7.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FITKMSModel.OdgovoriGlasovi" Width="1.5" PointX="10.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="FITKMSModel.Pitanja" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FITKMSModel.PitanjaGlasovi" Width="1.5" PointX="10.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FITKMSModel.Pretrage" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="FITKMSModel.Tagovi" Width="1.5" PointX="10.5" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FITKMSModel.Teme" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FITKMSModel.Uloge" Width="1.5" PointX="3.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FITKMSModel.VrsteClanaka" Width="1.5" PointX="0.75" PointY="15.25" IsExpanded="true" />
+        <AssociationConnector Association="FITKMSModel.FK_Pretrage_Aktivnosti" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.FK_Clanci_Korisnici" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.FK_Clanci_Teme" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.FK_Clanci_VrsteClanaka" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.FK_ClanciKomentari_Clanci" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.FK_ClanciOcjene_Clanci" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.FK_Pitanja_Clanci" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.FK_ClanciKomentari_Korisnici" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.FK_ClanciOcjene_Korisnici" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.FK_KorisniciUloge_Korisnici" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.FK_Odgovori_Korisnici" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.FK_OdgovoriGlasovi_Korisnici" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.FK_Pitanja_Korisnici" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.FK_PitanjaGlasovi_Korisnici" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.FK_KorisniciUloge_Uloge" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.FK_Teme_Oblasti" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.FK_Odgovori_Pitanja" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.FK_OdgovoriGlasovi_Odgovori" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.FK_Pitanja_Teme" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.FK_PitanjaGlasovi_Pitanja" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.ClanciTagovi" ManuallyRouted="false" />
+        <AssociationConnector Association="FITKMSModel.PitanjaTagovi" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

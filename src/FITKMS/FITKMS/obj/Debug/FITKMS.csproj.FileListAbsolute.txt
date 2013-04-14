@@ -1,0 +1,32 @@
+c:\users\admir\documents\visual studio 2012\Projects\FITKMS\FITKMS\bin\FITKMS.dll
+c:\users\admir\documents\visual studio 2012\Projects\FITKMS\FITKMS\bin\FITKMS.pdb
+c:\users\admir\documents\visual studio 2012\Projects\FITKMS\FITKMS\obj\Debug\FITKMS.csprojResolveAssemblyReference.cache
+c:\users\admir\documents\visual studio 2012\Projects\FITKMS\FITKMS\obj\Debug\FITKMS.dll
+c:\users\admir\documents\visual studio 2012\Projects\FITKMS\FITKMS\obj\Debug\FITKMS.pdb
+C:\Users\admir\Desktop\FITKMS\FITKMS\bin\FITKMS.dll
+C:\Users\admir\Desktop\FITKMS\FITKMS\bin\FITKMS.pdb
+C:\Users\admir\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.csprojResolveAssemblyReference.cache
+C:\Users\admir\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.dll
+C:\Users\admir\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.pdb
+C:\Users\admir\Desktop\FITKMS\FITKMS\bin\FITKMS_business.dll
+C:\Users\admir\Desktop\FITKMS\FITKMS\bin\FITKMS_business.pdb
+C:\Users\admir\Desktop\FITKMS\FITKMS\bin\EntityFramework.dll
+C:\Users\admir\Desktop\FITKMS\FITKMS\bin\EntityFramework.xml
+C:\Users\larisa.FIT\Desktop\FITKMS\FITKMS\bin\FITKMS.dll
+C:\Users\larisa.FIT\Desktop\FITKMS\FITKMS\bin\FITKMS.pdb
+C:\Users\larisa.FIT\Desktop\FITKMS\FITKMS\bin\FITKMS_business.dll
+C:\Users\larisa.FIT\Desktop\FITKMS\FITKMS\bin\EntityFramework.dll
+C:\Users\larisa.FIT\Desktop\FITKMS\FITKMS\bin\FITKMS_business.pdb
+C:\Users\larisa.FIT\Desktop\FITKMS\FITKMS\bin\EntityFramework.xml
+C:\Users\larisa.FIT\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.csprojResolveAssemblyReference.cache
+C:\Users\larisa.FIT\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.dll
+C:\Users\larisa.FIT\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.pdb
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\FITKMS.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\FITKMS.pdb
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\FITKMS_business.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\EntityFramework.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\FITKMS_business.pdb
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\EntityFramework.xml
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.csprojResolveAssemblyReference.cache
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.pdb

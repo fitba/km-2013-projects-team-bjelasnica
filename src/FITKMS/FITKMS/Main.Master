@@ -1,0 +1,365 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="FITKMS.Main" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title>FIT KMS
+    </title>
+
+    <meta name="author" content="Bjelašnica Team FIT" />
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="description" content="FIT Knowledge management system" />
+    <!-- bootstrap css -->
+    <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
+    </script>
+    <link href="Content/icomoon/style.css" rel="stylesheet" />
+    <!--[if lte IE 7]>
+    <script src="css/icomoon-font/lte-ie7.js">
+    </script>
+    <![endif]-->
+
+    <link href="/Content/css/main.css" rel="stylesheet" />
+    <link href="/Content/css/wysiwyg/bootstrap-wysihtml5.css" rel="stylesheet" />
+    <link href="/Content/css/wysiwyg/wysiwyg-color.css" rel="stylesheet" />
+    <link href="/Content/css/charts-graphs.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header>
+            <a href="index.html" class="logo">
+                <img src="/Content/img/logo.bmp" alt="Logo" />
+
+            </a>
+            <div class="user-profile">
+                <a data-toggle="dropdown" class="dropdown-toggle">
+                    <img src="Content/img/profile2.png" alt="profile">
+                </a>
+                <span class="caret"></span>
+                <ul class="dropdown-menu pull-right">
+                    <li>
+                        <a href="#">Edit Profile
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">Account Settings
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <ul class="mini-nav">
+                <li>
+                    <a href="#">
+                        <div class="fs1" aria-hidden="true" data-icon="&#xe040;"></div>
+
+                        <span class="info-label">3
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="fs1" aria-hidden="true" data-icon="&#xe04c;"></div>
+                        <span class="info-label-green">5
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="fs1" aria-hidden="true" data-icon="&#xe037;"></div>
+                        <span class="info-label-orange">9
+                        </span>
+
+                    </a>
+                </li>
+            </ul>
+        </header>
+        <div class="container-fluid">
+            <div id="mainnav" class="hidden-phone hidden-tablet">
+                <ul style="display: block;">
+                    <li>
+                        <a href="PostaviPitanje.html">
+
+                            <div class="icon">
+                                <span class="fs1" aria-hidden="true" data-icon="&#xe004;"></span>
+                            </div>
+                            WIKI 12000
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="icon">
+
+                                <span class="fs1" aria-hidden="true" data-icon="&#xe022;"></span>
+                            </div>
+                            Odgvora 40000
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="icon">
+                                <span class="fs1" aria-hidden="true" data-icon="&#xe070;"></span>
+
+                            </div>
+                            Korisnika 3400
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="icon">
+                                <span class="fs1" aria-hidden="true" data-icon="&#xe031;"></span>
+                            </div>
+
+                            Tagova 1000
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="icon">
+                                <span class="fs1" aria-hidden="true" data-icon="&#xe18d;"></span>
+                            </div>
+                            Wikipedia
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="icon">
+                                <span class="fs1" aria-hidden="true" data-icon="&#xe169;"></span>
+                            </div>
+                            Share
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <div class="icon">
+                                <span class="fs1" aria-hidden="true" data-icon="&#xe16d;"></span>
+                            </div>
+                            Tweet
+                        </a>
+                    </li>
+                    <li>
+
+                        <a href="#">
+                            <div class="icon">
+                                <span class="fs1" aria-hidden="true" data-icon="&#xe167;"></span>
+                            </div>
+                            g+
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <script src="/Content/js/wysiwyg/wysihtml5-0.3.0.js">
+        </script>
+        <script src="/Content/js/jquery.min.js">
+        </script>
+        <script src="/Content/js/bootstrap.js">
+        </script>
+        <script src="/Content/js/jquery.scrollUp.js">
+        </script>
+
+        <script src="/Content/js/wysiwyg/bootstrap-wysihtml5.js">
+        </script>
+        <script type="text/javascript" src="/Content/js/date-picker/date.js">
+        </script>
+
+        <script type="text/javascript" src="/Content/js/date-picker/daterangepicker.js">
+        </script>
+
+        <!-- Google Visualization JS -->
+        <script type="text/javascript" src="https://www.google.com/jsapi">
+        </script>
+
+        <!-- Sparkline JS -->
+        <script src="/Content/js/jquery.sparkline.js">
+        </script>
+
+        <!-- Tiny Scrollbar JS -->
+
+        <script src="/Content/js/tiny-scrollbar.js">
+        </script>
+
+        <script type="text/javascript">
+            //ScrollUp
+            $(function () {
+                $.scrollUp({
+                    scrollName: 'scrollUp', // Element ID
+                    topDistance: '300', // Distance from top before showing element (px)
+                    topSpeed: 300, // Speed back to top (ms)
+                    animation: 'fade', // Fade, slide, none
+                    animationInSpeed: 400, // Animation in speed (ms)
+                    animationOutSpeed: 400, // Animation out speed (ms)
+                    scrollText: 'Scroll to top', // Text for element
+                    activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
+                });
+            });
+
+            //wysihtml5
+            $('#wysiwyg').wysihtml5();
+
+            google.load("visualization", "1", {
+                packages: ["corechart"]
+            });
+
+            $(document).ready(function () {
+                drawChart1();
+                drawChart2();
+            })
+            
+            //Tooltip
+            $('a').tooltip('hide');
+            $('i').tooltip('hide');
+
+
+            //Tiny Scrollbar
+            $('#scrollbar').tinyscrollbar();
+            $('#scrollbar-one').tinyscrollbar();
+            $('#scrollbar-two').tinyscrollbar();
+            $('#scrollbar-three').tinyscrollbar();
+
+
+
+            //Tabs
+            $('#myTab a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            })
+
+            // SparkLine Graphs-Charts
+            $(function () {
+                $('#unique-visitors').sparkline('html', {
+                    type: 'bar',
+                    barColor: '#e26666',
+                    barWidth: 6,
+                    height: 30,
+                });
+                $('#monthly-sales').sparkline('html', {
+                    type: 'bar',
+                    barColor: '#b5799e',
+                    barWidth: 6,
+                    height: 30,
+                });
+                $('#current-balance').sparkline('html', {
+                    type: 'bar',
+                    barColor: '#579da9',
+                    barWidth: 6,
+                    height: 30,
+                });
+                $('#registrations').sparkline('html', {
+                    type: 'bar',
+                    barColor: '#dba26b',
+                    barWidth: 6,
+                    height: 30,
+                });
+            });
+
+            //Range Date Picker
+
+            $('.report_range').daterangepicker({
+                ranges: {
+                    'Today': ['today', 'today'],
+                    'Yesterday': ['yesterday', 'yesterday'],
+                    'Last 7 Days': [Date.today().add({
+                        days: -6
+                    }), 'today'],
+                    'Last 30 Days': [Date.today().add({
+                        days: -29
+                    }), 'today'],
+                    'This Month': [Date.today().moveToFirstDayOfMonth(), Date.today().moveToLastDayOfMonth()],
+                    'Last Month': [Date.today().moveToFirstDayOfMonth().add({
+                        months: -1
+                    }), Date.today().moveToFirstDayOfMonth().add({
+                        days: -1
+                    })]
+                },
+                opens: 'left',
+                format: 'MM/dd/yyyy',
+                separator: ' to ',
+                startDate: Date.today().add({
+                    days: -29
+                }),
+                endDate: Date.today(),
+                minDate: '01/01/2012',
+                maxDate: '12/31/2013',
+                locale: {
+                    applyLabel: 'Submit',
+                    fromLabel: 'From',
+                    toLabel: 'To',
+                    customRangeLabel: 'Custom Range',
+                    daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                    monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    firstDay: 1
+                },
+                showWeekNumbers: true,
+                buttonClasses: ['btn-danger']
+            },
+
+            function (start, end) {
+                $('.report_range span').html(start.toString('MMMM d, yyyy') + ' - ' + end.toString('MMMM d, yyyy'));
+            });
+
+            //Set the initial state of the picker label
+            $('.report_range span').html(Date.today().add({
+                days: -29
+            }).toString('MMMM d, yyyy') + ' - ' + Date.today().toString('MMMM d, yyyy'));
+
+
+            //Main menu navigation
+
+            $('.submenu > a').click(function (e) {
+                e.preventDefault();
+                var submenu = $(this).siblings('ul');
+                var li = $(this).parents('li');
+                var submenus = $('#mainnav li.submenu ul');
+                var submenus_parents = $('#mainnav li.submenu');
+                if (li.hasClass('open')) {
+                    if (($(window).width() > 768) || ($(window).width() < 479)) {
+                        submenu.slideUp();
+                    } else {
+                        submenu.fadeOut(250);
+                    }
+                    li.removeClass('open');
+                } else {
+                    if (($(window).width() > 768) || ($(window).width() < 479)) {
+                        submenus.slideUp();
+                        submenu.slideDown();
+                    } else {
+                        submenus.fadeOut(250);
+                        submenu.fadeIn(250);
+                    }
+                    submenus_parents.removeClass('open');
+                    li.addClass('open');
+                }
+            });
+
+            var ul = $('#mainnav > ul');
+
+            $('#mainnav > a').click(function (e) {
+                e.preventDefault();
+                var mainnav = $('#mainnav');
+                if (mainnav.hasClass('open')) {
+                    mainnav.removeClass('open');
+                    ul.slideUp(250);
+                } else {
+                    mainnav.addClass('open');
+                    ul.slideDown(250);
+                }
+            });
+
+        </script>
+    </form>
+</body>
+</html>
