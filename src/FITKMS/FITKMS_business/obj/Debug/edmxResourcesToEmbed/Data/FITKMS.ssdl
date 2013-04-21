@@ -7,15 +7,7 @@
     <EntitySet Name="ClanciOcjene" EntityType="FITKMSModel.Store.ClanciOcjene" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ClanciTagovi" EntityType="FITKMSModel.Store.ClanciTagovi" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Korisnici" EntityType="FITKMSModel.Store.Korisnici" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="KorisniciUloge" EntityType="FITKMSModel.Store.KorisniciUloge" store:Type="Tables" store:Schema="dbo" store:Name="KorisniciUloge">
-      <DefiningQuery>SELECT 
-      [KorisniciUloge].[KorisnikUlogaID] AS [KorisnikUlogaID], 
-      [KorisniciUloge].[KorisnikID] AS [KorisnikID], 
-      [KorisniciUloge].[UlogaID] AS [UlogaID], 
-      [KorisniciUloge].[DatumKreiranja] AS [DatumKreiranja], 
-      [KorisniciUloge].[DatumIzmjene] AS [DatumIzmjene]
-      FROM [dbo].[KorisniciUloge] AS [KorisniciUloge]</DefiningQuery>
-    </EntitySet>
+    <EntitySet Name="KorisniciUloge" EntityType="FITKMSModel.Store.KorisniciUloge" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Oblasti" EntityType="FITKMSModel.Store.Oblasti" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Odgovori" EntityType="FITKMSModel.Store.Odgovori" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="OdgovoriGlasovi" EntityType="FITKMSModel.Store.OdgovoriGlasovi" store:Type="Tables" Schema="dbo" />
@@ -199,19 +191,15 @@
     <Property Name="LozinkaHash" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="LozinkaSalt" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Slika" Type="varbinary(max)" />
+    <Property Name="SlikaType" Type="nvarchar" MaxLength="50" />
     <Property Name="Aktivan" Type="bit" Nullable="false" />
     <Property Name="DatumIzmjene" Type="datetime" />
   </EntityType>
-  <!--Errors Found During Generation:
-      warning 6002: The table/view 'FITKMS.dbo.KorisniciUloge' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
   <EntityType Name="KorisniciUloge">
     <Key>
-      <PropertyRef Name="KorisnikUlogaID" />
       <PropertyRef Name="KorisnikID" />
       <PropertyRef Name="UlogaID" />
     </Key>
-    <Property Name="KorisnikUlogaID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="KorisnikID" Type="int" Nullable="false" />
     <Property Name="UlogaID" Type="int" Nullable="false" />
     <Property Name="DatumKreiranja" Type="datetime" />
@@ -623,6 +611,29 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="fsp_Korisnici_Registration" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ime" Type="nvarchar" Mode="In" />
+    <Parameter Name="Prezime" Type="nvarchar" Mode="In" />
+    <Parameter Name="Mail" Type="nvarchar" Mode="In" />
+    <Parameter Name="Spol" Type="nchar" Mode="In" />
+    <Parameter Name="DatumRodjenja" Type="date" Mode="In" />
+    <Parameter Name="KorisnickoIme" Type="nvarchar" Mode="In" />
+    <Parameter Name="LozinkaHash" Type="nvarchar" Mode="In" />
+    <Parameter Name="LozinkaSalt" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="fsp_Korisnici_SelectByUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="KorisnickoIme" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="fsp_Korisnici_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="KorisnickoIme" Type="nvarchar" Mode="In" />
+    <Parameter Name="Ime" Type="nvarchar" Mode="In" />
+    <Parameter Name="Prezime" Type="nvarchar" Mode="In" />
+    <Parameter Name="Mail" Type="nvarchar" Mode="In" />
+    <Parameter Name="Spol" Type="nchar" Mode="In" />
+    <Parameter Name="DatumRodjenja" Type="date" Mode="In" />
+    <Parameter Name="Slika" Type="varbinary(max)" Mode="In" />
+    <Parameter Name="SlikaType" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="fsp_VrsteClanaka_SelectByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Status" Type="bit" Mode="In" />
   </Function>

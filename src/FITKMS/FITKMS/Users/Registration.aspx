@@ -6,6 +6,34 @@
     <div class="dashboard-wrapper">
         <div class="main-container">
             <div class="row-fluid">
+                <div class="span12">
+                    <div class="widget-body">
+
+                        <div id="success_label" class="alert alert-block alert-success fade in" runat="server" visible="false">
+                            <button data-dismiss="alert" class="close" type="button">
+                                ×
+                            </button>
+                            <h4 class="alert-heading">Poruka!
+                            </h4>
+                            <p>
+                               <asp:Label ID="successLabel" runat="server" Text="Label"></asp:Label>
+                            </p>
+                        </div>
+
+                        <div id="error_label" class="alert alert-block alert-error fade in" runat="server" visible="false">
+                            <button data-dismiss="alert" class="close" type="button">
+                                ×
+                            </button>
+                            <h4 class="alert-heading">Greška!
+                            </h4>
+                            <p>
+                                <asp:Label ID="errorLabel" runat="server" Text="Label"></asp:Label>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid">
                 <div class="span6">
                     <div class="widget">
                         <div class="widget-header">
@@ -14,14 +42,14 @@
                             </div>
                         </div>
                         <div class="widget-body">
-                            <form class="form-horizontal no-margin">
+                            <div class="form-horizontal no-margin">
                                 <div class="control-group">
                                     <label class="control-label">
                                         Ime i prezime
                                     </label>
                                     <div class="controls controls-row">
-                                        <asp:TextBox ID="fnameInput" class="span6" runat="server" placeholder="Ime"></asp:TextBox>
-                                        <asp:TextBox ID="lnameInput" class="span6 input-left-top-margins" runat="server" placeholder="Prezime"></asp:TextBox>
+                                        <asp:TextBox ID="fnameInput" class="span6" runat="server" required="required" placeholder="Ime"></asp:TextBox>
+                                        <asp:TextBox ID="lnameInput" class="span6 input-left-top-margins" required="required" runat="server" placeholder="Prezime"></asp:TextBox>
                                     </div>
                                 </div>
 
@@ -42,7 +70,7 @@
                                         Spol
                                     </label>
                                     <div class="controls controls-row">
-                                        <asp:DropDownList ID="DropDownList1" class="span4" runat="server">
+                                        <asp:DropDownList ID="genderList" class="span4" runat="server">
                                             <asp:ListItem Text="M" Value="M" Selected="true" />
                                             <asp:ListItem Text="Ž" Value="Ž" />
                                         </asp:DropDownList>
@@ -56,21 +84,6 @@
                                         Datum rođenja
                                     </label>
                                     <div class="controls controls-row">
-                                        <asp:DropDownList ID="monthList" class="span4" runat="server">
-                                            <asp:ListItem Text="- Mjesec -" Selected="true" />
-                                            <asp:ListItem Text="Januar" Value="1" />
-                                            <asp:ListItem Text="Februar" Value="2" />
-                                            <asp:ListItem Text="Mart" Value="3" />
-                                            <asp:ListItem Text="April" Value="4" />
-                                            <asp:ListItem Text="Maj" Value="5" />
-                                            <asp:ListItem Text="Juni" Value="6" />
-                                            <asp:ListItem Text="Juli" Value="7" />
-                                            <asp:ListItem Text="August" Value="8" />
-                                            <asp:ListItem Text="Septembar" Value="9" />
-                                            <asp:ListItem Text="Oktobar" Value="10" />
-                                            <asp:ListItem Text="Novembar" Value="11" />
-                                            <asp:ListItem Text="Decembar" Value="12" />
-                                        </asp:DropDownList>
 
                                         <asp:DropDownList ID="dayList" class="span4 input-left-top-margins" runat="server">
                                             <asp:ListItem Text="- Dan -" Selected="true" />
@@ -107,7 +120,23 @@
                                             <asp:ListItem Text="31" Value="31" />
                                         </asp:DropDownList>
 
-                                        <asp:DropDownList ID="yearLIST" class="span4 input-left-top-margins" runat="server">
+                                        <asp:DropDownList ID="monthList" class="span4" runat="server">
+                                            <asp:ListItem Text="- Mjesec -" Selected="true" />
+                                            <asp:ListItem Text="Januar" Value="1" />
+                                            <asp:ListItem Text="Februar" Value="2" />
+                                            <asp:ListItem Text="Mart" Value="3" />
+                                            <asp:ListItem Text="April" Value="4" />
+                                            <asp:ListItem Text="Maj" Value="5" />
+                                            <asp:ListItem Text="Juni" Value="6" />
+                                            <asp:ListItem Text="Juli" Value="7" />
+                                            <asp:ListItem Text="August" Value="8" />
+                                            <asp:ListItem Text="Septembar" Value="9" />
+                                            <asp:ListItem Text="Oktobar" Value="10" />
+                                            <asp:ListItem Text="Novembar" Value="11" />
+                                            <asp:ListItem Text="Decembar" Value="12" />
+                                        </asp:DropDownList>
+
+                                        <asp:DropDownList ID="yearList" class="span4 input-left-top-margins" runat="server">
                                             <asp:ListItem Text="- Godina -" Selected="true" />
                                             <asp:ListItem Text="2012" Value="2012" />
                                             <asp:ListItem Text="2011" Value="2011" />
@@ -154,7 +183,7 @@
                                         </asp:DropDownList>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -162,11 +191,11 @@
                     <div class="widget">
                         <div class="widget-header">
                             <div class="title">
-                                <span class="fs1" aria-hidden="true" data-icon="&#xe023;"></span>&nbsp;Podaci za pristup
+                                <span class="fs1" aria-hidden="true" data-icon="&#xe023;"></span>&nbsp;Pristupni podaci
                             </div>
                         </div>
                         <div class="widget-body">
-                            <form class="form-horizontal no-margin">
+                            <div class="form-horizontal no-margin">
                                 <div class="control-group">
                                     <label class="control-label" for="email1">
                                         Korisničko ime
@@ -197,16 +226,16 @@
                                 </div>
 
                                 <div class="form-actions no-margin">
-                                    <asp:Button ID="createSubmit" class="btn btn-info pull-right" runat="server" Text="Kreiraj korisnički račun" />
-                                    <asp:Button ID="cancelSubmit" class="btn btn-warning2" runat="server" Text="Odustani" />
+                                    <asp:Button ID="createSubmit" class="btn btn-info pull-right" runat="server" Text="Kreiraj korisnički račun" OnClick="createSubmit_Click" />
+                                    <asp:Button ID="cancelSubmit" class="btn btn-warning2" runat="server" Text="Odustani" OnClick="cancelSubmit_Click" />
                                     <div class="clearfix">
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </div>
+        </div>
 </asp:Content>

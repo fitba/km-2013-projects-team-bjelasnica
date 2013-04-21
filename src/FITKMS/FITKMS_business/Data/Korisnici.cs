@@ -49,5 +49,7 @@ namespace FITKMS_business.Data
         public virtual ICollection<OdgovoriGlasovi> OdgovoriGlasovi { get; set; }
         public virtual ICollection<Pitanja> Pitanja { get; set; }
         public virtual ICollection<PitanjaGlasovi> PitanjaGlasovi { get; set; }
+
+        public string SlikaType { get; set; }
     }
 }

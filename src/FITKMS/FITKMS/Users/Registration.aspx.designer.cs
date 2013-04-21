@@ -13,6 +13,42 @@ namespace FITKMS.Users {
     public partial class Registration {
         
         /// <summary>
+        /// success_label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl success_label;
+        
+        /// <summary>
+        /// successLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label successLabel;
+        
+        /// <summary>
+        /// error_label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl error_label;
+        
+        /// <summary>
+        /// errorLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errorLabel;
+        
+        /// <summary>
         /// fnameInput control.
         /// </summary>
         /// <remarks>
@@ -40,22 +76,13 @@ namespace FITKMS.Users {
         protected global::System.Web.UI.WebControls.TextBox mailInput;
         
         /// <summary>
-        /// DropDownList1 control.
+        /// genderList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
-        
-        /// <summary>
-        /// monthList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList monthList;
+        protected global::System.Web.UI.WebControls.DropDownList genderList;
         
         /// <summary>
         /// dayList control.
@@ -67,13 +94,22 @@ namespace FITKMS.Users {
         protected global::System.Web.UI.WebControls.DropDownList dayList;
         
         /// <summary>
-        /// yearLIST control.
+        /// monthList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList yearLIST;
+        protected global::System.Web.UI.WebControls.DropDownList monthList;
+        
+        /// <summary>
+        /// yearList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList yearList;
         
         /// <summary>
         /// usernameInput control.

@@ -12,15 +12,7 @@
           <EntitySet Name="ClanciOcjene" EntityType="FITKMSModel.Store.ClanciOcjene" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ClanciTagovi" EntityType="FITKMSModel.Store.ClanciTagovi" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Korisnici" EntityType="FITKMSModel.Store.Korisnici" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="KorisniciUloge" EntityType="FITKMSModel.Store.KorisniciUloge" store:Type="Tables" store:Schema="dbo" store:Name="KorisniciUloge">
-            <DefiningQuery>SELECT 
-      [KorisniciUloge].[KorisnikUlogaID] AS [KorisnikUlogaID], 
-      [KorisniciUloge].[KorisnikID] AS [KorisnikID], 
-      [KorisniciUloge].[UlogaID] AS [UlogaID], 
-      [KorisniciUloge].[DatumKreiranja] AS [DatumKreiranja], 
-      [KorisniciUloge].[DatumIzmjene] AS [DatumIzmjene]
-      FROM [dbo].[KorisniciUloge] AS [KorisniciUloge]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="KorisniciUloge" EntityType="FITKMSModel.Store.KorisniciUloge" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Oblasti" EntityType="FITKMSModel.Store.Oblasti" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Odgovori" EntityType="FITKMSModel.Store.Odgovori" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OdgovoriGlasovi" EntityType="FITKMSModel.Store.OdgovoriGlasovi" store:Type="Tables" Schema="dbo" />
@@ -204,19 +196,15 @@
           <Property Name="LozinkaHash" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="LozinkaSalt" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Slika" Type="varbinary(max)" />
+          <Property Name="SlikaType" Type="nvarchar" MaxLength="50" />
           <Property Name="Aktivan" Type="bit" Nullable="false" />
           <Property Name="DatumIzmjene" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'FITKMS.dbo.KorisniciUloge' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="KorisniciUloge">
           <Key>
-            <PropertyRef Name="KorisnikUlogaID" />
             <PropertyRef Name="KorisnikID" />
             <PropertyRef Name="UlogaID" />
           </Key>
-          <Property Name="KorisnikUlogaID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="KorisnikID" Type="int" Nullable="false" />
           <Property Name="UlogaID" Type="int" Nullable="false" />
           <Property Name="DatumKreiranja" Type="datetime" />
@@ -628,6 +616,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fsp_Korisnici_Registration" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ime" Type="nvarchar" Mode="In" />
+          <Parameter Name="Prezime" Type="nvarchar" Mode="In" />
+          <Parameter Name="Mail" Type="nvarchar" Mode="In" />
+          <Parameter Name="Spol" Type="nchar" Mode="In" />
+          <Parameter Name="DatumRodjenja" Type="date" Mode="In" />
+          <Parameter Name="KorisnickoIme" Type="nvarchar" Mode="In" />
+          <Parameter Name="LozinkaHash" Type="nvarchar" Mode="In" />
+          <Parameter Name="LozinkaSalt" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="fsp_Korisnici_SelectByUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="KorisnickoIme" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="fsp_Korisnici_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="KorisnickoIme" Type="nvarchar" Mode="In" />
+          <Parameter Name="Ime" Type="nvarchar" Mode="In" />
+          <Parameter Name="Prezime" Type="nvarchar" Mode="In" />
+          <Parameter Name="Mail" Type="nvarchar" Mode="In" />
+          <Parameter Name="Spol" Type="nchar" Mode="In" />
+          <Parameter Name="DatumRodjenja" Type="date" Mode="In" />
+          <Parameter Name="Slika" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="SlikaType" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="fsp_VrsteClanaka_SelectByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Status" Type="bit" Mode="In" />
         </Function>
@@ -743,6 +754,29 @@
           <FunctionImport Name="fsp_VrsteClanaka_SelectByStatus" EntitySet="VrsteClanaka" ReturnType="Collection(FITKMSModel.VrsteClanaka)">
           <Parameter Name="Status" Mode="In" Type="Boolean" />
           </FunctionImport>
+          <FunctionImport Name="fsp_Korisnici_Registration">
+            <Parameter Name="Ime" Mode="In" Type="String" />
+            <Parameter Name="Prezime" Mode="In" Type="String" />
+            <Parameter Name="Mail" Mode="In" Type="String" />
+            <Parameter Name="Spol" Mode="In" Type="String" />
+            <Parameter Name="DatumRodjenja" Mode="In" Type="DateTime" />
+            <Parameter Name="KorisnickoIme" Mode="In" Type="String" />
+            <Parameter Name="LozinkaHash" Mode="In" Type="String" />
+            <Parameter Name="LozinkaSalt" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Korisnici_SelectByUsername" EntitySet="Korisnici" ReturnType="Collection(FITKMSModel.Korisnici)">
+          <Parameter Name="KorisnickoIme" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Korisnici_Update">
+            <Parameter Name="KorisnickoIme" Mode="In" Type="String" />
+            <Parameter Name="Ime" Mode="In" Type="String" />
+            <Parameter Name="Prezime" Mode="In" Type="String" />
+            <Parameter Name="Mail" Mode="In" Type="String" />
+            <Parameter Name="Spol" Mode="In" Type="String" />
+            <Parameter Name="DatumRodjenja" Mode="In" Type="DateTime" />
+            <Parameter Name="Slika" Mode="In" Type="Binary" />
+            <Parameter Name="SlikaType" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Aktivnosti">
           <Key>
@@ -833,14 +867,13 @@
           <NavigationProperty Name="OdgovoriGlasovi" Relationship="FITKMSModel.FK_OdgovoriGlasovi_Korisnici" FromRole="Korisnici" ToRole="OdgovoriGlasovi" />
           <NavigationProperty Name="Pitanja" Relationship="FITKMSModel.FK_Pitanja_Korisnici" FromRole="Korisnici" ToRole="Pitanja" />
           <NavigationProperty Name="PitanjaGlasovi" Relationship="FITKMSModel.FK_PitanjaGlasovi_Korisnici" FromRole="Korisnici" ToRole="PitanjaGlasovi" />
+          <Property Type="String" Name="SlikaType" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="KorisniciUloge">
           <Key>
-            <PropertyRef Name="KorisnikUlogaID" />
             <PropertyRef Name="KorisnikID" />
             <PropertyRef Name="UlogaID" />
           </Key>
-          <Property Name="KorisnikUlogaID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="KorisnikID" Type="Int32" Nullable="false" />
           <Property Name="UlogaID" Type="Int32" Nullable="false" />
           <Property Name="DatumKreiranja" Type="DateTime" Precision="3" />
@@ -1228,6 +1261,38 @@
           <End Role="Pitanja" Type="FITKMSModel.Pitanja" Multiplicity="*" />
           <End Role="Tagovi" Type="FITKMSModel.Tagovi" Multiplicity="*" />
         </Association>
+        <ComplexType Name="fsp_Korisnici_SelectByUsername_Result">
+          <Property Type="Int32" Name="KorisnikID" Nullable="false" />
+          <Property Type="String" Name="Ime" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Prezime" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Mail" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Spol" Nullable="false" MaxLength="1" />
+          <Property Type="DateTime" Name="DatumRodjenja" Nullable="false" />
+          <Property Type="DateTime" Name="DatumRegistracije" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="PosljednjaPrijava" Nullable="false" Precision="23" />
+          <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LozinkaHash" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LozinkaSalt" Nullable="false" MaxLength="50" />
+          <Property Type="Binary" Name="Slika" Nullable="true" />
+          <Property Type="Boolean" Name="Aktivan" Nullable="false" />
+          <Property Type="DateTime" Name="DatumIzmjene" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="fsp_Korisnici_SelectByUsername_Result1">
+          <Property Type="Int32" Name="KorisnikID" Nullable="false" />
+          <Property Type="String" Name="Ime" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Prezime" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Mail" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Spol" Nullable="false" MaxLength="1" />
+          <Property Type="DateTime" Name="DatumRodjenja" Nullable="false" />
+          <Property Type="DateTime" Name="DatumRegistracije" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="PosljednjaPrijava" Nullable="false" Precision="23" />
+          <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LozinkaHash" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LozinkaSalt" Nullable="false" MaxLength="50" />
+          <Property Type="Binary" Name="Slika" Nullable="true" />
+          <Property Type="Boolean" Name="Aktivan" Nullable="false" />
+          <Property Type="DateTime" Name="DatumIzmjene" Nullable="true" Precision="23" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1292,6 +1357,7 @@
           <EntitySetMapping Name="Korisnici">
             <EntityTypeMapping TypeName="FITKMSModel.Korisnici">
               <MappingFragment StoreEntitySet="Korisnici">
+                <ScalarProperty Name="SlikaType" ColumnName="SlikaType" />
                 <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
                 <ScalarProperty Name="Ime" ColumnName="Ime" />
                 <ScalarProperty Name="Prezime" ColumnName="Prezime" />
@@ -1312,7 +1378,6 @@
           <EntitySetMapping Name="KorisniciUloge">
             <EntityTypeMapping TypeName="FITKMSModel.KorisniciUloge">
               <MappingFragment StoreEntitySet="KorisniciUloge">
-                <ScalarProperty Name="KorisnikUlogaID" ColumnName="KorisnikUlogaID" />
                 <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
                 <ScalarProperty Name="UlogaID" ColumnName="UlogaID" />
                 <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
@@ -1458,6 +1523,10 @@
           </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="fsp_VrsteClanaka_SelectByStatus" FunctionName="FITKMSModel.Store.fsp_VrsteClanaka_SelectByStatus">
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Korisnici_Registration" FunctionName="FITKMSModel.Store.fsp_Korisnici_Registration" />
+          <FunctionImportMapping FunctionImportName="fsp_Korisnici_SelectByUsername" FunctionName="FITKMSModel.Store.fsp_Korisnici_SelectByUsername">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Korisnici_Update" FunctionName="FITKMSModel.Store.fsp_Korisnici_Update" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

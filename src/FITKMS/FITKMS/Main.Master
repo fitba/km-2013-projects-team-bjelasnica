@@ -45,11 +45,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">Account Settings
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">Logout
+                        <a href="Logout.aspx">Logout
                         </a>
                     </li>
                 </ul>
@@ -161,6 +157,11 @@
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
+        <footer>
+      <p>
+        &copy; Fakultet informacijskih tehnologija 2013
+      </p>
+    </footer>
 
         <script src="/Content/js/wysiwyg/wysihtml5-0.3.0.js">
         </script>
@@ -208,16 +209,16 @@
             });
 
             //wysihtml5
-            $('#wysiwyg').wysihtml5();
+            //$('#wysiwyg').wysihtml5();
 
-            google.load("visualization", "1", {
-                packages: ["corechart"]
-            });
+            //google.load("visualization", "1", {
+            //    packages: ["corechart"]
+            //});
 
-            $(document).ready(function () {
-                drawChart1();
-                drawChart2();
-            })
+            //$(document).ready(function () {
+            //    drawChart1();
+            //    drawChart2();
+            //})
             
             //Tooltip
             $('a').tooltip('hide');

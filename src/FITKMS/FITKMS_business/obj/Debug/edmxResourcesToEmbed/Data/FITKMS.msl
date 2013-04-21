@@ -59,6 +59,7 @@
     <EntitySetMapping Name="Korisnici">
       <EntityTypeMapping TypeName="FITKMSModel.Korisnici">
         <MappingFragment StoreEntitySet="Korisnici">
+          <ScalarProperty Name="SlikaType" ColumnName="SlikaType" />
           <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
           <ScalarProperty Name="Ime" ColumnName="Ime" />
           <ScalarProperty Name="Prezime" ColumnName="Prezime" />
@@ -79,7 +80,6 @@
     <EntitySetMapping Name="KorisniciUloge">
       <EntityTypeMapping TypeName="FITKMSModel.KorisniciUloge">
         <MappingFragment StoreEntitySet="KorisniciUloge">
-          <ScalarProperty Name="KorisnikUlogaID" ColumnName="KorisnikUlogaID" />
           <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
           <ScalarProperty Name="UlogaID" ColumnName="UlogaID" />
           <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
@@ -224,5 +224,8 @@
       </EndProperty>
     </AssociationSetMapping>
     <FunctionImportMapping FunctionImportName="fsp_VrsteClanaka_SelectByStatus" FunctionName="FITKMSModel.Store.fsp_VrsteClanaka_SelectByStatus" />
+    <FunctionImportMapping FunctionImportName="fsp_Korisnici_Registration" FunctionName="FITKMSModel.Store.fsp_Korisnici_Registration" />
+    <FunctionImportMapping FunctionImportName="fsp_Korisnici_SelectByUsername" FunctionName="FITKMSModel.Store.fsp_Korisnici_SelectByUsername" />
+    <FunctionImportMapping FunctionImportName="fsp_Korisnici_Update" FunctionName="FITKMSModel.Store.fsp_Korisnici_Update" />
   </EntityContainerMapping>
 </Mapping>
