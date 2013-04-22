@@ -21,6 +21,19 @@ namespace FITKMS.Wiki
             set { Session["selectedTags"] = value; }
         }
 
+        protected List<Slike> galerija
+        {
+            set { Session["galerija"] = value; }
+            get { return (List<Slike>)Session["galerija"]; }
+        }
+
+        protected class Slike
+        {
+            public string ImageName { get; set; }
+            public string ImagePath { get; set; }
+            public string ImagePathThumb { get; set; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

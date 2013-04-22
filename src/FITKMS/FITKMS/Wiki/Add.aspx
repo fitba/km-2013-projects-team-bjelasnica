@@ -24,7 +24,6 @@
                                 <asp:Label ID="successLabel" runat="server" Text="Label"></asp:Label>
                             </p>
                         </div>
-
                         <div id="error_label" class="alert alert-block alert-error fade in" runat="server" visible="false">
                             <button data-dismiss="alert" class="close" type="button">
                                 ×
@@ -48,6 +47,49 @@
                                 <asp:TextBox ID="titleInput" runat="server" CssClass="input-block-level" Placeholder="Naslov" required="required" x-moz-errormessage="Obavezno unesite naslov!"></asp:TextBox>
                                 <asp:TextBox ID="authorsInput" runat="server" CssClass="input-block-level" Placeholder="Autori" required="required" x-moz-errormessage="Obavezno unesite autora/e!"></asp:TextBox>
                                 <asp:TextBox ID="keyWordsInput" runat="server" CssClass="input-block-level" Placeholder="Ključne riječi" required="required" x-moz-errormessage="Obavezno unesite ključne riječi!"></asp:TextBox>
+
+                                <div id="accordion1" class="accordion no-margin">
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a href="#collapseOne" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
+                                                <i class="icon-picture icon-white"></i>
+                                                Slike za članak
+                                            </a>
+                                        </div>
+                                        <div class="accordion-body in collapse" id="collapseOne" style="height: auto;">
+                                            <div class="accordion-inner">
+                                                <asp:FileUpload ID="imagesFile" runat="server" AllowMultiple="true" />
+                                                <asp:Button ID="imagesAddSubmit" runat="server" CssClass="btn btn-inverse" Text="Dodaj" />
+
+                                                <asp:GridView ID="imagesGrid" runat="server" AutoGenerateColumns="False" DataSource='<%# galerija %>'
+                                                    ShowHeader="false" GridLines="Horizontal"
+                                                    DataKeyNames="ImagePath,ImagePathThumb">
+                                                    <Columns>
+                                                        <asp:TemplateField>
+                                                            <ItemTemplate>
+                                                                <a href='<%# Eval("ImagePath") %>' rel="lightbox[gallery]">
+                                                                    <img id="Img1" runat="server" alt="" src='<%# Eval("ImagePathThumb") %>' style="padding-top: 10px" /></a>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Center" Width="100px" VerticalAlign="Middle" />
+                                                        </asp:TemplateField>
+                                                        <asp:BoundField DataField="ImageName">
+                                                            <ItemStyle HorizontalAlign="Left" Width="400px" />
+                                                        </asp:BoundField>
+                                                        <asp:TemplateField>
+                                                            <ItemTemplate>
+                                                                <asp:LinkButton ID="deleteLink" runat="server" class="btn btn-danger input-top-margin" CommandName="deleteCommand"
+                                                                    CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>' OnClientClick="return confirm('Da li želite obrisati sliku?');">Ukloni</asp:LinkButton>
+
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Right" />
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                </asp:GridView>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                         <div class="wysiwyg-container">
