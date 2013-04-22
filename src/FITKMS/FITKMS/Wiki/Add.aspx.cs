@@ -66,7 +66,8 @@ namespace FITKMS.Wiki
             article.DatumKreiranja = DateTime.Now;
             article.DatumIzmjene = DateTime.Now;
             article.Status = true;
-            article.KorisnikID = 1;
+            //Prilagoditi 
+            article.KorisnikID = 5;
             article.Tekst = wysiwyg.InnerText;
 
             if (documentFile.PostedFile != null && documentFile.PostedFile.FileName != null
@@ -80,6 +81,21 @@ namespace FITKMS.Wiki
             }
 
             DAClanci.Insert(article, selectedTags);
+            successLabel.Text = "Uspješno ste dodali članak.";
+            success_label.Visible = true;
+            clearFields();
+        }
+
+        private void clearFields()
+        {
+            typesList.SelectedIndex = 0;
+            themeList.SelectedIndex = 0;
+            titleInput.Text = "";
+            authorsInput.Text = "";
+            keyWordsInput.Text = "";
+            wysiwyg.InnerText = "";
+            tagsInput.Text = "";
+            selectedTags.Clear();
         }
 
         protected void saveTagsSubmit_Click(object sender, EventArgs e)
