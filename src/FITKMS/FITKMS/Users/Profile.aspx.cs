@@ -54,7 +54,7 @@ namespace FITKMS.Users
 
                 MemoryStream newStream = new MemoryStream();
 
-                resizeBitmap((Bitmap)img, 200, 250).Save(newStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                resizeBitmap((Bitmap)img, 415, 300).Save(newStream, System.Drawing.Imaging.ImageFormat.Jpeg);
                 image = newStream.ToArray();
             }
 

@@ -48,3 +48,12 @@ C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FIT
 C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\obj\Debug\FITKMS.csprojResolveAssemblyReference.cache
 C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\obj\Debug\FITKMS.dll
 C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\obj\Debug\FITKMS.pdb
+C:\Users\admir.FIT.000\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\FITKMS.dll
+C:\Users\admir.FIT.000\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\FITKMS.pdb
+C:\Users\admir.FIT.000\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\FITKMS_business.dll
+C:\Users\admir.FIT.000\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\EntityFramework.dll
+C:\Users\admir.FIT.000\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\FITKMS_business.pdb
+C:\Users\admir.FIT.000\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\EntityFramework.xml
+C:\Users\admir.FIT.000\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\obj\Debug\FITKMS.csprojResolveAssemblyReference.cache
+C:\Users\admir.FIT.000\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\obj\Debug\FITKMS.dll
+C:\Users\admir.FIT.000\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\obj\Debug\FITKMS.pdb

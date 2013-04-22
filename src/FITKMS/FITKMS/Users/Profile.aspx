@@ -19,10 +19,10 @@
                                 <div class="row-fluid">
                                     <div class="span3">
                                         <div class="thumbnail">
-                                            <asp:Image ID="userImage" Width="200px" Height="250px" runat="server" />
+                                            <asp:Image ID="userImage" Width="415px" Height="300px" runat="server" />
                                             <div class="caption">
                                                 <p class="no-margin">
-                                                    <asp:FileUpload ID="imageFile" Width="265px" runat="server" />
+                                                    <asp:FileUpload ID="imageFile" Width="245px" runat="server" />
                                                 </p>
                                             </div>
                                         </div>
