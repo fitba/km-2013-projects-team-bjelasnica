@@ -40,6 +40,7 @@ namespace FITKMS_business.Data
         public byte[] Slika { get; set; }
         public bool Aktivan { get; set; }
         public Nullable<System.DateTime> DatumIzmjene { get; set; }
+        public string SlikaType { get; set; }
     
         public virtual ICollection<Clanci> Clanci { get; set; }
         public virtual ICollection<ClanciKomentari> ClanciKomentari { get; set; }
@@ -49,7 +50,5 @@ namespace FITKMS_business.Data
         public virtual ICollection<OdgovoriGlasovi> OdgovoriGlasovi { get; set; }
         public virtual ICollection<Pitanja> Pitanja { get; set; }
         public virtual ICollection<PitanjaGlasovi> PitanjaGlasovi { get; set; }
-
-        public string SlikaType { get; set; }
     }
 }

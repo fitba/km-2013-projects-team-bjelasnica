@@ -233,12 +233,14 @@
     <Content Include="Content\icomoon\fonts\icomoon.woff" />
     <Content Include="Content\img\logo.psd" />
     <Content Include="Main.Master" />
+    <Content Include="Users\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="Wiki\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FITKMS_business\FITKMS_business.csproj">

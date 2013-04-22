@@ -208,17 +208,17 @@
                 });
             });
 
-            //wysihtml5
-            //$('#wysiwyg').wysihtml5();
+           // wysihtml5
+            $('#wysiwyg').wysihtml5();
 
-            //google.load("visualization", "1", {
-            //    packages: ["corechart"]
-            //});
+            google.load("visualization", "1", {
+                packages: ["corechart"]
+            });
 
-            //$(document).ready(function () {
-            //    drawChart1();
-            //    drawChart2();
-            //})
+            $(document).ready(function () {
+                drawChart1();
+                drawChart2();
+            })
             
             //Tooltip
             $('a').tooltip('hide');

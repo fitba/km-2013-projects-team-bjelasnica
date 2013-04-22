@@ -8,9 +8,15 @@ namespace FITKMS_business.Data
 {
     public class DAClanci
     {
-        public static void Insert(Clanci article, List<Int32> tagIds)
+        public static void Insert(Clanci article, List<Tagovi> tags)
         {
             Connection.dm.Clanci.Add(article);
+            Connection.dm.SaveChanges();
+            foreach (Tagovi t in tags)
+            {
+                article.Tagovi.Add(t);
+                Connection.dm.SaveChanges();
+            }
         }
 
         public static List<VrsteClanaka> SelectTypes(bool status)

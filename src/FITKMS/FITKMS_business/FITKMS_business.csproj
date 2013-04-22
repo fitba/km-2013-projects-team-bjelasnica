@@ -62,6 +62,7 @@
     <Compile Include="Data\DAClanci.cs" />
     <Compile Include="Data\DAKorisnici.cs" />
     <Compile Include="Data\DATagovi.cs" />
+    <Compile Include="Data\DATeme.cs" />
     <Compile Include="Data\FITKMS.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -76,6 +77,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FITKMS.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\fsp_Korisnici_SelectByUsername_Result.cs">
+      <DependentUpon>FITKMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\fsp_Korisnici_SelectByUsername_Result1.cs">
+      <DependentUpon>FITKMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Korisnici.cs">
       <DependentUpon>FITKMS.tt</DependentUpon>

@@ -22,6 +22,15 @@ namespace FITKMS.Wiki {
         protected global::System.Web.UI.WebControls.DropDownList typesList;
         
         /// <summary>
+        /// themeList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList themeList;
+        
+        /// <summary>
         /// titleInput control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,33 @@ namespace FITKMS.Wiki {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTextArea wysiwyg;
+        
+        /// <summary>
+        /// documentFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload documentFile;
+        
+        /// <summary>
+        /// tagsInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tagsInput;
+        
+        /// <summary>
+        /// loadTagsSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button loadTagsSubmit;
         
         /// <summary>
         /// tagsList control.

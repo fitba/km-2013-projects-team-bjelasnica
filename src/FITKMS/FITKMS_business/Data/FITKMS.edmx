@@ -639,6 +639,9 @@
           <Parameter Name="Slika" Type="varbinary(max)" Mode="In" />
           <Parameter Name="SlikaType" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="fsp_Teme_SelectByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Status" Type="bit" Mode="In" />
+        </Function>
         <Function Name="fsp_VrsteClanaka_SelectByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Status" Type="bit" Mode="In" />
         </Function>
@@ -776,6 +779,9 @@
             <Parameter Name="DatumRodjenja" Mode="In" Type="DateTime" />
             <Parameter Name="Slika" Mode="In" Type="Binary" />
             <Parameter Name="SlikaType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Teme_SelectByStatus" EntitySet="Teme" ReturnType="Collection(FITKMSModel.Teme)">
+            <Parameter Name="Status" Mode="In" Type="Boolean" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Aktivnosti">
@@ -1527,6 +1533,8 @@
           <FunctionImportMapping FunctionImportName="fsp_Korisnici_SelectByUsername" FunctionName="FITKMSModel.Store.fsp_Korisnici_SelectByUsername">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="fsp_Korisnici_Update" FunctionName="FITKMSModel.Store.fsp_Korisnici_Update" />
+          <FunctionImportMapping FunctionImportName="fsp_Teme_SelectByStatus" FunctionName="FITKMSModel.Store.fsp_Teme_SelectByStatus">
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

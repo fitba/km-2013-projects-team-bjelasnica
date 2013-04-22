@@ -634,6 +634,9 @@
     <Parameter Name="Slika" Type="varbinary(max)" Mode="In" />
     <Parameter Name="SlikaType" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="fsp_Teme_SelectByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Status" Type="bit" Mode="In" />
+  </Function>
   <Function Name="fsp_VrsteClanaka_SelectByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Status" Type="bit" Mode="In" />
   </Function>
