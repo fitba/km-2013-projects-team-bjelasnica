@@ -7,7 +7,15 @@
     <EntitySet Name="ClanciOcjene" EntityType="FITKMSModel.Store.ClanciOcjene" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ClanciTagovi" EntityType="FITKMSModel.Store.ClanciTagovi" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Korisnici" EntityType="FITKMSModel.Store.Korisnici" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="KorisniciUloge" EntityType="FITKMSModel.Store.KorisniciUloge" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KorisniciUloge" EntityType="FITKMSModel.Store.KorisniciUloge" store:Type="Tables" store:Schema="dbo" store:Name="KorisniciUloge">
+      <DefiningQuery>SELECT 
+      [KorisniciUloge].[KorisnikUlogaID] AS [KorisnikUlogaID], 
+      [KorisniciUloge].[KorisnikID] AS [KorisnikID], 
+      [KorisniciUloge].[UlogaID] AS [UlogaID], 
+      [KorisniciUloge].[DatumKreiranja] AS [DatumKreiranja], 
+      [KorisniciUloge].[DatumIzmjene] AS [DatumIzmjene]
+      FROM [dbo].[KorisniciUloge] AS [KorisniciUloge]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="Oblasti" EntityType="FITKMSModel.Store.Oblasti" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Odgovori" EntityType="FITKMSModel.Store.Odgovori" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="OdgovoriGlasovi" EntityType="FITKMSModel.Store.OdgovoriGlasovi" store:Type="Tables" Schema="dbo" />
@@ -135,12 +143,12 @@
     <Property Name="VrstaID" Type="int" Nullable="false" />
     <Property Name="TemaID" Type="int" Nullable="false" />
     <Property Name="KorisnikID" Type="int" Nullable="false" />
-    <Property Name="Slike" Type="nvarchar" MaxLength="100" />
     <Property Name="Dokument" Type="varbinary(max)" />
     <Property Name="Status" Type="bit" />
     <Property Name="Izmjene" Type="bit" />
     <Property Name="DatumKreiranja" Type="datetime" Nullable="false" />
     <Property Name="DatumIzmjene" Type="datetime" Nullable="false" />
+    <Property Name="DokumentType" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="ClanciKomentari">
     <Key>
@@ -191,15 +199,20 @@
     <Property Name="LozinkaHash" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="LozinkaSalt" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Slika" Type="varbinary(max)" />
-    <Property Name="SlikaType" Type="nvarchar" MaxLength="50" />
     <Property Name="Aktivan" Type="bit" Nullable="false" />
     <Property Name="DatumIzmjene" Type="datetime" />
+    <Property Name="SlikaType" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'FITKMS.dbo.KorisniciUloge' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
   <EntityType Name="KorisniciUloge">
     <Key>
+      <PropertyRef Name="KorisnikUlogaID" />
       <PropertyRef Name="KorisnikID" />
       <PropertyRef Name="UlogaID" />
     </Key>
+    <Property Name="KorisnikUlogaID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="KorisnikID" Type="int" Nullable="false" />
     <Property Name="UlogaID" Type="int" Nullable="false" />
     <Property Name="DatumKreiranja" Type="datetime" />
@@ -611,6 +624,25 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="fsp_ClanciTagovi_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClanakID" Type="int" Mode="In" />
+    <Parameter Name="TagID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fsp_Clanci_SelectById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClanakID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fsp_Clanci_SelectByTypeTitle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VrstaID" Type="int" Mode="In" />
+    <Parameter Name="Naslov" Type="nvarchar" Mode="In" />
+    <Parameter Name="Offset" Type="int" Mode="In" />
+    <Parameter Name="MaxRows" Type="int" Mode="In" />
+    <Parameter Name="TotalRows" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="fsp_Korisnici_ChangePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="KorisnikID" Type="int" Mode="In" />
+    <Parameter Name="LozinkaSalt" Type="nvarchar" Mode="In" />
+    <Parameter Name="LozinkaHash" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="fsp_Korisnici_Registration" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Ime" Type="nvarchar" Mode="In" />
     <Parameter Name="Prezime" Type="nvarchar" Mode="In" />

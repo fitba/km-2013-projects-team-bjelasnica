@@ -10,7 +10,7 @@
 namespace FITKMS.Wiki {
     
     
-    public partial class Add {
+    public partial class Edit {
         
         /// <summary>
         /// success_label control.

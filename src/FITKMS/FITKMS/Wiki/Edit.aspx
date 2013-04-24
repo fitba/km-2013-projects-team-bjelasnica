@@ -1,11 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Add.aspx.cs" Inherits="FITKMS.Wiki.Add" ValidateRequest="false" MaintainScrollPositionOnPostback="true" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Edit.aspx.cs" Inherits="FITKMS.Wiki.Edit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript">
-        function fireServerButtonEvent() {
-            document.getElementById("loadTagsSubmit").click();
-        }
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="dashboard-wrapper">
@@ -71,16 +66,18 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <asp:Button ID="saveTagsSubmit" runat="server" CssClass="btn btn-info" Text="Sačuvaj" formnovalidate="formnovalidate" Height="30px" OnClick="saveTagsSubmit_Click" />
+                                        <asp:Button ID="saveTagsSubmit" runat="server" CssClass="btn btn-info" Text="Sačuvaj" formnovalidate="formnovalidate" 
+                                        Height="30px" OnClick="saveTagsSubmit_Click" />
                                     </div>
                                 </div>
                                 <br />
                                 <br />
-                                <asp:FileUpload ID="documentFile" runat="server" AllowMultiple="false" required="required" x-moz-errormessage="Obavezno odaberite dokument!" />
+                                <asp:FileUpload ID="documentFile" runat="server" AllowMultiple="false"
+                                    required="required" x-moz-errormessage="Obavezno odaberite dokument!" />
                                 <!-- End Modal -->
                                 <div class="right-align-text">
                                     <asp:Button ID="saveArticleSubmit" runat="server" CssClass="btn btn-info" Text="Sačuvaj"
-                                        Height="30px" OnClick="saveArticleSubmit_Click" OnClientClick="javascript:scroll(0,0);" />
+                                        Height="30px"  OnClientClick="javascript:scroll(0,0);" />
                                 </div>
                             </div>
                         </div>

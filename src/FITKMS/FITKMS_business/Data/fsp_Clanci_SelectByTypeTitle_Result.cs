@@ -10,17 +10,16 @@
 namespace FITKMS_business.Data
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class KorisniciUloge
+    public partial class fsp_Clanci_SelectByTypeTitle_Result
     {
-        public int KorisnikID { get; set; }
-        public int UlogaID { get; set; }
-        public Nullable<System.DateTime> DatumKreiranja { get; set; }
-        public Nullable<System.DateTime> DatumIzmjene { get; set; }
-        public int KorisnikUlogaID { get; set; }
-    
-        public virtual Korisnici Korisnici { get; set; }
-        public virtual Uloge Uloge { get; set; }
+        public int ClanakID { get; set; }
+        public string Naslov { get; set; }
+        public string Tekst { get; set; }
+        public string Autori { get; set; }
+        public string KljucneRijeci { get; set; }
+        public Nullable<double> ProsjecnaOcjena { get; set; }
+        public System.DateTime DatumKreiranja { get; set; }
+        public System.DateTime DatumIzmjene { get; set; }
     }
 }

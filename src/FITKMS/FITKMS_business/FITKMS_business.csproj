@@ -78,10 +78,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FITKMS.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Data\fsp_Korisnici_SelectByUsername_Result.cs">
+    <Compile Include="Data\fsp_Clanci_SelectById_Result.cs">
       <DependentUpon>FITKMS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\fsp_Korisnici_SelectByUsername_Result1.cs">
+    <Compile Include="Data\fsp_Clanci_SelectByTypeTitle_Result.cs">
       <DependentUpon>FITKMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Korisnici.cs">

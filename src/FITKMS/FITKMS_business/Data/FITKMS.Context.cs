@@ -63,41 +63,83 @@ namespace FITKMS_business.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VrsteClanaka>("fsp_VrsteClanaka_SelectByStatus", mergeOption, statusParameter);
         }
     
-        public virtual int fsp_Korisnici_Registration(string ime, string prezime, string mail, string spol, Nullable<System.DateTime> datumRodjenja, string korisnickoIme, string lozinkaHash, string lozinkaSalt)
+        public virtual ObjectResult<Teme> fsp_Teme_SelectByStatus(Nullable<bool> status)
         {
-            var imeParameter = ime != null ?
-                new ObjectParameter("Ime", ime) :
-                new ObjectParameter("Ime", typeof(string));
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(bool));
     
-            var prezimeParameter = prezime != null ?
-                new ObjectParameter("Prezime", prezime) :
-                new ObjectParameter("Prezime", typeof(string));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Teme>("fsp_Teme_SelectByStatus", statusParameter);
+        }
     
-            var mailParameter = mail != null ?
-                new ObjectParameter("Mail", mail) :
-                new ObjectParameter("Mail", typeof(string));
+        public virtual ObjectResult<Teme> fsp_Teme_SelectByStatus(Nullable<bool> status, MergeOption mergeOption)
+        {
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(bool));
     
-            var spolParameter = spol != null ?
-                new ObjectParameter("Spol", spol) :
-                new ObjectParameter("Spol", typeof(string));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Teme>("fsp_Teme_SelectByStatus", mergeOption, statusParameter);
+        }
     
-            var datumRodjenjaParameter = datumRodjenja.HasValue ?
-                new ObjectParameter("DatumRodjenja", datumRodjenja) :
-                new ObjectParameter("DatumRodjenja", typeof(System.DateTime));
+        public virtual int fsp_ClanciTagovi_Insert(Nullable<int> clanakID, Nullable<int> tagID)
+        {
+            var clanakIDParameter = clanakID.HasValue ?
+                new ObjectParameter("ClanakID", clanakID) :
+                new ObjectParameter("ClanakID", typeof(int));
     
-            var korisnickoImeParameter = korisnickoIme != null ?
-                new ObjectParameter("KorisnickoIme", korisnickoIme) :
-                new ObjectParameter("KorisnickoIme", typeof(string));
+            var tagIDParameter = tagID.HasValue ?
+                new ObjectParameter("TagID", tagID) :
+                new ObjectParameter("TagID", typeof(int));
     
-            var lozinkaHashParameter = lozinkaHash != null ?
-                new ObjectParameter("LozinkaHash", lozinkaHash) :
-                new ObjectParameter("LozinkaHash", typeof(string));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_ClanciTagovi_Insert", clanakIDParameter, tagIDParameter);
+        }
     
-            var lozinkaSaltParameter = lozinkaSalt != null ?
-                new ObjectParameter("LozinkaSalt", lozinkaSalt) :
-                new ObjectParameter("LozinkaSalt", typeof(string));
+        public virtual ObjectResult<fsp_Clanci_SelectByTypeTitle_Result> fsp_Clanci_SelectByTypeTitle(Nullable<int> vrstaID, string naslov, Nullable<int> offset, Nullable<int> maxRows, ObjectParameter totalRows)
+        {
+            var vrstaIDParameter = vrstaID.HasValue ?
+                new ObjectParameter("VrstaID", vrstaID) :
+                new ObjectParameter("VrstaID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_Korisnici_Registration", imeParameter, prezimeParameter, mailParameter, spolParameter, datumRodjenjaParameter, korisnickoImeParameter, lozinkaHashParameter, lozinkaSaltParameter);
+            var naslovParameter = naslov != null ?
+                new ObjectParameter("Naslov", naslov) :
+                new ObjectParameter("Naslov", typeof(string));
+    
+            var offsetParameter = offset.HasValue ?
+                new ObjectParameter("Offset", offset) :
+                new ObjectParameter("Offset", typeof(int));
+    
+            var maxRowsParameter = maxRows.HasValue ?
+                new ObjectParameter("MaxRows", maxRows) :
+                new ObjectParameter("MaxRows", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_Clanci_SelectByTypeTitle_Result>("fsp_Clanci_SelectByTypeTitle", vrstaIDParameter, naslovParameter, offsetParameter, maxRowsParameter, totalRows);
+        }
+    
+        public virtual ObjectResult<fsp_Clanci_SelectById_Result> fsp_Clanci_SelectById(Nullable<int> clanakID)
+        {
+            var clanakIDParameter = clanakID.HasValue ?
+                new ObjectParameter("ClanakID", clanakID) :
+                new ObjectParameter("ClanakID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_Clanci_SelectById_Result>("fsp_Clanci_SelectById", clanakIDParameter);
+        }
+    
+        public virtual ObjectResult<Korisnici> fsp_Korisnici_SelectByID(Nullable<int> korisnikID)
+        {
+            var korisnikIDParameter = korisnikID.HasValue ?
+                new ObjectParameter("KorisnikID", korisnikID) :
+                new ObjectParameter("KorisnikID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Korisnici>("fsp_Korisnici_SelectByID", korisnikIDParameter);
+        }
+    
+        public virtual ObjectResult<Korisnici> fsp_Korisnici_SelectByID(Nullable<int> korisnikID, MergeOption mergeOption)
+        {
+            var korisnikIDParameter = korisnikID.HasValue ?
+                new ObjectParameter("KorisnikID", korisnikID) :
+                new ObjectParameter("KorisnikID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Korisnici>("fsp_Korisnici_SelectByID", mergeOption, korisnikIDParameter);
         }
     
         public virtual ObjectResult<Korisnici> fsp_Korisnici_SelectByUsername(string korisnickoIme)
@@ -155,40 +197,41 @@ namespace FITKMS_business.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_Korisnici_Update", korisnikIDParameter, imeParameter, prezimeParameter, mailParameter, spolParameter, datumRodjenjaParameter, slikaParameter, slikaTypeParameter);
         }
     
-        public virtual ObjectResult<Teme> fsp_Teme_SelectByStatus(Nullable<bool> status)
+        public virtual int fsp_Korisnici_Registration(string ime, string prezime, string mail, string spol, Nullable<System.DateTime> datumRodjenja, string korisnickoIme, string lozinkaHash, string lozinkaSalt)
         {
-            var statusParameter = status.HasValue ?
-                new ObjectParameter("Status", status) :
-                new ObjectParameter("Status", typeof(bool));
+            var imeParameter = ime != null ?
+                new ObjectParameter("Ime", ime) :
+                new ObjectParameter("Ime", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Teme>("fsp_Teme_SelectByStatus", statusParameter);
-        }
+            var prezimeParameter = prezime != null ?
+                new ObjectParameter("Prezime", prezime) :
+                new ObjectParameter("Prezime", typeof(string));
     
-        public virtual ObjectResult<Teme> fsp_Teme_SelectByStatus(Nullable<bool> status, MergeOption mergeOption)
-        {
-            var statusParameter = status.HasValue ?
-                new ObjectParameter("Status", status) :
-                new ObjectParameter("Status", typeof(bool));
+            var mailParameter = mail != null ?
+                new ObjectParameter("Mail", mail) :
+                new ObjectParameter("Mail", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Teme>("fsp_Teme_SelectByStatus", mergeOption, statusParameter);
-        }
+            var spolParameter = spol != null ?
+                new ObjectParameter("Spol", spol) :
+                new ObjectParameter("Spol", typeof(string));
     
-        public virtual ObjectResult<Korisnici> fsp_Korisnici_SelectByID(Nullable<int> korisnikID)
-        {
-            var korisnikIDParameter = korisnikID.HasValue ?
-                new ObjectParameter("KorisnikID", korisnikID) :
-                new ObjectParameter("KorisnikID", typeof(int));
+            var datumRodjenjaParameter = datumRodjenja.HasValue ?
+                new ObjectParameter("DatumRodjenja", datumRodjenja) :
+                new ObjectParameter("DatumRodjenja", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Korisnici>("fsp_Korisnici_SelectByID", korisnikIDParameter);
-        }
+            var korisnickoImeParameter = korisnickoIme != null ?
+                new ObjectParameter("KorisnickoIme", korisnickoIme) :
+                new ObjectParameter("KorisnickoIme", typeof(string));
     
-        public virtual ObjectResult<Korisnici> fsp_Korisnici_SelectByID(Nullable<int> korisnikID, MergeOption mergeOption)
-        {
-            var korisnikIDParameter = korisnikID.HasValue ?
-                new ObjectParameter("KorisnikID", korisnikID) :
-                new ObjectParameter("KorisnikID", typeof(int));
+            var lozinkaHashParameter = lozinkaHash != null ?
+                new ObjectParameter("LozinkaHash", lozinkaHash) :
+                new ObjectParameter("LozinkaHash", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Korisnici>("fsp_Korisnici_SelectByID", mergeOption, korisnikIDParameter);
+            var lozinkaSaltParameter = lozinkaSalt != null ?
+                new ObjectParameter("LozinkaSalt", lozinkaSalt) :
+                new ObjectParameter("LozinkaSalt", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_Korisnici_Registration", imeParameter, prezimeParameter, mailParameter, spolParameter, datumRodjenjaParameter, korisnickoImeParameter, lozinkaHashParameter, lozinkaSaltParameter);
         }
     }
 }

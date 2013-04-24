@@ -14,13 +14,24 @@
                                     Članci
                                 </div>
                             </div>
-                           
+
                             <div class="widget-body">
-                                  <asp:DropDownList ID="typesList" runat="server" DataTextField="Naziv" DataValueField="VrstaID"></asp:DropDownList>
-                                <asp:TextBox ID="titleInput" runat="server" CssClass="input-xxlarge" Placeholder="Naslov"></asp:TextBox>
-                                <asp:DataGrid ID="articlesGrid" runat="server" AutoGenerateColumns="false" Width="100%">
+                                <div class="input-append">
+                                    <asp:DropDownList ID="typesList" runat="server" DataSource="<%# types %>" DataTextField="Naziv" DataValueField="VrstaID"></asp:DropDownList>
+                                    <asp:TextBox ID="titleInput" runat="server" CssClass="span7" Placeholder="Naslov"></asp:TextBox>
+                                    <asp:Button ID="searchArticlesSubmit" runat="server" CssClass="btn btn-info" Text="Traži"
+                                        Height="30px" OnClick="searchArticlesSubmit_Click" />
+                                </div>
+                                <asp:DataGrid ID="articlesGrid" runat="server" AutoGenerateColumns="false" Width="100%" DataSource="<%# articles %>"
+                                    DataKeyField="ClanakID" AllowPaging="true" AllowCustomPaging="true" OnPageIndexChanged="articlesGrid_PageIndexChanged" GridLines="None">
+                                    <PagerStyle Mode="NumericPages" />
                                     <Columns>
-                                        <asp:TemplateColumn></asp:TemplateColumn>
+                                        <asp:TemplateColumn>
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="titleLink" runat="server" CommandName="detailsCommand" Text='<%# Eval("Naslov") %>'></asp:LinkButton>
+                                                <br />
+                                            </ItemTemplate>
+                                        </asp:TemplateColumn>
                                     </Columns>
                                 </asp:DataGrid>
                             </div>

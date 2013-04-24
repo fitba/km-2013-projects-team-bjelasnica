@@ -10,18 +10,9 @@
 namespace FITKMS_business.Data
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Clanci
+    public partial class fsp_Clanci_SelectById_Result
     {
-        public Clanci()
-        {
-            this.ClanciKomentari = new HashSet<ClanciKomentari>();
-            this.ClanciOcjene = new HashSet<ClanciOcjene>();
-            this.Pitanja = new HashSet<Pitanja>();
-            this.Tagovi = new HashSet<Tagovi>();
-        }
-    
         public int ClanakID { get; set; }
         public string Naslov { get; set; }
         public string Autori { get; set; }
@@ -36,13 +27,8 @@ namespace FITKMS_business.Data
         public System.DateTime DatumKreiranja { get; set; }
         public System.DateTime DatumIzmjene { get; set; }
         public string DokumentType { get; set; }
-    
-        public virtual Korisnici Korisnici { get; set; }
-        public virtual Teme Teme { get; set; }
-        public virtual VrsteClanaka VrsteClanaka { get; set; }
-        public virtual ICollection<ClanciKomentari> ClanciKomentari { get; set; }
-        public virtual ICollection<ClanciOcjene> ClanciOcjene { get; set; }
-        public virtual ICollection<Pitanja> Pitanja { get; set; }
-        public virtual ICollection<Tagovi> Tagovi { get; set; }
+        public string Vrsta { get; set; }
+        public string Tema { get; set; }
+        public Nullable<double> ProsjecnaOcjena { get; set; }
     }
 }

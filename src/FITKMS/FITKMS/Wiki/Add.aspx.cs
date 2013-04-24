@@ -21,19 +21,6 @@ namespace FITKMS.Wiki
             set { Session["selectedTags"] = value; }
         }
 
-        protected List<Slike> galerija
-        {
-            set { Session["galerija"] = value; }
-            get { return (List<Slike>)Session["galerija"]; }
-        }
-
-        protected class Slike
-        {
-            public string ImageName { get; set; }
-            public string ImagePath { get; set; }
-            public string ImagePathThumb { get; set; }
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -67,36 +54,57 @@ namespace FITKMS.Wiki
 
         protected void saveArticleSubmit_Click(object sender, EventArgs e)
         {
-            Clanci article = new Clanci();
-            if (typesList.SelectedIndex != 0)
-                article.VrstaID = Convert.ToInt32(typesList.SelectedValue);
-            if (themeList.SelectedIndex != 0)
-                article.TemaID = Convert.ToInt32(themeList.SelectedValue);
-
-            article.Naslov = titleInput.Text.Trim();
-            article.Autori = authorsInput.Text.Trim();
-            article.KljucneRijeci = keyWordsInput.Text.Trim();
-            article.DatumKreiranja = DateTime.Now;
-            article.DatumIzmjene = DateTime.Now;
-            article.Status = true;
-            //Prilagoditi 
-            article.KorisnikID = 5;
-            article.Tekst = wysiwyg.InnerText;
-
-            if (documentFile.PostedFile != null && documentFile.PostedFile.FileName != null
-                      && documentFile.PostedFile.FileName != "")
+            try
             {
-                if (System.IO.Path.GetExtension(documentFile.PostedFile.FileName) == ".pdf")
-                {
-                    article.Dokument = new byte[documentFile.PostedFile.ContentLength];
-                    documentFile.PostedFile.InputStream.Read(article.Dokument, 0, documentFile.PostedFile.ContentLength);
-                }
-            }
+                Clanci article = new Clanci();
+                if (typesList.SelectedIndex != 0)
+                    article.VrstaID = Convert.ToInt32(typesList.SelectedValue);
+                if (themeList.SelectedIndex != 0)
+                    article.TemaID = Convert.ToInt32(themeList.SelectedValue);
 
-            DAClanci.Insert(article, selectedTags);
-            successLabel.Text = "Uspješno ste dodali članak.";
-            success_label.Visible = true;
-            clearFields();
+                article.Naslov = titleInput.Text.Trim();
+                article.Autori = authorsInput.Text.Trim();
+                article.KljucneRijeci = keyWordsInput.Text.Trim();
+                article.DatumKreiranja = DateTime.Now;
+                article.DatumIzmjene = DateTime.Now;
+                article.Status = true;
+                article.KorisnikID = Convert.ToInt32(User.Identity.Name);
+                article.Tekst = wysiwyg.InnerText;
+
+                string extension = "";
+                if (documentFile.PostedFile != null && documentFile.PostedFile.FileName != null
+                          && documentFile.PostedFile.FileName != "")
+                {
+                    extension = System.IO.Path.GetExtension(documentFile.PostedFile.FileName);
+                    if (extension == ".pdf" || extension == ".doc" || extension == ".docx")
+                    {
+                        article.Dokument = new byte[documentFile.PostedFile.ContentLength];
+                        documentFile.PostedFile.InputStream.Read(article.Dokument, 0, documentFile.PostedFile.ContentLength);
+                    }
+                    else
+                    {
+                        errorLabel.Text = "Format dokumenta nije podržan.";
+                        error_label.Visible = true;
+                    }
+                }
+
+                DAClanci.Insert(article, selectedTags);
+
+                if (article.Dokument != null)
+                {
+                    System.IO.File.WriteAllBytes(Server.MapPath("/Content/articles/") + article.ClanakID + extension, article.Dokument);
+                }
+
+                successLabel.Text = "Uspješno ste dodali članak.";
+                error_label.Visible = false;
+                success_label.Visible = true;
+                clearFields();
+            }
+            catch (Exception ex)
+            {
+                errorLabel.Text = ex.Message;
+                error_label.Visible = true;
+            }
         }
 
         private void clearFields()
@@ -109,6 +117,7 @@ namespace FITKMS.Wiki
             wysiwyg.InnerText = "";
             tagsInput.Text = "";
             selectedTags.Clear();
+            tagsList.ClearSelection();
         }
 
         protected void saveTagsSubmit_Click(object sender, EventArgs e)

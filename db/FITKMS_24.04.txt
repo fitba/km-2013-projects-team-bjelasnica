@@ -1,0 +1,98 @@
+GO
+ALTER TABLE Clanci
+DROP COLUMN Slike
+
+GO
+ALTER TABLE Clanci
+ADD DokumentType NVARCHAR(50) NULL
+
+GO
+CREATE PROCEDURE fsp_ClanciTagovi_Insert
+(
+	@ClanakID INT,
+	@TagID INT
+)
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+	INSERT INTO ClanciTagovi (ClanakID, TagID)
+	VALUES (@ClanakID, @TagID)
+END
+GO
+
+GO
+CREATE PROCEDURE fsp_Clanci_SelectById
+(
+	@ClanakID INT
+)
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+	SELECT T1.*, T2.Naziv AS Vrsta, T3.Naziv AS Tema, 
+	       (SELECT AVG(CONVERT(float,Ocjena))
+		    FROM ClanciOcjene
+		    WHERE ClanakID = T1.ClanakID) AS ProsjecnaOcjena
+	FROM Clanci AS T1 INNER JOIN VrsteClanaka AS T2
+	     ON T1.ClanakID = T2.VrstaID INNER JOIN Teme AS T3
+	     ON T1.TemaID = T3.TemaID
+	WHERE ClanakID = @ClanakID
+	
+END
+GO
+
+GO
+CREATE PROCEDURE [dbo].[fsp_Clanci_SelectByTypeTitle]
+(
+	@VrstaID INT = NULL,
+	@Naslov NVARCHAR(100) = NULL,
+	@Offset INT,
+	@MaxRows INT,
+	@TotalRows INT = 0 OUTPUT
+)
+AS
+	--SET FMTONLY OFF
+	BEGIN
+	CREATE TABLE #TempClanci
+		(
+			RedniBroj INT IDENTITY(0, 1),
+			ClanakID INT
+		)
+
+	IF @VrstaID = 0
+		BEGIN
+			INSERT INTO #TempClanci(ClanakID)
+			SELECT ClanakID
+			FROM Clanci
+			WHERE (@Naslov = '' OR Naslov like '%' + LOWER(@Naslov) + '%') AND Status=1
+			ORDER BY DatumKreiranja DESC
+		END
+	ELSE
+		BEGIN
+			INSERT INTO #TempClanci(ClanakID)
+			SELECT ClanakID
+			FROM Clanci
+			WHERE VrstaID = @VrstaID AND
+				  (@Naslov = '' OR Naslov like '%' + LOWER(@Naslov) + '%') AND Status=1
+			ORDER BY DatumKreiranja DESC
+		END
+
+		SELECT @TotalRows = @@ROWCOUNT
+
+		SELECT T1.ClanakID, T1.DatumKreiranja, T1.DatumIzmjene, T1.Naslov,
+		       T1.Tekst, T1.Autori, T1.KljucneRijeci,
+		       (SELECT AVG(CONVERT(float,Ocjena))
+		        FROM ClanciOcjene 
+		        WHERE ClanakID = T1.ClanakID) AS ProsjecnaOcjena
+		FROM Clanci AS T1 INNER JOIN #TempClanci AS T2 
+		     ON T1.ClanakID = T2.ClanakID
+		WHERE  RedniBroj BETWEEN @Offset AND (@Offset + @MaxRows - 1)
+		
+		DROP TABLE #TempClanci
+
+END
+
+
+
