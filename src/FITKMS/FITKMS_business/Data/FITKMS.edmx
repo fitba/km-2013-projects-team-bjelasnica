@@ -626,11 +626,14 @@
           <Parameter Name="LozinkaHash" Type="nvarchar" Mode="In" />
           <Parameter Name="LozinkaSalt" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="fsp_Korisnici_SelectByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="KorisnikID" Type="int" Mode="In" />
+        </Function>
         <Function Name="fsp_Korisnici_SelectByUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="KorisnickoIme" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="fsp_Korisnici_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="KorisnickoIme" Type="nvarchar" Mode="In" />
+          <Parameter Name="KorisnikID" Type="int" Mode="In" />
           <Parameter Name="Ime" Type="nvarchar" Mode="In" />
           <Parameter Name="Prezime" Type="nvarchar" Mode="In" />
           <Parameter Name="Mail" Type="nvarchar" Mode="In" />
@@ -771,7 +774,7 @@
           <Parameter Name="KorisnickoIme" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="fsp_Korisnici_Update">
-            <Parameter Name="KorisnickoIme" Mode="In" Type="String" />
+            <Parameter Name="KorisnikID" Mode="In" Type="Int32" />
             <Parameter Name="Ime" Mode="In" Type="String" />
             <Parameter Name="Prezime" Mode="In" Type="String" />
             <Parameter Name="Mail" Mode="In" Type="String" />
@@ -781,7 +784,10 @@
             <Parameter Name="SlikaType" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="fsp_Teme_SelectByStatus" EntitySet="Teme" ReturnType="Collection(FITKMSModel.Teme)">
-            <Parameter Name="Status" Mode="In" Type="Boolean" />
+          <Parameter Name="Status" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Korisnici_SelectByID" EntitySet="Korisnici" ReturnType="Collection(FITKMSModel.Korisnici)">
+          <Parameter Name="KorisnikID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Aktivnosti">
@@ -1267,38 +1273,6 @@
           <End Role="Pitanja" Type="FITKMSModel.Pitanja" Multiplicity="*" />
           <End Role="Tagovi" Type="FITKMSModel.Tagovi" Multiplicity="*" />
         </Association>
-        <ComplexType Name="fsp_Korisnici_SelectByUsername_Result">
-          <Property Type="Int32" Name="KorisnikID" Nullable="false" />
-          <Property Type="String" Name="Ime" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Prezime" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Mail" Nullable="false" MaxLength="150" />
-          <Property Type="String" Name="Spol" Nullable="false" MaxLength="1" />
-          <Property Type="DateTime" Name="DatumRodjenja" Nullable="false" />
-          <Property Type="DateTime" Name="DatumRegistracije" Nullable="false" Precision="23" />
-          <Property Type="DateTime" Name="PosljednjaPrijava" Nullable="false" Precision="23" />
-          <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="LozinkaHash" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="LozinkaSalt" Nullable="false" MaxLength="50" />
-          <Property Type="Binary" Name="Slika" Nullable="true" />
-          <Property Type="Boolean" Name="Aktivan" Nullable="false" />
-          <Property Type="DateTime" Name="DatumIzmjene" Nullable="true" Precision="23" />
-        </ComplexType>
-        <ComplexType Name="fsp_Korisnici_SelectByUsername_Result1">
-          <Property Type="Int32" Name="KorisnikID" Nullable="false" />
-          <Property Type="String" Name="Ime" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Prezime" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Mail" Nullable="false" MaxLength="150" />
-          <Property Type="String" Name="Spol" Nullable="false" MaxLength="1" />
-          <Property Type="DateTime" Name="DatumRodjenja" Nullable="false" />
-          <Property Type="DateTime" Name="DatumRegistracije" Nullable="false" Precision="23" />
-          <Property Type="DateTime" Name="PosljednjaPrijava" Nullable="false" Precision="23" />
-          <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="LozinkaHash" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="LozinkaSalt" Nullable="false" MaxLength="50" />
-          <Property Type="Binary" Name="Slika" Nullable="true" />
-          <Property Type="Boolean" Name="Aktivan" Nullable="false" />
-          <Property Type="DateTime" Name="DatumIzmjene" Nullable="true" Precision="23" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1534,6 +1508,8 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="fsp_Korisnici_Update" FunctionName="FITKMSModel.Store.fsp_Korisnici_Update" />
           <FunctionImportMapping FunctionImportName="fsp_Teme_SelectByStatus" FunctionName="FITKMSModel.Store.fsp_Teme_SelectByStatus">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Korisnici_SelectByID" FunctionName="FITKMSModel.Store.fsp_Korisnici_SelectByID">
           </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>

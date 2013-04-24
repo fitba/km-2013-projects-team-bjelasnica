@@ -13,6 +13,42 @@ namespace FITKMS.Users {
     public partial class Profile {
         
         /// <summary>
+        /// success_label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl success_label;
+        
+        /// <summary>
+        /// successLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label successLabel;
+        
+        /// <summary>
+        /// error_label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl error_label;
+        
+        /// <summary>
+        /// errorLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errorLabel;
+        
+        /// <summary>
         /// userImage control.
         /// </summary>
         /// <remarks>
@@ -130,15 +166,6 @@ namespace FITKMS.Users {
         protected global::System.Web.UI.WebControls.DropDownList yearList;
         
         /// <summary>
-        /// saveSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button saveSubmit;
-        
-        /// <summary>
         /// cancelSubmit control.
         /// </summary>
         /// <remarks>
@@ -146,5 +173,14 @@ namespace FITKMS.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button cancelSubmit;
+        
+        /// <summary>
+        /// saveSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button saveSubmit;
     }
 }

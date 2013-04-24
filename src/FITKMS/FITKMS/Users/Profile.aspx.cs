@@ -14,12 +14,15 @@ namespace FITKMS.Users
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindForm();
+            if (!IsPostBack)
+            {
+                BindForm();
+            }
         }
 
         private void BindForm()
         {
-            Korisnici user = DAKorisnici.GetByUsername(User.Identity.Name);
+            Korisnici user = DAKorisnici.GetByID(Convert.ToInt32(User.Identity.Name));
 
             if (user.SlikaType != null && user.SlikaType != "")
                 userImage.ImageUrl = "Image.aspx?username=" + user.KorisnickoIme;
@@ -41,11 +44,25 @@ namespace FITKMS.Users
 
         protected void saveSubmit_Click(object sender, EventArgs e)
         {
-            byte[] image = new byte["".Length];
-            string ImageType = "";
+            Korisnici user = new Korisnici();
+            user = DAKorisnici.GetByID(Convert.ToInt32(User.Identity.Name));
+            user.Ime = fnameInput.Text;
+            user.Prezime = lnameInput.Text;
+            user.Mail = mailInput.Text;
+            user.Spol = genderList.SelectedValue;
+            try
+            {
+                user.DatumRodjenja = Convert.ToDateTime(dayList.Text + '.' + monthList.Text + '.' + yearList.Text);
+            }
+            catch 
+            {
+                error_label.Visible = true;
+                errorLabel.Text = "Obavezno odabrati datum rođenja!";
+                return;
+            }
             if (imageFile.PostedFile != null && imageFile.PostedFile.FileName != "")
             {
-                ImageType = imageFile.PostedFile.ContentType;
+                user.SlikaType = imageFile.PostedFile.ContentType;
                 byte[] content = new byte[imageFile.PostedFile.ContentLength + 1];
                 imageFile.PostedFile.InputStream.Read(content, 0, imageFile.PostedFile.ContentLength);
 
@@ -55,17 +72,12 @@ namespace FITKMS.Users
                 MemoryStream newStream = new MemoryStream();
 
                 resizeBitmap((Bitmap)img, 415, 300).Save(newStream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                image = newStream.ToArray();
+                user.Slika = newStream.ToArray();
             }
 
-            DAKorisnici.Update(User.Identity.Name,
-                               fnameInput.Text,
-                               lnameInput.Text,
-                               mailInput.Text,
-                               genderList.SelectedValue,
-                               Convert.ToDateTime(dayList.Text + '.' + monthList.Text + '.' + yearList.Text),
-                               image,
-                               ImageType);
+            DAKorisnici.Update(user);
+            success_label.Visible = true;
+            successLabel.Text = "Uspješno ste sačuvali promjene.";
 
         }
 

@@ -7,6 +7,34 @@
         <div class="main-container">
             <div class="row-fluid">
                 <div class="span12">
+                    <div class="widget-body">
+
+                        <div id="success_label" class="alert alert-block alert-success fade in" runat="server" visible="false">
+                            <button data-dismiss="alert" class="close" type="button">
+                                ×
+                            </button>
+                            <h4 class="alert-heading">Poruka!
+                            </h4>
+                            <p>
+                               <asp:Label ID="successLabel" runat="server" Text="Label"></asp:Label>
+                            </p>
+                        </div>
+
+                        <div id="error_label" class="alert alert-block alert-error fade in" runat="server" visible="false">
+                            <button data-dismiss="alert" class="close" type="button">
+                                ×
+                            </button>
+                            <h4 class="alert-heading">Greška!
+                            </h4>
+                            <p>
+                                <asp:Label ID="errorLabel" runat="server" Text="Label"></asp:Label>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span12">
                     <div class="widget no-margin">
                         <div class="widget-header">
                             <div class="title">
@@ -97,7 +125,7 @@
                                                     Spol
                                                 </label>
                                                 <div class="controls">
-                                                    <asp:DropDownList ID="genderList" Width="315px" runat="server">
+                                                    <asp:DropDownList ID="genderList" class="span2" runat="server">
                                                         <asp:ListItem Text="M" Value="M" Selected="true" />
                                                         <asp:ListItem Text="Ž" Value="Ž" />
                                                     </asp:DropDownList>
@@ -207,8 +235,8 @@
                                                 </div>
                                             </div>
                                             <div class="form-actions no-margin">
-                                                <asp:Button ID="saveSubmit" class="btn btn-info" runat="server" Text="Sačuvaj promjene" OnClick="saveSubmit_Click" />
                                                 <asp:Button ID="cancelSubmit" class="btn btn-warning2" runat="server" Text="Odustani" />
+                                                <asp:Button ID="saveSubmit" class="btn btn-info" runat="server" Text="Sačuvaj promjene" OnClick="saveSubmit_Click" />
                                             </div>
                                         </div>
                                     </div>

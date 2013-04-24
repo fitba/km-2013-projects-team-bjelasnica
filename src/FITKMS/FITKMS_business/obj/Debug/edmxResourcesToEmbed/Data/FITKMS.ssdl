@@ -621,11 +621,14 @@
     <Parameter Name="LozinkaHash" Type="nvarchar" Mode="In" />
     <Parameter Name="LozinkaSalt" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="fsp_Korisnici_SelectByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="KorisnikID" Type="int" Mode="In" />
+  </Function>
   <Function Name="fsp_Korisnici_SelectByUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="KorisnickoIme" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="fsp_Korisnici_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="KorisnickoIme" Type="nvarchar" Mode="In" />
+    <Parameter Name="KorisnikID" Type="int" Mode="In" />
     <Parameter Name="Ime" Type="nvarchar" Mode="In" />
     <Parameter Name="Prezime" Type="nvarchar" Mode="In" />
     <Parameter Name="Mail" Type="nvarchar" Mode="In" />

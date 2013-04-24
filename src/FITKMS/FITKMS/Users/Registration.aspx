@@ -58,7 +58,7 @@
                                         E-mail
                                     </label>
                                     <div class="controls">
-                                        <asp:TextBox ID="mailInput" class="span6 input-left-top-margins" runat="server" placeholder="E-mail"></asp:TextBox>
+                                        <asp:TextBox ID="mailInput" class="span6 input-left-top-margins" required="required"  runat="server" placeholder="E-mail"></asp:TextBox>
 
                                         <span class="help-inline ">Unesite e-mail adresu
                                         </span>
@@ -201,7 +201,7 @@
                                         Korisničko ime
                                     </label>
                                     <div class="controls">
-                                        <asp:TextBox ID="usernameInput" class="span12" runat="server" placeholder="Korisničko ime"></asp:TextBox>
+                                        <asp:TextBox ID="usernameInput" class="span12" runat="server" required="required"  placeholder="Korisničko ime"></asp:TextBox>
                                     </div>
                                 </div>
 
@@ -210,7 +210,7 @@
                                         Lozinka
                                     </label>
                                     <div class="controls">
-                                        <asp:TextBox ID="password1Input" class="span12" runat="server" placeholder="Lozinka" TextMode="Password"></asp:TextBox>
+                                        <asp:TextBox ID="password1Input" class="span12" required="required"  runat="server" placeholder="Lozinka" TextMode="Password"></asp:TextBox>
 
                                     </div>
                                 </div>
@@ -220,7 +220,7 @@
                                         Potvrda lozinke
                                     </label>
                                     <div class="controls">
-                                        <asp:TextBox ID="password2Input" class="span12" runat="server" placeholder="Potvrda lozinke" TextMode="Password"></asp:TextBox>
+                                        <asp:TextBox ID="password2Input" class="span12" required="required"  runat="server" placeholder="Potvrda lozinke" TextMode="Password"></asp:TextBox>
 
                                     </div>
                                 </div>

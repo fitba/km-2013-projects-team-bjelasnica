@@ -122,7 +122,7 @@
       <Parameter Name="KorisnickoIme" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="fsp_Korisnici_Update">
-      <Parameter Name="KorisnickoIme" Mode="In" Type="String" />
+      <Parameter Name="KorisnikID" Mode="In" Type="Int32" />
       <Parameter Name="Ime" Mode="In" Type="String" />
       <Parameter Name="Prezime" Mode="In" Type="String" />
       <Parameter Name="Mail" Mode="In" Type="String" />
@@ -133,6 +133,9 @@
     </FunctionImport>
     <FunctionImport Name="fsp_Teme_SelectByStatus" EntitySet="Teme" ReturnType="Collection(FITKMSModel.Teme)">
       <Parameter Name="Status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="fsp_Korisnici_SelectByID" EntitySet="Korisnici" ReturnType="Collection(FITKMSModel.Korisnici)">
+      <Parameter Name="KorisnikID" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="Aktivnosti">
@@ -618,36 +621,4 @@
     <End Role="Pitanja" Type="FITKMSModel.Pitanja" Multiplicity="*" />
     <End Role="Tagovi" Type="FITKMSModel.Tagovi" Multiplicity="*" />
   </Association>
-  <ComplexType Name="fsp_Korisnici_SelectByUsername_Result">
-    <Property Type="Int32" Name="KorisnikID" Nullable="false" />
-    <Property Type="String" Name="Ime" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="Prezime" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="Mail" Nullable="false" MaxLength="150" />
-    <Property Type="String" Name="Spol" Nullable="false" MaxLength="1" />
-    <Property Type="DateTime" Name="DatumRodjenja" Nullable="false" />
-    <Property Type="DateTime" Name="DatumRegistracije" Nullable="false" Precision="23" />
-    <Property Type="DateTime" Name="PosljednjaPrijava" Nullable="false" Precision="23" />
-    <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="LozinkaHash" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="LozinkaSalt" Nullable="false" MaxLength="50" />
-    <Property Type="Binary" Name="Slika" Nullable="true" />
-    <Property Type="Boolean" Name="Aktivan" Nullable="false" />
-    <Property Type="DateTime" Name="DatumIzmjene" Nullable="true" Precision="23" />
-  </ComplexType>
-  <ComplexType Name="fsp_Korisnici_SelectByUsername_Result1">
-    <Property Type="Int32" Name="KorisnikID" Nullable="false" />
-    <Property Type="String" Name="Ime" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="Prezime" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="Mail" Nullable="false" MaxLength="150" />
-    <Property Type="String" Name="Spol" Nullable="false" MaxLength="1" />
-    <Property Type="DateTime" Name="DatumRodjenja" Nullable="false" />
-    <Property Type="DateTime" Name="DatumRegistracije" Nullable="false" Precision="23" />
-    <Property Type="DateTime" Name="PosljednjaPrijava" Nullable="false" Precision="23" />
-    <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="LozinkaHash" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="LozinkaSalt" Nullable="false" MaxLength="50" />
-    <Property Type="Binary" Name="Slika" Nullable="true" />
-    <Property Type="Boolean" Name="Aktivan" Nullable="false" />
-    <Property Type="DateTime" Name="DatumIzmjene" Nullable="true" Precision="23" />
-  </ComplexType>
 </Schema>

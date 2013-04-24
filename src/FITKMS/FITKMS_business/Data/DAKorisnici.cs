@@ -19,10 +19,15 @@ namespace FITKMS_business.Data
             return Connection.dm.fsp_Korisnici_SelectByUsername(username).SingleOrDefault();
         }
 
-        public static void Update(string korisnickoIme, string ime, string prezime, string mail, string spol, DateTime datumRodjenja, byte[] slika, string slikaType)
+        public static void Update(Korisnici user)
         {
-            Connection.dm.fsp_Korisnici_Update(korisnickoIme, ime, prezime, mail, spol, datumRodjenja, slika, slikaType);
+            Connection.dm.fsp_Korisnici_Update(user.KorisnikID, user.Ime, user.Prezime, user.Mail, user.Spol, user.DatumRodjenja, user.Slika, user.SlikaType);
             Connection.dm.SaveChanges();
+        }
+
+        public static Korisnici GetByID(int korisnikID)
+        {
+            return Connection.dm.fsp_Korisnici_SelectByID(korisnikID).SingleOrDefault();
         }
     }
 }

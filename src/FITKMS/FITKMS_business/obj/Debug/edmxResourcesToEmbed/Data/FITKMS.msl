@@ -228,5 +228,6 @@
     <FunctionImportMapping FunctionImportName="fsp_Korisnici_SelectByUsername" FunctionName="FITKMSModel.Store.fsp_Korisnici_SelectByUsername" />
     <FunctionImportMapping FunctionImportName="fsp_Korisnici_Update" FunctionName="FITKMSModel.Store.fsp_Korisnici_Update" />
     <FunctionImportMapping FunctionImportName="fsp_Teme_SelectByStatus" FunctionName="FITKMSModel.Store.fsp_Teme_SelectByStatus" />
+    <FunctionImportMapping FunctionImportName="fsp_Korisnici_SelectByID" FunctionName="FITKMSModel.Store.fsp_Korisnici_SelectByID" />
   </EntityContainerMapping>
 </Mapping>

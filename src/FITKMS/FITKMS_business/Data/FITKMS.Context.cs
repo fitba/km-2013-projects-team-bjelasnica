@@ -118,11 +118,11 @@ namespace FITKMS_business.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Korisnici>("fsp_Korisnici_SelectByUsername", mergeOption, korisnickoImeParameter);
         }
     
-        public virtual int fsp_Korisnici_Update(string korisnickoIme, string ime, string prezime, string mail, string spol, Nullable<System.DateTime> datumRodjenja, byte[] slika, string slikaType)
+        public virtual int fsp_Korisnici_Update(Nullable<int> korisnikID, string ime, string prezime, string mail, string spol, Nullable<System.DateTime> datumRodjenja, byte[] slika, string slikaType)
         {
-            var korisnickoImeParameter = korisnickoIme != null ?
-                new ObjectParameter("KorisnickoIme", korisnickoIme) :
-                new ObjectParameter("KorisnickoIme", typeof(string));
+            var korisnikIDParameter = korisnikID.HasValue ?
+                new ObjectParameter("KorisnikID", korisnikID) :
+                new ObjectParameter("KorisnikID", typeof(int));
     
             var imeParameter = ime != null ?
                 new ObjectParameter("Ime", ime) :
@@ -152,7 +152,7 @@ namespace FITKMS_business.Data
                 new ObjectParameter("SlikaType", slikaType) :
                 new ObjectParameter("SlikaType", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_Korisnici_Update", korisnickoImeParameter, imeParameter, prezimeParameter, mailParameter, spolParameter, datumRodjenjaParameter, slikaParameter, slikaTypeParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_Korisnici_Update", korisnikIDParameter, imeParameter, prezimeParameter, mailParameter, spolParameter, datumRodjenjaParameter, slikaParameter, slikaTypeParameter);
         }
     
         public virtual ObjectResult<Teme> fsp_Teme_SelectByStatus(Nullable<bool> status)
@@ -171,6 +171,24 @@ namespace FITKMS_business.Data
                 new ObjectParameter("Status", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Teme>("fsp_Teme_SelectByStatus", mergeOption, statusParameter);
+        }
+    
+        public virtual ObjectResult<Korisnici> fsp_Korisnici_SelectByID(Nullable<int> korisnikID)
+        {
+            var korisnikIDParameter = korisnikID.HasValue ?
+                new ObjectParameter("KorisnikID", korisnikID) :
+                new ObjectParameter("KorisnikID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Korisnici>("fsp_Korisnici_SelectByID", korisnikIDParameter);
+        }
+    
+        public virtual ObjectResult<Korisnici> fsp_Korisnici_SelectByID(Nullable<int> korisnikID, MergeOption mergeOption)
+        {
+            var korisnikIDParameter = korisnikID.HasValue ?
+                new ObjectParameter("KorisnikID", korisnikID) :
+                new ObjectParameter("KorisnikID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Korisnici>("fsp_Korisnici_SelectByID", mergeOption, korisnikIDParameter);
         }
     }
 }

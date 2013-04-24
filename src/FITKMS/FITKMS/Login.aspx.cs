@@ -33,10 +33,10 @@ namespace FITKMS
                         return;
                     }
 
-                    FormsAuthenticationTicket tick = new FormsAuthenticationTicket(usernameInput.Text, false, 30);
+                    FormsAuthenticationTicket tick = new FormsAuthenticationTicket(user.KorisnikID.ToString(), false, 30);
                     string encTick = FormsAuthentication.Encrypt(tick);
                     Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTick));
-                  //  Response.Redirect("default.aspx");
+                    Response.Redirect("default.aspx");
                 }
                 else
                 {

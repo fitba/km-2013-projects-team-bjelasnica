@@ -14,34 +14,51 @@ namespace FITKMS.Users
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //errorLabel.Text = "Pojavila se neka greška!";
-            //error_label.Visible = true;
         }
 
         protected void createSubmit_Click(object sender, EventArgs e)
         {
-            if (password1Input.Text != password2Input.Text)
+            try
+            {
+                Korisnici user = new Korisnici();
+                user.Ime = fnameInput.Text.Trim();
+                user.Prezime = lnameInput.Text.Trim();
+                user.Mail = mailInput.Text.Trim();
+                user.Spol = genderList.Text;
+                try
+                {
+                    string birthDate = dayList.Text + '.' + monthList.Text + '.' + yearList.Text;
+                    user.DatumRodjenja = Convert.ToDateTime(birthDate);
+                }
+                catch
+                {
+                    error_label.Visible = true;
+                    errorLabel.Text = "Obavezno odabrati datum rođenja!";
+                    return;
+                }
+
+                if (password1Input.Text != password2Input.Text)
+                {
+                    error_label.Visible = true;
+                    errorLabel.Text = "Neispravna potvrda lozinke!";
+                    return;
+                }
+
+                user.KorisnickoIme = usernameInput.Text;
+                user.LozinkaSalt = PasswordHash.GenerateSalt();
+                user.LozinkaHash = PasswordHash.EncodePassword(password1Input.Text, user.LozinkaSalt);
+
+                DAKorisnici.Insert(user);
+                ClearFields();
+                success_label.Visible = true;
+                successLabel.Text = "Uspješno ste izvršili proces registracije.";
+            }
+            catch 
             {
                 error_label.Visible = true;
-                errorLabel.Text = "Neispravna potvrda lozinke!";
+                errorLabel.Text = "Greška prilikom pohrane podataka!";
                 return;
             }
-            Korisnici user = new Korisnici();
-            user.Ime = fnameInput.Text.Trim();
-            user.Prezime = lnameInput.Text.Trim();
-            user.Mail = mailInput.Text.Trim();
-            user.Spol = genderList.Text;
-            string birthDate = dayList.Text + '.' + monthList.Text + '.' + yearList.Text;
-            user.DatumRodjenja = Convert.ToDateTime(birthDate);
-            user.KorisnickoIme = usernameInput.Text;
-            user.LozinkaSalt = PasswordHash.GenerateSalt();
-            user.LozinkaHash = PasswordHash.EncodePassword(password1Input.Text, user.LozinkaSalt);
-            user.Aktivan = true;
-
-            DAKorisnici.Insert(user);
-            ClearFields();
-            success_label.Visible = true;
-            successLabel.Text = "Uspješno ste izvršili proces registracije!";
         }
 
         private void ClearFields()
@@ -60,7 +77,7 @@ namespace FITKMS.Users
 
         protected void cancelSubmit_Click(object sender, EventArgs e)
         {
-            Response.Redirect("../default.aspx");
+            Response.Redirect("../Default.aspx");
         }
     }
 }
