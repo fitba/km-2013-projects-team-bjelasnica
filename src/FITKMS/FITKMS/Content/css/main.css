@@ -3324,6 +3324,60 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
   .breadcrumb > .active {
     color: #999999; }
 
+   /*Paging*/
+        .pgr
+        {
+            margin: 0 10px 1em 0;
+            padding: 2px;
+            background-color:transparent;
+        }
+        .pgr td
+        {
+            background-color: transparent;
+            list-style-type: none;
+            padding-left: 2px;
+            padding-right: 2px;
+            border: none;
+        }
+        .pgr a, .pgr a:visited
+        {
+            color: #666;
+            padding: .25em 5px;
+            text-decoration: none;
+            background-color:White;
+            
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+
+        .pgr a.disabled
+        {
+            background-color: #fff;
+            color: #CCC;
+            cursor: default;
+            font-weight: normal;
+            text-decoration: none;
+        }
+        .pgr a:hover
+        {
+            background: #bcbcbc;
+            color: White;
+            text-decoration: none;
+            list-style-type: none;
+        }
+        .pgr span
+        {
+            padding: 2px;
+            background: #bcbcbc;
+            color: White;
+            text-decoration: none;
+            list-style-type: none;
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+        
+   /*End Paging*/
+
 .pagination {
   margin: 20px 0; }
   .pagination ul {

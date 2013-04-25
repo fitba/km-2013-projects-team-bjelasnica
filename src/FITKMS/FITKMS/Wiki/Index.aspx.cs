@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using FITKMS_business.Data;
+using FITKMS_business.Util;
 
 namespace FITKMS.Wiki
 {
@@ -41,7 +42,7 @@ namespace FITKMS.Wiki
             if (typesList.SelectedIndex != 0)
                 typeId = Convert.ToInt32(typesList.SelectedValue);
 
-            articles = DAClanci.SearchByTypeTitle(typeId, titleInput.Text.Trim(), articlesGrid.PageSize, offset);
+            articles = DAClanci.SearchByTypeTitle(typeId, searchInput.Text.Trim(), articlesGrid.PageSize, offset);
             articlesGrid.VirtualItemCount = DAClanci.totalRows;
             articlesGrid.DataBind();
 
@@ -51,6 +52,48 @@ namespace FITKMS.Wiki
         {
             articlesGrid.CurrentPageIndex = e.NewPageIndex;
             BindGrid();
+        }
+
+        private string getPart(string text)
+        {
+            if (text.IndexOf("<p>") == 0)
+                text = text.Remove(0, 3);
+            text = text.Replace("<p>", "\n");
+            text = text.Replace("<P>", "\n");
+            text = text.Replace("<BR>", "\n");
+            text = text.Replace("<BR />", "\n");
+            text = text.Replace("<br>", "\n");
+            text = text.Replace("<br />", "\n");
+            text = HtmlRemoval.StripTagsCharArray(text);
+
+            if (text.Length > 200)
+            {
+                text = text.Substring(0, 500);
+                for (int i = 499; i > 0; i--)
+                {
+                    if (text[i] != ' ')
+                        text = text.Remove(i, 1);
+                    else
+                        break;
+                }
+                text = text + " ...";
+            }
+
+            text = text.Replace("\n", "<br />");
+            return text;
+        }
+
+        protected void articlesGrid_ItemDataBound(object sender, DataGridItemEventArgs e)
+        {
+            if (e.Item.ItemIndex != -1)
+            {
+                Literal textLiteral = (Literal)e.Item.FindControl("textLiteral");
+                textLiteral.Text = getPart(articles[e.Item.ItemIndex].Tekst);
+
+                Repeater tagsRepeater = (Repeater)e.Item.FindControl("tagsRepeater");
+                tagsRepeater.DataSource = DAClanci.SelectTags(articles[e.Item.ItemIndex].ClanakID);
+                tagsRepeater.DataBind();
+            }
         }
     }
 }

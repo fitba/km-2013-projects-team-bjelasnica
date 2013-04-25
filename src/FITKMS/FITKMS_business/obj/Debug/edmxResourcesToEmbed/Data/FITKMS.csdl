@@ -117,7 +117,7 @@
     </FunctionImport>
     <FunctionImport Name="fsp_Clanci_SelectByTypeTitle" ReturnType="Collection(FITKMSModel.fsp_Clanci_SelectByTypeTitle_Result)">
       <Parameter Name="VrstaID" Mode="In" Type="Int32" />
-      <Parameter Name="Naslov" Mode="In" Type="String" />
+      <Parameter Name="Pretraga" Mode="In" Type="String" />
       <Parameter Name="Offset" Mode="In" Type="Int32" />
       <Parameter Name="MaxRows" Mode="In" Type="Int32" />
       <Parameter Name="TotalRows" Mode="InOut" Type="Int32" />
@@ -150,6 +150,9 @@
       <Parameter Name="KorisnickoIme" Mode="In" Type="String" />
       <Parameter Name="LozinkaHash" Mode="In" Type="String" />
       <Parameter Name="LozinkaSalt" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="fsp_Clanci_SelectTags" EntitySet="Tagovi" ReturnType="Collection(FITKMSModel.Tagovi)">
+      <Parameter Name="ClanakID" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="Aktivnosti">
@@ -247,7 +250,6 @@
     <Key>
       <PropertyRef Name="KorisnikID" />
       <PropertyRef Name="UlogaID" />
-      <PropertyRef Name="KorisnikUlogaID" />
     </Key>
     <Property Name="KorisnikID" Type="Int32" Nullable="false" />
     <Property Name="UlogaID" Type="Int32" Nullable="false" />
@@ -255,7 +257,6 @@
     <Property Name="DatumIzmjene" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Korisnici" Relationship="FITKMSModel.FK_KorisniciUloge_Korisnici" FromRole="KorisniciUloge" ToRole="Korisnici" />
     <NavigationProperty Name="Uloge" Relationship="FITKMSModel.FK_KorisniciUloge_Uloge" FromRole="KorisniciUloge" ToRole="Uloge" />
-    <Property Type="Int32" Name="KorisnikUlogaID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
   </EntityType>
   <EntityType Name="Oblasti">
     <Key>
@@ -641,11 +642,12 @@
     <Property Type="Int32" Name="ClanakID" Nullable="false" />
     <Property Type="String" Name="Naslov" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="Tekst" Nullable="false" />
-    <Property Type="String" Name="Autori" Nullable="false" MaxLength="200" />
     <Property Type="String" Name="KljucneRijeci" Nullable="false" MaxLength="150" />
     <Property Type="Double" Name="ProsjecnaOcjena" Nullable="true" />
     <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" Precision="23" />
     <Property Type="DateTime" Name="DatumIzmjene" Nullable="false" Precision="23" />
+    <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="BrojKomentara" Nullable="true" />
   </ComplexType>
   <ComplexType Name="fsp_Clanci_SelectById_Result">
     <Property Type="Int32" Name="ClanakID" Nullable="false" />

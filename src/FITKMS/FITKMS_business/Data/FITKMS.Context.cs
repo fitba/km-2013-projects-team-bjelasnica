@@ -94,15 +94,15 @@ namespace FITKMS_business.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_ClanciTagovi_Insert", clanakIDParameter, tagIDParameter);
         }
     
-        public virtual ObjectResult<fsp_Clanci_SelectByTypeTitle_Result> fsp_Clanci_SelectByTypeTitle(Nullable<int> vrstaID, string naslov, Nullable<int> offset, Nullable<int> maxRows, ObjectParameter totalRows)
+        public virtual ObjectResult<fsp_Clanci_SelectByTypeTitle_Result> fsp_Clanci_SelectByTypeTitle(Nullable<int> vrstaID, string pretraga, Nullable<int> offset, Nullable<int> maxRows, ObjectParameter totalRows)
         {
             var vrstaIDParameter = vrstaID.HasValue ?
                 new ObjectParameter("VrstaID", vrstaID) :
                 new ObjectParameter("VrstaID", typeof(int));
     
-            var naslovParameter = naslov != null ?
-                new ObjectParameter("Naslov", naslov) :
-                new ObjectParameter("Naslov", typeof(string));
+            var pretragaParameter = pretraga != null ?
+                new ObjectParameter("Pretraga", pretraga) :
+                new ObjectParameter("Pretraga", typeof(string));
     
             var offsetParameter = offset.HasValue ?
                 new ObjectParameter("Offset", offset) :
@@ -112,7 +112,7 @@ namespace FITKMS_business.Data
                 new ObjectParameter("MaxRows", maxRows) :
                 new ObjectParameter("MaxRows", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_Clanci_SelectByTypeTitle_Result>("fsp_Clanci_SelectByTypeTitle", vrstaIDParameter, naslovParameter, offsetParameter, maxRowsParameter, totalRows);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_Clanci_SelectByTypeTitle_Result>("fsp_Clanci_SelectByTypeTitle", vrstaIDParameter, pretragaParameter, offsetParameter, maxRowsParameter, totalRows);
         }
     
         public virtual ObjectResult<fsp_Clanci_SelectById_Result> fsp_Clanci_SelectById(Nullable<int> clanakID)
@@ -232,6 +232,24 @@ namespace FITKMS_business.Data
                 new ObjectParameter("LozinkaSalt", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_Korisnici_Registration", imeParameter, prezimeParameter, mailParameter, spolParameter, datumRodjenjaParameter, korisnickoImeParameter, lozinkaHashParameter, lozinkaSaltParameter);
+        }
+    
+        public virtual ObjectResult<Tagovi> fsp_Clanci_SelectTags(Nullable<int> clanakID)
+        {
+            var clanakIDParameter = clanakID.HasValue ?
+                new ObjectParameter("ClanakID", clanakID) :
+                new ObjectParameter("ClanakID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tagovi>("fsp_Clanci_SelectTags", clanakIDParameter);
+        }
+    
+        public virtual ObjectResult<Tagovi> fsp_Clanci_SelectTags(Nullable<int> clanakID, MergeOption mergeOption)
+        {
+            var clanakIDParameter = clanakID.HasValue ?
+                new ObjectParameter("ClanakID", clanakID) :
+                new ObjectParameter("ClanakID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tagovi>("fsp_Clanci_SelectTags", mergeOption, clanakIDParameter);
         }
     }
 }

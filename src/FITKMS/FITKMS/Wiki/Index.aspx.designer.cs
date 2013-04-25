@@ -22,13 +22,13 @@ namespace FITKMS.Wiki {
         protected global::System.Web.UI.WebControls.DropDownList typesList;
         
         /// <summary>
-        /// titleInput control.
+        /// searchInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox titleInput;
+        protected global::System.Web.UI.WebControls.TextBox searchInput;
         
         /// <summary>
         /// searchArticlesSubmit control.

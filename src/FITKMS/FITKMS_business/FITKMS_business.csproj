@@ -121,6 +121,7 @@
       <DependentUpon>FITKMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\HtmlRemoval.cs" />
     <Compile Include="Util\PasswordHash.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -31,11 +31,11 @@ namespace FITKMS_business.Data
             return types;
         }
 
-        public static List<fsp_Clanci_SelectByTypeTitle_Result> SearchByTypeTitle(int typeId, string title, int maxRows, int offset)
+        public static List<fsp_Clanci_SelectByTypeTitle_Result> SearchByTypeTitle(int typeId, string searchText, int maxRows, int offset)
         { 
             System.Data.Objects.ObjectParameter total = new System.Data.Objects.ObjectParameter("TotalRows", 0);
             List<fsp_Clanci_SelectByTypeTitle_Result> articles = Connection.dm.fsp_Clanci_SelectByTypeTitle
-                                                                 (typeId, title, offset, maxRows, total).ToList();
+                                                                 (typeId, searchText, offset, maxRows, total).ToList();
             totalRows = Convert.ToInt32(total.Value);
 
             return articles;
@@ -44,6 +44,11 @@ namespace FITKMS_business.Data
         public static fsp_Clanci_SelectById_Result SelectById(int articleId)
         {
             return Connection.dm.fsp_Clanci_SelectById(articleId).First();
+        }
+
+        public static List<Tagovi> SelectTags(int clanakId)
+        {
+            return Connection.dm.fsp_Clanci_SelectTags(clanakId).ToList();
         }
     }
 }

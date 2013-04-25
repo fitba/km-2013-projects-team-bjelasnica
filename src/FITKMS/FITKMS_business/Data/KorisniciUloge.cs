@@ -18,7 +18,6 @@ namespace FITKMS_business.Data
         public int UlogaID { get; set; }
         public Nullable<System.DateTime> DatumKreiranja { get; set; }
         public Nullable<System.DateTime> DatumIzmjene { get; set; }
-        public int KorisnikUlogaID { get; set; }
     
         public virtual Korisnici Korisnici { get; set; }
         public virtual Uloge Uloge { get; set; }

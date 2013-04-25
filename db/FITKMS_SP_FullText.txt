@@ -1,0 +1,447 @@
+USE [FITKMS]
+GO
+/****** Object:  FullTextCatalog [clanciKatalog]    Script Date: 25.4.2013. 14:36:15 ******/
+CREATE FULLTEXT CATALOG [clanciKatalog]WITH ACCENT_SENSITIVITY = OFF
+
+GO
+/****** Object:  StoredProcedure [dbo].[fsp_ClanciTagovi_Insert]    Script Date: 25.4.2013. 14:36:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[fsp_ClanciTagovi_Insert]
+(
+	@ClanakID INT,
+	@TagID INT
+)
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+	INSERT INTO ClanciTagovi (ClanakID, TagID)
+	VALUES (@ClanakID, @TagID)
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[fsp_Clanci_SelectById]    Script Date: 25.4.2013. 14:36:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[fsp_Clanci_SelectById]
+(
+	@ClanakID INT
+)
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+	SELECT T1.*, T2.Naziv AS Vrsta, T3.Naziv AS Tema, 
+	       (SELECT AVG(CONVERT(float,Ocjena))
+		    FROM ClanciOcjene
+		    WHERE ClanakID = T1.ClanakID) AS ProsjecnaOcjena
+	FROM Clanci AS T1 INNER JOIN VrsteClanaka AS T2
+	     ON T1.ClanakID = T2.VrstaID INNER JOIN Teme AS T3
+	     ON T1.TemaID = T3.TemaID
+	WHERE ClanakID = @ClanakID
+	
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[fsp_Clanci_SelectByTypeTitle]    Script Date: 25.4.2013. 14:36:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[fsp_Clanci_SelectByTypeTitle]
+(
+	@VrstaID INT = NULL,
+	@Pretraga NVARCHAR(100) = NULL,
+	@Offset INT,
+	@MaxRows INT,
+	@TotalRows INT = 0 OUTPUT
+)
+AS
+	--SET FMTONLY OFF
+	BEGIN
+	CREATE TABLE #TempClanci
+		(
+			RedniBroj INT IDENTITY(0, 1),
+			ClanakID INT
+		)
+
+	IF @VrstaID = 0
+		BEGIN
+			IF @Pretraga = ''
+				BEGIN
+					INSERT INTO #TempClanci(ClanakID)
+					SELECT ClanakID
+					FROM Clanci
+					WHERE Status=1
+					ORDER BY DatumKreiranja DESC
+				END
+			ELSE
+				BEGIN
+					INSERT INTO #TempClanci(ClanakID)
+					SELECT ClanakID
+					FROM Clanci
+					WHERE Status=1 AND CONTAINS(Clanci.*, @Pretraga)
+					ORDER BY DatumKreiranja DESC
+				END
+		END
+	ELSE
+		BEGIN
+			IF @Pretraga = ''
+				BEGIN
+					INSERT INTO #TempClanci(ClanakID)
+					SELECT ClanakID
+					FROM Clanci
+					WHERE Status=1 AND VrstaID = @VrstaID
+					ORDER BY DatumKreiranja DESC
+				END
+			ELSE
+				BEGIN
+					INSERT INTO #TempClanci(ClanakID)
+					SELECT ClanakID
+					FROM Clanci
+					WHERE Status=1 AND CONTAINS(Clanci.*, @Pretraga) AND VrstaID = @VrstaID
+					ORDER BY DatumKreiranja DESC
+				END
+		END
+
+		SELECT @TotalRows = @@ROWCOUNT
+
+		SELECT T1.ClanakID, T1.DatumKreiranja, T1.DatumIzmjene, T1.Naslov,
+		       T1.Tekst, T3.KorisnickoIme, T1.KljucneRijeci,
+		       (SELECT AVG(CONVERT(float,Ocjena))
+		        FROM ClanciOcjene 
+		        WHERE ClanakID = T1.ClanakID) AS ProsjecnaOcjena,
+			   (SELECT COUNT(ClanakKomentarID)
+		        FROM ClanciKomentari 
+		        WHERE ClanakID = T1.ClanakID) AS BrojKomentara
+		FROM Clanci AS T1 INNER JOIN #TempClanci AS T2 
+		     ON T1.ClanakID = T2.ClanakID INNER JOIN Korisnici AS T3
+			 ON T1.KorisnikID = T3.KorisnikID
+		WHERE  RedniBroj BETWEEN @Offset AND (@Offset + @MaxRows - 1)
+		
+		DROP TABLE #TempClanci
+
+END
+
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[fsp_Clanci_SelectByVrstaNazivKRijeci]    Script Date: 25.4.2013. 14:36:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[fsp_Clanci_SelectByVrstaNazivKRijeci]
+(
+	@VrstaID INT = NULL,
+	@Naslov NVARCHAR(100) = NULL,
+	@KRijeci NVARCHAR(150) = NULL,
+	@Offset INT,
+	@MaxRows INT,
+	@TotalRows INT = 0 OUTPUT
+)
+AS
+BEGIN
+CREATE TABLE #TempClanci
+	(
+		RedniBroj INT IDENTITY(0, 1),
+		ClanakID INT
+	)
+
+IF @VrstaID IS NULL
+	BEGIN
+		INSERT INTO #TempClanci(ClanakID)
+			SELECT ClanakID
+			FROM Clanci
+			WHERE (@Naslov = '' OR Naslov like '%' + LOWER(@Naslov) + '%') AND
+				  (@KRijeci = '' OR KljucneRijeci like '%' + LOWER(@KRijeci) + '%')
+			ORDER BY Naslov ASC
+	END
+ELSE
+	BEGIN
+		INSERT INTO #TempClanci(ClanakID)
+			SELECT ClanakID
+			FROM Clanci
+			WHERE VrstaID = @VrstaID AND
+				  (@Naslov = '' OR Naslov like '%' + LOWER(@Naslov) + '%') AND
+				  (@KRijeci = '' OR KljucneRijeci like '%' + LOWER(@KRijeci) + '%')
+			ORDER BY Naslov ASC
+	END
+
+
+SELECT @TotalRows = @@ROWCOUNT
+
+SELECT t1.*
+	FROM Clanci t1, #TempClanci t2
+	WHERE t1.ClanakID = t2.ClanakID
+		AND RedniBroj BETWEEN @Offset AND (@Offset + @MaxRows - 1)
+	
+	DROP TABLE #TempClanci
+
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[fsp_Clanci_SelectTags]    Script Date: 25.4.2013. 14:36:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[fsp_Clanci_SelectTags]
+(
+	@ClanakID INT
+)
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+	
+	SELECT T2.*
+	FROM ClanciTagovi AS T1 INNER JOIN Tagovi AS T2
+	     ON T1.TagID = T2.TagID
+    WHERE T1.ClanakID = @ClanakID
+
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[fsp_Korisnici_ChangePassword]    Script Date: 25.4.2013. 14:36:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[fsp_Korisnici_ChangePassword]
+(
+	@KorisnikID INT,
+	@LozinkaSalt NVARCHAR(50),
+	@LozinkaHash NVARCHAR(50)
+)
+AS
+BEGIN
+
+	UPDATE Korisnici
+	SET LozinkaSalt = @LozinkaSalt, LozinkaHash=@LozinkaHash
+	WHERE KorisnikID = @KorisnikID
+
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[fsp_Korisnici_Registration]    Script Date: 25.4.2013. 14:36:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[fsp_Korisnici_Registration] 
+(
+	@Ime NVARCHAR(50),
+	@Prezime NVARCHAR(50),
+	@Mail NVARCHAR(50),
+	@Spol NCHAR(1),
+	@DatumRodjenja DATE,
+	@KorisnickoIme NVARCHAR(50),
+	@LozinkaHash NVARCHAR(50),
+	@LozinkaSalt NVARCHAR(50)
+)
+AS
+BEGIN
+	INSERT INTO Korisnici
+	(
+		Ime,
+		Prezime,
+		Mail,
+		Spol,
+		DatumRodjenja,
+		DatumRegistracije,
+		PosljednjaPrijava,
+		KorisnickoIme,
+		LozinkaHash,
+		LozinkaSalt,
+		Aktivan,
+		DatumIzmjene
+	)
+	VALUES
+	(
+		@Ime,
+		@Prezime,
+		@Mail,
+		@Spol,
+		@DatumRodjenja,
+		GETDATE(),
+		GETDATE(),
+		@KorisnickoIme,
+		@LozinkaHash,
+		@LozinkaSalt,
+		1,
+		GETDATE()
+	)
+
+	DECLARE @KorisnikID INT
+	SET @KorisnikID = (SELECT @@IDENTITY)
+
+	INSERT INTO KorisniciUloge (KorisnikID, UlogaID, DatumKreiranja, DatumIzmjene) VALUES (@KorisnikID, 2, GETDATE(), GETDATE())
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[fsp_Korisnici_SelectByID]    Script Date: 25.4.2013. 14:36:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[fsp_Korisnici_SelectByID]
+(
+	@KorisnikID INT
+)
+AS
+BEGIN
+	SELECT * FROM Korisnici
+	WHERE KorisnikID = @KorisnikID
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[fsp_Korisnici_SelectByNameMail]    Script Date: 25.4.2013. 14:36:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[fsp_Korisnici_SelectByNameMail]
+(
+	@ImePrezime NVARCHAR(100),
+	@Mail NVARCHAR(150),
+	@Offset INT,
+	@MaxRows INT,
+	@TotalRows INT = 0 OUTPUT
+)
+AS
+BEGIN
+
+	CREATE TABLE #TempKorisnici
+	(
+		RedniBroj INT IDENTITY(0, 1),
+		KorisnikID INT
+	)
+	
+	IF @ImePrezime <>  ''
+	BEGIN
+		INSERT INTO #TempKorisnici(KorisnikID)
+		SELECT KorisnikID
+		FROM Korisnici
+		WHERE ((LOWER(Ime + ' ' + Prezime) like '%' + LOWER(@ImePrezime) + '%') OR
+		      ((LOWER(Prezime + ' ' + Ime) like '%' + LOWER(@ImePrezime) + '%'))) AND
+			  (@Mail = '' OR LOWER(Mail) like '%' + LOWER(@Mail) + '%')
+		ORDER BY Prezime ASC
+	END
+	ELSE
+	BEGIN
+		INSERT INTO #TempKorisnici(KorisnikID)
+		SELECT KorisnikID
+		FROM Korisnici
+		WHERE @Mail = '' OR LOWER(Mail) like '%' + LOWER(@Mail) + '%'
+		ORDER BY Prezime ASC
+	END
+
+	SELECT @TotalRows = @@ROWCOUNT
+
+	SELECT t1.*
+	FROM Korisnici t1, #TempKorisnici t2
+	WHERE t1.KorisnikID = t2.KorisnikID
+		AND RedniBroj BETWEEN @Offset AND (@Offset + @MaxRows - 1)
+	
+	DROP TABLE #TempKorisnici
+	
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[fsp_Korisnici_SelectByUsername]    Script Date: 25.4.2013. 14:36:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[fsp_Korisnici_SelectByUsername]
+(
+	@KorisnickoIme NVARCHAR(50)
+)
+AS
+BEGIN
+	SELECT * FROM Korisnici
+	WHERE KorisnickoIme = @KorisnickoIme
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[fsp_Korisnici_Update]    Script Date: 25.4.2013. 14:36:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[fsp_Korisnici_Update] 
+(
+	@KorisnikID INT,
+	@Ime NVARCHAR(50),
+	@Prezime NVARCHAR(50),
+	@Mail NVARCHAR(50),
+	@Spol NCHAR(1),
+	@DatumRodjenja DATE,
+	@Slika VARBINARY(MAX) = NULL,
+	@SlikaType NVARCHAR(50) = NULL
+)
+AS
+BEGIN
+	UPDATE Korisnici
+	SET
+		Ime = @Ime,
+		Prezime = @Prezime,
+		Mail = @Mail,
+		Spol = @Spol,
+		DatumRodjenja = @DatumRodjenja,
+		Slika = @Slika,
+		SlikaType = @SlikaType
+	WHERE KorisnikID = @KorisnikID
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[fsp_Teme_SelectByStatus]    Script Date: 25.4.2013. 14:36:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[fsp_Teme_SelectByStatus]
+(
+	@Status BIT
+)
+AS
+BEGIN
+	
+	SELECT *
+	FROM Teme
+	WHERE Status=@Status
+	ORDER BY Naziv
+	
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[fsp_VrsteClanaka_SelectByStatus]    Script Date: 25.4.2013. 14:36:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[fsp_VrsteClanaka_SelectByStatus]
+(
+	@Status BIT
+)
+AS
+BEGIN
+	
+	SELECT *
+	FROM VrsteClanaka
+	WHERE Status=@Status
+	ORDER BY Naziv
+	
+END
+
+GO

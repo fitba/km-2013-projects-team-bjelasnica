@@ -80,7 +80,6 @@
     <EntitySetMapping Name="KorisniciUloge">
       <EntityTypeMapping TypeName="FITKMSModel.KorisniciUloge">
         <MappingFragment StoreEntitySet="KorisniciUloge">
-          <ScalarProperty Name="KorisnikUlogaID" ColumnName="KorisnikUlogaID" />
           <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
           <ScalarProperty Name="UlogaID" ColumnName="UlogaID" />
           <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
@@ -233,11 +232,12 @@
           <ScalarProperty Name="ClanakID" ColumnName="ClanakID" />
           <ScalarProperty Name="Naslov" ColumnName="Naslov" />
           <ScalarProperty Name="Tekst" ColumnName="Tekst" />
-          <ScalarProperty Name="Autori" ColumnName="Autori" />
           <ScalarProperty Name="KljucneRijeci" ColumnName="KljucneRijeci" />
           <ScalarProperty Name="ProsjecnaOcjena" ColumnName="ProsjecnaOcjena" />
           <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
           <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+          <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+          <ScalarProperty Name="BrojKomentara" ColumnName="BrojKomentara" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -268,5 +268,6 @@
     <FunctionImportMapping FunctionImportName="fsp_Korisnici_SelectByUsername" FunctionName="FITKMSModel.Store.fsp_Korisnici_SelectByUsername" />
     <FunctionImportMapping FunctionImportName="fsp_Korisnici_Update" FunctionName="FITKMSModel.Store.fsp_Korisnici_Update" />
     <FunctionImportMapping FunctionImportName="fsp_Korisnici_Registration" FunctionName="FITKMSModel.Store.fsp_Korisnici_Registration" />
+    <FunctionImportMapping FunctionImportName="fsp_Clanci_SelectTags" FunctionName="FITKMSModel.Store.fsp_Clanci_SelectTags" />
   </EntityContainerMapping>
 </Mapping>
