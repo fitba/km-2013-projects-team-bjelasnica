@@ -36,6 +36,7 @@ namespace FITKMS_business.Data
         public System.DateTime DatumKreiranja { get; set; }
         public System.DateTime DatumIzmjene { get; set; }
         public string DokumentType { get; set; }
+        public string DokumentPath { get; set; }
     
         public virtual Korisnici Korisnici { get; set; }
         public virtual Teme Teme { get; set; }

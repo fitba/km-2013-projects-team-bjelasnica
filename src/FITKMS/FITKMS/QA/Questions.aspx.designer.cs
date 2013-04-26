@@ -7,91 +7,145 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FITKMS.Wiki {
+namespace FITKMS.QA {
     
     
-    public partial class Edit {
+    public partial class Questions {
         
         /// <summary>
-        /// success_label control.
+        /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl success_label;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// successLabel control.
+        /// lblNaslovPitanja control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label successLabel;
+        protected global::System.Web.UI.WebControls.Label lblNaslovPitanja;
         
         /// <summary>
-        /// error_label control.
+        /// lblTextPitanja control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl error_label;
+        protected global::System.Web.UI.WebControls.Label lblTextPitanja;
         
         /// <summary>
-        /// errorLabel control.
+        /// UpdatePanel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label errorLabel;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
         
         /// <summary>
-        /// typesList control.
+        /// lblKorisnik control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList typesList;
+        protected global::System.Web.UI.WebControls.Label lblKorisnik;
         
         /// <summary>
-        /// themeList control.
+        /// lblDatum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList themeList;
+        protected global::System.Web.UI.WebControls.Label lblDatum;
         
         /// <summary>
-        /// titleInput control.
+        /// likePitanje control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox titleInput;
+        protected global::System.Web.UI.WebControls.LinkButton likePitanje;
         
         /// <summary>
-        /// authorsInput control.
+        /// lblBrojPozitnivh control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox authorsInput;
+        protected global::System.Web.UI.WebControls.Label lblBrojPozitnivh;
         
         /// <summary>
-        /// keyWordsInput control.
+        /// dislikePitanje control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox keyWordsInput;
+        protected global::System.Web.UI.WebControls.LinkButton dislikePitanje;
+        
+        /// <summary>
+        /// lblBrojNegativnih control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBrojNegativnih;
+        
+        /// <summary>
+        /// lblBrojPregleda control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBrojPregleda;
+        
+        /// <summary>
+        /// dlListaTagova control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dlListaTagova;
+        
+        /// <summary>
+        /// UpdatePanel3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
+        
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
+        /// dtOdgovori control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dtOdgovori;
         
         /// <summary>
         /// wysiwyg control.
@@ -100,69 +154,15 @@ namespace FITKMS.Wiki {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea wysiwyg;
+        protected global::System.Web.UI.WebControls.TextBox wysiwyg;
         
         /// <summary>
-        /// tagsInput control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tagsInput;
-        
-        /// <summary>
-        /// loadTagsSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button loadTagsSubmit;
-        
-        /// <summary>
-        /// tagsList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList tagsList;
-        
-        /// <summary>
-        /// saveTagsSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button saveTagsSubmit;
-        
-        /// <summary>
-        /// documentFile control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload documentFile;
-        
-        /// <summary>
-        /// documentDeleteSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button documentDeleteSubmit;
-        
-        /// <summary>
-        /// saveArticleSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button saveArticleSubmit;
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

@@ -12,6 +12,7 @@
     <EntitySetMapping Name="Clanci">
       <EntityTypeMapping TypeName="FITKMSModel.Clanci">
         <MappingFragment StoreEntitySet="Clanci">
+          <ScalarProperty Name="DokumentPath" ColumnName="DokumentPath" />
           <ScalarProperty Name="DokumentType" ColumnName="DokumentType" />
           <ScalarProperty Name="ClanakID" ColumnName="ClanakID" />
           <ScalarProperty Name="Naslov" ColumnName="Naslov" />
@@ -269,5 +270,30 @@
     <FunctionImportMapping FunctionImportName="fsp_Korisnici_Update" FunctionName="FITKMSModel.Store.fsp_Korisnici_Update" />
     <FunctionImportMapping FunctionImportName="fsp_Korisnici_Registration" FunctionName="FITKMSModel.Store.fsp_Korisnici_Registration" />
     <FunctionImportMapping FunctionImportName="fsp_Clanci_SelectTags" FunctionName="FITKMSModel.Store.fsp_Clanci_SelectTags" />
+    <FunctionImportMapping FunctionImportName="fsp_Clanci_DeleteTags" FunctionName="FITKMSModel.Store.fsp_Clanci_DeleteTags" />
+    <FunctionImportMapping FunctionImportName="fsp_getAllOdgovoriZaPitanje" FunctionName="FITKMSModel.Store.fsp_getAllOdgovoriZaPitanje">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FITKMSModel.fsp_getAllOdgovoriZaPitanje_Result">
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="Negativni" ColumnName="Negativni" />
+          <ScalarProperty Name="OdgovorID" ColumnName="OdgovorID" />
+          <ScalarProperty Name="Pozitivni" ColumnName="Pozitivni" />
+          <ScalarProperty Name="Tekst" ColumnName="Tekst" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="UkupnoPitanja" ColumnName="UkupnoPitanja" />
+          <ScalarProperty Name="UkupnoOdgovora" ColumnName="UkupnoOdgovora" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fsp_getAllTagoviZaPitanjeID" FunctionName="FITKMSModel.Store.fsp_getAllTagoviZaPitanjeID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FITKMSModel.fsp_getAllTagoviZaPitanjeID_Result">
+          <ScalarProperty Name="PitanjeID" ColumnName="PitanjeID" />
+          <ScalarProperty Name="TagID" ColumnName="TagID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fsp_get_AllTagovi" FunctionName="FITKMSModel.Store.fsp_get_AllTagovi" />
   </EntityContainerMapping>
 </Mapping>

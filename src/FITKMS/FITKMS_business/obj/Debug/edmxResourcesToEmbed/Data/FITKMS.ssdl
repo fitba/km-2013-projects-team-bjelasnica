@@ -141,6 +141,7 @@
     <Property Name="DatumKreiranja" Type="datetime" Nullable="false" />
     <Property Name="DatumIzmjene" Type="datetime" Nullable="false" />
     <Property Name="DokumentType" Type="nvarchar" MaxLength="50" />
+    <Property Name="DokumentPath" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="ClanciKomentari">
     <Key>
@@ -615,6 +616,9 @@
     <Parameter Name="ClanakID" Type="int" Mode="In" />
     <Parameter Name="TagID" Type="int" Mode="In" />
   </Function>
+  <Function Name="fsp_Clanci_DeleteTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClanakID" Type="int" Mode="In" />
+  </Function>
   <Function Name="fsp_Clanci_SelectById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ClanakID" Type="int" Mode="In" />
   </Function>
@@ -665,4 +669,11 @@
   <Function Name="fsp_VrsteClanaka_SelectByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Status" Type="bit" Mode="In" />
   </Function>
+  <Function Name="fsp_getAllOdgovoriZaPitanje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fsp_getAllTagoviZaPitanjeID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Pid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fsp_get_AllTagovi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
 </Schema>

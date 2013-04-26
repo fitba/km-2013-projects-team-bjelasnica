@@ -20,6 +20,21 @@ namespace FITKMS_business.Data
             }
         }
 
+        public static void Update(Clanci article, List<Tagovi> tags)
+        {
+            Connection.dm.Clanci.Attach(article);
+            Connection.dm.Entry(article).State = System.Data.EntityState.Modified;
+            Connection.dm.SaveChanges();
+
+            Connection.dm.fsp_Clanci_DeleteTags(article.ClanakID);
+
+            foreach (Tagovi t in tags)
+            {
+                Connection.dm.fsp_ClanciTagovi_Insert(article.ClanakID, t.TagID);
+            }
+        }
+
+
         public static List<VrsteClanaka> SelectTypes(bool status)
         {
             List<VrsteClanaka> types = Connection.dm.fsp_VrsteClanaka_SelectByStatus(status).ToList();
@@ -29,6 +44,11 @@ namespace FITKMS_business.Data
             types.Insert(0, empty);
 
             return types;
+        }
+
+        public static Clanci Select(int clanakId)
+        {
+           return Connection.dm.Clanci.Find(clanakId);
         }
 
         public static List<fsp_Clanci_SelectByTypeTitle_Result> SearchByTypeTitle(int typeId, string searchText, int maxRows, int offset)

@@ -59,6 +59,6 @@ C:\Users\larisa.FIT.001\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FI
 C:\Users\larisa.FIT.001\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\bin\Debug\FITKMS_business.pdb
 C:\Users\larisa.FIT.001\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\bin\Debug\EntityFramework.dll
 C:\Users\larisa.FIT.001\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\bin\Debug\EntityFramework.xml
+C:\Users\larisa.FIT.001\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.csprojResolveAssemblyReference.cache
 C:\Users\larisa.FIT.001\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.dll
 C:\Users\larisa.FIT.001\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.pdb
-C:\Users\larisa.FIT.001\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.csprojResolveAssemblyReference.cache

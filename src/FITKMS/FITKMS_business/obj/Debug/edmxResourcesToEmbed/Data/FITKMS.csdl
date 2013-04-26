@@ -154,6 +154,16 @@
     <FunctionImport Name="fsp_Clanci_SelectTags" EntitySet="Tagovi" ReturnType="Collection(FITKMSModel.Tagovi)">
       <Parameter Name="ClanakID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="fsp_Clanci_DeleteTags">
+      <Parameter Name="ClanakID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="fsp_getAllOdgovoriZaPitanje" ReturnType="Collection(FITKMSModel.fsp_getAllOdgovoriZaPitanje_Result)">
+      <Parameter Name="PId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="fsp_getAllTagoviZaPitanjeID" ReturnType="Collection(FITKMSModel.fsp_getAllTagoviZaPitanjeID_Result)">
+      <Parameter Name="Pid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="fsp_get_AllTagovi" EntitySet="Tagovi" ReturnType="Collection(FITKMSModel.Tagovi)" />
   </EntityContainer>
   <EntityType Name="Aktivnosti">
     <Key>
@@ -188,6 +198,7 @@
     <NavigationProperty Name="Pitanja" Relationship="FITKMSModel.FK_Pitanja_Clanci" FromRole="Clanci" ToRole="Pitanja" />
     <NavigationProperty Name="Tagovi" Relationship="FITKMSModel.ClanciTagovi" FromRole="Clanci" ToRole="Tagovi" />
     <Property Type="String" Name="DokumentType" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="DokumentPath" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="ClanciKomentari">
     <Key>
@@ -667,5 +678,25 @@
     <Property Type="String" Name="Vrsta" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="Tema" Nullable="false" MaxLength="100" />
     <Property Type="Double" Name="ProsjecnaOcjena" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="fsp_getAllOdgovoriZaPitanje_Result">
+    <Property Type="String" Name="Datum" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="Negativni" Nullable="true" />
+    <Property Type="Int32" Name="OdgovorID" Nullable="false" />
+    <Property Type="Int32" Name="Pozitivni" Nullable="true" />
+    <Property Type="String" Name="Tekst" Nullable="false" />
+    <Property Type="String" Name="Ime" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Prezime" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="UkupnoPitanja" Nullable="true" />
+    <Property Type="Int32" Name="UkupnoOdgovora" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="fsp_getAllTagoviZaPitanjeID_Result">
+    <Property Type="Int32" Name="PitanjeID" Nullable="false" />
+    <Property Type="Int32" Name="TagID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="fsp_get_AllTagovi_Result">
+    <Property Type="String" Name="Opis" Nullable="true" />
+    <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="TagID" Nullable="false" />
   </ComplexType>
 </Schema>

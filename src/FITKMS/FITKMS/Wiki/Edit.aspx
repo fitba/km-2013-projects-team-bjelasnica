@@ -1,6 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Edit.aspx.cs" Inherits="FITKMS.Wiki.Edit" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Edit.aspx.cs" Inherits="FITKMS.Wiki.Edit" ValidateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+     <script type="text/javascript">
+         function fireServerButtonEvent(id) {
+             document.getElementById(id).click();
+         }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="dashboard-wrapper">
@@ -49,7 +54,7 @@
                                 <asp:TextBox ID="tagsInput" runat="server" CssClass="input-block-level" ReadOnly="true"></asp:TextBox>
                                 <a href="#myModal" role="button" class="btn btn-warning2" data-toggle="modal">Odaberite tagove
                                 </a>
-                                <asp:Button ID="loadTagsSubmit" runat="server" Style="display: none" OnClick="loadTagsSubmit_Click" formnovalidate="formnovalidate" />
+                                <asp:Button ID="loadTagsSubmit" runat="server" Style="display: none" formnovalidate="formnovalidate" />
                                 <!-- Modal -->
                                 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-header">
@@ -67,17 +72,24 @@
                                     </div>
                                     <div class="modal-footer">
                                         <asp:Button ID="saveTagsSubmit" runat="server" CssClass="btn btn-info" Text="Sačuvaj" formnovalidate="formnovalidate" 
-                                        Height="30px" OnClick="saveTagsSubmit_Click" />
+                                        Height="30px" />
                                     </div>
                                 </div>
                                 <br />
                                 <br />
                                 <asp:FileUpload ID="documentFile" runat="server" AllowMultiple="false"
                                     required="required" x-moz-errormessage="Obavezno odaberite dokument!" />
+                                <asp:Button ID="documentDeleteSubmit" Style="display: none" runat="server" Text="" OnClick="documentDeleteSubmit_Click" formnovalidate="formnovalidate" />
+
+                                <div class="btn-group">
+                                    <a class="btn btn-small" onclick="fireServerButtonEvent('documentDeleteSubmit')">
+                                        <i class="icon-trash" data-original-title="Ukloni dokument"></i>
+                                    </a>
+                                </div>
                                 <!-- End Modal -->
                                 <div class="right-align-text">
                                     <asp:Button ID="saveArticleSubmit" runat="server" CssClass="btn btn-info" Text="Sačuvaj"
-                                        Height="30px"  OnClientClick="javascript:scroll(0,0);" />
+                                        Height="30px"  OnClientClick="javascript:scroll(0,0);" OnClick="saveArticleSubmit_Click" />
                                 </div>
                             </div>
                         </div>

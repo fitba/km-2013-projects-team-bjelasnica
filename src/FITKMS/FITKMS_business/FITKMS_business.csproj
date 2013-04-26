@@ -84,6 +84,15 @@
     <Compile Include="Data\fsp_Clanci_SelectByTypeTitle_Result.cs">
       <DependentUpon>FITKMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\fsp_getAllOdgovoriZaPitanje_Result.cs">
+      <DependentUpon>FITKMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\fsp_getAllTagoviZaPitanjeID_Result.cs">
+      <DependentUpon>FITKMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\fsp_get_AllTagovi_Result.cs">
+      <DependentUpon>FITKMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Korisnici.cs">
       <DependentUpon>FITKMS.tt</DependentUpon>
     </Compile>
@@ -108,6 +117,7 @@
     <Compile Include="Data\Pretrage.cs">
       <DependentUpon>FITKMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\QAService.cs" />
     <Compile Include="Data\Tagovi.cs">
       <DependentUpon>FITKMS.tt</DependentUpon>
     </Compile>

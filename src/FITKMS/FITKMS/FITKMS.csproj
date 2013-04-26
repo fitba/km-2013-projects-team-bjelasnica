@@ -161,6 +161,11 @@
     <Content Include="default.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
+    <Content Include="QA\Add.aspx" />
+    <Content Include="QA\AllQuestions.aspx" />
+    <Content Include="QA\Questions.aspx" />
+    <Content Include="QA\TagDetaljno.aspx" />
+    <Content Include="QA\Tags.aspx" />
     <Content Include="Users\Image.aspx" />
     <Content Include="Users\Profile.aspx" />
     <Content Include="Users\Registration.aspx" />
@@ -197,6 +202,41 @@
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QA\Add.aspx.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QA\Add.aspx.designer.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QA\AllQuestions.aspx.cs">
+      <DependentUpon>AllQuestions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QA\AllQuestions.aspx.designer.cs">
+      <DependentUpon>AllQuestions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QA\Questions.aspx.cs">
+      <DependentUpon>Questions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QA\Questions.aspx.designer.cs">
+      <DependentUpon>Questions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QA\TagDetaljno.aspx.cs">
+      <DependentUpon>TagDetaljno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QA\TagDetaljno.aspx.designer.cs">
+      <DependentUpon>TagDetaljno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QA\Tags.aspx.cs">
+      <DependentUpon>Tags.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QA\Tags.aspx.designer.cs">
+      <DependentUpon>Tags.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Users\Image.aspx.cs">
       <DependentUpon>Image.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -274,7 +314,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\articles\" />
-    <Folder Include="QA\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -251,5 +251,42 @@ namespace FITKMS_business.Data
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tagovi>("fsp_Clanci_SelectTags", mergeOption, clanakIDParameter);
         }
+    
+        public virtual int fsp_Clanci_DeleteTags(Nullable<int> clanakID)
+        {
+            var clanakIDParameter = clanakID.HasValue ?
+                new ObjectParameter("ClanakID", clanakID) :
+                new ObjectParameter("ClanakID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_Clanci_DeleteTags", clanakIDParameter);
+        }
+    
+        public virtual ObjectResult<fsp_getAllOdgovoriZaPitanje_Result> fsp_getAllOdgovoriZaPitanje(Nullable<int> pId)
+        {
+            var pIdParameter = pId.HasValue ?
+                new ObjectParameter("PId", pId) :
+                new ObjectParameter("PId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_getAllOdgovoriZaPitanje_Result>("fsp_getAllOdgovoriZaPitanje", pIdParameter);
+        }
+    
+        public virtual ObjectResult<fsp_getAllTagoviZaPitanjeID_Result> fsp_getAllTagoviZaPitanjeID(Nullable<int> pid)
+        {
+            var pidParameter = pid.HasValue ?
+                new ObjectParameter("Pid", pid) :
+                new ObjectParameter("Pid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_getAllTagoviZaPitanjeID_Result>("fsp_getAllTagoviZaPitanjeID", pidParameter);
+        }
+    
+        public virtual ObjectResult<Tagovi> fsp_get_AllTagovi()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tagovi>("fsp_get_AllTagovi");
+        }
+    
+        public virtual ObjectResult<Tagovi> fsp_get_AllTagovi(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tagovi>("fsp_get_AllTagovi", mergeOption);
+        }
     }
 }

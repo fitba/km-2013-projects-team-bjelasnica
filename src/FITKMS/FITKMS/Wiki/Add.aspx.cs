@@ -78,6 +78,7 @@ namespace FITKMS.Wiki
                     extension = System.IO.Path.GetExtension(documentFile.PostedFile.FileName);
                     if (extension == ".pdf" || extension == ".doc" || extension == ".docx")
                     {
+                        article.DokumentType = documentFile.PostedFile.ContentType;
                         article.Dokument = new byte[documentFile.PostedFile.ContentLength];
                         documentFile.PostedFile.InputStream.Read(article.Dokument, 0, documentFile.PostedFile.ContentLength);
                     }
@@ -85,6 +86,7 @@ namespace FITKMS.Wiki
                     {
                         errorLabel.Text = "Format dokumenta nije podržan.";
                         error_label.Visible = true;
+                        return;
                     }
                 }
 
@@ -92,7 +94,9 @@ namespace FITKMS.Wiki
 
                 if (article.Dokument != null)
                 {
-                    System.IO.File.WriteAllBytes(Server.MapPath("/Content/articles/") + article.ClanakID + extension, article.Dokument);
+                    string filename = article.ClanakID + extension;
+                    System.IO.File.WriteAllBytes(Server.MapPath("/Content/articles/") + filename, article.Dokument);
+                    article.DokumentPath = "~/Content/articles/" + filename;
                 }
 
                 successLabel.Text = "Uspješno ste dodali članak.";
