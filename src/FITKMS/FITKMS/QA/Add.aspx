@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Add.aspx.cs" Inherits="FITKMS.QA.Add" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Add.aspx.cs" ValidateRequest="false" Inherits="FITKMS.QA.Add" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -14,6 +14,28 @@
 
                 <div class="row-fluid">
                     <div class="span12">
+                            <div id="success_label" class="alert alert-block alert-success fade in" runat="server" visible="false">
+                            <button data-dismiss="alert" class="close" type="button">
+                                ×
+                            </button>
+                            <h4 class="alert-heading">Poruka!
+                            </h4>
+                            <p>
+                               <asp:Label ID="successLabel" runat="server" Text="Label"></asp:Label>
+                            </p>
+                        </div>
+
+                        <div id="error_label" class="alert alert-block alert-error fade in" runat="server" visible="false">
+                            <button data-dismiss="alert" class="close" type="button">
+                                ×
+                            </button>
+                            <h4 class="alert-heading">Greška!
+                            </h4>
+                            <p>
+                                <asp:Label ID="errorLabel" runat="server" Text="Label"></asp:Label>
+                            </p>
+                        </div>
+
                         <div class="widget no-margin">
 
                             <div class="widget-body">

@@ -164,6 +164,11 @@
       <Parameter Name="Pid" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="fsp_get_AllTagovi" EntitySet="Tagovi" ReturnType="Collection(FITKMSModel.Tagovi)" />
+    <FunctionImport Name="fsp_Pitanja_Select_all" ReturnType="Collection(FITKMSModel.fsp_Pitanja_Select_all_Result)">
+      <Parameter Name="Offset" Mode="In" Type="Int32" />
+      <Parameter Name="MaxRows" Mode="In" Type="Int32" />
+      <Parameter Name="TotalRows" Mode="InOut" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="Aktivnosti">
     <Key>
@@ -698,5 +703,17 @@
     <Property Type="String" Name="Opis" Nullable="true" />
     <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
     <Property Type="Int32" Name="TagID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="fsp_Pitanja_Select_all_Result">
+    <Property Type="Int32" Name="PitanjeID" Nullable="false" />
+    <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="DatumIzmjene" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Naslov" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="Tekst" Nullable="false" />
+    <Property Type="Int32" Name="BrojPregleda" Nullable="true" />
+    <Property Type="Int32" Name="Pozitivni" Nullable="true" />
+    <Property Type="Int32" Name="Negativni" Nullable="true" />
+    <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="BrojOdgvora" Nullable="true" />
   </ComplexType>
 </Schema>

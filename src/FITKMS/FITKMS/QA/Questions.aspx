@@ -4,6 +4,24 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+<script type="text/javascript">
+
+    var prm = Sys.WebForms.PageRequestManager.getInstance();
+    prm.add_endRequest(function (s, e) {
+
+      
+     
+    $("#wysiwyg").html("");
+   $("#wysiwyg").text("");
+   $("#wysiwyg").val(""); 
+
+});
+
+
+
+
+</script>
+
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="dashboard-wrapper">
         <div class="main-container">
@@ -11,6 +29,8 @@
 
             <div class="row-fluid">
                 <div class="span12">
+
+             
                     <div style="border: 1px solid #F0F0F0; padding: 5px;">
 
                         <div style="border: none;">
@@ -23,7 +43,7 @@
                                         <div class="widget no-margin">
                                             <div class="widget-header">
                                                 <div class="title" style="font-size: 16px;">
-                                                    <asp:Label ID="lblNaslovPitanja" runat="server" Text="Label"></asp:Label>
+                                                   <a style="color:#1d4f79; font-weight:bold;"> <asp:Label ID="lblNaslovPitanja" runat="server" Text="Label"></asp:Label></a>
                                                 </div>
                                             </div>
                                             <div class="widget-body">
@@ -33,7 +53,7 @@
                                                         </div>
                                                         <div class="row-fluid">
 
-                                                            <div class="span12">
+                                                            <div class="span12" style="margin-bottom:10px;">
 
                                                                 <asp:Label ID="lblTextPitanja" runat="server" Text=""></asp:Label>
 
@@ -43,15 +63,11 @@
                                                             <div class="span12">
                                                                 <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
                                                                     <ContentTemplate>
-                                                                   
                                                                 <a href="#"><span class="fs1" aria-hidden="true" data-icon="&#xe070;"></span>
                                                                     <asp:Label ID="lblKorisnik" runat="server" Text=""></asp:Label>
-
-                                                                </a>
-                                                               
+                                                                </a>                                                           
                                                                 | <span class="fs1" aria-hidden="true" data-icon="&#xe052;"></span>
-                                                                <asp:Label ID="lblDatum" runat="server" Text=""></asp:Label>
-                                                                
+                                                                <asp:Label ID="lblDatum" runat="server" Text=""></asp:Label>                                                        
                                                                 <asp:LinkButton ID="likePitanje" runat="server" OnClick="likePitanje_Click">
                                                             |  <span class="fs1" aria-hidden="true" data-icon="&#xe0d4;"></span> <asp:Label ID="lblBrojPozitnivh" runat="server" Text=""></asp:Label>
                                                                 </asp:LinkButton>
@@ -59,19 +75,15 @@
                                                             |  <span class="fs1" aria-hidden="true" data-icon="&#xe0d5;"></span> <asp:Label ID="lblBrojNegativnih" runat="server" Text=""></asp:Label>
                                                                 </asp:LinkButton>
                                                                 | 
-
                                                                 <span class="fs1" aria-hidden="true" data-icon="&#xe07e;"></span>
                                                                 <asp:Label ID="lblBrojPregleda" runat="server" Text=""></asp:Label>
                                                           |
-
-                                                                
                                                                 <span class="fs1" aria-hidden="true" data-icon="&#xe031;"></span>Tags :
-                                                                <asp:DataList ID="dlListaTagova" runat="server" RepeatDirection="Horizontal">
-                                                             <ItemTemplate>
-                                                            <a href="#"><span class="label label-info"><%# Eval("Naziv") %></span></a>
-                                                                    <!-- DODAJ LINK ZA TAGOVE -->
-                                                         </ItemTemplate>
-                                                            </asp:DataList>    
+                                                                  <asp:Repeater ID="tagsRepeater" runat="server">
+                                                        <ItemTemplate>
+                                                            <asp:LinkButton ID="tagLink" runat="server" CssClass="label label-info" Text='<%# Eval("Naziv") %>'></asp:LinkButton>
+                                                        </ItemTemplate>
+                                                    </asp:Repeater>
 
                                                                     </ContentTemplate>
                                                                 </asp:UpdatePanel>
@@ -84,9 +96,9 @@
                                         <!--vkraj pitnj-->
                                         <br />
                                         <!--početak pitanja-->
-                                        <div class="widget no-margin" style="border: none;">
-                                            <div class="widget-header" style="border: none; margin-bottom: 1px;">
-                                                <div class="title" style="font-size: 16px;">
+                                        <div class="widget no-margin" style="border: none; ">
+                                            <div class="widget-header" style="border: none; margin-bottom: 1px; ">
+                                                <div class="title" style="font-size: 16px; color:#1d4f79; font-weight:bold; ">
                                                     Odgvovori na pitanje
                  
                                                 </div>
@@ -148,27 +160,27 @@
          
                                                 </asp:UpdatePanel>
 
-
-                                                <!--Kraj pitanja-->
-                                                <div class="wysiwyg-container">
-
-                                                    <asp:TextBox runat="server" ID="wysiwyg" class="span10" placeholder="Unesite odgovor pitanje ..." Style="height: 115px;"></asp:TextBox>
-
-                                                </div>
-
-                                                <asp:Button ID="Button1" runat="server" Text="Snimi odgovor" class="btn btn-info" OnClick="Button1_Click" />
-
-                                            </div>
-                                        </div> 
-                                        </ContentTemplate>
+  </ContentTemplate>
                                                     <Triggers>
                                                         <asp:AsyncPostBackTrigger ControlID="Button1" EventName="Click"/>
                                                     </Triggers>
                                         </asp:UpdatePanel>
+                                                <!--Kraj pitanja-->
+                                                <div class="wysiwyg-container">
+
+                                                    <asp:TextBox runat="server" ID="wysiwyg"  placeholder="Unesite odgovor pitanje ..." Style="height: 115px; width:98%;"></asp:TextBox>
+
+                                                </div>
+                                       
+                                                <asp:Button ID="Button1" runat="server" Text="Snimi odgovor" class="btn btn-info" OnClick="Button1_Click" />
+
+                                            </div>
+                                        </div> 
+                                    
                                         <!--kraj pitanja-->
 
                                         <!-- p pitanja diva-->
-
+ 
 
 
 
@@ -239,8 +251,4 @@
     </div>
 
 
-      </div>
-
-
-    </div>
 </asp:Content>

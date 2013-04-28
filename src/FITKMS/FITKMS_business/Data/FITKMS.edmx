@@ -617,10 +617,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fsp_ClanciTagovi_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ClanakID" Type="int" Mode="In" />
-          <Parameter Name="TagID" Type="int" Mode="In" />
-        </Function>
         <Function Name="fsp_Clanci_DeleteTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ClanakID" Type="int" Mode="In" />
         </Function>
@@ -636,6 +632,17 @@
         </Function>
         <Function Name="fsp_Clanci_SelectTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ClanakID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fsp_ClanciTagovi_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClanakID" Type="int" Mode="In" />
+          <Parameter Name="TagID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fsp_get_AllTagovi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="fsp_getAllOdgovoriZaPitanje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fsp_getAllTagoviZaPitanjeID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Pid" Type="int" Mode="In" />
         </Function>
         <Function Name="fsp_Korisnici_ChangePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="KorisnikID" Type="int" Mode="In" />
@@ -668,19 +675,17 @@
           <Parameter Name="Slika" Type="varbinary(max)" Mode="In" />
           <Parameter Name="SlikaType" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="fsp_Pitanja_Select_all" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Offset" Type="int" Mode="In" />
+          <Parameter Name="MaxRows" Type="int" Mode="In" />
+          <Parameter Name="TotalRows" Type="int" Mode="InOut" />
+        </Function>
         <Function Name="fsp_Teme_SelectByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Status" Type="bit" Mode="In" />
         </Function>
         <Function Name="fsp_VrsteClanaka_SelectByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Status" Type="bit" Mode="In" />
         </Function>
-        <Function Name="fsp_getAllOdgovoriZaPitanje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="PId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="fsp_getAllTagoviZaPitanjeID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Pid" Type="int" Mode="In" />
-        </Function>
-        <Function Name="fsp_get_AllTagovi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -843,12 +848,17 @@
           <Parameter Name="ClanakID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="fsp_getAllOdgovoriZaPitanje" ReturnType="Collection(FITKMSModel.fsp_getAllOdgovoriZaPitanje_Result)">
-            <Parameter Name="PId" Mode="In" Type="Int32" />
+          <Parameter Name="PId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="fsp_getAllTagoviZaPitanjeID" ReturnType="Collection(FITKMSModel.fsp_getAllTagoviZaPitanjeID_Result)">
-            <Parameter Name="Pid" Mode="In" Type="Int32" />
+          <Parameter Name="Pid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="fsp_get_AllTagovi" EntitySet="Tagovi" ReturnType="Collection(FITKMSModel.Tagovi)" />
+          <FunctionImport Name="fsp_Pitanja_Select_all" ReturnType="Collection(FITKMSModel.fsp_Pitanja_Select_all_Result)">
+            <Parameter Name="Offset" Mode="In" Type="Int32" />
+            <Parameter Name="MaxRows" Mode="In" Type="Int32" />
+            <Parameter Name="TotalRows" Mode="InOut" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Aktivnosti">
           <Key>
@@ -1384,6 +1394,18 @@
           <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="TagID" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="fsp_Pitanja_Select_all_Result">
+          <Property Type="Int32" Name="PitanjeID" Nullable="false" />
+          <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="DatumIzmjene" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Naslov" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Tekst" Nullable="false" />
+          <Property Type="Int32" Name="BrojPregleda" Nullable="true" />
+          <Property Type="Int32" Name="Pozitivni" Nullable="true" />
+          <Property Type="Int32" Name="Negativni" Nullable="true" />
+          <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="BrojOdgvora" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1688,6 +1710,22 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="fsp_get_AllTagovi" FunctionName="FITKMSModel.Store.fsp_get_AllTagovi">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Pitanja_Select_all" FunctionName="FITKMSModel.Store.fsp_Pitanja_Select_all">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FITKMSModel.fsp_Pitanja_Select_all_Result">
+                <ScalarProperty Name="PitanjeID" ColumnName="PitanjeID" />
+                <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+                <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+                <ScalarProperty Name="Naslov" ColumnName="Naslov" />
+                <ScalarProperty Name="Tekst" ColumnName="Tekst" />
+                <ScalarProperty Name="BrojPregleda" ColumnName="BrojPregleda" />
+                <ScalarProperty Name="Pozitivni" ColumnName="Pozitivni" />
+                <ScalarProperty Name="Negativni" ColumnName="Negativni" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+                <ScalarProperty Name="BrojOdgvora" ColumnName="BrojOdgvora" />
+              </ComplexTypeMapping>
+            </ResultMapping>
           </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>

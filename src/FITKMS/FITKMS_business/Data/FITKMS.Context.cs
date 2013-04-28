@@ -288,5 +288,18 @@ namespace FITKMS_business.Data
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tagovi>("fsp_get_AllTagovi", mergeOption);
         }
+    
+        public virtual ObjectResult<fsp_Pitanja_Select_all_Result> fsp_Pitanja_Select_all(Nullable<int> offset, Nullable<int> maxRows, ObjectParameter totalRows)
+        {
+            var offsetParameter = offset.HasValue ?
+                new ObjectParameter("Offset", offset) :
+                new ObjectParameter("Offset", typeof(int));
+    
+            var maxRowsParameter = maxRows.HasValue ?
+                new ObjectParameter("MaxRows", maxRows) :
+                new ObjectParameter("MaxRows", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_Pitanja_Select_all_Result>("fsp_Pitanja_Select_all", offsetParameter, maxRowsParameter, totalRows);
+        }
     }
 }

@@ -24,6 +24,7 @@ namespace FITKMS.QA
 
                         if (pitanje != null)
                         {
+                            
                             Session.Add("PitanjeID", pitanje.PitanjeID);
                             lblNaslovPitanja.Text = pitanje.Naslov;
                             lblTextPitanja.Text = pitanje.Tekst;
@@ -34,8 +35,8 @@ namespace FITKMS.QA
                             lblKorisnik.Text = "by " + korinik.Ime + " " + korinik.Prezime;
                             lblDatum.Text = pitanje.DatumKreiranja.ToShortDateString();
 
-                            dlListaTagova.DataSource = QAService.getListaTagovaUpitanju(pitanje.PitanjeID);
-                            dlListaTagova.DataBind();
+                            tagsRepeater.DataSource = QAService.getListaTagovaUpitanju(pitanje.PitanjeID);
+                            tagsRepeater.DataBind();
 
                             dtOdgovori.DataSource = QAService.getAllOdgovoriZaPitanje(pitanje.PitanjeID);
                             dtOdgovori.DataBind();
@@ -73,7 +74,7 @@ namespace FITKMS.QA
                     Odgovori odg = new Odgovori();
                     odg.PitanjeID = pitanjeID;
                     odg.Tekst = wysiwyg.Text;
-                    odg.KorisnikID = 1; ///// uzeti iz sesije, ovo ne valja
+                    odg.KorisnikID = 4; ///// uzeti iz sesije, ovo ne valja
                     odg.Pozitivni = 0;
                     odg.Negativni = 0;
                     odg.DatumKreiranja = DateTime.Now;
@@ -102,7 +103,7 @@ namespace FITKMS.QA
 
 
 
-                int korisnikID = 1; //uzeti iz sesije korisnika
+                int korisnikID = 4; //uzeti iz sesije korisnika
 
                 bool glasao = QAService.Je_LiGlasao(korisnikID, IdOdgovora);
 
@@ -130,7 +131,7 @@ namespace FITKMS.QA
 
             int IdOdgovora = int.Parse(btn.CommandArgument);
 
-            int korisnikID = 1; //uzeti iz sesije korisnika
+            int korisnikID = 4; //uzeti iz sesije korisnika
 
             bool glasao = QAService.Je_LiGlasao(korisnikID, IdOdgovora);
 
@@ -154,7 +155,7 @@ namespace FITKMS.QA
             LinkButton btn = (LinkButton)(sender);
             ScriptManager.GetCurrent(this).RegisterAsyncPostBackControl(btn);
 
-            int korisnikID = 1; //uzeti iz sesije korisnika
+            int korisnikID = 4; //uzeti iz sesije korisnika
 
             bool glasao = QAService.Je_LiGlasaoZaPitanje(korisnikID, pitanjeID);
 
@@ -181,7 +182,7 @@ namespace FITKMS.QA
             LinkButton btn = (LinkButton)(sender);
             ScriptManager.GetCurrent(this).RegisterAsyncPostBackControl(btn);
 
-            int korisnikID = 1; //uzeti iz sesije korisnika
+            int korisnikID = 4; //uzeti iz sesije korisnika
 
             bool glasao = QAService.Je_LiGlasaoZaPitanje(korisnikID, pitanjeID);
 

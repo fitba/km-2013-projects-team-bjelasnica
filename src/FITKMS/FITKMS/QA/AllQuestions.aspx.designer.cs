@@ -13,12 +13,21 @@ namespace FITKMS.QA {
     public partial class AllQuestions {
         
         /// <summary>
-        /// dtListaPitanja control.
+        /// lblNaslovPitanja control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dtListaPitanja;
+        protected global::System.Web.UI.WebControls.Label lblNaslovPitanja;
+        
+        /// <summary>
+        /// pitanjaGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataGrid pitanjaGrid;
     }
 }

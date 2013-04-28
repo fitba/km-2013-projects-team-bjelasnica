@@ -612,10 +612,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Function Name="fsp_ClanciTagovi_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="ClanakID" Type="int" Mode="In" />
-    <Parameter Name="TagID" Type="int" Mode="In" />
-  </Function>
   <Function Name="fsp_Clanci_DeleteTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ClanakID" Type="int" Mode="In" />
   </Function>
@@ -631,6 +627,17 @@
   </Function>
   <Function Name="fsp_Clanci_SelectTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ClanakID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fsp_ClanciTagovi_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClanakID" Type="int" Mode="In" />
+    <Parameter Name="TagID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fsp_get_AllTagovi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="fsp_getAllOdgovoriZaPitanje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fsp_getAllTagoviZaPitanjeID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Pid" Type="int" Mode="In" />
   </Function>
   <Function Name="fsp_Korisnici_ChangePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="KorisnikID" Type="int" Mode="In" />
@@ -663,17 +670,15 @@
     <Parameter Name="Slika" Type="varbinary(max)" Mode="In" />
     <Parameter Name="SlikaType" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="fsp_Pitanja_Select_all" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Offset" Type="int" Mode="In" />
+    <Parameter Name="MaxRows" Type="int" Mode="In" />
+    <Parameter Name="TotalRows" Type="int" Mode="InOut" />
+  </Function>
   <Function Name="fsp_Teme_SelectByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Status" Type="bit" Mode="In" />
   </Function>
   <Function Name="fsp_VrsteClanaka_SelectByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Status" Type="bit" Mode="In" />
   </Function>
-  <Function Name="fsp_getAllOdgovoriZaPitanje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="PId" Type="int" Mode="In" />
-  </Function>
-  <Function Name="fsp_getAllTagoviZaPitanjeID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="Pid" Type="int" Mode="In" />
-  </Function>
-  <Function Name="fsp_get_AllTagovi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
 </Schema>

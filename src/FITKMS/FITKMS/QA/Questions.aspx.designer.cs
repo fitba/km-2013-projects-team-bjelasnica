@@ -112,13 +112,13 @@ namespace FITKMS.QA {
         protected global::System.Web.UI.WebControls.Label lblBrojPregleda;
         
         /// <summary>
-        /// dlListaTagova control.
+        /// tagsRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlListaTagova;
+        protected global::System.Web.UI.WebControls.Repeater tagsRepeater;
         
         /// <summary>
         /// UpdatePanel3 control.

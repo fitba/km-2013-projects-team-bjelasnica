@@ -8,6 +8,17 @@ namespace FITKMS_business.Data
 {
     public class QAService
     {
+        public static int totalRows;
+
+        public static List<fsp_Pitanja_Select_all_Result> Pitanja_Get_All(int maxRows, int offset)
+        {
+            System.Data.Objects.ObjectParameter total = new System.Data.Objects.ObjectParameter("TotalRows", 0);
+            List<fsp_Pitanja_Select_all_Result> pitanja = Connection.dm.fsp_Pitanja_Select_all(offset, maxRows, total).ToList();
+
+            totalRows = Convert.ToInt32(total.Value);
+
+            return pitanja;
+        }
 
         // get pitanje po ID-u
         public static Pitanja getPitanjeByID(int id)
@@ -250,5 +261,7 @@ namespace FITKMS_business.Data
 
         }
 
+
+     
     }
 }

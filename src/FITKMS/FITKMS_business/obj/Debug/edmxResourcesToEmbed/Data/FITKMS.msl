@@ -295,5 +295,21 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="fsp_get_AllTagovi" FunctionName="FITKMSModel.Store.fsp_get_AllTagovi" />
+    <FunctionImportMapping FunctionImportName="fsp_Pitanja_Select_all" FunctionName="FITKMSModel.Store.fsp_Pitanja_Select_all">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FITKMSModel.fsp_Pitanja_Select_all_Result">
+          <ScalarProperty Name="PitanjeID" ColumnName="PitanjeID" />
+          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+          <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+          <ScalarProperty Name="Naslov" ColumnName="Naslov" />
+          <ScalarProperty Name="Tekst" ColumnName="Tekst" />
+          <ScalarProperty Name="BrojPregleda" ColumnName="BrojPregleda" />
+          <ScalarProperty Name="Pozitivni" ColumnName="Pozitivni" />
+          <ScalarProperty Name="Negativni" ColumnName="Negativni" />
+          <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+          <ScalarProperty Name="BrojOdgvora" ColumnName="BrojOdgvora" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

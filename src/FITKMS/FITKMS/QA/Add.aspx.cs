@@ -76,26 +76,36 @@ namespace FITKMS.QA
 
         protected void Save_Click(object sender, EventArgs e)
         {
-            Pitanja pitanje = new Pitanja();
+            try
+            {
+                Pitanja pitanje = new Pitanja();
+                pitanje.Naslov = txtNaslovPitanja.Text;
+                pitanje.Tekst = wysiwyg.Text;
+                pitanje.KorisnikID = 4;//////////////uzeti ovo iz sesije
+                pitanje.TemaID = int.Parse(ddTema.SelectedValue);
+                pitanje.Pozitivni = 0;
+                pitanje.Negativni = 0;
+                pitanje.BrojPregleda = 0;
+                pitanje.Status = true;
+                pitanje.DatumIzmjene = DateTime.Now;
+                pitanje.DatumKreiranja = DateTime.Now;
 
-            pitanje.Naslov = txtNaslovPitanja.Text;
-            pitanje.Tekst = wysiwyg.Text;
-            pitanje.KorisnikID = 1;//////////////uzeti ovo iz sesije
-            pitanje.TemaID = int.Parse(ddTema.SelectedValue);
-            pitanje.Pozitivni = 0;
-            pitanje.Negativni = 0;
-            pitanje.BrojPregleda = 0;
-            pitanje.Status = true;
-            pitanje.DatumIzmjene = DateTime.Now;
-            pitanje.DatumKreiranja = DateTime.Now;
+                List<Tagovi> ListaTagova = (List<Tagovi>)Session["ListaOznacenihTagova"];
+                QAService.savePitanje(pitanje, ListaTagova);
 
-            List<Tagovi> ListaTagova = (List<Tagovi>)Session["ListaOznacenihTagova"];
-            QAService.savePitanje(pitanje, ListaTagova);
-
-            Session.Remove("ListaOznacenihTagova");
-            txtNaslovPitanja.Text = "";
-            wysiwyg.Text = "";
-
+                Session.Remove("ListaOznacenihTagova");
+                txtNaslovPitanja.Text = "";
+                wysiwyg.Text = "";
+                success_label.Visible = true;
+                successLabel.Text = "Uspješno ste postavili pitanje.";
+            }
+            catch 
+            {
+                error_label.Visible = true;
+                errorLabel.Text = "Greška prilikom pohrane podataka!";
+                return;
+            
+            }
 
 
 
