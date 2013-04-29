@@ -261,13 +261,135 @@ namespace FITKMS_business.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_Clanci_DeleteTags", clanakIDParameter);
         }
     
-        public virtual ObjectResult<fsp_getAllOdgovoriZaPitanje_Result> fsp_getAllOdgovoriZaPitanje(Nullable<int> pId)
+        public virtual ObjectResult<Tagovi> fsp_get_AllTagovi()
         {
-            var pIdParameter = pId.HasValue ?
-                new ObjectParameter("PId", pId) :
-                new ObjectParameter("PId", typeof(int));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tagovi>("fsp_get_AllTagovi");
+        }
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_getAllOdgovoriZaPitanje_Result>("fsp_getAllOdgovoriZaPitanje", pIdParameter);
+        public virtual ObjectResult<Tagovi> fsp_get_AllTagovi(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tagovi>("fsp_get_AllTagovi", mergeOption);
+        }
+    
+        public virtual ObjectResult<fsp_Clanci_SelectByTypeTitle_Result> fsp_Clanci_SelectByTag(Nullable<int> tagID, Nullable<int> offset, Nullable<int> maxRows, ObjectParameter totalRows)
+        {
+            var tagIDParameter = tagID.HasValue ?
+                new ObjectParameter("TagID", tagID) :
+                new ObjectParameter("TagID", typeof(int));
+    
+            var offsetParameter = offset.HasValue ?
+                new ObjectParameter("Offset", offset) :
+                new ObjectParameter("Offset", typeof(int));
+    
+            var maxRowsParameter = maxRows.HasValue ?
+                new ObjectParameter("MaxRows", maxRows) :
+                new ObjectParameter("MaxRows", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_Clanci_SelectByTypeTitle_Result>("fsp_Clanci_SelectByTag", tagIDParameter, offsetParameter, maxRowsParameter, totalRows);
+        }
+    
+        public virtual ObjectResult<Tagovi> fsp_Pitanja_SelectTags(Nullable<int> pitanjeID)
+        {
+            var pitanjeIDParameter = pitanjeID.HasValue ?
+                new ObjectParameter("PitanjeID", pitanjeID) :
+                new ObjectParameter("PitanjeID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tagovi>("fsp_Pitanja_SelectTags", pitanjeIDParameter);
+        }
+    
+        public virtual ObjectResult<Tagovi> fsp_Pitanja_SelectTags(Nullable<int> pitanjeID, MergeOption mergeOption)
+        {
+            var pitanjeIDParameter = pitanjeID.HasValue ?
+                new ObjectParameter("PitanjeID", pitanjeID) :
+                new ObjectParameter("PitanjeID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tagovi>("fsp_Pitanja_SelectTags", mergeOption, pitanjeIDParameter);
+        }
+    
+        public virtual int fsp_Tagovi_SelectAll()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_Tagovi_SelectAll");
+        }
+    
+        public virtual ObjectResult<Tagovi> fsp_Tagovi_SelectPagination(Nullable<int> pageNo, Nullable<int> recordsPerPage, ObjectParameter totalRows, string search)
+        {
+            var pageNoParameter = pageNo.HasValue ?
+                new ObjectParameter("PageNo", pageNo) :
+                new ObjectParameter("PageNo", typeof(int));
+    
+            var recordsPerPageParameter = recordsPerPage.HasValue ?
+                new ObjectParameter("RecordsPerPage", recordsPerPage) :
+                new ObjectParameter("RecordsPerPage", typeof(int));
+    
+            var searchParameter = search != null ?
+                new ObjectParameter("Search", search) :
+                new ObjectParameter("Search", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tagovi>("fsp_Tagovi_SelectPagination", pageNoParameter, recordsPerPageParameter, totalRows, searchParameter);
+        }
+    
+        public virtual ObjectResult<Tagovi> fsp_Tagovi_SelectPagination(Nullable<int> pageNo, Nullable<int> recordsPerPage, ObjectParameter totalRows, string search, MergeOption mergeOption)
+        {
+            var pageNoParameter = pageNo.HasValue ?
+                new ObjectParameter("PageNo", pageNo) :
+                new ObjectParameter("PageNo", typeof(int));
+    
+            var recordsPerPageParameter = recordsPerPage.HasValue ?
+                new ObjectParameter("RecordsPerPage", recordsPerPage) :
+                new ObjectParameter("RecordsPerPage", typeof(int));
+    
+            var searchParameter = search != null ?
+                new ObjectParameter("Search", search) :
+                new ObjectParameter("Search", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tagovi>("fsp_Tagovi_SelectPagination", mergeOption, pageNoParameter, recordsPerPageParameter, totalRows, searchParameter);
+        }
+    
+        public virtual ObjectResult<fsp_Pitanja_SelectByTag_Result> fsp_Pitanja_SelectByTag(Nullable<int> tagID, Nullable<int> offset, Nullable<int> maxRows, ObjectParameter totalRows)
+        {
+            var tagIDParameter = tagID.HasValue ?
+                new ObjectParameter("TagID", tagID) :
+                new ObjectParameter("TagID", typeof(int));
+    
+            var offsetParameter = offset.HasValue ?
+                new ObjectParameter("Offset", offset) :
+                new ObjectParameter("Offset", typeof(int));
+    
+            var maxRowsParameter = maxRows.HasValue ?
+                new ObjectParameter("MaxRows", maxRows) :
+                new ObjectParameter("MaxRows", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_Pitanja_SelectByTag_Result>("fsp_Pitanja_SelectByTag", tagIDParameter, offsetParameter, maxRowsParameter, totalRows);
+        }
+    
+        public virtual ObjectResult<fsp_Pitanja_SelectAll_Result> fsp_Pitanja_SelectAll(Nullable<int> offset, Nullable<int> maxRows, ObjectParameter totalRows)
+        {
+            var offsetParameter = offset.HasValue ?
+                new ObjectParameter("Offset", offset) :
+                new ObjectParameter("Offset", typeof(int));
+    
+            var maxRowsParameter = maxRows.HasValue ?
+                new ObjectParameter("MaxRows", maxRows) :
+                new ObjectParameter("MaxRows", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_Pitanja_SelectAll_Result>("fsp_Pitanja_SelectAll", offsetParameter, maxRowsParameter, totalRows);
+        }
+    
+        public virtual int fsp_Korisnici_ChangePassword(Nullable<int> korisnikID, string lozinkaSalt, string lozinkaHash)
+        {
+            var korisnikIDParameter = korisnikID.HasValue ?
+                new ObjectParameter("KorisnikID", korisnikID) :
+                new ObjectParameter("KorisnikID", typeof(int));
+    
+            var lozinkaSaltParameter = lozinkaSalt != null ?
+                new ObjectParameter("LozinkaSalt", lozinkaSalt) :
+                new ObjectParameter("LozinkaSalt", typeof(string));
+    
+            var lozinkaHashParameter = lozinkaHash != null ?
+                new ObjectParameter("LozinkaHash", lozinkaHash) :
+                new ObjectParameter("LozinkaHash", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_Korisnici_ChangePassword", korisnikIDParameter, lozinkaSaltParameter, lozinkaHashParameter);
         }
     
         public virtual ObjectResult<fsp_getAllTagoviZaPitanjeID_Result> fsp_getAllTagoviZaPitanjeID(Nullable<int> pid)
@@ -279,27 +401,13 @@ namespace FITKMS_business.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_getAllTagoviZaPitanjeID_Result>("fsp_getAllTagoviZaPitanjeID", pidParameter);
         }
     
-        public virtual ObjectResult<Tagovi> fsp_get_AllTagovi()
+        public virtual ObjectResult<fsp_getAllOdgovoriZaPitanje_Result> fsp_getAllOdgovoriZaPitanje(Nullable<int> pId)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tagovi>("fsp_get_AllTagovi");
-        }
+            var pIdParameter = pId.HasValue ?
+                new ObjectParameter("PId", pId) :
+                new ObjectParameter("PId", typeof(int));
     
-        public virtual ObjectResult<Tagovi> fsp_get_AllTagovi(MergeOption mergeOption)
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tagovi>("fsp_get_AllTagovi", mergeOption);
-        }
-    
-        public virtual ObjectResult<fsp_Pitanja_Select_all_Result> fsp_Pitanja_Select_all(Nullable<int> offset, Nullable<int> maxRows, ObjectParameter totalRows)
-        {
-            var offsetParameter = offset.HasValue ?
-                new ObjectParameter("Offset", offset) :
-                new ObjectParameter("Offset", typeof(int));
-    
-            var maxRowsParameter = maxRows.HasValue ?
-                new ObjectParameter("MaxRows", maxRows) :
-                new ObjectParameter("MaxRows", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_Pitanja_Select_all_Result>("fsp_Pitanja_Select_all", offsetParameter, maxRowsParameter, totalRows);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_getAllOdgovoriZaPitanje_Result>("fsp_getAllOdgovoriZaPitanje", pIdParameter);
         }
     }
 }

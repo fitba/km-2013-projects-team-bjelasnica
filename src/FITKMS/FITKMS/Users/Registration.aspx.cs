@@ -53,8 +53,20 @@ namespace FITKMS.Users
                 success_label.Visible = true;
                 successLabel.Text = "Uspješno ste izvršili proces registracije.";
             }
-            catch 
+            catch(Exception ex)
             {
+                if (ex.InnerException.ToString().Contains("UQ_KorisnickoIme"))
+                {
+                    error_label.Visible = true;
+                    errorLabel.Text = "Korisničko ime već postoji u bazi podataka!";
+                    return;
+                }
+                else if (ex.InnerException.ToString().Contains("UQ_Mail"))
+                {
+                    error_label.Visible = true;
+                    errorLabel.Text = "E-mail adresa već postoji u bazi podataka!";
+                    return;
+                }
                 error_label.Visible = true;
                 errorLabel.Text = "Greška prilikom pohrane podataka!";
                 return;

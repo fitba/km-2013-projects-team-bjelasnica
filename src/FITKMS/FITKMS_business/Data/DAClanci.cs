@@ -70,5 +70,15 @@ namespace FITKMS_business.Data
         {
             return Connection.dm.fsp_Clanci_SelectTags(clanakId).ToList();
         }
+
+        public static List<fsp_Clanci_SelectByTypeTitle_Result> SelectByTagId(int tagId, int maxRows, int offset)
+        {
+            System.Data.Objects.ObjectParameter total = new System.Data.Objects.ObjectParameter("TotalRows", 0);
+            List<fsp_Clanci_SelectByTypeTitle_Result> articles = Connection.dm.fsp_Clanci_SelectByTag
+                                                                 (tagId, offset, maxRows, total).ToList();
+            totalRows = Convert.ToInt32(total.Value);
+
+            return articles;
+        }
     }
 }

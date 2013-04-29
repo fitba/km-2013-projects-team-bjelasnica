@@ -87,7 +87,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-actions no-margin">
-                                                <asp:Button ID="passwordSubmit" class="btn btn-info" runat="server" Text="Izmijeni lozinku" />
+                                                <asp:Button ID="passwordSubmit" class="btn btn-info" runat="server" Text="Izmijeni lozinku" OnClick="passwordSubmit_Click" />
                                                 </div>
                                             <br />
                                             <h5>Lični podaci

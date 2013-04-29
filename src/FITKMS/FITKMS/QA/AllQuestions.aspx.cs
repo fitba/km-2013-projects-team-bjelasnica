@@ -11,7 +11,7 @@ namespace FITKMS.QA
 {
     public partial class AllQuestions : System.Web.UI.Page
     {
-        protected List<fsp_Pitanja_Select_all_Result> pitanja;
+        protected List<fsp_Pitanja_SelectAll_Result> pitanja;
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -46,7 +46,7 @@ namespace FITKMS.QA
             if (e.Item.ItemIndex != -1)
             {
                 Literal textLiteral = (Literal)e.Item.FindControl("textLiteral");
-                textLiteral.Text = getPart(pitanja[e.Item.ItemIndex].Tekst);
+                textLiteral.Text = pitanja[e.Item.ItemIndex].Tekst;//getPart(pitanja[e.Item.ItemIndex].Tekst);
                 Repeater tagsRepeater = (Repeater)e.Item.FindControl("tagsRepeater");
                 tagsRepeater.DataSource = QAService.getListaTagovaUpitanju(pitanja[e.Item.ItemIndex].PitanjeID);
                 tagsRepeater.DataBind();

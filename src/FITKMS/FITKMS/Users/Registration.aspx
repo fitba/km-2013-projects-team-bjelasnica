@@ -227,7 +227,7 @@
 
                                 <div class="form-actions no-margin">
                                     <asp:Button ID="createSubmit" class="btn btn-info pull-right" runat="server" Text="Kreiraj korisnički račun" OnClick="createSubmit_Click" />
-                                    <asp:Button ID="cancelSubmit" class="btn btn-warning2" runat="server" Text="Odustani" OnClick="cancelSubmit_Click" />
+                                    <asp:Button ID="cancelSubmit" class="btn btn-warning2" CausesValidation="false" runat="server" Text="Odustani" OnClick="cancelSubmit_Click" />
                                     <div class="clearfix">
                                     </div>
                                 </div>

@@ -164,8 +164,8 @@
     <Content Include="QA\Add.aspx" />
     <Content Include="QA\AllQuestions.aspx" />
     <Content Include="QA\Questions.aspx" />
-    <Content Include="QA\TagDetaljno.aspx" />
-    <Content Include="QA\Tags.aspx" />
+    <Content Include="Tags\Details.aspx" />
+    <Content Include="Tags\Index.aspx" />
     <Content Include="Users\Image.aspx" />
     <Content Include="Users\Profile.aspx" />
     <Content Include="Users\Registration.aspx" />
@@ -223,19 +223,19 @@
     <Compile Include="QA\Questions.aspx.designer.cs">
       <DependentUpon>Questions.aspx</DependentUpon>
     </Compile>
-    <Compile Include="QA\TagDetaljno.aspx.cs">
-      <DependentUpon>TagDetaljno.aspx</DependentUpon>
+    <Compile Include="Tags\Details.aspx.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="QA\TagDetaljno.aspx.designer.cs">
-      <DependentUpon>TagDetaljno.aspx</DependentUpon>
+    <Compile Include="Tags\Details.aspx.designer.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
     </Compile>
-    <Compile Include="QA\Tags.aspx.cs">
-      <DependentUpon>Tags.aspx</DependentUpon>
+    <Compile Include="Tags\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="QA\Tags.aspx.designer.cs">
-      <DependentUpon>Tags.aspx</DependentUpon>
+    <Compile Include="Tags\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Users\Image.aspx.cs">
       <DependentUpon>Image.aspx</DependentUpon>

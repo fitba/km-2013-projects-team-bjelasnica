@@ -29,5 +29,11 @@ namespace FITKMS_business.Data
         {
             return Connection.dm.fsp_Korisnici_SelectByID(korisnikID).SingleOrDefault();
         }
+
+        public static void ChangePassword(int userID, string passwordSalt, string passwordHash)
+        {
+            Connection.dm.fsp_Korisnici_ChangePassword(userID, passwordSalt, passwordHash);
+            Connection.dm.SaveChanges();
+        }
     }
 }
