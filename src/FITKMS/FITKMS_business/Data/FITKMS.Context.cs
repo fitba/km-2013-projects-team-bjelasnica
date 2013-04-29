@@ -409,5 +409,93 @@ namespace FITKMS_business.Data
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_getAllOdgovoriZaPitanje_Result>("fsp_getAllOdgovoriZaPitanje", pIdParameter);
         }
+    
+        public virtual ObjectResult<fsp_ClanciKomentari_Select_Result> fsp_ClanciKomentari_Select(Nullable<int> clanakID, Nullable<int> offset, Nullable<int> maxRows, ObjectParameter totalRows)
+        {
+            var clanakIDParameter = clanakID.HasValue ?
+                new ObjectParameter("ClanakID", clanakID) :
+                new ObjectParameter("ClanakID", typeof(int));
+    
+            var offsetParameter = offset.HasValue ?
+                new ObjectParameter("Offset", offset) :
+                new ObjectParameter("Offset", typeof(int));
+    
+            var maxRowsParameter = maxRows.HasValue ?
+                new ObjectParameter("MaxRows", maxRows) :
+                new ObjectParameter("MaxRows", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_ClanciKomentari_Select_Result>("fsp_ClanciKomentari_Select", clanakIDParameter, offsetParameter, maxRowsParameter, totalRows);
+        }
+    
+        public virtual ObjectResult<ClanciOcjene> fsp_ClanciOcjene_SelectByUser(Nullable<int> clanakID, Nullable<int> korisnikID)
+        {
+            var clanakIDParameter = clanakID.HasValue ?
+                new ObjectParameter("ClanakID", clanakID) :
+                new ObjectParameter("ClanakID", typeof(int));
+    
+            var korisnikIDParameter = korisnikID.HasValue ?
+                new ObjectParameter("KorisnikID", korisnikID) :
+                new ObjectParameter("KorisnikID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ClanciOcjene>("fsp_ClanciOcjene_SelectByUser", clanakIDParameter, korisnikIDParameter);
+        }
+    
+        public virtual ObjectResult<ClanciOcjene> fsp_ClanciOcjene_SelectByUser(Nullable<int> clanakID, Nullable<int> korisnikID, MergeOption mergeOption)
+        {
+            var clanakIDParameter = clanakID.HasValue ?
+                new ObjectParameter("ClanakID", clanakID) :
+                new ObjectParameter("ClanakID", typeof(int));
+    
+            var korisnikIDParameter = korisnikID.HasValue ?
+                new ObjectParameter("KorisnikID", korisnikID) :
+                new ObjectParameter("KorisnikID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ClanciOcjene>("fsp_ClanciOcjene_SelectByUser", mergeOption, clanakIDParameter, korisnikIDParameter);
+        }
+    
+        public virtual int fsp_Clanci_Update(Nullable<int> clanakID, string naslov, string autori, string tekst, string kljucneRijeci, Nullable<int> vrstaID, Nullable<int> temaID, byte[] dokument, string dokumentType, string dokumentPath)
+        {
+            var clanakIDParameter = clanakID.HasValue ?
+                new ObjectParameter("ClanakID", clanakID) :
+                new ObjectParameter("ClanakID", typeof(int));
+    
+            var naslovParameter = naslov != null ?
+                new ObjectParameter("Naslov", naslov) :
+                new ObjectParameter("Naslov", typeof(string));
+    
+            var autoriParameter = autori != null ?
+                new ObjectParameter("Autori", autori) :
+                new ObjectParameter("Autori", typeof(string));
+    
+            var tekstParameter = tekst != null ?
+                new ObjectParameter("Tekst", tekst) :
+                new ObjectParameter("Tekst", typeof(string));
+    
+            var kljucneRijeciParameter = kljucneRijeci != null ?
+                new ObjectParameter("KljucneRijeci", kljucneRijeci) :
+                new ObjectParameter("KljucneRijeci", typeof(string));
+    
+            var vrstaIDParameter = vrstaID.HasValue ?
+                new ObjectParameter("VrstaID", vrstaID) :
+                new ObjectParameter("VrstaID", typeof(int));
+    
+            var temaIDParameter = temaID.HasValue ?
+                new ObjectParameter("TemaID", temaID) :
+                new ObjectParameter("TemaID", typeof(int));
+    
+            var dokumentParameter = dokument != null ?
+                new ObjectParameter("Dokument", dokument) :
+                new ObjectParameter("Dokument", typeof(byte[]));
+    
+            var dokumentTypeParameter = dokumentType != null ?
+                new ObjectParameter("DokumentType", dokumentType) :
+                new ObjectParameter("DokumentType", typeof(string));
+    
+            var dokumentPathParameter = dokumentPath != null ?
+                new ObjectParameter("DokumentPath", dokumentPath) :
+                new ObjectParameter("DokumentPath", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_Clanci_Update", clanakIDParameter, naslovParameter, autoriParameter, tekstParameter, kljucneRijeciParameter, vrstaIDParameter, temaIDParameter, dokumentParameter, dokumentTypeParameter, dokumentPathParameter);
+        }
     }
 }

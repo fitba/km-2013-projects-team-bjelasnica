@@ -79,6 +79,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FITKMS.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Data\fsp_ClanciKomentari_Select_Result.cs">
+      <DependentUpon>FITKMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\fsp_Clanci_SelectById_Result.cs">
       <DependentUpon>FITKMS.tt</DependentUpon>
     </Compile>
@@ -99,6 +102,11 @@
     </Compile>
     <Compile Include="Data\Korisnici.cs">
       <DependentUpon>FITKMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\KorisniciDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KorisniciDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Data\KorisniciUloge.cs">
       <DependentUpon>FITKMS.tt</DependentUpon>
@@ -158,6 +166,17 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FITKMS.edmx</DependentUpon>
       <LastGenOutput>FITKMS.cs</LastGenOutput>
+    </None>
+    <None Include="Data\KorisniciDataSet.xsc">
+      <DependentUpon>KorisniciDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Data\KorisniciDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>KorisniciDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Data\KorisniciDataSet.xss">
+      <DependentUpon>KorisniciDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

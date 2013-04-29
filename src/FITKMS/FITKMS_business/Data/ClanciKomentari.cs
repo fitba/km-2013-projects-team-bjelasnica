@@ -18,8 +18,6 @@ namespace FITKMS_business.Data
         public string Komentar { get; set; }
         public int ClanakID { get; set; }
         public int KorisnikID { get; set; }
-        public Nullable<int> Pozitivni { get; set; }
-        public Nullable<int> Negativni { get; set; }
         public Nullable<bool> Status { get; set; }
         public System.DateTime DatumKreiranja { get; set; }
         public System.DateTime DatumIzmjene { get; set; }

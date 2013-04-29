@@ -76,7 +76,7 @@ namespace FITKMS.Wiki
                           && documentFile.PostedFile.FileName != "")
                 {
                     extension = System.IO.Path.GetExtension(documentFile.PostedFile.FileName);
-                    if (extension == ".pdf" || extension == ".doc" || extension == ".docx")
+                    if (extension == ".pdf")
                     {
                         article.DokumentType = documentFile.PostedFile.ContentType;
                         article.Dokument = new byte[documentFile.PostedFile.ContentLength];

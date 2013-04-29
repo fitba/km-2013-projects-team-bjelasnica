@@ -37,8 +37,6 @@
           <ScalarProperty Name="Komentar" ColumnName="Komentar" />
           <ScalarProperty Name="ClanakID" ColumnName="ClanakID" />
           <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
-          <ScalarProperty Name="Pozitivni" ColumnName="Pozitivni" />
-          <ScalarProperty Name="Negativni" ColumnName="Negativni" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
           <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
@@ -270,56 +268,6 @@
     <FunctionImportMapping FunctionImportName="fsp_Korisnici_Update" FunctionName="FITKMSModel.Store.fsp_Korisnici_Update" />
     <FunctionImportMapping FunctionImportName="fsp_Korisnici_Registration" FunctionName="FITKMSModel.Store.fsp_Korisnici_Registration" />
     <FunctionImportMapping FunctionImportName="fsp_Clanci_SelectTags" FunctionName="FITKMSModel.Store.fsp_Clanci_SelectTags" />
-    <FunctionImportMapping FunctionImportName="fsp_Clanci_SelectByTag" FunctionName="FITKMSModel.Store.fsp_Clanci_SelectByTag">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="FITKMSModel.fsp_Clanci_SelectByTypeTitle_Result">
-          <ScalarProperty Name="ClanakID" ColumnName="ClanakID" />
-          <ScalarProperty Name="Naslov" ColumnName="Naslov" />
-          <ScalarProperty Name="Tekst" ColumnName="Tekst" />
-          <ScalarProperty Name="KljucneRijeci" ColumnName="KljucneRijeci" />
-          <ScalarProperty Name="ProsjecnaOcjena" ColumnName="ProsjecnaOcjena" />
-          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
-          <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
-          <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
-          <ScalarProperty Name="BrojKomentara" ColumnName="BrojKomentara" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="fsp_Pitanja_SelectTags" FunctionName="FITKMSModel.Store.fsp_Pitanja_SelectTags" />
-    <FunctionImportMapping FunctionImportName="fsp_Tagovi_SelectAll" FunctionName="FITKMSModel.Store.fsp_Tagovi_SelectAll" />
-    <FunctionImportMapping FunctionImportName="fsp_Tagovi_SelectPagination" FunctionName="FITKMSModel.Store.fsp_Tagovi_SelectPagination" />
-    <FunctionImportMapping FunctionImportName="fsp_Pitanja_SelectByTag" FunctionName="FITKMSModel.Store.fsp_Pitanja_SelectByTag">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="FITKMSModel.fsp_Pitanja_SelectByTag_Result">
-          <ScalarProperty Name="PitanjeID" ColumnName="PitanjeID" />
-          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
-          <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
-          <ScalarProperty Name="Naslov" ColumnName="Naslov" />
-          <ScalarProperty Name="Tekst" ColumnName="Tekst" />
-          <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
-          <ScalarProperty Name="Pozitivni" ColumnName="Pozitivni" />
-          <ScalarProperty Name="Negativni" ColumnName="Negativni" />
-          <ScalarProperty Name="BrojPregleda" ColumnName="BrojPregleda" />
-          <ScalarProperty Name="BrojOdgovora" ColumnName="BrojOdgovora" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="fsp_Pitanja_SelectAll" FunctionName="FITKMSModel.Store.fsp_Pitanja_SelectAll">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="FITKMSModel.fsp_Pitanja_SelectAll_Result">
-          <ScalarProperty Name="PitanjeID" ColumnName="PitanjeID" />
-          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
-          <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
-          <ScalarProperty Name="Naslov" ColumnName="Naslov" />
-          <ScalarProperty Name="Tekst" ColumnName="Tekst" />
-          <ScalarProperty Name="BrojPregleda" ColumnName="BrojPregleda" />
-          <ScalarProperty Name="Pozitivni" ColumnName="Pozitivni" />
-          <ScalarProperty Name="Negativni" ColumnName="Negativni" />
-          <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
-          <ScalarProperty Name="BrojOdgvora" ColumnName="BrojOdgvora" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="fsp_Korisnici_ChangePassword" FunctionName="FITKMSModel.Store.fsp_Korisnici_ChangePassword" />
     <FunctionImportMapping FunctionImportName="fsp_getAllTagoviZaPitanjeID" FunctionName="FITKMSModel.Store.fsp_getAllTagoviZaPitanjeID">
       <ResultMapping>
@@ -344,5 +292,21 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fsp_ClanciKomentari_Select" FunctionName="FITKMSModel.Store.fsp_ClanciKomentari_Select">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FITKMSModel.fsp_ClanciKomentari_Select_Result">
+          <ScalarProperty Name="ClanakKomentarID" ColumnName="ClanakKomentarID" />
+          <ScalarProperty Name="Komentar" ColumnName="Komentar" />
+          <ScalarProperty Name="ClanakID" ColumnName="ClanakID" />
+          <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+          <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+          <ScalarProperty Name="Korisnik" ColumnName="Korisnik" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fsp_ClanciOcjene_SelectByUser" FunctionName="FITKMSModel.Store.fsp_ClanciOcjene_SelectByUser" />
+    <FunctionImportMapping FunctionImportName="fsp_Clanci_Update" FunctionName="FITKMSModel.Store.fsp_Clanci_Update" />
   </EntityContainerMapping>
 </Mapping>

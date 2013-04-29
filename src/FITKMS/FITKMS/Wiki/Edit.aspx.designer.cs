@@ -49,6 +49,24 @@ namespace FITKMS.Wiki {
         protected global::System.Web.UI.WebControls.Label errorLabel;
         
         /// <summary>
+        /// warning_label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl warning_label;
+        
+        /// <summary>
+        /// warningLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label warningLabel;
+        
+        /// <summary>
         /// typesList control.
         /// </summary>
         /// <remarks>
@@ -154,7 +172,7 @@ namespace FITKMS.Wiki {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button documentDeleteSubmit;
+        protected global::System.Web.UI.WebControls.LinkButton documentDeleteSubmit;
         
         /// <summary>
         /// saveArticleSubmit control.

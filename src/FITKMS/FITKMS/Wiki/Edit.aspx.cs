@@ -93,7 +93,7 @@ namespace FITKMS.Wiki
         {
             try
             {
-                if (documentFile.PostedFile == null)
+                if (documentFile.PostedFile.ContentLength == 0)
                     article = DAClanci.Select(articleId);
                 else if (documentFile.PostedFile != null && documentFile.PostedFile.FileName != null
                           && documentFile.PostedFile.FileName != "")
@@ -103,9 +103,9 @@ namespace FITKMS.Wiki
                     article.ClanakID = articleId;
 
                     extension = System.IO.Path.GetExtension(documentFile.PostedFile.FileName);
-                    if (extension == ".pdf" || extension == ".doc" || extension == ".docx")
+                    if (extension == ".pdf")
                     {
-                        article.Dokument = new byte[documentFile.PostedFile.ContentLength];
+                        article.DokumentType = documentFile.PostedFile.ContentType;
                         article.Dokument = new byte[documentFile.PostedFile.ContentLength];
                         documentFile.PostedFile.InputStream.Read(article.Dokument, 0, documentFile.PostedFile.ContentLength);
                         string filename = article.ClanakID + extension;
@@ -114,7 +114,7 @@ namespace FITKMS.Wiki
                     }
                     else
                     {
-                        errorLabel.Text = "Format dokumenta nije podržan.";
+                        errorLabel.Text = "Podržani format dokumenta je pdf.";
                         error_label.Visible = true;
                         return;
                     }
@@ -150,18 +150,26 @@ namespace FITKMS.Wiki
         protected void documentDeleteSubmit_Click(object sender, EventArgs e)
         {
             article = DAClanci.Select(articleId);
-          
-            string[] filename = article.DokumentPath.Split('/');
-            System.IO.File.Delete(Server.MapPath("/Content/articles/") + filename);
 
-            article.Dokument = null;
-            article.DokumentType = null;
-            article.DokumentPath = null;
-            DAClanci.Update(article, selectedTags);
+            if (article.DokumentPath != null && article.Dokument != null)
+            {
+                string[] filename = article.DokumentPath.Split('/');
+                System.IO.File.Delete(Server.MapPath("/Content/articles/") + filename);
 
-            successLabel.Text = "Uspješno ste uklonili dokument.";
-            error_label.Visible = false;
-            success_label.Visible = true;
+                article.Dokument = null;
+                article.DokumentType = null;
+                article.DokumentPath = null;
+                DAClanci.Update(article, selectedTags);
+
+                successLabel.Text = "Dokument uspješno uklonjen.";
+                error_label.Visible = false;
+                success_label.Visible = true;
+            }
+            else
+            {
+                warningLabel.Text = "Ne postoji dokument.";
+                warning_label.Visible = true;
+            }
         }
     }
 }

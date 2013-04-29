@@ -24,7 +24,7 @@
                                 <br />
                                 <asp:DataGrid ID="articlesGrid" runat="server" AutoGenerateColumns="false" Width="60%" DataSource="<%# articles %>" ShowHeader="false"
                                     DataKeyField="ClanakID" AllowPaging="true" AllowCustomPaging="true" OnPageIndexChanged="articlesGrid_PageIndexChanged" 
-                                    GridLines="None" OnItemDataBound="articlesGrid_ItemDataBound" PageSize="3">
+                                    GridLines="None" OnItemDataBound="articlesGrid_ItemDataBound" PageSize="10">
                                     <PagerStyle Mode="NumericPages" CssClass="pgr" />
                                     <Columns>
                                         <asp:TemplateColumn>
@@ -37,7 +37,7 @@
                                                     <asp:Literal ID="textLiteral" runat="server"></asp:Literal>
                                                 </div>
                                                 <p class="right-align-text">
-                                                    <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-inverse">Detalji</asp:LinkButton>
+                                                    <asp:LinkButton ID="detailsLink" runat="server" CssClass="btn btn-inverse" PostBackUrl='<%# string.Format("Details.aspx?articleId={0}", Eval("ClanakID")) %>'>Detalji</asp:LinkButton>
                                                 </p>
                                                 <p class="icomoon-small">
                                                     <span class="fs1" aria-hidden="true" data-icon="&#xe070;"></span>by  
@@ -46,7 +46,7 @@
                                                     <asp:Label ID="Label1" runat="server" Text='<%# string.Format("{0:dd.MM.yyyy}", Eval("DatumKreiranja")) %>'></asp:Label>
                                                     | <span class="fs1" aria-hidden="true" data-icon="&#xe1c3;"></span>
                                                     <asp:LinkButton ID="LinkButton3" runat="server" Text='<%# string.Format("{0} komentara", Eval("BrojKomentara")) %>'></asp:LinkButton>
-                                                    | <span class="fs1" aria-hidden="true" data-icon="&#xe031;"></span>Tags:
+                                                    | <span class="fs1" aria-hidden="true" data-icon="&#xe031;"></span>Tagovi:
                                                     <asp:Repeater ID="tagsRepeater" runat="server">
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="tagLink" runat="server" CssClass="label label-important" Text='<%# Eval("Naziv") %>'></asp:LinkButton>

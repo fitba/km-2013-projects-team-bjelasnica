@@ -22,9 +22,8 @@ namespace FITKMS_business.Data
 
         public static void Update(Clanci article, List<Tagovi> tags)
         {
-            Connection.dm.Clanci.Attach(article);
-            Connection.dm.Entry(article).State = System.Data.EntityState.Modified;
-            Connection.dm.SaveChanges();
+            Connection.dm.fsp_Clanci_Update(article.ClanakID, article.Naslov, article.Autori, article.Tekst, article.KljucneRijeci,
+                                            article.VrstaID, article.TemaID, article.Dokument, article.DokumentType, article.DokumentPath);
 
             Connection.dm.fsp_Clanci_DeleteTags(article.ClanakID);
 
@@ -32,18 +31,6 @@ namespace FITKMS_business.Data
             {
                 Connection.dm.fsp_ClanciTagovi_Insert(article.ClanakID, t.TagID);
             }
-        }
-
-
-        public static List<VrsteClanaka> SelectTypes(bool status)
-        {
-            List<VrsteClanaka> types = Connection.dm.fsp_VrsteClanaka_SelectByStatus(status).ToList();
-            VrsteClanaka empty = new VrsteClanaka();
-            empty.Naziv = "Odaberite vrstu";
-            empty.VrstaID = 0;
-            types.Insert(0, empty);
-
-            return types;
         }
 
         public static Clanci Select(int clanakId)
@@ -66,6 +53,8 @@ namespace FITKMS_business.Data
             return Connection.dm.fsp_Clanci_SelectById(articleId).First();
         }
 
+        #region Tags
+
         public static List<Tagovi> SelectTags(int clanakId)
         {
             return Connection.dm.fsp_Clanci_SelectTags(clanakId).ToList();
@@ -74,11 +63,60 @@ namespace FITKMS_business.Data
         public static List<fsp_Clanci_SelectByTypeTitle_Result> SelectByTagId(int tagId, int maxRows, int offset)
         {
             System.Data.Objects.ObjectParameter total = new System.Data.Objects.ObjectParameter("TotalRows", 0);
-            List<fsp_Clanci_SelectByTypeTitle_Result> articles = Connection.dm.fsp_Clanci_SelectByTag
-                                                                 (tagId, offset, maxRows, total).ToList();
+            List<fsp_Clanci_SelectByTypeTitle_Result> articles = Connection.dm.fsp_Clanci_SelectByTag(tagId, offset, maxRows, total).ToList();
             totalRows = Convert.ToInt32(total.Value);
 
             return articles;
         }
+
+        #endregion
+
+        #region Types
+
+        public static List<VrsteClanaka> SelectTypes(bool status)
+        {
+            List<VrsteClanaka> types = Connection.dm.fsp_VrsteClanaka_SelectByStatus(status).ToList();
+            VrsteClanaka empty = new VrsteClanaka();
+            empty.Naziv = "Odaberite vrstu";
+            empty.VrstaID = 0;
+            types.Insert(0, empty);
+
+            return types;
+
+        }
+
+        #endregion
+
+        #region Comments
+
+        public static List<fsp_ClanciKomentari_Select_Result> SelectComments(int articleId, int maxRows, int offset)
+        {
+            System.Data.Objects.ObjectParameter total = new System.Data.Objects.ObjectParameter("TotalRows", 0);
+
+            List<fsp_ClanciKomentari_Select_Result> comments = Connection.dm.fsp_ClanciKomentari_Select(articleId, offset, maxRows, total).ToList();
+            totalRows = Convert.ToInt32(total.Value);
+
+            return comments;
+        }
+
+        public static void AddComment(ClanciKomentari comment)
+        {
+            Connection.dm.ClanciKomentari.Add(comment);
+            Connection.dm.SaveChanges();
+        }
+
+        public static void GradeArticle(ClanciOcjene grade)
+        {
+            Connection.dm.ClanciOcjene.Add(grade);
+            Connection.dm.SaveChanges();
+        }
+
+        public static ClanciOcjene GetGradeForUser(int articleId, int userId)
+        {
+            return Connection.dm.fsp_ClanciOcjene_SelectByUser(articleId, userId).FirstOrDefault();
+        }
+
+        #endregion
+
     }
 }

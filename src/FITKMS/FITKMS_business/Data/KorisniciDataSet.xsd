@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="KorisniciDataSet" targetNamespace="http://tempuri.org/KorisniciDataSet.xsd" xmlns:mstns="http://tempuri.org/KorisniciDataSet.xsd" xmlns="http://tempuri.org/KorisniciDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="FITKMSConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="FITKMSConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.FITKMS_business.Properties.Settings.GlobalReference.Default.FITKMSConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="KorisniciDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="KorisniciDataSet" msprop:Generator_UserDSName="KorisniciDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="korisnici" msprop:Generator_TableClassName="korisniciDataTable" msprop:Generator_TableVarName="tablekorisnici" msprop:Generator_RowChangedName="korisniciRowChanged" msprop:Generator_TablePropName="korisnici" msprop:Generator_RowDeletingName="korisniciRowDeleting" msprop:Generator_RowChangingName="korisniciRowChanging" msprop:Generator_RowEvHandlerName="korisniciRowChangeEventHandler" msprop:Generator_RowDeletedName="korisniciRowDeleted" msprop:Generator_RowClassName="korisniciRow" msprop:Generator_UserTableName="korisnici" msprop:Generator_RowEvArgName="korisniciRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="KorisnikID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnKorisnikID" msprop:Generator_ColumnPropNameInRow="KorisnikID" msprop:Generator_ColumnPropNameInTable="KorisnikIDColumn" msprop:Generator_UserColumnName="KorisnikID" type="xs:int" />
+              <xs:element name="Ime" msprop:Generator_ColumnVarNameInTable="columnIme" msprop:Generator_ColumnPropNameInRow="Ime" msprop:Generator_ColumnPropNameInTable="ImeColumn" msprop:Generator_UserColumnName="Ime">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Prezime" msprop:Generator_ColumnVarNameInTable="columnPrezime" msprop:Generator_ColumnPropNameInRow="Prezime" msprop:Generator_ColumnPropNameInTable="PrezimeColumn" msprop:Generator_UserColumnName="Prezime">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Mail" msprop:Generator_ColumnVarNameInTable="columnMail" msprop:Generator_ColumnPropNameInRow="Mail" msprop:Generator_ColumnPropNameInTable="MailColumn" msprop:Generator_UserColumnName="Mail">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Spol" msprop:Generator_ColumnVarNameInTable="columnSpol" msprop:Generator_ColumnPropNameInRow="Spol" msprop:Generator_ColumnPropNameInTable="SpolColumn" msprop:Generator_UserColumnName="Spol">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DatumRodjenja" msprop:Generator_ColumnVarNameInTable="columnDatumRodjenja" msprop:Generator_ColumnPropNameInRow="DatumRodjenja" msprop:Generator_ColumnPropNameInTable="DatumRodjenjaColumn" msprop:Generator_UserColumnName="DatumRodjenja" type="xs:dateTime" />
+              <xs:element name="DatumRegistracije" msprop:Generator_ColumnVarNameInTable="columnDatumRegistracije" msprop:Generator_ColumnPropNameInRow="DatumRegistracije" msprop:Generator_ColumnPropNameInTable="DatumRegistracijeColumn" msprop:Generator_UserColumnName="DatumRegistracije" type="xs:dateTime" />
+              <xs:element name="PosljednjaPrijava" msprop:Generator_ColumnVarNameInTable="columnPosljednjaPrijava" msprop:Generator_ColumnPropNameInRow="PosljednjaPrijava" msprop:Generator_ColumnPropNameInTable="PosljednjaPrijavaColumn" msprop:Generator_UserColumnName="PosljednjaPrijava" type="xs:dateTime" />
+              <xs:element name="KorisnickoIme" msprop:Generator_ColumnVarNameInTable="columnKorisnickoIme" msprop:Generator_ColumnPropNameInRow="KorisnickoIme" msprop:Generator_ColumnPropNameInTable="KorisnickoImeColumn" msprop:Generator_UserColumnName="KorisnickoIme">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LozinkaHash" msprop:Generator_ColumnVarNameInTable="columnLozinkaHash" msprop:Generator_ColumnPropNameInRow="LozinkaHash" msprop:Generator_ColumnPropNameInTable="LozinkaHashColumn" msprop:Generator_UserColumnName="LozinkaHash">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LozinkaSalt" msprop:Generator_ColumnVarNameInTable="columnLozinkaSalt" msprop:Generator_ColumnPropNameInRow="LozinkaSalt" msprop:Generator_ColumnPropNameInTable="LozinkaSaltColumn" msprop:Generator_UserColumnName="LozinkaSalt">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Slika" msprop:Generator_ColumnVarNameInTable="columnSlika" msprop:Generator_ColumnPropNameInRow="Slika" msprop:Generator_ColumnPropNameInTable="SlikaColumn" msprop:Generator_UserColumnName="Slika" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="SlikaType" msprop:Generator_ColumnVarNameInTable="columnSlikaType" msprop:Generator_ColumnPropNameInRow="SlikaType" msprop:Generator_ColumnPropNameInTable="SlikaTypeColumn" msprop:Generator_UserColumnName="SlikaType" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Aktivan" msprop:Generator_ColumnVarNameInTable="columnAktivan" msprop:Generator_ColumnPropNameInRow="Aktivan" msprop:Generator_ColumnPropNameInTable="AktivanColumn" msprop:Generator_UserColumnName="Aktivan" type="xs:boolean" />
+              <xs:element name="DatumIzmjene" msprop:Generator_ColumnVarNameInTable="columnDatumIzmjene" msprop:Generator_ColumnPropNameInRow="DatumIzmjene" msprop:Generator_ColumnPropNameInTable="DatumIzmjeneColumn" msprop:Generator_UserColumnName="DatumIzmjene" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:korisnici" />
+      <xs:field xpath="mstns:KorisnikID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

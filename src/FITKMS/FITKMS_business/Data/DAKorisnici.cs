@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +35,29 @@ namespace FITKMS_business.Data
         {
             Connection.dm.fsp_Korisnici_ChangePassword(userID, passwordSalt, passwordHash);
             Connection.dm.SaveChanges();
+        }
+
+        public static KorisniciDataSet.korisniciRow SelectById(int userId)
+        {
+            SqlConnection con = new SqlConnection(Connection.dm.Database.Connection.ConnectionString);
+            con.Open();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("[fsp_Korisnici_SelectByID]", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.Add("@KorisnikID", System.Data.SqlDbType.Int).Value = userId;
+
+                KorisniciDataSet ds = new KorisniciDataSet();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(ds.korisnici);
+
+                return ds.korisnici[0];
+
+            }
+            finally
+            {
+                con.Close();
+            }
         }
     }
 }

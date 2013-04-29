@@ -1,38 +1,41 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Edit.aspx.cs" Inherits="FITKMS.Wiki.Edit" ValidateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <script type="text/javascript">
-         function fireServerButtonEvent(id) {
-             document.getElementById(id).click();
-         }
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="dashboard-wrapper">
         <div class="main-container">
             <div class="row-fluid">
                 <div class="span12">
-                    <div class="widget-body">
-                        <div id="success_label" class="alert alert-block alert-success fade in" runat="server" visible="false">
-                            <button data-dismiss="alert" class="close" type="button">
-                                ×
-                            </button>
-                            <h4 class="alert-heading">Poruka!
-                            </h4>
-                            <p>
-                                <asp:Label ID="successLabel" runat="server" Text="Label"></asp:Label>
-                            </p>
-                        </div>
-                        <div id="error_label" class="alert alert-block alert-error fade in" runat="server" visible="false">
-                            <button data-dismiss="alert" class="close" type="button">
-                                ×
-                            </button>
-                            <h4 class="alert-heading">Greška!
-                            </h4>
-                            <p>
-                                <asp:Label ID="errorLabel" runat="server" Text="Label"></asp:Label>
-                            </p>
-                        </div>
+                    <div id="success_label" class="alert alert-block alert-success fade in" runat="server" visible="false">
+                        <button data-dismiss="alert" class="close" type="button">
+                            ×
+                        </button>
+                        <h4 class="alert-heading">Poruka!
+                        </h4>
+                        <p>
+                            <asp:Label ID="successLabel" runat="server" Text="Label"></asp:Label>
+                        </p>
+                    </div>
+                    <div id="error_label" class="alert alert-block alert-error fade in" runat="server" visible="false">
+                        <button data-dismiss="alert" class="close" type="button">
+                            ×
+                        </button>
+                        <h4 class="alert-heading">Greška!
+                        </h4>
+                        <p>
+                            <asp:Label ID="errorLabel" runat="server" Text="Label"></asp:Label>
+                        </p>
+                    </div>
+                    <div id="warning_label" class="alert alert-block alert-warning fade in" runat="server" visible="false">
+                        <button data-dismiss="alert" class="close" type="button">
+                            ×
+                        </button>
+                        <h4 class="alert-heading">Upozorenje!
+                        </h4>
+                        <p>
+                            <asp:Label ID="warningLabel" runat="server" Text="Label"></asp:Label>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -71,25 +74,23 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <asp:Button ID="saveTagsSubmit" runat="server" CssClass="btn btn-info" Text="Sačuvaj" formnovalidate="formnovalidate" 
-                                        Height="30px" />
+                                        <asp:Button ID="saveTagsSubmit" runat="server" CssClass="btn btn-info" Text="Sačuvaj" formnovalidate="formnovalidate"
+                                            Height="30px" />
                                     </div>
                                 </div>
                                 <br />
                                 <br />
-                                <asp:FileUpload ID="documentFile" runat="server" AllowMultiple="false"
-                                    required="required" x-moz-errormessage="Obavezno odaberite dokument!" />
-                                <asp:Button ID="documentDeleteSubmit" Style="display: none" runat="server" Text="" OnClick="documentDeleteSubmit_Click" formnovalidate="formnovalidate" />
-
+                                <asp:FileUpload ID="documentFile" runat="server" AllowMultiple="false" />
                                 <div class="btn-group">
-                                    <a class="btn btn-small" onclick="fireServerButtonEvent('documentDeleteSubmit')">
+                                    <asp:LinkButton ID="documentDeleteSubmit" runat="server" Text="" OnClick="documentDeleteSubmit_Click"
+                                        formnovalidate="formnovalidate" CssClass="btn btn-small">
                                         <i class="icon-trash" data-original-title="Ukloni dokument"></i>
-                                    </a>
+                                    </asp:LinkButton>
                                 </div>
                                 <!-- End Modal -->
                                 <div class="right-align-text">
                                     <asp:Button ID="saveArticleSubmit" runat="server" CssClass="btn btn-info" Text="Sačuvaj"
-                                        Height="30px"  OnClientClick="javascript:scroll(0,0);" OnClick="saveArticleSubmit_Click" />
+                                        Height="30px" OnClientClick="javascript:scroll(0,0);" OnClick="saveArticleSubmit_Click" />
                                 </div>
                             </div>
                         </div>
