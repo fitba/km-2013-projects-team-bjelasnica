@@ -14,40 +14,41 @@ namespace FITKMS.QA
         {
             if (!IsCallback && !IsPostBack)
             {
-                ddOblast.DataSource = QAService.getAllOblasti();
+                List<Oblasti> oblasti = QAService.getAllOblasti();
+                Oblasti empty = new Oblasti();
+                empty.Naziv = "Odaberite oblast";
+                empty.OblastID = 0;
+                oblasti.Insert(0, empty);
+                ddOblast.DataSource = oblasti;
                 ddOblast.DataTextField = "Naziv";
                 ddOblast.DataValueField = "OblastID";
                 ddOblast.DataBind();
-
-                FillTeme(2);//////////////// nije dobro
 
                 chkTagovi.DataSource = QAService.getAllTagovi();
                 chkTagovi.DataTextField = "Naziv";
                 chkTagovi.DataValueField = "TagID";
                 chkTagovi.DataBind();
-
             }
-
         }
 
         protected void ddOblast_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             int OblastID = int.Parse(ddOblast.SelectedValue);
             if (OblastID != 0)
                 FillTeme(OblastID);
-
-
         }
-
 
         public void FillTeme(int id)
         {
-            ddTema.DataSource = QAService.getAllTemeByID(id);
+            List<Teme> teme = QAService.getAllTemeByID(id);
+            Teme empty = new Teme();
+            empty.Naziv = "Odaberite temu";
+            empty.TemaID = 0;
+            teme.Insert(0, empty);
+            ddTema.DataSource = teme;
             ddTema.DataTextField = "Naziv";
             ddTema.DataValueField = "TemaID";
             ddTema.DataBind();
-
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -59,19 +60,12 @@ namespace FITKMS.QA
             {
                 if (i.Selected)
                 {
-
                     int id = Int32.Parse(i.Value);
                     tag = QAService.getTagByID(id);
                     ListaOznacenihTagova.Add(tag);
-
                 }
             }
-
-
-
             Session.Add("ListaOznacenihTagova", ListaOznacenihTagova);
-
-
         }
 
         protected void Save_Click(object sender, EventArgs e)
@@ -106,9 +100,6 @@ namespace FITKMS.QA
                 return;
             
             }
-
-
-
         }
     }
 }

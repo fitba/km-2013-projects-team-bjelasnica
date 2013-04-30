@@ -10,16 +10,6 @@ namespace FITKMS_business.Data
     {
         public static int totalRows;
 
-        public static List<fsp_Pitanja_SelectAll_Result> Pitanja_Get_All(int maxRows, int offset)
-        {
-            System.Data.Objects.ObjectParameter total = new System.Data.Objects.ObjectParameter("TotalRows", 0);
-            List<fsp_Pitanja_SelectAll_Result> pitanja = Connection.dm.fsp_Pitanja_SelectAll(offset, maxRows, total).ToList();
-
-            totalRows = Convert.ToInt32(total.Value);
-
-            return pitanja;
-        }
-
         // get pitanje po ID-u
         public static Pitanja getPitanjeByID(int id)
         {
@@ -259,6 +249,16 @@ namespace FITKMS_business.Data
         {
             return Connection.dm.Pitanja.ToList();
 
+        }
+
+        public static List<fsp_Pitanja_SelectSearch_Result> SelectSearch(string search, int maxRows, int offset)
+        {
+            System.Data.Objects.ObjectParameter total = new System.Data.Objects.ObjectParameter("TotalRows", 0);
+            List<fsp_Pitanja_SelectSearch_Result> pitanja = Connection.dm.fsp_Pitanja_SelectSearch(search, offset, maxRows, total).ToList();
+
+            totalRows = Convert.ToInt32(total.Value);
+
+            return pitanja;
         }
 
 

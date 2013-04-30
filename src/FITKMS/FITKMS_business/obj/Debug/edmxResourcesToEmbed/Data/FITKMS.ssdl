@@ -3,6 +3,7 @@
   <EntityContainer Name="FITKMSModelStoreContainer">
     <EntitySet Name="Aktivnosti" EntityType="FITKMSModel.Store.Aktivnosti" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Clanci" EntityType="FITKMSModel.Store.Clanci" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClanciIzmjene" EntityType="FITKMSModel.Store.ClanciIzmjene" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ClanciKomentari" EntityType="FITKMSModel.Store.ClanciKomentari" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ClanciOcjene" EntityType="FITKMSModel.Store.ClanciOcjene" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ClanciTagovi" EntityType="FITKMSModel.Store.ClanciTagovi" store:Type="Tables" Schema="dbo" />
@@ -30,6 +31,14 @@
     <AssociationSet Name="FK_Clanci_VrsteClanaka" Association="FITKMSModel.Store.FK_Clanci_VrsteClanaka">
       <End Role="VrsteClanaka" EntitySet="VrsteClanaka" />
       <End Role="Clanci" EntitySet="Clanci" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClanciIzmjene_Clanci" Association="FITKMSModel.Store.FK_ClanciIzmjene_Clanci">
+      <End Role="Clanci" EntitySet="Clanci" />
+      <End Role="ClanciIzmjene" EntitySet="ClanciIzmjene" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClanciIzmjene_Korisnici" Association="FITKMSModel.Store.FK_ClanciIzmjene_Korisnici">
+      <End Role="Korisnici" EntitySet="Korisnici" />
+      <End Role="ClanciIzmjene" EntitySet="ClanciIzmjene" />
     </AssociationSet>
     <AssociationSet Name="FK_ClanciKomentari_Clanci" Association="FITKMSModel.Store.FK_ClanciKomentari_Clanci">
       <End Role="Clanci" EntitySet="Clanci" />
@@ -142,6 +151,16 @@
     <Property Name="DatumIzmjene" Type="datetime" Nullable="false" />
     <Property Name="DokumentType" Type="nvarchar" MaxLength="50" />
     <Property Name="DokumentPath" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ClanciIzmjene">
+    <Key>
+      <PropertyRef Name="ClanakIzmjenaID" />
+    </Key>
+    <Property Name="ClanakIzmjenaID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ClanakID" Type="int" Nullable="false" />
+    <Property Name="KorisnikID" Type="int" Nullable="false" />
+    <Property Name="Datum" Type="datetime" Nullable="false" />
+    <Property Name="Opis" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="ClanciKomentari">
     <Key>
@@ -355,6 +374,30 @@
       </Principal>
       <Dependent Role="Clanci">
         <PropertyRef Name="VrstaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClanciIzmjene_Clanci">
+    <End Role="Clanci" Type="FITKMSModel.Store.Clanci" Multiplicity="1" />
+    <End Role="ClanciIzmjene" Type="FITKMSModel.Store.ClanciIzmjene" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clanci">
+        <PropertyRef Name="ClanakID" />
+      </Principal>
+      <Dependent Role="ClanciIzmjene">
+        <PropertyRef Name="ClanakID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClanciIzmjene_Korisnici">
+    <End Role="Korisnici" Type="FITKMSModel.Store.Korisnici" Multiplicity="1" />
+    <End Role="ClanciIzmjene" Type="FITKMSModel.Store.ClanciIzmjene" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Korisnici">
+        <PropertyRef Name="KorisnikID" />
+      </Principal>
+      <Dependent Role="ClanciIzmjene">
+        <PropertyRef Name="KorisnikID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -688,13 +731,14 @@
     <Parameter Name="Slika" Type="varbinary(max)" Mode="In" />
     <Parameter Name="SlikaType" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="fsp_Pitanja_SelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="fsp_Pitanja_SelectByTag" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TagID" Type="int" Mode="In" />
     <Parameter Name="Offset" Type="int" Mode="In" />
     <Parameter Name="MaxRows" Type="int" Mode="In" />
     <Parameter Name="TotalRows" Type="int" Mode="InOut" />
   </Function>
-  <Function Name="fsp_Pitanja_SelectByTag" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="TagID" Type="int" Mode="In" />
+  <Function Name="fsp_Pitanja_SelectSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Pretraga" Type="nvarchar" Mode="In" />
     <Parameter Name="Offset" Type="int" Mode="In" />
     <Parameter Name="MaxRows" Type="int" Mode="In" />
     <Parameter Name="TotalRows" Type="int" Mode="InOut" />

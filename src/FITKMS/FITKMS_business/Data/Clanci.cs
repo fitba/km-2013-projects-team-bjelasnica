@@ -20,6 +20,7 @@ namespace FITKMS_business.Data
             this.ClanciOcjene = new HashSet<ClanciOcjene>();
             this.Pitanja = new HashSet<Pitanja>();
             this.Tagovi = new HashSet<Tagovi>();
+            this.ClanciIzmjene = new HashSet<ClanciIzmjene>();
         }
     
         public int ClanakID { get; set; }
@@ -45,5 +46,6 @@ namespace FITKMS_business.Data
         public virtual ICollection<ClanciOcjene> ClanciOcjene { get; set; }
         public virtual ICollection<Pitanja> Pitanja { get; set; }
         public virtual ICollection<Tagovi> Tagovi { get; set; }
+        public virtual ICollection<ClanciIzmjene> ClanciIzmjene { get; set; }
     }
 }

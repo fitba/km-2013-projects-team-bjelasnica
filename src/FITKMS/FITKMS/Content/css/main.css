@@ -1910,7 +1910,9 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 button.btn, input[type="submit"].btn {
   *padding-top: 3px;
-  *padding-bottom: 3px; 
+  *padding-bottom: 3px;
+    top: 0px;
+    left: 0px;
 }
 
 button.btn::-moz-focus-inner, input[type="submit"].btn::-moz-focus-inner {

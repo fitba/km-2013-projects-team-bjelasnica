@@ -44,6 +44,7 @@ namespace FITKMS_business.Data
         public DbSet<Teme> Teme { get; set; }
         public DbSet<Uloge> Uloge { get; set; }
         public DbSet<VrsteClanaka> VrsteClanaka { get; set; }
+        public DbSet<ClanciIzmjene> ClanciIzmjene { get; set; }
     
         public virtual ObjectResult<VrsteClanaka> fsp_VrsteClanaka_SelectByStatus(Nullable<bool> status)
         {
@@ -367,19 +368,6 @@ namespace FITKMS_business.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tagovi>("fsp_Pitanja_SelectTags", mergeOption, pitanjeIDParameter);
         }
     
-        public virtual ObjectResult<fsp_Pitanja_SelectAll_Result> fsp_Pitanja_SelectAll(Nullable<int> offset, Nullable<int> maxRows, ObjectParameter totalRows)
-        {
-            var offsetParameter = offset.HasValue ?
-                new ObjectParameter("Offset", offset) :
-                new ObjectParameter("Offset", typeof(int));
-    
-            var maxRowsParameter = maxRows.HasValue ?
-                new ObjectParameter("MaxRows", maxRows) :
-                new ObjectParameter("MaxRows", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_Pitanja_SelectAll_Result>("fsp_Pitanja_SelectAll", offsetParameter, maxRowsParameter, totalRows);
-        }
-    
         public virtual ObjectResult<ClanciOcjene> fsp_ClanciOcjene_SelectByUser(Nullable<int> clanakID, Nullable<int> korisnikID)
         {
             var clanakIDParameter = clanakID.HasValue ?
@@ -492,6 +480,23 @@ namespace FITKMS_business.Data
                 new ObjectParameter("MaxRows", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_Clanci_SelectSearch_Result>("fsp_Clanci_SelectSearch", pretragaParameter, offsetParameter, maxRowsParameter, totalRows);
+        }
+    
+        public virtual ObjectResult<fsp_Pitanja_SelectSearch_Result> fsp_Pitanja_SelectSearch(string pretraga, Nullable<int> offset, Nullable<int> maxRows, ObjectParameter totalRows)
+        {
+            var pretragaParameter = pretraga != null ?
+                new ObjectParameter("Pretraga", pretraga) :
+                new ObjectParameter("Pretraga", typeof(string));
+    
+            var offsetParameter = offset.HasValue ?
+                new ObjectParameter("Offset", offset) :
+                new ObjectParameter("Offset", typeof(int));
+    
+            var maxRowsParameter = maxRows.HasValue ?
+                new ObjectParameter("MaxRows", maxRows) :
+                new ObjectParameter("MaxRows", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_Pitanja_SelectSearch_Result>("fsp_Pitanja_SelectSearch", pretragaParameter, offsetParameter, maxRowsParameter, totalRows);
         }
     }
 }

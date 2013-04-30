@@ -181,11 +181,6 @@
     <FunctionImport Name="fsp_Pitanja_SelectTags" EntitySet="Tagovi" ReturnType="Collection(FITKMSModel.Tagovi)">
       <Parameter Name="PitanjeID" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="fsp_Pitanja_SelectAll" ReturnType="Collection(FITKMSModel.fsp_Pitanja_SelectAll_Result)">
-      <Parameter Name="Offset" Mode="In" Type="Int32" />
-      <Parameter Name="MaxRows" Mode="In" Type="Int32" />
-      <Parameter Name="TotalRows" Mode="InOut" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="fsp_ClanciOcjene_SelectByUser" EntitySet="ClanciOcjene" ReturnType="Collection(FITKMSModel.ClanciOcjene)">
       <Parameter Name="ClanakID" Mode="In" Type="Int32" />
       <Parameter Name="KorisnikID" Mode="In" Type="Int32" />
@@ -212,6 +207,21 @@
       <Parameter Name="ClanakID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="fsp_Clanci_SelectSearch" ReturnType="Collection(FITKMSModel.fsp_Clanci_SelectSearch_Result)">
+      <Parameter Name="Pretraga" Mode="In" Type="String" />
+      <Parameter Name="Offset" Mode="In" Type="Int32" />
+      <Parameter Name="MaxRows" Mode="In" Type="Int32" />
+      <Parameter Name="TotalRows" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="ClanciIzmjene" EntityType="FITKMSModel.ClanciIzmjene" />
+    <AssociationSet Name="FK_ClanciIzmjene_Clanci" Association="FITKMSModel.FK_ClanciIzmjene_Clanci">
+      <End Role="Clanci" EntitySet="Clanci" />
+      <End Role="ClanciIzmjene" EntitySet="ClanciIzmjene" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClanciIzmjene_Korisnici" Association="FITKMSModel.FK_ClanciIzmjene_Korisnici">
+      <End Role="Korisnici" EntitySet="Korisnici" />
+      <End Role="ClanciIzmjene" EntitySet="ClanciIzmjene" />
+    </AssociationSet>
+    <FunctionImport Name="fsp_Pitanja_SelectSearch" ReturnType="Collection(FITKMSModel.fsp_Pitanja_SelectSearch_Result)">
       <Parameter Name="Pretraga" Mode="In" Type="String" />
       <Parameter Name="Offset" Mode="In" Type="Int32" />
       <Parameter Name="MaxRows" Mode="In" Type="Int32" />
@@ -252,6 +262,7 @@
     <NavigationProperty Name="Tagovi" Relationship="FITKMSModel.ClanciTagovi" FromRole="Clanci" ToRole="Tagovi" />
     <Property Type="String" Name="DokumentType" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="DokumentPath" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ClanciIzmjene" Relationship="FITKMSModel.FK_ClanciIzmjene_Clanci" FromRole="Clanci" ToRole="ClanciIzmjene" />
   </EntityType>
   <EntityType Name="ClanciKomentari">
     <Key>
@@ -307,6 +318,7 @@
     <NavigationProperty Name="Pitanja" Relationship="FITKMSModel.FK_Pitanja_Korisnici" FromRole="Korisnici" ToRole="Pitanja" />
     <NavigationProperty Name="PitanjaGlasovi" Relationship="FITKMSModel.FK_PitanjaGlasovi_Korisnici" FromRole="Korisnici" ToRole="PitanjaGlasovi" />
     <Property Type="String" Name="SlikaType" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="ClanciIzmjene" Relationship="FITKMSModel.FK_ClanciIzmjene_Korisnici" FromRole="Korisnici" ToRole="ClanciIzmjene" />
   </EntityType>
   <EntityType Name="KorisniciUloge">
     <Key>
@@ -757,18 +769,6 @@
     <Property Type="Int32" Name="BrojPregleda" Nullable="true" />
     <Property Type="Int32" Name="BrojOdgovora" Nullable="true" />
   </ComplexType>
-  <ComplexType Name="fsp_Pitanja_SelectAll_Result">
-    <Property Type="Int32" Name="PitanjeID" Nullable="false" />
-    <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" Precision="23" />
-    <Property Type="DateTime" Name="DatumIzmjene" Nullable="false" Precision="23" />
-    <Property Type="String" Name="Naslov" Nullable="false" MaxLength="250" />
-    <Property Type="String" Name="Tekst" Nullable="false" />
-    <Property Type="Int32" Name="BrojPregleda" Nullable="true" />
-    <Property Type="Int32" Name="Pozitivni" Nullable="true" />
-    <Property Type="Int32" Name="Negativni" Nullable="true" />
-    <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
-    <Property Type="Int32" Name="BrojOdgvora" Nullable="true" />
-  </ComplexType>
   <ComplexType Name="fsp_ClanciKomentari_Select_Result">
     <Property Type="Int32" Name="ClanakKomentarID" Nullable="false" />
     <Property Type="String" Name="Komentar" Nullable="false" />
@@ -789,5 +789,53 @@
     <Property Type="String" Name="KljucneRijeci" Nullable="false" />
     <Property Type="Double" Name="ProsjecnaOcjena" Nullable="true" />
     <Property Type="Int32" Name="BrojKomentara" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="ClanciIzmjene">
+    <Key>
+      <PropertyRef Name="ClanakIzmjenaID" />
+    </Key>
+    <Property Type="Int32" Name="ClanakIzmjenaID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="ClanakID" Nullable="false" />
+    <Property Type="Int32" Name="KorisnikID" Nullable="false" />
+    <Property Type="DateTime" Name="Datum" Nullable="false" Precision="3" />
+    <Property Type="String" Name="Opis" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Clanci" Relationship="FITKMSModel.FK_ClanciIzmjene_Clanci" FromRole="ClanciIzmjene" ToRole="Clanci" />
+    <NavigationProperty Name="Korisnici" Relationship="FITKMSModel.FK_ClanciIzmjene_Korisnici" FromRole="ClanciIzmjene" ToRole="Korisnici" />
+  </EntityType>
+  <Association Name="FK_ClanciIzmjene_Clanci">
+    <End Type="FITKMSModel.Clanci" Role="Clanci" Multiplicity="1" />
+    <End Type="FITKMSModel.ClanciIzmjene" Role="ClanciIzmjene" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clanci">
+        <PropertyRef Name="ClanakID" />
+      </Principal>
+      <Dependent Role="ClanciIzmjene">
+        <PropertyRef Name="ClanakID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClanciIzmjene_Korisnici">
+    <End Type="FITKMSModel.Korisnici" Role="Korisnici" Multiplicity="1" />
+    <End Type="FITKMSModel.ClanciIzmjene" Role="ClanciIzmjene" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Korisnici">
+        <PropertyRef Name="KorisnikID" />
+      </Principal>
+      <Dependent Role="ClanciIzmjene">
+        <PropertyRef Name="KorisnikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="fsp_Pitanja_SelectSearch_Result">
+    <Property Type="Int32" Name="PitanjeID" Nullable="false" />
+    <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" />
+    <Property Type="DateTime" Name="DatumIzmjene" Nullable="false" />
+    <Property Type="String" Name="Naslov" Nullable="false" />
+    <Property Type="String" Name="Tekst" Nullable="false" />
+    <Property Type="Int32" Name="BrojPregleda" Nullable="false" />
+    <Property Type="Int32" Name="Pozitivni" Nullable="false" />
+    <Property Type="Int32" Name="Negativni" Nullable="false" />
+    <Property Type="String" Name="KorisnickoIme" Nullable="false" />
+    <Property Type="Int32" Name="BrojOdgovora" Nullable="false" />
   </ComplexType>
 </Schema>

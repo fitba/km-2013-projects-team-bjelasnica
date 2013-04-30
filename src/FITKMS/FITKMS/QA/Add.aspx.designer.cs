@@ -58,15 +58,6 @@ namespace FITKMS.QA {
         protected global::System.Web.UI.WebControls.Label errorLabel;
         
         /// <summary>
-        /// txtNaslovPitanja control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNaslovPitanja;
-        
-        /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
@@ -92,6 +83,15 @@ namespace FITKMS.QA {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddTema;
+        
+        /// <summary>
+        /// txtNaslovPitanja control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNaslovPitanja;
         
         /// <summary>
         /// wysiwyg control.

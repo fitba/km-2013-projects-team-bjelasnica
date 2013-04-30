@@ -174,8 +174,8 @@
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="QA\Add.aspx" />
-    <Content Include="QA\AllQuestions.aspx" />
-    <Content Include="QA\Questions.aspx" />
+    <Content Include="QA\Details.aspx" />
+    <Content Include="QA\Index.aspx" />
     <Content Include="Tags\Details.aspx" />
     <Content Include="Tags\Index.aspx" />
     <Content Include="Users\Image.aspx" />
@@ -220,19 +220,19 @@
     <Compile Include="QA\Add.aspx.designer.cs">
       <DependentUpon>Add.aspx</DependentUpon>
     </Compile>
-    <Compile Include="QA\AllQuestions.aspx.cs">
-      <DependentUpon>AllQuestions.aspx</DependentUpon>
+    <Compile Include="QA\Details.aspx.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="QA\AllQuestions.aspx.designer.cs">
-      <DependentUpon>AllQuestions.aspx</DependentUpon>
+    <Compile Include="QA\Details.aspx.designer.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
     </Compile>
-    <Compile Include="QA\Questions.aspx.cs">
-      <DependentUpon>Questions.aspx</DependentUpon>
+    <Compile Include="QA\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="QA\Questions.aspx.designer.cs">
-      <DependentUpon>Questions.aspx</DependentUpon>
+    <Compile Include="QA\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tags\Details.aspx.cs">
       <DependentUpon>Details.aspx</DependentUpon>
