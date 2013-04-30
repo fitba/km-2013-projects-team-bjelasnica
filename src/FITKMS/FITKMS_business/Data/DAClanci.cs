@@ -38,11 +38,11 @@ namespace FITKMS_business.Data
            return Connection.dm.Clanci.Find(clanakId);
         }
 
-        public static List<fsp_Clanci_SelectByTypeTitle_Result> SearchByTypeTitle(int typeId, string searchText, int maxRows, int offset)
+        public static List<fsp_Clanci_SelectSearch_Result> Search(string searchText, int maxRows, int offset)
         { 
             System.Data.Objects.ObjectParameter total = new System.Data.Objects.ObjectParameter("TotalRows", 0);
-            List<fsp_Clanci_SelectByTypeTitle_Result> articles = Connection.dm.fsp_Clanci_SelectByTypeTitle
-                                                                 (typeId, searchText, offset, maxRows, total).ToList();
+            List<fsp_Clanci_SelectSearch_Result> articles = Connection.dm.fsp_Clanci_SelectSearch
+                                                                 (searchText, offset, maxRows, total).ToList();
             totalRows = Convert.ToInt32(total.Value);
 
             return articles;

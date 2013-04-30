@@ -5,41 +5,43 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="dashboard-wrapper">
         <div class="main-container">
-            <div class="row-fluid">
-                <div class="span12">
-                    <div id="success_label" class="alert alert-block alert-success fade in" runat="server" visible="false">
-                        <button data-dismiss="alert" class="close" type="button">
-                            ×
-                        </button>
-                        <h4 class="alert-heading">Poruka!
-                        </h4>
-                        <p>
-                            <asp:Label ID="successLabel" runat="server" Text="Label"></asp:Label>
-                        </p>
-                    </div>
-                    <div id="error_label" class="alert alert-block alert-error fade in" runat="server" visible="false">
-                        <button data-dismiss="alert" class="close" type="button">
-                            ×
-                        </button>
-                        <h4 class="alert-heading">Greška!
-                        </h4>
-                        <p>
-                            <asp:Label ID="errorLabel" runat="server" Text="Label"></asp:Label>
-                        </p>
-                    </div>
-                    <div id="warning_label" class="alert alert-block alert-warning fade in" runat="server" visible="false">
-                        <button data-dismiss="alert" class="close" type="button">
-                            ×
-                        </button>
-                        <h4 class="alert-heading">Upozorenje!
-                        </h4>
-                        <p>
-                            <asp:Label ID="warningLabel" runat="server" Text="Label"></asp:Label>
-                        </p>
-                    </div>
-                </div>
+            <div id="success_label" class="alert alert-block alert-success fade in" runat="server" visible="false">
+                <button data-dismiss="alert" class="close" type="button">
+                    ×
+                </button>
+                <h4 class="alert-heading">Poruka!
+                </h4>
+                <p>
+                    <asp:Label ID="successLabel" runat="server" Text="Label"></asp:Label>
+                </p>
+            </div>
+            <div id="error_label" class="alert alert-block alert-error fade in" runat="server" visible="false">
+                <button data-dismiss="alert" class="close" type="button">
+                    ×
+                </button>
+                <h4 class="alert-heading">Greška!
+                </h4>
+                <p>
+                    <asp:Label ID="errorLabel" runat="server" Text="Label"></asp:Label>
+                </p>
+            </div>
+            <div id="warning_label" class="alert alert-block alert-warning fade in" runat="server" visible="false">
+                <button data-dismiss="alert" class="close" type="button">
+                    ×
+                </button>
+                <h4 class="alert-heading">Upozorenje!
+                </h4>
+                <p>
+                    <asp:Label ID="warningLabel" runat="server" Text="Label"></asp:Label>
+                </p>
             </div>
             <div class="widget no-margin">
+                  <div class="widget-header">
+                    <div class="title">
+                        <span class="fs1" aria-hidden="true" data-icon="&#xe022;"></span>
+                        Izmjena članka
+                    </div>
+                </div>
                 <div class="row-fluid">
                     <div class="widget-body">
                         <div class="control-group">

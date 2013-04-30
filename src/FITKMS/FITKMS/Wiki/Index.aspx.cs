@@ -13,12 +13,11 @@ namespace FITKMS.Wiki
     public partial class Index : System.Web.UI.Page
     {
         protected List<VrsteClanaka> types;
-        protected List<fsp_Clanci_SelectByTypeTitle_Result> articles;
+        protected List<fsp_Clanci_SelectSearch_Result> articles;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                BindTypes();
                 BindGrid();
             }
         }
@@ -29,20 +28,11 @@ namespace FITKMS.Wiki
             BindGrid();
         }
 
-        private void BindTypes()
-        {
-            types = DAClanci.SelectTypes(true);
-            typesList.DataBind();
-        }
-
         private void BindGrid()
         {
             int offset = articlesGrid.CurrentPageIndex * articlesGrid.PageSize;
-            int typeId = 0;
-            if (typesList.SelectedIndex != 0)
-                typeId = Convert.ToInt32(typesList.SelectedValue);
 
-            articles = DAClanci.SearchByTypeTitle(typeId, searchInput.Text.Trim(), articlesGrid.PageSize, offset);
+            articles = DAClanci.Search(searchInput.Text.Trim(), articlesGrid.PageSize, offset);
             articlesGrid.VirtualItemCount = DAClanci.totalRows;
             articlesGrid.DataBind();
 

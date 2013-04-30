@@ -115,13 +115,6 @@
       <Parameter Name="ClanakID" Mode="In" Type="Int32" />
       <Parameter Name="TagID" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="fsp_Clanci_SelectByTypeTitle" ReturnType="Collection(FITKMSModel.fsp_Clanci_SelectByTypeTitle_Result)">
-      <Parameter Name="VrstaID" Mode="In" Type="Int32" />
-      <Parameter Name="Pretraga" Mode="In" Type="String" />
-      <Parameter Name="Offset" Mode="In" Type="Int32" />
-      <Parameter Name="MaxRows" Mode="In" Type="Int32" />
-      <Parameter Name="TotalRows" Mode="InOut" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="fsp_Clanci_SelectById" ReturnType="Collection(FITKMSModel.fsp_Clanci_SelectById_Result)">
       <Parameter Name="ClanakID" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -217,6 +210,12 @@
     </FunctionImport>
     <FunctionImport Name="fsp_Clanci_DeleteTags">
       <Parameter Name="ClanakID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="fsp_Clanci_SelectSearch" ReturnType="Collection(FITKMSModel.fsp_Clanci_SelectSearch_Result)">
+      <Parameter Name="Pretraga" Mode="In" Type="String" />
+      <Parameter Name="Offset" Mode="In" Type="Int32" />
+      <Parameter Name="MaxRows" Mode="In" Type="Int32" />
+      <Parameter Name="TotalRows" Mode="InOut" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="Aktivnosti">
@@ -701,17 +700,6 @@
     <End Role="Pitanja" Type="FITKMSModel.Pitanja" Multiplicity="*" />
     <End Role="Tagovi" Type="FITKMSModel.Tagovi" Multiplicity="*" />
   </Association>
-  <ComplexType Name="fsp_Clanci_SelectByTypeTitle_Result">
-    <Property Type="Int32" Name="ClanakID" Nullable="false" />
-    <Property Type="String" Name="Naslov" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="Tekst" Nullable="false" />
-    <Property Type="String" Name="KljucneRijeci" Nullable="false" MaxLength="150" />
-    <Property Type="Double" Name="ProsjecnaOcjena" Nullable="true" />
-    <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" Precision="23" />
-    <Property Type="DateTime" Name="DatumIzmjene" Nullable="false" Precision="23" />
-    <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
-    <Property Type="Int32" Name="BrojKomentara" Nullable="true" />
-  </ComplexType>
   <ComplexType Name="fsp_Clanci_SelectById_Result">
     <Property Type="Int32" Name="ClanakID" Nullable="false" />
     <Property Type="String" Name="Naslov" Nullable="false" MaxLength="100" />
@@ -790,5 +778,16 @@
     <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" Precision="23" />
     <Property Type="DateTime" Name="DatumIzmjene" Nullable="false" Precision="23" />
     <Property Type="String" Name="Korisnik" Nullable="false" MaxLength="101" />
+  </ComplexType>
+  <ComplexType Name="fsp_Clanci_SelectSearch_Result">
+    <Property Type="Int32" Name="ClanakID" Nullable="false" />
+    <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" />
+    <Property Type="DateTime" Name="DatumIzmjene" Nullable="false" />
+    <Property Type="String" Name="Naslov" Nullable="false" />
+    <Property Type="String" Name="Tekst" Nullable="false" />
+    <Property Type="String" Name="KorisnickoIme" Nullable="false" />
+    <Property Type="String" Name="KljucneRijeci" Nullable="false" />
+    <Property Type="Double" Name="ProsjecnaOcjena" Nullable="true" />
+    <Property Type="Int32" Name="BrojKomentara" Nullable="true" />
   </ComplexType>
 </Schema>

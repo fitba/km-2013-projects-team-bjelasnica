@@ -94,27 +94,6 @@ namespace FITKMS_business.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_ClanciTagovi_Insert", clanakIDParameter, tagIDParameter);
         }
     
-        public virtual ObjectResult<fsp_Clanci_SelectByTypeTitle_Result> fsp_Clanci_SelectByTypeTitle(Nullable<int> vrstaID, string pretraga, Nullable<int> offset, Nullable<int> maxRows, ObjectParameter totalRows)
-        {
-            var vrstaIDParameter = vrstaID.HasValue ?
-                new ObjectParameter("VrstaID", vrstaID) :
-                new ObjectParameter("VrstaID", typeof(int));
-    
-            var pretragaParameter = pretraga != null ?
-                new ObjectParameter("Pretraga", pretraga) :
-                new ObjectParameter("Pretraga", typeof(string));
-    
-            var offsetParameter = offset.HasValue ?
-                new ObjectParameter("Offset", offset) :
-                new ObjectParameter("Offset", typeof(int));
-    
-            var maxRowsParameter = maxRows.HasValue ?
-                new ObjectParameter("MaxRows", maxRows) :
-                new ObjectParameter("MaxRows", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_Clanci_SelectByTypeTitle_Result>("fsp_Clanci_SelectByTypeTitle", vrstaIDParameter, pretragaParameter, offsetParameter, maxRowsParameter, totalRows);
-        }
-    
         public virtual ObjectResult<fsp_Clanci_SelectById_Result> fsp_Clanci_SelectById(Nullable<int> clanakID)
         {
             var clanakIDParameter = clanakID.HasValue ?
@@ -252,15 +231,6 @@ namespace FITKMS_business.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tagovi>("fsp_Clanci_SelectTags", mergeOption, clanakIDParameter);
         }
     
-        public virtual int fsp_Clanci_DeleteTags(Nullable<int> clanakID)
-        {
-            var clanakIDParameter = clanakID.HasValue ?
-                new ObjectParameter("ClanakID", clanakID) :
-                new ObjectParameter("ClanakID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_Clanci_DeleteTags", clanakIDParameter);
-        }
-    
         public virtual ObjectResult<Tagovi> fsp_get_AllTagovi()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tagovi>("fsp_get_AllTagovi");
@@ -309,51 +279,6 @@ namespace FITKMS_business.Data
                 new ObjectParameter("PId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_getAllOdgovoriZaPitanje_Result>("fsp_getAllOdgovoriZaPitanje", pIdParameter);
-        }
-    
-        public virtual int fsp_Clanci_Update(Nullable<int> clanakID, string naslov, string autori, string tekst, string kljucneRijeci, Nullable<int> vrstaID, Nullable<int> temaID, byte[] dokument, string dokumentType, string dokumentPath)
-        {
-            var clanakIDParameter = clanakID.HasValue ?
-                new ObjectParameter("ClanakID", clanakID) :
-                new ObjectParameter("ClanakID", typeof(int));
-    
-            var naslovParameter = naslov != null ?
-                new ObjectParameter("Naslov", naslov) :
-                new ObjectParameter("Naslov", typeof(string));
-    
-            var autoriParameter = autori != null ?
-                new ObjectParameter("Autori", autori) :
-                new ObjectParameter("Autori", typeof(string));
-    
-            var tekstParameter = tekst != null ?
-                new ObjectParameter("Tekst", tekst) :
-                new ObjectParameter("Tekst", typeof(string));
-    
-            var kljucneRijeciParameter = kljucneRijeci != null ?
-                new ObjectParameter("KljucneRijeci", kljucneRijeci) :
-                new ObjectParameter("KljucneRijeci", typeof(string));
-    
-            var vrstaIDParameter = vrstaID.HasValue ?
-                new ObjectParameter("VrstaID", vrstaID) :
-                new ObjectParameter("VrstaID", typeof(int));
-    
-            var temaIDParameter = temaID.HasValue ?
-                new ObjectParameter("TemaID", temaID) :
-                new ObjectParameter("TemaID", typeof(int));
-    
-            var dokumentParameter = dokument != null ?
-                new ObjectParameter("Dokument", dokument) :
-                new ObjectParameter("Dokument", typeof(byte[]));
-    
-            var dokumentTypeParameter = dokumentType != null ?
-                new ObjectParameter("DokumentType", dokumentType) :
-                new ObjectParameter("DokumentType", typeof(string));
-    
-            var dokumentPathParameter = dokumentPath != null ?
-                new ObjectParameter("DokumentPath", dokumentPath) :
-                new ObjectParameter("DokumentPath", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_Clanci_Update", clanakIDParameter, naslovParameter, autoriParameter, tekstParameter, kljucneRijeciParameter, vrstaIDParameter, temaIDParameter, dokumentParameter, dokumentTypeParameter, dokumentPathParameter);
         }
     
         public virtual ObjectResult<fsp_Clanci_SelectByTag_Result> fsp_Clanci_SelectByTag(Nullable<int> tagID, Nullable<int> offset, Nullable<int> maxRows, ObjectParameter totalRows)
@@ -496,6 +421,77 @@ namespace FITKMS_business.Data
                 new ObjectParameter("MaxRows", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_ClanciKomentari_Select_Result>("fsp_ClanciKomentari_Select", clanakIDParameter, offsetParameter, maxRowsParameter, totalRows);
+        }
+    
+        public virtual int fsp_Clanci_Update(Nullable<int> clanakID, string naslov, string autori, string tekst, string kljucneRijeci, Nullable<int> vrstaID, Nullable<int> temaID, byte[] dokument, string dokumentType, string dokumentPath)
+        {
+            var clanakIDParameter = clanakID.HasValue ?
+                new ObjectParameter("ClanakID", clanakID) :
+                new ObjectParameter("ClanakID", typeof(int));
+    
+            var naslovParameter = naslov != null ?
+                new ObjectParameter("Naslov", naslov) :
+                new ObjectParameter("Naslov", typeof(string));
+    
+            var autoriParameter = autori != null ?
+                new ObjectParameter("Autori", autori) :
+                new ObjectParameter("Autori", typeof(string));
+    
+            var tekstParameter = tekst != null ?
+                new ObjectParameter("Tekst", tekst) :
+                new ObjectParameter("Tekst", typeof(string));
+    
+            var kljucneRijeciParameter = kljucneRijeci != null ?
+                new ObjectParameter("KljucneRijeci", kljucneRijeci) :
+                new ObjectParameter("KljucneRijeci", typeof(string));
+    
+            var vrstaIDParameter = vrstaID.HasValue ?
+                new ObjectParameter("VrstaID", vrstaID) :
+                new ObjectParameter("VrstaID", typeof(int));
+    
+            var temaIDParameter = temaID.HasValue ?
+                new ObjectParameter("TemaID", temaID) :
+                new ObjectParameter("TemaID", typeof(int));
+    
+            var dokumentParameter = dokument != null ?
+                new ObjectParameter("Dokument", dokument) :
+                new ObjectParameter("Dokument", typeof(byte[]));
+    
+            var dokumentTypeParameter = dokumentType != null ?
+                new ObjectParameter("DokumentType", dokumentType) :
+                new ObjectParameter("DokumentType", typeof(string));
+    
+            var dokumentPathParameter = dokumentPath != null ?
+                new ObjectParameter("DokumentPath", dokumentPath) :
+                new ObjectParameter("DokumentPath", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_Clanci_Update", clanakIDParameter, naslovParameter, autoriParameter, tekstParameter, kljucneRijeciParameter, vrstaIDParameter, temaIDParameter, dokumentParameter, dokumentTypeParameter, dokumentPathParameter);
+        }
+    
+        public virtual int fsp_Clanci_DeleteTags(Nullable<int> clanakID)
+        {
+            var clanakIDParameter = clanakID.HasValue ?
+                new ObjectParameter("ClanakID", clanakID) :
+                new ObjectParameter("ClanakID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_Clanci_DeleteTags", clanakIDParameter);
+        }
+    
+        public virtual ObjectResult<fsp_Clanci_SelectSearch_Result> fsp_Clanci_SelectSearch(string pretraga, Nullable<int> offset, Nullable<int> maxRows, ObjectParameter totalRows)
+        {
+            var pretragaParameter = pretraga != null ?
+                new ObjectParameter("Pretraga", pretraga) :
+                new ObjectParameter("Pretraga", typeof(string));
+    
+            var offsetParameter = offset.HasValue ?
+                new ObjectParameter("Offset", offset) :
+                new ObjectParameter("Offset", typeof(int));
+    
+            var maxRowsParameter = maxRows.HasValue ?
+                new ObjectParameter("MaxRows", maxRows) :
+                new ObjectParameter("MaxRows", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_Clanci_SelectSearch_Result>("fsp_Clanci_SelectSearch", pretragaParameter, offsetParameter, maxRowsParameter, totalRows);
         }
     }
 }

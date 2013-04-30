@@ -88,7 +88,7 @@
     <Compile Include="Data\fsp_Clanci_SelectByTag_Result.cs">
       <DependentUpon>FITKMS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\fsp_Clanci_SelectByTypeTitle_Result.cs">
+    <Compile Include="Data\fsp_Clanci_SelectSearch_Result.cs">
       <DependentUpon>FITKMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\fsp_getAllOdgovoriZaPitanje_Result.cs">

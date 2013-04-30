@@ -26,6 +26,13 @@ namespace FITKMS.Wiki
             {
                 BindArticle();
                 BindComments(false);
+
+                if (User.Identity.Name == "")
+                {
+                    commentMessagePanel.Visible = true;
+                }
+                else
+                    commentPanel.Visible = true;
             }
         }
 
@@ -62,6 +69,7 @@ namespace FITKMS.Wiki
             if (Request["articleId"] != null)
             {
                 articleId = Convert.ToInt32(Request["articleId"]);
+                editLink.PostBackUrl = "Edit.aspx?articleId=" + articleId;
                 article = DAClanci.SelectById(articleId);
                 titleLabel.Text = article.Naslov;
                 typeLable.Text = article.Vrsta;
@@ -107,21 +115,6 @@ namespace FITKMS.Wiki
                 activateCommentTab();
             commentsGrid.CurrentPageIndex = e.NewPageIndex;
             BindComments(false);
-        }
-
-        protected void newCommentSubmit_Click(object sender, EventArgs e)
-        {
-            activateCommentTab();
-
-            if (User.Identity.Name == "")
-            { 
-                warningLabel.Text = "Komentari su omogućeni samo za prijavljene korisnike.";
-                warning_label.Visible = true;
-            }
-            else
-            {
-                commentPanel.Visible = true;
-            }
         }
 
         private void activateCommentTab()

@@ -20,6 +20,9 @@
                                         <asp:Label ID="typeLable" runat="server" Text="Label"></asp:Label>
                                     </span>
                                 </div>
+                                <div class="tools pull-right">
+                                    <asp:LinkButton ID="editLink" runat="server" CssClass="btn btn-inverse">Edit</asp:LinkButton>
+                                </div>
                             </div>
                             <div class="widget-body">
                                 <ul class="nav nav-tabs no-margin myTabBeauty">
@@ -59,7 +62,7 @@
                                                     | <span class="fs1" aria-hidden="true" data-icon="&#xe031;"></span>Tagovi:
                                                     <asp:Repeater ID="tagsRepeater" runat="server">
                                                         <ItemTemplate>
-                                                            <asp:LinkButton ID="tagLink" runat="server" CssClass="label label-important" Text='<%# Eval("Naziv") %>'></asp:LinkButton>
+                                                            <asp:LinkButton ID="tagLink" runat="server" CssClass="label label-important" Text='<%# Eval("Naziv") %>' PostBackUrl='<%# string.Format("/Tags/Details.aspx?Id={0}", Eval("TagID"))  %>'></asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:Repeater>
                                                 </p>
@@ -126,22 +129,27 @@
                                                     </asp:TemplateColumn>
                                                 </Columns>
                                             </asp:DataGrid>
-                                            <div class="widget-body">
-                                                <div id="warning_label" class="alert alert-block alert-warning fade in" runat="server" visible="false">
-                                                    <button data-dismiss="alert" class="close" type="button">
-                                                        ×</button>
-                                                    <h4 class="alert-heading">Upozorenje!
-                                                    </h4>
-                                                    <p>
-                                                        <asp:Label ID="warningLabel" runat="server" Text="Label"></asp:Label>
-                                                        <a href="../Login.aspx" class="label label-important">Prijavi se</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="right-align-text">
-                                                <asp:Button ID="newCommentSubmit" runat="server" Text="Dodaj komentar" CssClass="btn btn-inverse" Height="30px" OnClick="newCommentSubmit_Click"
-                                                    OnClientClick="javascript:scroll(0, document.body.scrollHeight);" />
-                                            </div>
+
+                                            <asp:Panel ID="commentMessagePanel" runat="server" Visible="false">
+                                                <h4 style="color: #b5799e;">Novi komentar</h4>
+                                                <hr />
+                                                <ul class="comments">
+                                                    <li id="commentBlock" class="in" runat="server">
+                                                        <img class="avatar" alt="" src="../Content/img/profile.png" />
+                                                        <div class="message">
+                                                            <span class="arrow"></span>
+                                                            <span class="body">Da biste mogli komentarisati ovaj članak, potrebno je da budete registrovani. 
+                                                            Ukoliko ste već registrovani, prijavite se na sistem.
+                                                            <br />
+                                                                <br />
+                                                                <a href="../Login.aspx" class="label label-important">Prijavi se</a>
+                                                                <a href="../Users/Registration.aspx" class="label label-important">Registracija</a>
+
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </asp:Panel>
                                             <asp:Panel ID="commentPanel" runat="server" Visible="false">
                                                 <hr />
                                                 <div class="wysiwyg-container">

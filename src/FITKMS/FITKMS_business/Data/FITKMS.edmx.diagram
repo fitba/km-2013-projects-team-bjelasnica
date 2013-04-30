@@ -43,6 +43,9 @@
         <AssociationConnector Association="FITKMSModel.FK_PitanjaGlasovi_Pitanja" ManuallyRouted="false" />
         <AssociationConnector Association="FITKMSModel.ClanciTagovi" ManuallyRouted="false" />
         <AssociationConnector Association="FITKMSModel.PitanjaTagovi" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FITKMSModel.ClanciIzmjene" Width="1.5" PointX="7.4977531896427987" PointY="27.669654516349386" />
+        <AssociationConnector Association="FITKMSModel.FK_ClanciIzmjene_Clanci" />
+        <AssociationConnector Association="FITKMSModel.FK_ClanciIzmjene_Korisnici" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

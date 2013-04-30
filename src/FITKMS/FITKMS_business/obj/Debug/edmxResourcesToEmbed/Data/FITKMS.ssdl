@@ -636,8 +636,7 @@
     <Parameter Name="MaxRows" Type="int" Mode="In" />
     <Parameter Name="TotalRows" Type="int" Mode="InOut" />
   </Function>
-  <Function Name="fsp_Clanci_SelectByTypeTitle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="VrstaID" Type="int" Mode="In" />
+  <Function Name="fsp_Clanci_SelectSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Pretraga" Type="nvarchar" Mode="In" />
     <Parameter Name="Offset" Type="int" Mode="In" />
     <Parameter Name="MaxRows" Type="int" Mode="In" />

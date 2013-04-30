@@ -6,7 +6,7 @@
     <div class="dashboard-wrapper">
         <div class="main-container">
             <div class="row-fluid">
-                <div class="span12">
+                <div class="span8">
                     <div class="widget-body">
                         <div class="widget">
                             <div class="widget-header">
@@ -16,13 +16,12 @@
                             </div>
                             <div class="widget-body">
                                 <div class="input-append">
-                                    <asp:DropDownList ID="typesList" runat="server" DataSource="<%# types %>" DataTextField="Naziv" DataValueField="VrstaID"></asp:DropDownList>
-                                    <asp:TextBox ID="searchInput" runat="server" CssClass="span6" Placeholder="Tekst pretrage"></asp:TextBox>
+                                    <asp:TextBox ID="searchInput" runat="server" CssClass="span8" Placeholder="Tekst pretrage"></asp:TextBox>
                                     <asp:Button ID="searchArticlesSubmit" runat="server" CssClass="btn btn-info" Text="Traži"
                                         Height="30px" OnClick="searchArticlesSubmit_Click" />
                                 </div>
                                 <br />
-                                <asp:DataGrid ID="articlesGrid" runat="server" AutoGenerateColumns="false" Width="60%" DataSource="<%# articles %>" ShowHeader="false"
+                                <asp:DataGrid ID="articlesGrid" runat="server" AutoGenerateColumns="false" DataSource="<%# articles %>" ShowHeader="false"
                                     DataKeyField="ClanakID" AllowPaging="true" AllowCustomPaging="true" OnPageIndexChanged="articlesGrid_PageIndexChanged" 
                                     GridLines="None" OnItemDataBound="articlesGrid_ItemDataBound" PageSize="10">
                                     <PagerStyle Mode="NumericPages" CssClass="pgr" />
@@ -30,16 +29,13 @@
                                         <asp:TemplateColumn>
                                             <ItemTemplate>
                                                 <strong>
-                                                    <asp:LinkButton ID="titleLink" runat="server" CommandName="detailsCommand" Text='<%# Eval("Naslov") %>' Font-Size="Medium"></asp:LinkButton>
+                                                    <asp:LinkButton ID="titleLink" runat="server" PostBackUrl='<%# string.Format("Details.aspx?articleId={0}", Eval("ClanakID")) %>' Text='<%# Eval("Naslov") %>' Font-Size="Medium"></asp:LinkButton>
                                                 </strong>
                                                 <br />
                                                 <div style="text-align: justify">
                                                     <asp:Literal ID="textLiteral" runat="server"></asp:Literal>
                                                 </div>
-                                                <p class="right-align-text">
-                                                    <asp:LinkButton ID="detailsLink" runat="server" CssClass="btn btn-inverse" PostBackUrl='<%# string.Format("Details.aspx?articleId={0}", Eval("ClanakID")) %>'>Detalji</asp:LinkButton>
-                                                </p>
-                                                <p class="icomoon-small">
+                                                <p class="icomoon-small" style="margin-top: 10px">
                                                     <span class="fs1" aria-hidden="true" data-icon="&#xe070;"></span>by  
                                                     <asp:LinkButton ID="LinkButton2" runat="server" Text='<%# Eval("KorisnickoIme") %>'></asp:LinkButton>
                                                     | <span class="fs1" aria-hidden="true" data-icon="&#xe052;"></span>
@@ -49,10 +45,10 @@
                                                     | <span class="fs1" aria-hidden="true" data-icon="&#xe031;"></span>Tagovi:
                                                     <asp:Repeater ID="tagsRepeater" runat="server">
                                                         <ItemTemplate>
-                                                            <asp:LinkButton ID="tagLink" runat="server" CssClass="label label-important" Text='<%# Eval("Naziv") %>'></asp:LinkButton>
+                                                            <asp:LinkButton ID="tagLink" runat="server" CssClass="label label-important" Text='<%# Eval("Naziv") %>' PostBackUrl='<%# string.Format("/Tags/Details.aspx?Id={0}", Eval("TagID")) %>'></asp:LinkButton>
                                                         </ItemTemplate>
                                                     </asp:Repeater>
-                                                    <br />
+                                                    <hr />
                                                 </p>
                                             </ItemTemplate>
                                         </asp:TemplateColumn>

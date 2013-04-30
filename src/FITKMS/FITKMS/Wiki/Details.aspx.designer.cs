@@ -40,6 +40,15 @@ namespace FITKMS.Wiki {
         protected global::System.Web.UI.WebControls.Label typeLable;
         
         /// <summary>
+        /// editLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton editLink;
+        
+        /// <summary>
         /// defaultTab control.
         /// </summary>
         /// <remarks>
@@ -220,31 +229,22 @@ namespace FITKMS.Wiki {
         protected global::System.Web.UI.WebControls.DataGrid commentsGrid;
         
         /// <summary>
-        /// warning_label control.
+        /// commentMessagePanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl warning_label;
+        protected global::System.Web.UI.WebControls.Panel commentMessagePanel;
         
         /// <summary>
-        /// warningLabel control.
+        /// commentBlock control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label warningLabel;
-        
-        /// <summary>
-        /// newCommentSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button newCommentSubmit;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl commentBlock;
         
         /// <summary>
         /// commentPanel control.
