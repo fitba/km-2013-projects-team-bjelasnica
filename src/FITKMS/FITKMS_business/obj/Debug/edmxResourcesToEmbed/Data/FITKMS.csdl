@@ -786,8 +786,6 @@
     <Property Type="String" Name="Komentar" Nullable="false" />
     <Property Type="Int32" Name="ClanakID" Nullable="false" />
     <Property Type="Int32" Name="KorisnikID" Nullable="false" />
-    <Property Type="Int32" Name="Pozitivni" Nullable="true" />
-    <Property Type="Int32" Name="Negativni" Nullable="true" />
     <Property Type="Boolean" Name="Status" Nullable="true" />
     <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" Precision="23" />
     <Property Type="DateTime" Name="DatumIzmjene" Nullable="false" Precision="23" />

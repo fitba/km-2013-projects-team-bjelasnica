@@ -156,8 +156,6 @@
           <Property Name="Komentar" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ClanakID" Type="int" Nullable="false" />
           <Property Name="KorisnikID" Type="int" Nullable="false" />
-          <Property Name="Pozitivni" Type="int" />
-          <Property Name="Negativni" Type="int" />
           <Property Name="Status" Type="bit" />
           <Property Name="DatumKreiranja" Type="datetime" Nullable="false" />
           <Property Name="DatumIzmjene" Type="datetime" Nullable="false" />
@@ -948,7 +946,7 @@
             <Parameter Name="DokumentPath" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="fsp_Clanci_DeleteTags">
-            <Parameter Name="ClanakID" Mode="In" Type="Int32" />
+          <Parameter Name="ClanakID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Aktivnosti">
@@ -1518,8 +1516,6 @@
           <Property Type="String" Name="Komentar" Nullable="false" />
           <Property Type="Int32" Name="ClanakID" Nullable="false" />
           <Property Type="Int32" Name="KorisnikID" Nullable="false" />
-          <Property Type="Int32" Name="Pozitivni" Nullable="true" />
-          <Property Type="Int32" Name="Negativni" Nullable="true" />
           <Property Type="Boolean" Name="Status" Nullable="true" />
           <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" Precision="23" />
           <Property Type="DateTime" Name="DatumIzmjene" Nullable="false" Precision="23" />
@@ -1886,8 +1882,6 @@
                 <ScalarProperty Name="Komentar" ColumnName="Komentar" />
                 <ScalarProperty Name="ClanakID" ColumnName="ClanakID" />
                 <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
-                <ScalarProperty Name="Pozitivni" ColumnName="Pozitivni" />
-                <ScalarProperty Name="Negativni" ColumnName="Negativni" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
                 <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />

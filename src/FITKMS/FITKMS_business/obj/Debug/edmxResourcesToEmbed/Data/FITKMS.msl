@@ -349,8 +349,6 @@
           <ScalarProperty Name="Komentar" ColumnName="Komentar" />
           <ScalarProperty Name="ClanakID" ColumnName="ClanakID" />
           <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
-          <ScalarProperty Name="Pozitivni" ColumnName="Pozitivni" />
-          <ScalarProperty Name="Negativni" ColumnName="Negativni" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
           <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />

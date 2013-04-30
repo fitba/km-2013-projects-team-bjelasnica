@@ -151,8 +151,6 @@
     <Property Name="Komentar" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ClanakID" Type="int" Nullable="false" />
     <Property Name="KorisnikID" Type="int" Nullable="false" />
-    <Property Name="Pozitivni" Type="int" />
-    <Property Name="Negativni" Type="int" />
     <Property Name="Status" Type="bit" />
     <Property Name="DatumKreiranja" Type="datetime" Nullable="false" />
     <Property Name="DatumIzmjene" Type="datetime" Nullable="false" />
