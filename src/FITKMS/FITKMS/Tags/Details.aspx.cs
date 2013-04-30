@@ -12,7 +12,7 @@ namespace FITKMS.Tags
 {
     public partial class Details : System.Web.UI.Page
     {
-        protected List<fsp_Clanci_SelectByTypeTitle_Result> articles;
+        protected List<fsp_Clanci_SelectByTag_Result> articles;
         protected List<fsp_Pitanja_SelectByTag_Result> questions;
 
         protected void Page_Load(object sender, EventArgs e)

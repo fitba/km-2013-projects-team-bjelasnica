@@ -141,7 +141,7 @@
     <Property Name="DatumKreiranja" Type="datetime" Nullable="false" />
     <Property Name="DatumIzmjene" Type="datetime" Nullable="false" />
     <Property Name="DokumentType" Type="nvarchar" MaxLength="50" />
-    <Property Name="DokumentPath" Type="nvarchar" MaxLength="100" />
+    <Property Name="DokumentPath" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="ClanciKomentari">
     <Key>
@@ -151,6 +151,8 @@
     <Property Name="Komentar" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ClanakID" Type="int" Nullable="false" />
     <Property Name="KorisnikID" Type="int" Nullable="false" />
+    <Property Name="Pozitivni" Type="int" />
+    <Property Name="Negativni" Type="int" />
     <Property Name="Status" Type="bit" />
     <Property Name="DatumKreiranja" Type="datetime" Nullable="false" />
     <Property Name="DatumIzmjene" Type="datetime" Nullable="false" />
@@ -630,6 +632,12 @@
   <Function Name="fsp_Clanci_SelectById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ClanakID" Type="int" Mode="In" />
   </Function>
+  <Function Name="fsp_Clanci_SelectByTag" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TagID" Type="int" Mode="In" />
+    <Parameter Name="Offset" Type="int" Mode="In" />
+    <Parameter Name="MaxRows" Type="int" Mode="In" />
+    <Parameter Name="TotalRows" Type="int" Mode="InOut" />
+  </Function>
   <Function Name="fsp_Clanci_SelectByTypeTitle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="VrstaID" Type="int" Mode="In" />
     <Parameter Name="Pretraga" Type="nvarchar" Mode="In" />
@@ -682,6 +690,26 @@
     <Parameter Name="DatumRodjenja" Type="date" Mode="In" />
     <Parameter Name="Slika" Type="varbinary(max)" Mode="In" />
     <Parameter Name="SlikaType" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="fsp_Pitanja_SelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Offset" Type="int" Mode="In" />
+    <Parameter Name="MaxRows" Type="int" Mode="In" />
+    <Parameter Name="TotalRows" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="fsp_Pitanja_SelectByTag" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TagID" Type="int" Mode="In" />
+    <Parameter Name="Offset" Type="int" Mode="In" />
+    <Parameter Name="MaxRows" Type="int" Mode="In" />
+    <Parameter Name="TotalRows" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="fsp_Pitanja_SelectTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PitanjeID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fsp_Tagovi_SelectPagination" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PageNo" Type="int" Mode="In" />
+    <Parameter Name="RecordsPerPage" Type="int" Mode="In" />
+    <Parameter Name="TotalRows" Type="int" Mode="InOut" />
+    <Parameter Name="Search" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="fsp_Teme_SelectByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Status" Type="bit" Mode="In" />

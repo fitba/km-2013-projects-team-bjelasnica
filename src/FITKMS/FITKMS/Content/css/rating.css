@@ -1,0 +1,27 @@
+﻿.ratingStar
+{
+	white-space:nowrap;
+    margin: 1em 1em 0.4em 0em;
+	height:10px;
+}
+.ratingStar .ratingItem {
+    font-size: 0pt;
+    width: 16px;
+    height: 16px;
+    margin: 0px;
+    padding: 0px;
+    display: block;
+    background-repeat: no-repeat;
+	cursor:pointer;
+}
+
+.ratingStar .Filled
+{
+    background-image: url('../img/star.png');
+}
+.ratingStar .Empty {
+    background-image: url(../img/dark_star.png);
+}
+.ratingStar .Saved {
+    background-image: url(../img/ratingStarSaved.png);
+}

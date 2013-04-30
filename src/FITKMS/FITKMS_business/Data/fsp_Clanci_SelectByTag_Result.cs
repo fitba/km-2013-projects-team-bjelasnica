@@ -11,17 +11,16 @@ namespace FITKMS_business.Data
 {
     using System;
     
-    public partial class fsp_ClanciKomentari_Select_Result
+    public partial class fsp_Clanci_SelectByTag_Result
     {
-        public int ClanakKomentarID { get; set; }
-        public string Komentar { get; set; }
         public int ClanakID { get; set; }
-        public int KorisnikID { get; set; }
-        public Nullable<int> Pozitivni { get; set; }
-        public Nullable<int> Negativni { get; set; }
-        public Nullable<bool> Status { get; set; }
         public System.DateTime DatumKreiranja { get; set; }
         public System.DateTime DatumIzmjene { get; set; }
-        public string Korisnik { get; set; }
+        public string Naslov { get; set; }
+        public string Tekst { get; set; }
+        public string KorisnickoIme { get; set; }
+        public string KljucneRijeci { get; set; }
+        public Nullable<double> ProsjecnaOcjena { get; set; }
+        public Nullable<int> BrojKomentara { get; set; }
     }
 }

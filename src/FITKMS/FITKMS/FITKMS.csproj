@@ -72,6 +72,7 @@
     <Content Include="Content\css\charts-graphs.css" />
     <Content Include="Content\css\fullcalendar.css" />
     <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\rating.css" />
     <Content Include="Content\css\select2.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\timepicker.css" />
@@ -91,6 +92,7 @@
     <Content Include="Content\img\blackforest.png" />
     <Content Include="Content\img\clear.png" />
     <Content Include="Content\img\company.png" />
+    <Content Include="Content\img\dark_star.png" />
     <Content Include="Content\img\email.png" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\glyphicons-halflings.png" />
@@ -117,6 +119,7 @@
     <Content Include="Content\img\sorting.png" />
     <Content Include="Content\img\sorting_asc.png" />
     <Content Include="Content\img\sorting_desc.png" />
+    <Content Include="Content\img\star.png" />
     <Content Include="Content\img\ui-icons_3d80b3_256x240.png" />
     <Content Include="Content\js\alertify.min.js" />
     <Content Include="Content\js\bootstrap-colorpicker.js" />

@@ -24,9 +24,7 @@ namespace FITKMS.Wiki
                         Response.ContentType = article.DokumentType;
                         Response.AddHeader("Content-Disposition", "filename=" + article.Naslov);
                         Response.BinaryWrite(article.Dokument);
-                        Response.Flush();
-                        Response.Close();
-                        Response.End();
+                        
                     }
                 }
             }
