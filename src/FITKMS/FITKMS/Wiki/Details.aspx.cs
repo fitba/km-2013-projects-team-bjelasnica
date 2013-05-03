@@ -13,6 +13,7 @@ namespace FITKMS.Wiki
     {
         private fsp_Clanci_SelectById_Result article;
         protected List<fsp_ClanciKomentari_Select_Result> comments;
+        protected List<fsp_ClanciIzmjene_Select_Result> history;
 
         protected Int32 articleId
         {
@@ -24,21 +25,47 @@ namespace FITKMS.Wiki
         {
             if (!IsPostBack)
             {
+                if (Request["comments"] != null)
+                    activateCommentTab();
+
                 BindArticle();
                 BindComments(false);
+                BindHistory();
 
                 if (User.Identity.Name == "")
                 {
                     commentMessagePanel.Visible = true;
+                    commentPanel.Visible = false;
                 }
                 else
-                    commentPanel.Visible = true;
+                    saveView();
+            }
+
+        }
+
+        private void saveView()
+        {
+            try
+            {
+                Pretrage search = new Pretrage();
+                search.AktivnostID = DAAktivnosti.Select("Pregled članka").AktivnostID;
+                search.KorisnikID = Convert.ToInt32(User.Identity.Name);
+                search.ClanakID = articleId;
+                search.Datum = DateTime.Now;
+                DAAktivnosti.Insert(search);
+
+            }
+            catch
+            {
+
             }
         }
 
+        #region Bindings
+
         private void BindComments(bool newPage)
         {
-            if (ViewState["articleId"] != null)
+            if (Request["articleId"] != null)
             {
                 int offset;
                 if (newPage)
@@ -54,8 +81,22 @@ namespace FITKMS.Wiki
                 foreach (DataGridItem item in commentsGrid.Items)
                 {
                     HtmlControl commentBlock = (HtmlControl)item.FindControl("commentBlock");
+                    HtmlControl deleteLinkBlock = (HtmlControl)item.FindControl("deleteLinkBlock");
+
                     if (item.ItemIndex % 2 != 0)
+                    {
                         commentBlock.Attributes.Add("class", "out");
+                        deleteLinkBlock.Attributes.Add("class", "tools pull-left");
+                    }
+
+                    if (User.Identity.Name != "")
+                    {
+                        if (comments[item.ItemIndex].KorisnikID == Convert.ToInt32(User.Identity.Name))
+                        {
+                            LinkButton deleteLink = (LinkButton)item.FindControl("deleteLink");
+                            deleteLink.Visible = true;
+                        }
+                    }
 
                 }
 
@@ -106,8 +147,29 @@ namespace FITKMS.Wiki
                     pdfIcon.Visible = true;
                     pdfDownloadLink.HRef = "Download.aspx?articleId=" + articleId;
                 }
+
             }
         }
+
+        private void BindGrade()
+        {
+            article = DAClanci.SelectById(articleId);
+            avgGradeLabel.Text = Math.Round((decimal)article.ProsjecnaOcjena, 2).ToString();
+        }
+
+        private void BindHistory()
+        {
+            if (Request["articleId"] != null)
+            {
+                int offset = historyGrid.CurrentPageIndex * historyGrid.PageSize;
+                history = DAClanci.SelectHistory(articleId, historyGrid.PageSize, offset);
+
+                historyGrid.VirtualItemCount = DAClanci.totalRows;
+                historyGrid.DataBind();
+            }
+        }
+
+        #endregion
 
         protected void commentsGrid_PageIndexChanged(object source, DataGridPageChangedEventArgs e)
         {
@@ -138,7 +200,6 @@ namespace FITKMS.Wiki
             DAClanci.AddComment(comment);
 
             wysiwyg.InnerText = "";
-            commentPanel.Visible = false;
 
             bool newPage = false;
 
@@ -147,6 +208,7 @@ namespace FITKMS.Wiki
             else if (commentsGrid.VirtualItemCount != 0)
                 newPage = true;
 
+            activateCommentTab();
             BindComments(newPage);
 
         }
@@ -177,10 +239,21 @@ namespace FITKMS.Wiki
             }
         }
 
-        private void BindGrade()
+        protected void commentsGrid_ItemCommand(object source, DataGridCommandEventArgs e)
         {
-            article = DAClanci.SelectById(articleId);
-            avgGradeLabel.Text = Math.Round((decimal)article.ProsjecnaOcjena, 2).ToString();
+            if (e.CommandName == "deleteCommand")
+            {
+                int articleCommentId = Convert.ToInt32(e.CommandArgument);
+                DAClanci.UpdateCommentStatus(articleCommentId, false);
+                activateCommentTab();
+                BindComments(false);
+            }
+        }
+
+        protected void historyGrid_PageIndexChanged(object source, DataGridPageChangedEventArgs e)
+        {
+            historyGrid.CurrentPageIndex = e.NewPageIndex;
+            BindHistory();
         }
     }
 }

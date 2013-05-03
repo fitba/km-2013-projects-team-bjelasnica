@@ -9,28 +9,46 @@ namespace FITKMS_business.Data
     public class DAClanci
     {
         public static int totalRows;
-        public static void Insert(Clanci article, List<Tagovi> tags)
+        public static void Insert(Clanci article, List<string> tags)
         {
             Connection.dm.Clanci.Add(article);
             Connection.dm.SaveChanges();
 
-            foreach (Tagovi t in tags)
+            foreach (string t in tags)
             {
-                Connection.dm.fsp_ClanciTagovi_Insert(article.ClanakID, t.TagID);
+                try
+                {
+                    Connection.dm.fsp_ClanciTagovi_Insert(article.ClanakID, t);
+                }
+                catch
+                {
+                    
+                }
             }
         }
 
-        public static void Update(Clanci article, List<Tagovi> tags)
+        public static void Update(Clanci article, List<string> tags)
         {
             Connection.dm.fsp_Clanci_Update(article.ClanakID, article.Naslov, article.Autori, article.Tekst, article.KljucneRijeci,
                                             article.VrstaID, article.TemaID, article.Dokument, article.DokumentType, article.DokumentPath);
 
             Connection.dm.fsp_Clanci_DeleteTags(article.ClanakID);
 
-            foreach (Tagovi t in tags)
+            foreach (string t in tags)
             {
-                Connection.dm.fsp_ClanciTagovi_Insert(article.ClanakID, t.TagID);
+                try
+                {
+                    Connection.dm.fsp_ClanciTagovi_Insert(article.ClanakID, t);
+                }
+                catch
+                {
+                }
             }
+        }
+
+        public static void DeleteDocument(int articleId)
+        {
+            Connection.dm.fsp_Clanci_DeleteDocument(articleId);
         }
 
         public static Clanci Select(int clanakId)
@@ -52,6 +70,26 @@ namespace FITKMS_business.Data
         {
             return Connection.dm.fsp_Clanci_SelectById(articleId).First();
         }
+
+        #region History
+
+        public static void TrackChange(ClanciIzmjene articleChange)
+        {
+            Connection.dm.ClanciIzmjene.Add(articleChange);
+            Connection.dm.SaveChanges();
+        }
+
+        public static List<fsp_ClanciIzmjene_Select_Result> SelectHistory(int articleId, int maxRows, int offset)
+        {
+            System.Data.Objects.ObjectParameter total = new System.Data.Objects.ObjectParameter("TotalRows", 0);
+            List<fsp_ClanciIzmjene_Select_Result> history = Connection.dm.fsp_ClanciIzmjene_Select
+                                                                 (articleId, offset, maxRows, total).ToList();
+            totalRows = Convert.ToInt32(total.Value);
+
+            return history;
+        }
+
+        #endregion
 
         #region Tags
 
@@ -114,6 +152,11 @@ namespace FITKMS_business.Data
         public static ClanciOcjene GetGradeForUser(int articleId, int userId)
         {
             return Connection.dm.fsp_ClanciOcjene_SelectByUser(articleId, userId).FirstOrDefault();
+        }
+
+        public static void UpdateCommentStatus(int articleCommentId, bool status)
+        {
+            Connection.dm.fsp_ClanciKomentari_UpdateStatus(articleCommentId, status);
         }
 
         #endregion

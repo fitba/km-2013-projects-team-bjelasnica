@@ -178,6 +178,7 @@
     <Content Include="QA\Index.aspx" />
     <Content Include="Tags\Details.aspx" />
     <Content Include="Tags\Index.aspx" />
+    <Content Include="Test.aspx" />
     <Content Include="Users\Image.aspx" />
     <Content Include="Users\Profile.aspx" />
     <Content Include="Users\Registration.aspx" />
@@ -247,6 +248,13 @@
     </Compile>
     <Compile Include="Tags\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
     </Compile>
     <Compile Include="Users\Image.aspx.cs">
       <DependentUpon>Image.aspx</DependentUpon>

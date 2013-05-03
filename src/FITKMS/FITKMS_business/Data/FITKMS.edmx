@@ -658,11 +658,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fsp_Aktivnosti_SelectByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="fsp_ClanciIzmjene_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClanakID" Type="int" Mode="In" />
+          <Parameter Name="Offset" Type="int" Mode="In" />
+          <Parameter Name="MaxRows" Type="int" Mode="In" />
+          <Parameter Name="TotalRows" Type="int" Mode="InOut" />
+        </Function>
         <Function Name="fsp_ClanciKomentari_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ClanakID" Type="int" Mode="In" />
           <Parameter Name="Offset" Type="int" Mode="In" />
           <Parameter Name="MaxRows" Type="int" Mode="In" />
           <Parameter Name="TotalRows" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="fsp_ClanciKomentari_UpdateStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClanakKomentarID" Type="int" Mode="In" />
+          <Parameter Name="Status" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="fsp_ClanciOcjene_SelectByArticle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClanakID" Type="int" Mode="In" />
         </Function>
         <Function Name="fsp_ClanciOcjene_SelectByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ClanakID" Type="int" Mode="In" />
@@ -670,7 +686,10 @@
         </Function>
         <Function Name="fsp_ClanciTagovi_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ClanakID" Type="int" Mode="In" />
-          <Parameter Name="TagID" Type="int" Mode="In" />
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="fsp_Clanci_DeleteDocument" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClanakID" Type="int" Mode="In" />
         </Function>
         <Function Name="fsp_Clanci_DeleteTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ClanakID" Type="int" Mode="In" />
@@ -751,11 +770,8 @@
         <Function Name="fsp_Pitanja_SelectTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PitanjeID" Type="int" Mode="In" />
         </Function>
-        <Function Name="fsp_Tagovi_SelectPagination" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="PageNo" Type="int" Mode="In" />
-          <Parameter Name="RecordsPerPage" Type="int" Mode="In" />
-          <Parameter Name="TotalRows" Type="int" Mode="InOut" />
-          <Parameter Name="Search" Type="nvarchar" Mode="In" />
+        <Function Name="fsp_Tagovi_SelectByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="fsp_Teme_SelectByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Status" Type="bit" Mode="In" />
@@ -886,7 +902,7 @@
           </FunctionImport>
           <FunctionImport Name="fsp_ClanciTagovi_Insert">
             <Parameter Name="ClanakID" Mode="In" Type="Int32" />
-            <Parameter Name="TagID" Mode="In" Type="Int32" />
+            <Parameter Name="Naziv" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="fsp_Clanci_SelectById" ReturnType="Collection(FITKMSModel.fsp_Clanci_SelectById_Result)">
           <Parameter Name="ClanakID" Mode="In" Type="Int32" />
@@ -999,6 +1015,28 @@
             <Parameter Name="Offset" Mode="In" Type="Int32" />
             <Parameter Name="MaxRows" Mode="In" Type="Int32" />
             <Parameter Name="TotalRows" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_ClanciKomentari_UpdateStatus">
+            <Parameter Name="ClanakKomentarID" Mode="In" Type="Int32" />
+            <Parameter Name="Status" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_ClanciIzmjene_Select" ReturnType="Collection(FITKMSModel.fsp_ClanciIzmjene_Select_Result)">
+            <Parameter Name="ClanakID" Mode="In" Type="Int32" />
+            <Parameter Name="Offset" Mode="In" Type="Int32" />
+            <Parameter Name="MaxRows" Mode="In" Type="Int32" />
+            <Parameter Name="TotalRows" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Aktivnosti_SelectByName" EntitySet="Aktivnosti" ReturnType="Collection(FITKMSModel.Aktivnosti)">
+          <Parameter Name="Naziv" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Tagovi_SelectByName" EntitySet="Tagovi" ReturnType="Collection(FITKMSModel.Tagovi)">
+          <Parameter Name="Naziv" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Clanci_DeleteDocument">
+          <Parameter Name="ClanakID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_ClanciOcjene_SelectByArticle" EntitySet="ClanciOcjene" ReturnType="Collection(FITKMSModel.ClanciOcjene)">
+            <Parameter Name="ClanakID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Aktivnosti">
@@ -1611,6 +1649,14 @@
           <Property Type="String" Name="KorisnickoIme" Nullable="false" />
           <Property Type="Int32" Name="BrojOdgovora" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="fsp_ClanciIzmjene_Select_Result">
+          <Property Type="Int32" Name="ClanakIzmjenaID" Nullable="false" />
+          <Property Type="Int32" Name="ClanakID" Nullable="false" />
+          <Property Type="Int32" Name="KorisnikID" Nullable="false" />
+          <Property Type="DateTime" Name="Datum" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Opis" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Korisnik" Nullable="false" MaxLength="101" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1912,8 +1958,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="fsp_Tagovi_SelectPagination" FunctionName="FITKMSModel.Store.fsp_Tagovi_SelectPagination">
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="fsp_Pitanja_SelectByTag" FunctionName="FITKMSModel.Store.fsp_Pitanja_SelectByTag">
             <ResultMapping>
               <ComplexTypeMapping TypeName="FITKMSModel.fsp_Pitanja_SelectByTag_Result">
@@ -1991,6 +2035,26 @@
                 <ScalarProperty Name="BrojOdgovora" ColumnName="BrojOdgovora" />
               </ComplexTypeMapping>
             </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_ClanciKomentari_UpdateStatus" FunctionName="FITKMSModel.Store.fsp_ClanciKomentari_UpdateStatus" />
+          <FunctionImportMapping FunctionImportName="fsp_ClanciIzmjene_Select" FunctionName="FITKMSModel.Store.fsp_ClanciIzmjene_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FITKMSModel.fsp_ClanciIzmjene_Select_Result">
+                <ScalarProperty Name="ClanakIzmjenaID" ColumnName="ClanakIzmjenaID" />
+                <ScalarProperty Name="ClanakID" ColumnName="ClanakID" />
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Korisnik" ColumnName="Korisnik" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Aktivnosti_SelectByName" FunctionName="FITKMSModel.Store.fsp_Aktivnosti_SelectByName">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Tagovi_SelectByName" FunctionName="FITKMSModel.Store.fsp_Tagovi_SelectByName">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Clanci_DeleteDocument" FunctionName="FITKMSModel.Store.fsp_Clanci_DeleteDocument" />
+          <FunctionImportMapping FunctionImportName="fsp_ClanciOcjene_SelectByArticle" FunctionName="FITKMSModel.Store.fsp_ClanciOcjene_SelectByArticle">
           </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>

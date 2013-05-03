@@ -113,7 +113,7 @@
     </FunctionImport>
     <FunctionImport Name="fsp_ClanciTagovi_Insert">
       <Parameter Name="ClanakID" Mode="In" Type="Int32" />
-      <Parameter Name="TagID" Mode="In" Type="Int32" />
+      <Parameter Name="Naziv" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="fsp_Clanci_SelectById" ReturnType="Collection(FITKMSModel.fsp_Clanci_SelectById_Result)">
       <Parameter Name="ClanakID" Mode="In" Type="Int32" />
@@ -226,6 +226,25 @@
       <Parameter Name="Offset" Mode="In" Type="Int32" />
       <Parameter Name="MaxRows" Mode="In" Type="Int32" />
       <Parameter Name="TotalRows" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="fsp_ClanciKomentari_UpdateStatus">
+      <Parameter Name="ClanakKomentarID" Mode="In" Type="Int32" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="fsp_ClanciIzmjene_Select" ReturnType="Collection(FITKMSModel.fsp_ClanciIzmjene_Select_Result)">
+      <Parameter Name="ClanakID" Mode="In" Type="Int32" />
+      <Parameter Name="Offset" Mode="In" Type="Int32" />
+      <Parameter Name="MaxRows" Mode="In" Type="Int32" />
+      <Parameter Name="TotalRows" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="fsp_Aktivnosti_SelectByName" EntitySet="Aktivnosti" ReturnType="Collection(FITKMSModel.Aktivnosti)">
+      <Parameter Name="Naziv" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="fsp_Tagovi_SelectByName" EntitySet="Tagovi" ReturnType="Collection(FITKMSModel.Tagovi)">
+      <Parameter Name="Naziv" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="fsp_Clanci_DeleteDocument">
+      <Parameter Name="ClanakID" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="Aktivnosti">
@@ -837,5 +856,13 @@
     <Property Type="Int32" Name="Negativni" Nullable="false" />
     <Property Type="String" Name="KorisnickoIme" Nullable="false" />
     <Property Type="Int32" Name="BrojOdgovora" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="fsp_ClanciIzmjene_Select_Result">
+    <Property Type="Int32" Name="ClanakIzmjenaID" Nullable="false" />
+    <Property Type="Int32" Name="ClanakID" Nullable="false" />
+    <Property Type="Int32" Name="KorisnikID" Nullable="false" />
+    <Property Type="DateTime" Name="Datum" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Opis" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Korisnik" Nullable="false" MaxLength="101" />
   </ComplexType>
 </Schema>

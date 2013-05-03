@@ -292,7 +292,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="fsp_Tagovi_SelectPagination" FunctionName="FITKMSModel.Store.fsp_Tagovi_SelectPagination" />
     <FunctionImportMapping FunctionImportName="fsp_Pitanja_SelectByTag" FunctionName="FITKMSModel.Store.fsp_Pitanja_SelectByTag">
       <ResultMapping>
         <ComplexTypeMapping TypeName="FITKMSModel.fsp_Pitanja_SelectByTag_Result">
@@ -369,5 +368,21 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fsp_ClanciKomentari_UpdateStatus" FunctionName="FITKMSModel.Store.fsp_ClanciKomentari_UpdateStatus" />
+    <FunctionImportMapping FunctionImportName="fsp_ClanciIzmjene_Select" FunctionName="FITKMSModel.Store.fsp_ClanciIzmjene_Select">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FITKMSModel.fsp_ClanciIzmjene_Select_Result">
+          <ScalarProperty Name="ClanakIzmjenaID" ColumnName="ClanakIzmjenaID" />
+          <ScalarProperty Name="ClanakID" ColumnName="ClanakID" />
+          <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+          <ScalarProperty Name="Korisnik" ColumnName="Korisnik" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fsp_Aktivnosti_SelectByName" FunctionName="FITKMSModel.Store.fsp_Aktivnosti_SelectByName" />
+    <FunctionImportMapping FunctionImportName="fsp_Tagovi_SelectByName" FunctionName="FITKMSModel.Store.fsp_Tagovi_SelectByName" />
+    <FunctionImportMapping FunctionImportName="fsp_Clanci_DeleteDocument" FunctionName="FITKMSModel.Store.fsp_Clanci_DeleteDocument" />
   </EntityContainerMapping>
 </Mapping>

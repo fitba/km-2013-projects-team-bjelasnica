@@ -82,6 +82,29 @@ namespace FITKMS.QA
         {
             pitanjaGrid.CurrentPageIndex = 0;
             BindGrid();
+
+            saveSearch();
+        }
+
+        private void saveSearch()
+        {
+            try
+            {
+                //Pohrani pretragu korisnika
+                if (pitanjaGrid.Items.Count > 0 && User.Identity.Name != "")
+                {
+                    Pretrage search = new Pretrage();
+                    search.AktivnostID = DAAktivnosti.Select("Pretraga pitanja").AktivnostID;
+                    search.TekstPretrage = searchInput.Text;
+                    search.KorisnikID = Convert.ToInt32(User.Identity.Name);
+                    search.Datum = DateTime.Now;
+                    DAAktivnosti.Insert(search);
+                }
+            }
+            catch
+            {
+
+            }
         }
     }
 }

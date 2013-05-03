@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Edit.aspx.cs" Inherits="FITKMS.Wiki.Edit" ValidateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+        function ClientItemSelected(sender, e) {
+            $get("<%=tagsInput.ClientID %>").value += ', ';
+         }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="dashboard-wrapper">
@@ -36,7 +41,7 @@
                 </p>
             </div>
             <div class="widget no-margin">
-                  <div class="widget-header">
+                <div class="widget-header">
                     <div class="title">
                         <span class="fs1" aria-hidden="true" data-icon="&#xe022;"></span>
                         Izmjena članka
@@ -56,30 +61,17 @@
                                     <textarea id="wysiwyg" class="span12" placeholder="Tekst članka" style="height: 300px" runat="server" required="required" x-moz-errormessage="Obavezno unesite tekst članka!">
                                     </textarea>
                                 </div>
-                                <asp:TextBox ID="tagsInput" runat="server" CssClass="input-block-level" ReadOnly="true"></asp:TextBox>
-                                <a href="#myModal" role="button" class="btn btn-warning2" data-toggle="modal">Odaberite tagove
-                                </a>
-                                <asp:Button ID="loadTagsSubmit" runat="server" Style="display: none" formnovalidate="formnovalidate" />
-                                <!-- Modal -->
-                                <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="fireServerButtonEvent()" formnovalidate="formnovalidate">
-                                            ×</button>
-                                        <h4 id="myModalLabel">Izaberite tagove
-                                        </h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="squared-three pull-left">
-                                            <asp:CheckBoxList ID="tagsList" runat="server" DataSource="<%# tags %>"
-                                                DataTextField="Naziv" DataValueField="TagID" RepeatDirection="Horizontal" RepeatColumns="10">
-                                            </asp:CheckBoxList>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <asp:Button ID="saveTagsSubmit" runat="server" CssClass="btn btn-info" Text="Sačuvaj" formnovalidate="formnovalidate"
-                                            Height="30px" />
-                                    </div>
-                                </div>
+                                <textarea class="input-block-level" placeholder="Unesite opis izmjene" style="height: 100px"
+                                    runat="server" id="editDescriptionInput" required="required" x-moz-errormessage="Obavezno unesite opis izmjene!"></textarea>
+
+                                <asp:TextBox ID="tagsInput" runat="server" CssClass="input-block-level"></asp:TextBox>
+                                <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true">
+                                </asp:ScriptManager>
+                                <ajaxToolkit:AutoCompleteExtender ServiceMethod="GetTagNames" MinimumPrefixLength="1"
+                                    CompletionInterval="100" EnableCaching="False" CompletionSetCount="10" TargetControlID="tagsInput" DelimiterCharacters=", "
+                                    ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false" OnClientItemSelected="ClientItemSelected"
+                                    ShowOnlyCurrentWordInCompletionListItem="True" CompletionListHighlightedItemCssClass="label label-important" CompletionListItemCssClass="label">
+                                </ajaxToolkit:AutoCompleteExtender>
                                 <br />
                                 <br />
                                 <asp:FileUpload ID="documentFile" runat="server" AllowMultiple="false" />
@@ -89,7 +81,6 @@
                                         <i class="icon-trash" data-original-title="Ukloni dokument"></i>
                                     </asp:LinkButton>
                                 </div>
-                                <!-- End Modal -->
                                 <div class="right-align-text">
                                     <asp:Button ID="saveArticleSubmit" runat="server" CssClass="btn btn-info" Text="Sačuvaj"
                                         Height="30px" OnClientClick="javascript:scroll(0,0);" OnClick="saveArticleSubmit_Click" />

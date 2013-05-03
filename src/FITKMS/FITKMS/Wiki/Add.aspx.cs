@@ -11,24 +11,15 @@ namespace FITKMS.Wiki
 {
     public partial class Add : System.Web.UI.Page
     {
-        protected List<Tagovi> tags;
         protected List<Teme> themes;
         protected List<VrsteClanaka> types;
-
-        protected List<Tagovi> selectedTags 
-        {
-            get { return (List<Tagovi>)Session["selectedTags"]; }
-            set { Session["selectedTags"] = value; }
-        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                BindTags();
                 BindTypes();
                 BindThemes();
-                selectedTags = new List<Tagovi>();
             }
         }
 
@@ -37,13 +28,6 @@ namespace FITKMS.Wiki
             themes= DATeme.Select(true);
             themeList.DataBind();
 
-        }
-
-        private void BindTags()
-        {
-            tags = DATagovi.SelectAll();
-            tagsList.DataBind();
-     
         }
 
         private void BindTypes()
@@ -90,7 +74,15 @@ namespace FITKMS.Wiki
                     }
                 }
 
-                DAClanci.Insert(article, selectedTags);
+                List<string> tags = new List<string>();
+
+                foreach (string tag in tagsInput.Text.Split(','))
+                {
+                    if (tag != "")
+                        tags.Add(tag.Trim());
+                }
+
+                DAClanci.Insert(article, tags);
 
                 if (article.Dokument != null)
                 {
@@ -120,40 +112,26 @@ namespace FITKMS.Wiki
             keyWordsInput.Text = "";
             wysiwyg.InnerText = "";
             tagsInput.Text = "";
-            selectedTags.Clear();
-            tagsList.ClearSelection();
         }
 
-        protected void saveTagsSubmit_Click(object sender, EventArgs e)
+        #region WebMethod
+        [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethod()]
+        public static string[] GetTagNames(string prefixText, int count)
         {
-            selectedTags.Clear();
-            foreach (ListItem item in tagsList.Items)
+            List<Tagovi> tags = DATagovi.SelectByName(prefixText);
+            List<string> tagNames = new List<string>();
+           
+            foreach (Tagovi tag in tags)
             {
-                if (item.Selected)
-                {
-                    Tagovi tag = new Tagovi();
-                    tag.Naziv = item.Text;
-                    tag.TagID = Convert.ToInt32(item.Value);
-                    selectedTags.Add(tag);
-                    tagsInput.Text += item.Text + " ";
-                }
-            }
-        }
+                string item = AjaxControlToolkit.AutoCompleteExtender.CreateAutoCompleteItem
+                    (tag.Naziv, tag.TagID.ToString());
+                tagNames.Add(item);
 
-        protected void loadTagsSubmit_Click(object sender, EventArgs e)
-        {
-            foreach (ListItem item in tagsList.Items)
-            {
-                item.Selected = false;
-                foreach (Tagovi tag in selectedTags)
-                {
-                    if (item.Value == tag.TagID.ToString())
-                    {
-                        item.Selected = true;
-                        break;
-                    }
-                }
             }
+
+            return tagNames.ToArray();
+
         }
+        #endregion
     }
 }

@@ -41,7 +41,8 @@
                                                     | <span class="fs1" aria-hidden="true" data-icon="&#xe052;"></span>
                                                     <asp:Label ID="Label1" runat="server" Text='<%# string.Format("{0:dd.MM.yyyy}", Eval("DatumKreiranja")) %>'></asp:Label>
                                                     | <span class="fs1" aria-hidden="true" data-icon="&#xe1c3;"></span>
-                                                    <asp:LinkButton ID="LinkButton3" runat="server" Text='<%# string.Format("{0} komentara", Eval("BrojKomentara")) %>'></asp:LinkButton>
+                                                    <asp:LinkButton ID="LinkButton3" runat="server" Text='<%# string.Format("{0} komentara", Eval("BrojKomentara")) %>'
+                                                        PostBackUrl='<%# string.Format("Details.aspx?comments=1&articleId={0}", Eval("ClanakID")) %>'></asp:LinkButton>
                                                     | <span class="fs1" aria-hidden="true" data-icon="&#xe031;"></span>Tagovi:
                                                     <asp:Repeater ID="tagsRepeater" runat="server">
                                                         <ItemTemplate>

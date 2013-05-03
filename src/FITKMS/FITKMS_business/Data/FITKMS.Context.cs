@@ -82,17 +82,17 @@ namespace FITKMS_business.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Teme>("fsp_Teme_SelectByStatus", mergeOption, statusParameter);
         }
     
-        public virtual int fsp_ClanciTagovi_Insert(Nullable<int> clanakID, Nullable<int> tagID)
+        public virtual int fsp_ClanciTagovi_Insert(Nullable<int> clanakID, string naziv)
         {
             var clanakIDParameter = clanakID.HasValue ?
                 new ObjectParameter("ClanakID", clanakID) :
                 new ObjectParameter("ClanakID", typeof(int));
     
-            var tagIDParameter = tagID.HasValue ?
-                new ObjectParameter("TagID", tagID) :
-                new ObjectParameter("TagID", typeof(int));
+            var nazivParameter = naziv != null ?
+                new ObjectParameter("Naziv", naziv) :
+                new ObjectParameter("Naziv", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_ClanciTagovi_Insert", clanakIDParameter, tagIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_ClanciTagovi_Insert", clanakIDParameter, nazivParameter);
         }
     
         public virtual ObjectResult<fsp_Clanci_SelectById_Result> fsp_Clanci_SelectById(Nullable<int> clanakID)
@@ -497,6 +497,99 @@ namespace FITKMS_business.Data
                 new ObjectParameter("MaxRows", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_Pitanja_SelectSearch_Result>("fsp_Pitanja_SelectSearch", pretragaParameter, offsetParameter, maxRowsParameter, totalRows);
+        }
+    
+        public virtual int fsp_ClanciKomentari_UpdateStatus(Nullable<int> clanakKomentarID, Nullable<bool> status)
+        {
+            var clanakKomentarIDParameter = clanakKomentarID.HasValue ?
+                new ObjectParameter("ClanakKomentarID", clanakKomentarID) :
+                new ObjectParameter("ClanakKomentarID", typeof(int));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_ClanciKomentari_UpdateStatus", clanakKomentarIDParameter, statusParameter);
+        }
+    
+        public virtual ObjectResult<fsp_ClanciIzmjene_Select_Result> fsp_ClanciIzmjene_Select(Nullable<int> clanakID, Nullable<int> offset, Nullable<int> maxRows, ObjectParameter totalRows)
+        {
+            var clanakIDParameter = clanakID.HasValue ?
+                new ObjectParameter("ClanakID", clanakID) :
+                new ObjectParameter("ClanakID", typeof(int));
+    
+            var offsetParameter = offset.HasValue ?
+                new ObjectParameter("Offset", offset) :
+                new ObjectParameter("Offset", typeof(int));
+    
+            var maxRowsParameter = maxRows.HasValue ?
+                new ObjectParameter("MaxRows", maxRows) :
+                new ObjectParameter("MaxRows", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fsp_ClanciIzmjene_Select_Result>("fsp_ClanciIzmjene_Select", clanakIDParameter, offsetParameter, maxRowsParameter, totalRows);
+        }
+    
+        public virtual ObjectResult<Aktivnosti> fsp_Aktivnosti_SelectByName(string naziv)
+        {
+            var nazivParameter = naziv != null ?
+                new ObjectParameter("Naziv", naziv) :
+                new ObjectParameter("Naziv", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Aktivnosti>("fsp_Aktivnosti_SelectByName", nazivParameter);
+        }
+    
+        public virtual ObjectResult<Aktivnosti> fsp_Aktivnosti_SelectByName(string naziv, MergeOption mergeOption)
+        {
+            var nazivParameter = naziv != null ?
+                new ObjectParameter("Naziv", naziv) :
+                new ObjectParameter("Naziv", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Aktivnosti>("fsp_Aktivnosti_SelectByName", mergeOption, nazivParameter);
+        }
+    
+        public virtual ObjectResult<Tagovi> fsp_Tagovi_SelectByName(string naziv)
+        {
+            var nazivParameter = naziv != null ?
+                new ObjectParameter("Naziv", naziv) :
+                new ObjectParameter("Naziv", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tagovi>("fsp_Tagovi_SelectByName", nazivParameter);
+        }
+    
+        public virtual ObjectResult<Tagovi> fsp_Tagovi_SelectByName(string naziv, MergeOption mergeOption)
+        {
+            var nazivParameter = naziv != null ?
+                new ObjectParameter("Naziv", naziv) :
+                new ObjectParameter("Naziv", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tagovi>("fsp_Tagovi_SelectByName", mergeOption, nazivParameter);
+        }
+    
+        public virtual int fsp_Clanci_DeleteDocument(Nullable<int> clanakID)
+        {
+            var clanakIDParameter = clanakID.HasValue ?
+                new ObjectParameter("ClanakID", clanakID) :
+                new ObjectParameter("ClanakID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fsp_Clanci_DeleteDocument", clanakIDParameter);
+        }
+    
+        public virtual ObjectResult<ClanciOcjene> fsp_ClanciOcjene_SelectByArticle(Nullable<int> clanakID)
+        {
+            var clanakIDParameter = clanakID.HasValue ?
+                new ObjectParameter("ClanakID", clanakID) :
+                new ObjectParameter("ClanakID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ClanciOcjene>("fsp_ClanciOcjene_SelectByArticle", clanakIDParameter);
+        }
+    
+        public virtual ObjectResult<ClanciOcjene> fsp_ClanciOcjene_SelectByArticle(Nullable<int> clanakID, MergeOption mergeOption)
+        {
+            var clanakIDParameter = clanakID.HasValue ?
+                new ObjectParameter("ClanakID", clanakID) :
+                new ObjectParameter("ClanakID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ClanciOcjene>("fsp_ClanciOcjene_SelectByArticle", mergeOption, clanakIDParameter);
         }
     }
 }

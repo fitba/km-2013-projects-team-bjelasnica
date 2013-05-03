@@ -3,13 +3,14 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="Stylesheet" href="/Content/css/rating.css" type="text/css" />
+   
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></ajaxToolkit:ToolkitScriptManager>
     <div class="dashboard-wrapper">
         <div class="main-container">
             <div class="row-fluid">
-                <div class="span12">
+                <div class="span8">
                     <div class="widget-body">
                         <div class="widget">
                             <div class="widget-header">
@@ -32,6 +33,10 @@
                                     </li>
                                     <li class="" runat="server" id="commentTab">
                                         <a data-toggle="tab" href="#articleComments">Komentari
+                                        </a>
+                                    </li>
+                                    <li class="" runat="server" id="historyTab">
+                                        <a data-toggle="tab" href="#articleHistory">Izmjene
                                         </a>
                                     </li>
                                 </ul>
@@ -57,7 +62,7 @@
                                             <asp:Label ID="dateCreatedLabel" runat="server"></asp:Label>
                                                     | <span class="fs1" aria-hidden="true" data-icon="&#xe052;"></span>Modifikovano:
                                             <asp:Label ID="dateChangedLabel" runat="server"></asp:Label>
-                                                    | <span class="fs1" aria-hidden="true" data-icon="&#xe097;"></span>Prosječna ocjena:
+                                                    <br /> <span class="fs1" aria-hidden="true" data-icon="&#xe097;"></span>Prosječna ocjena:
                                                  <asp:Label ID="avgGradeLabel" runat="server"></asp:Label>
                                                     | <span class="fs1" aria-hidden="true" data-icon="&#xe031;"></span>Tagovi:
                                                     <asp:Repeater ID="tagsRepeater" runat="server">
@@ -101,9 +106,9 @@
                                         </div>
                                     </div>
                                     <div id="articleComments" class="tab-pane fade" runat="server">
-                                        <div class="span8">
                                             <asp:DataGrid ID="commentsGrid" runat="server" DataSource="<%# comments %>" AutoGenerateColumns="false"
-                                                GridLines="None" AllowPaging="true" AllowCustomPaging="true" OnPageIndexChanged="commentsGrid_PageIndexChanged" PageSize="3" Width="100%">
+                                                GridLines="None" AllowPaging="true" AllowCustomPaging="true" OnPageIndexChanged="commentsGrid_PageIndexChanged" 
+                                                PageSize="3" Width="100%" OnItemCommand="commentsGrid_ItemCommand">
                                                 <PagerStyle Mode="NumericPages" CssClass="pgr" Position="Top" />
                                                 <Columns>
                                                     <asp:TemplateColumn>
@@ -117,7 +122,11 @@
                                                                         <span class="fs1" aria-hidden="true" data-icon="&#xe052;">
                                                                             <span class="date-time">
                                                                                 <asp:Label ID="dateLabel" runat="server" Text='<%# string.Format("{0:dd.MM.yyyy HH:mm}", Eval("DatumKreiranja")) %>'></asp:Label></span>
-                                                                            <span class="body">
+                                                                            <div class="tools pull-right" runat="server" id="deleteLinkBlock">
+                                                                                <asp:LinkButton ID="deleteLink" runat="server" Visible="false" CommandName="deleteCommand" 
+                                                                                    CommandArgument='<%# Eval("ClanakKomentarID") %>' formnovalidate="formnovalidate" CssClass="label label-info">Ukloni</asp:LinkButton>
+                                                                            </div>
+                                                                             <span class="body">
                                                                                 <asp:Literal ID="commentLiteral" runat="server" Text='<%# Eval("Komentar") %>'></asp:Literal>
                                                                             </span>
                                                                     </div>
@@ -150,10 +159,11 @@
                                                     </li>
                                                 </ul>
                                             </asp:Panel>
-                                            <asp:Panel ID="commentPanel" runat="server" Visible="false">
+                                            <asp:Panel ID="commentPanel" runat="server">
                                                 <hr />
                                                 <div class="wysiwyg-container">
-                                                    <textarea id="wysiwyg" class="span12" placeholder="Unesite komentar" style="height: 200px" runat="server" required="required" x-moz-errormessage="Obavezno unesite komentar!">
+                                                    <textarea id="wysiwyg" class="span12" placeholder="Unesite komentar" style="height: 200px" runat="server" 
+                                                        required="required" x-moz-errormessage="Obavezno unesite komentar!">
                                                     </textarea>
                                                 </div>
                                                 <div class="right-align-text">
@@ -162,6 +172,23 @@
                                                 </div>
                                             </asp:Panel>
                                         </div>
+                                    <div id="articleHistory" class="tab-pane fade" runat="server">
+                                        <asp:DataGrid runat="server" ID="historyGrid" DataSource="<%# history %>" AutoGenerateColumns="false" AllowPaging="true"
+                                            AllowCustomPaging="true" PageSize="10" OnPageIndexChanged="historyGrid_PageIndexChanged" GridLines="None" Width="100%" 
+                                            CssClass="table table-condensed table-striped table-bordered table-hover no-margin">
+                                            <PagerStyle Mode="NumericPages" CssClass="pgr" Position="Bottom" />
+                                            <HeaderStyle Font-Bold="true" />
+                                            <Columns>
+                                                <asp:BoundColumn DataField="Datum" HeaderText="Vrijeme izmjene" DataFormatString="{0: dd.MM.yyyy HH:mm}" />
+                                                <asp:TemplateColumn HeaderText="Korisnik">
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="LinkButton1" runat="server" Text='<%# Eval("Korisnik") %>'></asp:LinkButton>
+                                                    </ItemTemplate>
+                                                </asp:TemplateColumn>
+                                                <asp:BoundColumn DataField="Opis" HeaderText="Opis" />
+
+                                            </Columns>
+                                        </asp:DataGrid>
                                     </div>
                                 </div>
                             </div>

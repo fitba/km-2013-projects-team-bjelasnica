@@ -28,5 +28,10 @@ namespace FITKMS_business.Data
         {
             return Connection.dm.Tagovi.Where(x => x.TagID == id).SingleOrDefault();
         }
+
+        public static List<Tagovi> SelectByName(string name)
+        {
+            return Connection.dm.fsp_Tagovi_SelectByName(name).ToList();
+        }
     }
 }

@@ -11,17 +11,10 @@ namespace FITKMS.Wiki
 {
     public partial class Edit : System.Web.UI.Page
     {
-        protected List<Tagovi> tags;
         protected List<Teme> themes;
         protected List<VrsteClanaka> types;
 
         private Clanci article;
-
-        protected List<Tagovi> selectedTags
-        {
-            get { return (List<Tagovi>)Session["selectedTags"]; }
-            set { Session["selectedTags"] = value; }
-        }
 
         protected Int32 articleId
         {
@@ -33,7 +26,6 @@ namespace FITKMS.Wiki
         {
             if (!IsPostBack)
             {
-                BindTags();
                 BindTypes();
                 BindThemes();
                 BindArticle();
@@ -53,32 +45,16 @@ namespace FITKMS.Wiki
             typesList.DataBind();
         }
 
-        private void BindTags()
-        {
-            tags = DATagovi.SelectAll();
-            tagsList.DataBind();
-        }
-
         private void BindArticle()
         {
             if (Request["articleId"] != null)
             {
                 articleId = Convert.ToInt32(Request["articleId"]);
                 article = DAClanci.Select(articleId);
-                selectedTags = DAClanci.SelectTags(article.ClanakID);
+                List<Tagovi> tags = DAClanci.SelectTags(article.ClanakID);
 
-                foreach (ListItem item in tagsList.Items)
-                {
-                    foreach (Tagovi tag in selectedTags)
-                    {
-                        if (item.Value == tag.TagID.ToString())
-                        {
-                            item.Selected = true;
-                            tagsInput.Text += item.Text + " ";
-                            break;
-                        }
-                    }
-                }
+                foreach (Tagovi tag in tags)
+                    tagsInput.Text += tag.Naziv + ", ";
 
                 typesList.SelectedValue = article.VrstaID.ToString();
                 themeList.SelectedValue = article.TemaID.ToString();
@@ -134,7 +110,24 @@ namespace FITKMS.Wiki
                 article.KorisnikID = Convert.ToInt32(User.Identity.Name);
                 article.Tekst = wysiwyg.InnerText;
 
-                DAClanci.Update(article, selectedTags);
+                List<string> tags = new List<string>();
+
+                foreach (string tag in tagsInput.Text.Split(','))
+                {
+                    if (tag.Trim() != "")
+                        tags.Add(tag.Trim());
+                }
+
+                DAClanci.Update(article, tags);
+
+                //Praćenje izmjena članka
+                ClanciIzmjene articleChange = new ClanciIzmjene();
+                articleChange.KorisnikID = Convert.ToInt32(User.Identity.Name);
+                articleChange.ClanakID = articleId;
+                articleChange.Datum = DateTime.Now;
+                articleChange.Opis = editDescriptionInput.InnerText;
+
+                DAClanci.TrackChange(articleChange);
 
                 successLabel.Text = "Uspješno ste sačuvali izmjene.";
                 error_label.Visible = false;
@@ -143,6 +136,8 @@ namespace FITKMS.Wiki
             catch (Exception ex)
             {
                 errorLabel.Text = ex.Message;
+                if (ex.InnerException != null)
+                    errorLabel.Text += "\n" + ex.InnerException;
                 error_label.Visible = true;
             }
         }
@@ -156,10 +151,7 @@ namespace FITKMS.Wiki
                 string[] filename = article.DokumentPath.Split('/');
                 System.IO.File.Delete(Server.MapPath("/Content/articles/") + filename);
 
-                article.Dokument = null;
-                article.DokumentType = null;
-                article.DokumentPath = null;
-                DAClanci.Update(article, selectedTags);
+                DAClanci.DeleteDocument(articleId);
 
                 successLabel.Text = "Dokument uspješno uklonjen.";
                 error_label.Visible = false;
@@ -171,5 +163,25 @@ namespace FITKMS.Wiki
                 warning_label.Visible = true;
             }
         }
+
+        #region WebMethod
+        [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethod()]
+        public static string[] GetTagNames(string prefixText, int count)
+        {
+            List<Tagovi> tags = DATagovi.SelectByName(prefixText);
+            List<string> tagNames = new List<string>();
+
+            foreach (Tagovi tag in tags)
+            {
+                string item = AjaxControlToolkit.AutoCompleteExtender.CreateAutoCompleteItem
+                    (tag.Naziv, tag.TagID.ToString());
+                tagNames.Add(item);
+
+            }
+
+            return tagNames.ToArray();
+
+        }
+        #endregion
     }
 }
