@@ -10,4 +10,4 @@ Korak 2: Iz foldera src preuzeti projekat i pokrenuti FITKMS Solution fajl (Visu
 Korak 3: Nakon pokretanja projekta aplikacija je spremna za testiranje. Potrebno je startati aplikaciju (Ctrl + F5) i unutar browsera će se učitati početna web stranica.
 Korak 4: Prijava na sistem se može izvršiti koristeći sljedeće podatke:
   Username: admin
-	Password: admin
+  Password: admin
