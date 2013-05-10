@@ -17,21 +17,45 @@ namespace FITKMS.Tags
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.QueryString["id"] != null)
+            if(!IsPostBack)
             {
-                int id = Int32.Parse(Request.QueryString["id"].ToString());
-                ViewState["tagId"] = id.ToString();
-
-                Tagovi tag = DATagovi.getTagByID(id);
-
-                if (tag != null)
+                if (Request.QueryString["id"] != null)
                 {
-                    labelTag.Text = tag.Naziv;
-                    labelDescription.Text = tag.Opis;
-                }
+                    int id = Int32.Parse(Request.QueryString["id"].ToString());
+                    ViewState["tagId"] = id.ToString();
 
-                BindArticles();
-                BindQuestions();
+                    Tagovi tag = DATagovi.getTagByID(id);
+
+                    if (tag != null)
+                    {
+                        labelTag.Text = tag.Naziv;
+                        labelDescription.Text = tag.Opis;
+                    }
+
+                    ShowFavorite(id);
+
+                    BindArticles();
+                    BindQuestions();
+                }
+            }
+        }
+
+        private void ShowFavorite(int tagID)
+        {
+            if (User.Identity.Name != "")
+            {
+                favoriteTag.Visible = true;
+
+                if (DAKorisnici.CheckFavoriteTag(Convert.ToInt32(User.Identity.Name), tagID))
+                {
+                    favoriteTag.Visible = false;
+                    noFavoriteTag.Visible = true;
+                }
+                else
+                {
+                    favoriteTag.Visible = true;
+                    noFavoriteTag.Visible = false;
+                }
             }
         }
 
@@ -67,10 +91,10 @@ namespace FITKMS.Tags
             text = text.Replace("<br />", "\n");
             text = HtmlRemoval.StripTagsCharArray(text);
 
-            if (text.Length > 200)
+            if (text.Length > 150)
             {
-                text = text.Substring(0, 500);
-                for (int i = 499; i > 0; i--)
+                text = text.Substring(0, 150);
+                for (int i = 99; i > 0; i--)
                 {
                     if (text[i] != ' ')
                         text = text.Remove(i, 1);
@@ -120,6 +144,23 @@ namespace FITKMS.Tags
         {
             questionsGrid.CurrentPageIndex = e.NewPageIndex;
             BindQuestions();
+        }
+
+        protected void favoriteTag_Click(object sender, EventArgs e)
+        {
+            KorisniciTagovi favoriteTag = new KorisniciTagovi();
+            favoriteTag.KorisnikID = Convert.ToInt32(User.Identity.Name);
+            favoriteTag.TagID = Convert.ToInt32(ViewState["tagId"]);
+            favoriteTag.Datum = DateTime.Now;
+            favoriteTag.Status = true;
+            DAKorisnici.AddFavoriteTag(favoriteTag);
+            ShowFavorite(Convert.ToInt32(ViewState["tagId"]));
+        }
+
+        protected void noFavoriteTag_Click(object sender, EventArgs e)
+        {
+            DAKorisnici.UpdateTagStatus(Convert.ToInt32(User.Identity.Name), Convert.ToInt32(ViewState["tagId"]));
+            ShowFavorite(Convert.ToInt32(ViewState["tagId"]));
         }
     }
 }

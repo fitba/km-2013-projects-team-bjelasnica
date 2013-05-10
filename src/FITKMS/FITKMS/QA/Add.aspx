@@ -1,9 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Add.aspx.cs" ValidateRequest="false" Inherits="FITKMS.QA.Add" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Add.aspx.cs" ValidateRequest="false" Inherits="FITKMS.QA.Add" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type = "text/javascript">
+        function ClientItemSelected(sender, e) {
+            $get("<%=tagsInput.ClientID %>").value += ', ';
+         }
+      </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="dashboard-wrapper">
         <div class="main-container">
@@ -30,10 +34,10 @@
             <div class="widget no-margin">
                 <div class="widget-header">
                     <div class="title">
-                            <span class="fs1" aria-hidden="true" data-icon="&#xe022;"></span>
-                            Novo pitanje
-                         </div>
+                        <span class="fs1" aria-hidden="true" data-icon="&#xe0f6;"></span>
+                        Novo pitanje
                     </div>
+                </div>
                 <div class="row-fluid">
                     <div class="widget-body">
                         <div class="control-group">
@@ -51,26 +55,14 @@
                                 <div class="wysiwyg-container">
                                     <asp:TextBox runat="server" ID="wysiwyg" class="span12" placeholder="Unesite pitanje ..." Style="height: 300px"></asp:TextBox>
                                 </div>
-                                <br />
-                                <a href="#myModal" role="button" class="btn btn-warning2 " data-toggle="modal">Odaberite tagove
-                                </a>
-                                <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                            ×
-                                        </button>
-                                        <h4 id="myModalLabel">Izaberite tagove
-                                        </h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <asp:CheckBoxList ID="chkTagovi" runat="server" CssClass="CheckboxList"></asp:CheckBoxList>
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <asp:Button ID="Button1" runat="server" Text="Button" class="btn btn-primary" OnClick="Button1_Click" />
-                                    </div>
-                                </div>
-                                <asp:Button ID="Save" runat="server" Text="Postavi pitanje" class="btn btn-info" OnClick="Save_Click" />
+                                <asp:TextBox ID="tagsInput" runat="server" CssClass="input-block-level" placeholder="Unesite tagove">
+                                </asp:TextBox>
+                                <ajaxToolkit:AutoCompleteExtender ServiceMethod="GetTagNames" MinimumPrefixLength="1"
+                                    CompletionInterval="100" EnableCaching="False" CompletionSetCount="10" TargetControlID="tagsInput" DelimiterCharacters=", "
+                                    ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false" OnClientItemSelected="ClientItemSelected"
+                                    ShowOnlyCurrentWordInCompletionListItem="True" CompletionListHighlightedItemCssClass="label label-important" CompletionListItemCssClass="label">
+                                </ajaxToolkit:AutoCompleteExtender>
+                                <asp:Button ID="Save" runat="server" Text="Sačuvaj" class="btn btn-info pull-right" OnClick="Save_Click" />
                             </div>
                         </div>
                     </div>

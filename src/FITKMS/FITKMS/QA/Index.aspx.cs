@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using FITKMS_business.Data;
 using FITKMS_business.Util;
+using System.Web.UI.HtmlControls;
 
 namespace FITKMS.QA
 {
@@ -19,15 +20,81 @@ namespace FITKMS.QA
             {
                 BindGrid();
                 pitanjaGrid.CurrentPageIndex = 0;
+
+                if (User.Identity.Name != "")
+                    UserQuestionRecommendation();
+                else
+                    RecommendBestRated();
+                   
+
+                StackOverflowRecommendation();
+                HtmlControl articleRecommend = (HtmlControl)this.Master.FindControl("articleRecommend");
+                articleRecommend.Visible = false;
             }
         }
 
         private void BindGrid()
         {
             int offset = pitanjaGrid.CurrentPageIndex * pitanjaGrid.PageSize;
-            pitanja = QAService.SelectSearch(searchInput.Text.Trim(), pitanjaGrid.PageSize, offset);
+            string search = '"' + searchInput.Text.Trim() + '"';
+            pitanja = QAService.SelectSearch(search, pitanjaGrid.PageSize, offset);
             pitanjaGrid.VirtualItemCount = QAService.totalRows;
             pitanjaGrid.DataBind();
+        }
+
+        private void RecommendBestRated()
+        {
+            DataList questionsList = (DataList)this.Master.FindControl("questionsList");
+            Label titleQA = (Label)this.Master.FindControl("recQATitleLabel");
+            titleQA.Text = "Preporučena pitanja";
+            questionsList.DataSource = DAPitanja.SelectBestLiked();;
+            questionsList.DataBind();
+
+        }
+
+        private void UserQuestionRecommendation()
+        {
+            DataList questionsList = (DataList)this.Master.FindControl("questionsList");
+            RecommendationService recommendation = new RecommendationService();
+            questionsList.DataSource = recommendation.ColaborativeFiltering(Convert.ToInt32(User.Identity.Name));
+            questionsList.DataBind();
+        }
+
+        private void StackOverflowRecommendation()
+        {
+            DataList stackOverflowList = (DataList)this.Master.FindControl("stackOverflowList");
+
+            List<string> words = new List<string>();
+
+            if (searchInput.Text.Trim() != "")
+                words.Add(searchInput.Text);
+            else
+            {
+                foreach (DataGridItem item in pitanjaGrid.Items)
+                {
+                    LinkButton titleLink = (LinkButton)item.FindControl("titleLink");
+                    words.Add(titleLink.Text);
+                }
+            }
+
+            ExternalIntegration integration = new ExternalIntegration();
+            List<Question> questionsStack = new List<Question>();
+            List<Question> questionsStackRecommend = new List<Question>();
+
+
+            foreach (string w in words)
+            {
+                questionsStack.Clear();
+                questionsStack.AddRange(integration.SearchStackOverflow(w));
+                questionsStackRecommend.AddRange(questionsStack.Take(3).ToList());
+            }
+
+            questionsStackRecommend = questionsStackRecommend.Distinct().ToList();
+            stackOverflowList.DataSource = questionsStackRecommend;
+            stackOverflowList.DataBind();
+
+            HtmlControl div = (HtmlControl)this.Master.FindControl("stackOverflowRecommend");
+            div.Visible = true;
         }
 
         protected void pitanjaGrid_PageIndexChanged(object source, DataGridPageChangedEventArgs e)
@@ -82,7 +149,7 @@ namespace FITKMS.QA
         {
             pitanjaGrid.CurrentPageIndex = 0;
             BindGrid();
-
+            StackOverflowRecommendation();
             saveSearch();
         }
 

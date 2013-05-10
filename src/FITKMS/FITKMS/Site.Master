@@ -1,0 +1,247 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="FITKMS.Site" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta charset="utf-8" />
+    <title>FIT KMS
+    </title>
+    <meta name="author" content="Bjelašnica Team FIT" />
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="description" content="FIT Knowledge management system" />
+    <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <link href="Content/icomoon/style.css" rel="stylesheet" />
+    <link href="/Content/css/main.css" rel="stylesheet" />
+    <link href="/Content/css/wysiwyg/bootstrap-wysihtml5.css" rel="stylesheet" />
+    <link href="/Content/css/wysiwyg/wysiwyg-color.css" rel="stylesheet" />
+    <link href="/Content/css/charts-graphs.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header>
+            <a href="/Default.aspx" class="logo">
+                <img src="/Content/img/logo.bmp" alt="Logo" />
+            </a>
+            <div id="profile" class="user-profile" style="float: right" visible="false" runat="server">
+                <a data-toggle="dropdown" class="dropdown-toggle">
+                    <asp:Image ID="userImage" Width="30px" Height="30px" runat="server" />
+                </a>
+                <span class="caret"></span>
+                <ul class="dropdown-menu pull-right">
+                    <li>
+                        <a href="/Users/Profile.aspx">Edit Profile
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Index.aspx" runat="server" id="adminlink" visible="false">Admin panel
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Logout.aspx">Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <ul id="notification" class="mini-nav" style="float: right" visible="false" runat="server">
+                <li>
+                    <a href="/Wiki/Index.aspx">
+                        <div class="fs1" aria-hidden="true" data-icon="&#xe004;"></div>
+                        <span class="info-label">
+                            <asp:Label ID="labelWikiNotification" runat="server" Text="0"></asp:Label>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/QA/Index.aspx">
+                        <div class="fs1" aria-hidden="true" data-icon="&#xe0f6;"></div>
+                        <span class="info-label-orange">
+                            <asp:Label ID="labelQuestionsNotification" runat="server" Text="0"></asp:Label>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+            <ul id="login" class="mini-nav" style="float: right" visible="true" runat="server">
+                <li>
+                    <a href="/Login.aspx">
+                        <div class="icon">
+                            <span class="fs1" aria-hidden="true" data-icon="&#xe088;"></span>
+                            Login
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </header>
+        <div class="container-fluid">
+            <div id="mainnav" class="hidden-phone hidden-tablet">
+                <ul style="display: block;">
+                    <li>
+                        <a href="/Default.aspx">
+
+                            <div class="icon">
+                                <span class="fs1" aria-hidden="true" data-icon="&#xe001;"></span>
+                            </div>
+                            Početna
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Wiki/Index.aspx">
+
+                            <div class="icon">
+                                <span class="fs1" aria-hidden="true" data-icon="&#xe004;"></span>
+                            </div>
+                            Wiki <asp:Label ID="labelWiki" runat="server" Text="0"></asp:Label>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/QA/Index.aspx">
+                            <div class="icon">
+
+                                <span class="fs1" aria-hidden="true" data-icon="&#xe0f6;"></span>
+                            </div>
+                            Pitanja <asp:Label ID="labelQuestions" runat="server" Text="0"></asp:Label>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Tags/Index.aspx">
+                            <div class="icon">
+                                <span class="fs1" aria-hidden="true" data-icon="&#xe031;"></span>
+                            </div>
+
+                            Tagovi <asp:Label ID="labelTags" runat="server" Text="0"></asp:Label>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Users/Registration.aspx">
+                            <div class="icon">
+                                <span class="fs1" aria-hidden="true" data-icon="&#xe070;"></span>
+
+                            </div>
+                            Korisnici <asp:Label ID="labelUsers" runat="server" Text="0"></asp:Label>
+                        </a>
+                    </li>
+                     <li>
+                        <a href="/Themes/Index.aspx">
+                            <div class="icon">
+                                <span class="fs1" aria-hidden="true" data-icon="&#xe022;"></span>
+
+                            </div>
+                            Teme
+                            <asp:Label ID="labelThemes" runat="server" Text="0"></asp:Label>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+        <footer>
+            <p>
+                &copy; Fakultet informacijskih tehnologija 2013
+            </p>
+        </footer>
+
+        <script src="/Content/js/wysiwyg/wysihtml5-0.3.0.js"></script>
+        <script src="/Content/js/jquery.min.js"></script>
+        <script src="/Content/js/bootstrap.js"></script>
+        <script src="/Content/js/jquery.scrollUp.js"></script>
+        <script src="/Content/js/wysiwyg/bootstrap-wysihtml5.js"></script>
+        <script type="text/javascript" src="/Content/js/date-picker/date.js"></script>
+        <script type="text/javascript" src="/Content/js/date-picker/daterangepicker.js"></script>
+        <!-- Google Visualization JS -->
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <!-- Sparkline JS -->
+        <script src="/Content/js/jquery.sparkline.js"></script>
+        <!-- Tiny Scrollbar JS -->
+        <script src="/Content/js/tiny-scrollbar.js"></script>
+        <script type="text/javascript">
+            //ScrollUp
+            $(function () {
+                $.scrollUp({
+                    scrollName: 'scrollUp', // Element ID
+                    topDistance: '300', // Distance from top before showing element (px)
+                    topSpeed: 300, // Speed back to top (ms)
+                    animation: 'fade', // Fade, slide, none
+                    animationInSpeed: 400, // Animation in speed (ms)
+                    animationOutSpeed: 400, // Animation out speed (ms)
+                    scrollText: 'Scroll to top', // Text for element
+                    activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
+                });
+            });
+
+            // wysihtml5
+            $('#wysiwyg').wysihtml5();
+
+            google.load("visualization", "1", {
+                packages: ["corechart"]
+            });
+
+            $(document).ready(function () {
+                drawChart1();
+                drawChart2();
+            })
+
+            //Tooltip
+            $('a').tooltip('hide');
+            $('i').tooltip('hide');
+
+            //Tiny Scrollbar
+            $('#scrollbar').tinyscrollbar();
+            $('#scrollbar-one').tinyscrollbar();
+            $('#scrollbar-two').tinyscrollbar();
+            $('#scrollbar-three').tinyscrollbar();
+
+            //Tabs
+            $('#myTab a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            })
+
+            //Main menu navigation
+
+            $('.submenu > a').click(function (e) {
+                e.preventDefault();
+                var submenu = $(this).siblings('ul');
+                var li = $(this).parents('li');
+                var submenus = $('#mainnav li.submenu ul');
+                var submenus_parents = $('#mainnav li.submenu');
+                if (li.hasClass('open')) {
+                    if (($(window).width() > 768) || ($(window).width() < 479)) {
+                        submenu.slideUp();
+                    } else {
+                        submenu.fadeOut(250);
+                    }
+                    li.removeClass('open');
+                } else {
+                    if (($(window).width() > 768) || ($(window).width() < 479)) {
+                        submenus.slideUp();
+                        submenu.slideDown();
+                    } else {
+                        submenus.fadeOut(250);
+                        submenu.fadeIn(250);
+                    }
+                    submenus_parents.removeClass('open');
+                    li.addClass('open');
+                }
+            });
+
+            var ul = $('#mainnav > ul');
+
+            $('#mainnav > a').click(function (e) {
+                e.preventDefault();
+                var mainnav = $('#mainnav');
+                if (mainnav.hasClass('open')) {
+                    mainnav.removeClass('open');
+                    ul.slideUp(250);
+                } else {
+                    mainnav.addClass('open');
+                    ul.slideDown(250);
+                }
+            });
+
+        </script>
+    </form>
+</body>
+</html>

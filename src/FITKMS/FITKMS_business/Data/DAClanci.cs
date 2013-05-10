@@ -56,6 +56,11 @@ namespace FITKMS_business.Data
            return Connection.dm.Clanci.Find(clanakId);
         }
 
+        public static int Count()
+        {
+            return Connection.dm.Clanci.Count();
+        }
+
         public static List<fsp_Clanci_SelectSearch_Result> Search(string searchText, int maxRows, int offset)
         { 
             System.Data.Objects.ObjectParameter total = new System.Data.Objects.ObjectParameter("TotalRows", 0);
@@ -66,9 +71,29 @@ namespace FITKMS_business.Data
             return articles;
         }
 
+        public static List<fsp_Clanci_SelectSearch_Result> SearchByTheme(string theme, int themeId, int maxRows, int offset)
+        {
+            System.Data.Objects.ObjectParameter total = new System.Data.Objects.ObjectParameter("TotalRows", 0);
+            List<fsp_Clanci_SelectSearch_Result> articles = Connection.dm.fsp_Clanci_SelectByTheme
+                                                                 (theme, themeId, offset, maxRows, total).ToList();
+            totalRows = Convert.ToInt32(total.Value);
+
+            return articles;
+        }
+
         public static fsp_Clanci_SelectById_Result SelectById(int articleId)
         {
             return Connection.dm.fsp_Clanci_SelectById(articleId).First();
+        }
+
+        public static List<fsp_Clanci_SelectLastComments_Result> SelectLastComments()
+        {
+            return Connection.dm.fsp_Clanci_SelectLastComments().ToList();
+        }
+
+        public static List<fsp_Clanci_SelectBestRated_Result> SelectBestRated()
+        {
+            return Connection.dm.fsp_Clanci_SelectBestRated().ToList();
         }
 
         #region History
@@ -160,6 +185,6 @@ namespace FITKMS_business.Data
         }
 
         #endregion
-
+        
     }
 }

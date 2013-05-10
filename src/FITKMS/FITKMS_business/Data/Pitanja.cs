@@ -19,6 +19,7 @@ namespace FITKMS_business.Data
             this.Odgovori = new HashSet<Odgovori>();
             this.PitanjaGlasovi = new HashSet<PitanjaGlasovi>();
             this.Tagovi = new HashSet<Tagovi>();
+            this.PitanjaOcjene = new HashSet<PitanjaOcjene>();
         }
     
         public int PitanjeID { get; set; }
@@ -40,5 +41,6 @@ namespace FITKMS_business.Data
         public virtual Teme Teme { get; set; }
         public virtual ICollection<PitanjaGlasovi> PitanjaGlasovi { get; set; }
         public virtual ICollection<Tagovi> Tagovi { get; set; }
+        public virtual ICollection<PitanjaOcjene> PitanjaOcjene { get; set; }
     }
 }

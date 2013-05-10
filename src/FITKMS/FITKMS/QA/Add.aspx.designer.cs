@@ -103,22 +103,22 @@ namespace FITKMS.QA {
         protected global::System.Web.UI.WebControls.TextBox wysiwyg;
         
         /// <summary>
-        /// chkTagovi control.
+        /// tagsInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList chkTagovi;
+        protected global::System.Web.UI.WebControls.TextBox tagsInput;
         
         /// <summary>
-        /// Button1 control.
+        /// AutoCompleteExtender1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender1;
         
         /// <summary>
         /// Save control.

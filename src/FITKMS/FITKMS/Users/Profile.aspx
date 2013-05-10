@@ -1,14 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="FITKMS.Users.Profile" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="FITKMS.Users.Profile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="dashboard-wrapper">
         <div class="main-container">
-            <div class="row-fluid">
-                <div class="span12">
                     <div class="widget-body">
-
                         <div id="success_label" class="alert alert-block alert-success fade in" runat="server" visible="false">
                             <button data-dismiss="alert" class="close" type="button">
                                 ×
@@ -31,8 +28,6 @@
                             </p>
                         </div>
                     </div>
-                </div>
-            </div>
             <div class="row-fluid">
                 <div class="span12">
                     <div class="widget no-margin">
@@ -47,7 +42,7 @@
                                 <div class="row-fluid">
                                     <div class="span3">
                                         <div class="thumbnail">
-                                            <asp:Image ID="userImage" Width="415px" Height="300px" runat="server" />
+                                            <asp:Image ID="userImage" Width="415px" Height="250px" runat="server" />
                                             <div class="caption">
                                                 <p class="no-margin">
                                                     <asp:FileUpload ID="imageFile" Width="245px" runat="server" />

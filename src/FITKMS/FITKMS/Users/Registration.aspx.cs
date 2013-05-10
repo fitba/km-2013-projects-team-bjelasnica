@@ -14,6 +14,8 @@ namespace FITKMS.Users
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (User.Identity.Name != "")
+                Response.Redirect("/default.aspx");
         }
 
         protected void createSubmit_Click(object sender, EventArgs e)

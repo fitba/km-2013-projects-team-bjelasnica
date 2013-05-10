@@ -7,19 +7,11 @@
     <meta charset="utf-8" />
     <title>FIT KMS
     </title>
-
     <meta name="author" content="Bjelašnica Team FIT" />
     <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport" />
     <meta name="description" content="FIT Knowledge management system" />
-    <!-- bootstrap css -->
-    <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
-    </script>
+    <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <link href="Content/icomoon/style.css" rel="stylesheet" />
-    <!--[if lte IE 7]>
-    <script src="css/icomoon-font/lte-ie7.js">
-    </script>
-    <![endif]-->
-
     <link href="/Content/css/main.css" rel="stylesheet" />
     <link href="/Content/css/wysiwyg/bootstrap-wysihtml5.css" rel="stylesheet" />
     <link href="/Content/css/wysiwyg/wysiwyg-color.css" rel="stylesheet" />
@@ -30,169 +22,353 @@
 <body>
     <form id="form1" runat="server">
         <header>
-            <a href="index.html" class="logo">
+            <a href="/Default.aspx" class="logo">
                 <img src="/Content/img/logo.bmp" alt="Logo" />
-
             </a>
-            <div class="user-profile">
+            <div id="profile" class="user-profile" style="float: right" visible="false" runat="server">
                 <a data-toggle="dropdown" class="dropdown-toggle">
-                    <img src="Content/img/profile2.png" alt="profile">
+                    <asp:Image ID="userImage" Width="30px" Height="30px" runat="server" />
                 </a>
                 <span class="caret"></span>
                 <ul class="dropdown-menu pull-right">
                     <li>
-                        <a href="#">Edit Profile
+                        <a href="/Users/Profile.aspx">Edit Profile
                         </a>
                     </li>
                     <li>
-                        <a href="Logout.aspx">Logout
+                        <a href="/Admin/Index.aspx" runat="server" id="adminlink" visible="false">
+                            Admin panel
                         </a>
                     </li>
+                    <li>
+                        <a href="/Logout.aspx">Logout
+                        </a>
+                    </li>
+                  
                 </ul>
             </div>
-            <ul class="mini-nav">
+            <ul id="notification" class="mini-nav" style="float: right" visible="false" runat="server">
                 <li>
-                    <a href="#">
-                        <div class="fs1" aria-hidden="true" data-icon="&#xe040;"></div>
-
-                        <span class="info-label">3
+                    <a href="/Wiki/Index.aspx">
+                        <div class="fs1" aria-hidden="true" data-icon="&#xe004;"></div>
+                        <span class="info-label">
+                            <asp:Label ID="labelWikiNotification" runat="server" Text="0"></asp:Label>
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <div class="fs1" aria-hidden="true" data-icon="&#xe04c;"></div>
-                        <span class="info-label-green">5
+                    <a href="/QA/Index.aspx">
+                        <div class="fs1" aria-hidden="true" data-icon="&#xe0f6;"></div>
+                        <span class="info-label-orange">
+                            <asp:Label ID="labelQuestionsNotification" runat="server" Text="0"></asp:Label>
                         </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="fs1" aria-hidden="true" data-icon="&#xe037;"></div>
-                        <span class="info-label-orange">9
-                        </span>
-
                     </a>
                 </li>
             </ul>
+            <ul id="login" class="mini-nav" style="float: right" visible="true" runat="server">
+                <li>
+                    <a href="/Login.aspx">
+                        <div class="icon">
+                            <span class="fs1" aria-hidden="true" data-icon="&#xe088;"></span>
+                            Login
+                        </div>
+                    </a>
+                </li>
+            </ul>
+
         </header>
         <div class="container-fluid">
             <div id="mainnav" class="hidden-phone hidden-tablet">
                 <ul style="display: block;">
                     <li>
-                        <a href="PostaviPitanje.html">
+                        <a href="/Default.aspx">
+
+                            <div class="icon">
+                                <span class="fs1" aria-hidden="true" data-icon="&#xe001;"></span>
+                            </div>
+                            Početna
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Wiki/Index.aspx">
 
                             <div class="icon">
                                 <span class="fs1" aria-hidden="true" data-icon="&#xe004;"></span>
                             </div>
-                            WIKI 12000
+                            Wiki
+                            <asp:Label ID="labelWiki" runat="server" Text="0"></asp:Label>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/QA/Index.aspx">
                             <div class="icon">
 
-                                <span class="fs1" aria-hidden="true" data-icon="&#xe022;"></span>
+                                <span class="fs1" aria-hidden="true" data-icon="&#xe0f6;"></span>
                             </div>
-                            Odgvora 40000
+                            Pitanja
+                            <asp:Label ID="labelQuestions" runat="server" Text="0"></asp:Label>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <div class="icon">
-                                <span class="fs1" aria-hidden="true" data-icon="&#xe070;"></span>
-
-                            </div>
-                            Korisnika 3400
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
+                        <a href="/Tags/Index.aspx">
                             <div class="icon">
                                 <span class="fs1" aria-hidden="true" data-icon="&#xe031;"></span>
                             </div>
 
-                            Tagova 1000
+                            Tagovi
+                            <asp:Label ID="labelTags" runat="server" Text="0"></asp:Label>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/Users/Registration.aspx">
                             <div class="icon">
-                                <span class="fs1" aria-hidden="true" data-icon="&#xe18d;"></span>
-                            </div>
-                            Wikipedia
-                        </a>
+                                <span class="fs1" aria-hidden="true" data-icon="&#xe070;"></span>
 
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="icon">
-                                <span class="fs1" aria-hidden="true" data-icon="&#xe169;"></span>
                             </div>
-                            Share
+                            Korisnici
+                            <asp:Label ID="labelUsers" runat="server" Text="0"></asp:Label>
                         </a>
                     </li>
-
-                    <li>
-                        <a href="#">
+                     <li>
+                        <a href="/Themes/Index.aspx">
                             <div class="icon">
-                                <span class="fs1" aria-hidden="true" data-icon="&#xe16d;"></span>
-                            </div>
-                            Tweet
-                        </a>
-                    </li>
-                    <li>
+                                <span class="fs1" aria-hidden="true" data-icon="&#xe022;"></span>
 
-                        <a href="#">
-                            <div class="icon">
-                                <span class="fs1" aria-hidden="true" data-icon="&#xe167;"></span>
                             </div>
-                            g+
+                            Teme
+                            <asp:Label ID="labelThemes" runat="server" Text="0"></asp:Label>
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+        <div class="dashboard-wrapper">
+            <div class="main-container">
+                <div class="row-fluid">
+                    <div class="span8">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                    <div class="span4">
+
+                        <%--   Preporuka članaka--%>
+                        <div class="widget" id="articleRecommend" runat="server">
+                            <div class="widget-header">
+                                <div class="title">
+                                    <%--<span class="fs1" aria-hidden="true" data-icon="&#xe06a;"></span>--%>
+                                    <asp:Label ID="recTitleLabel" runat="server" Text="Preporučeno"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="widget-body">
+                                <div id="scrollbar-one">
+                                    <div class="scrollbar">
+                                        <div class="track">
+                                            <div class="thumb">
+                                                <div class="end">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="viewport">
+                                        <div class="overview">
+                                            <div class="featured-articles-container">
+                                                <asp:DataList ID="articlesList" runat="server" Width="100%">
+                                                    <ItemTemplate>
+                                                        <div class="articles">
+                                                            <a href='/Wiki/Details.aspx?articleId=<%# Eval("ClanakID") %>'>
+                                                                <span class="label-bullet-blue">&nbsp;
+                                                                </span>
+                                                                <%# Eval("Naslov") %> <span title="Prosječna ocjena" class="label label-info"><%# Eval("ProsjecnaOcjena") %></span></a>
+                                                        </div>
+                                                    </ItemTemplate>
+                                                </asp:DataList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <%-- Preporuka pitanja--%>
+                        <div class="widget" id="questionRecommend" runat="server">
+                            <div class="widget-header">
+                                <div class="title">
+                                    <%--<span class="fs1" aria-hidden="true" data-icon="&#xe06a;"></span>--%>
+                                    <asp:Label ID="recQATitleLabel" runat="server" Text="Preporučeno"></asp:Label>
+
+                                </div>
+                            </div>
+                            <div class="widget-body">
+                                <div id="scrollbar">
+                                    <div class="scrollbar">
+                                        <div class="track">
+                                            <div class="thumb">
+                                                <div class="end">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="viewport">
+                                        <div class="overview">
+                                            <div class="featured-articles-container">
+                                                <asp:DataList ID="questionsList" runat="server" Width="100%">
+                                                    <ItemTemplate>
+                                                        <div class="articles">
+                                                            <a href='/QA/Details.aspx?id=<%# Eval("PitanjeID") %>'>
+                                                                <span class="label-bullet-blue">&nbsp;
+                                                                </span>
+                                                                <%# Eval("Naslov") %> <span title="Broj lajkova" class="label label-info"><%# Eval("Pozitivni") %></span></a>
+                                                        </div>
+                                                    </ItemTemplate>
+                                                </asp:DataList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <%--Preporuka sa Wiki--%>
+                        <div class="widget" id="wikiRecommend" runat="server" visible="false">
+                            <div class="widget-header">
+                                <div class="title">
+                                    <%--<span class="fs1" aria-hidden="true" data-icon="&#xe06a;"></span>--%>Preporučeno Wikipedia
+                                </div>
+                            </div>
+                            <div class="widget-body">
+                                <div id="scrollbar-two">
+                                    <div class="scrollbar">
+                                        <div class="track">
+                                            <div class="thumb">
+                                                <div class="end">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="viewport">
+                                        <div class="overview">
+                                            <div class="featured-articles-container">
+                                                <asp:DataList ID="wikiList" runat="server" Width="100%">
+                                                    <ItemTemplate>
+                                                        <div class="articles">
+                                                            <a href='<%# Eval("Url") %>' target="_blank">
+                                                                <span class="label-bullet-blue">&nbsp;
+                                                                </span>
+                                                                <%# Eval("Name") %>
+                                                            </a>
+                                                        </div>
+                                                    </ItemTemplate>
+                                                </asp:DataList>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                          <%--Preporuka sa StackOverflow--%>
+                        <div class="widget" id="stackOverflowRecommend" runat="server" visible="false">
+                            <div class="widget-header">
+                                <div class="title">
+                                    <%--<span class="fs1" aria-hidden="true" data-icon="&#xe06a;"></span>--%>Preporučeno StackOverflow
+                                </div>
+                            </div>
+                            <div class="widget-body">
+                                <div id="scrollbar-three">
+                                    <div class="scrollbar">
+                                        <div class="track">
+                                            <div class="thumb">
+                                                <div class="end">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="viewport">
+                                        <div class="overview">
+                                            <div class="featured-articles-container">
+                                                <asp:DataList ID="stackOverflowList" runat="server" Width="100%">
+                                                    <ItemTemplate>
+                                                        <div class="articles">
+                                                            <a href='http://stackoverflow.com/<%# Eval("question_timeline_url") %>' target="_blank">
+                                                                <span class="label-bullet-blue">&nbsp;
+                                                                </span>
+                                                                <%# Eval("Title") %>
+                                                            </a>
+                                                        </div>
+                                                    </ItemTemplate>
+                                                </asp:DataList>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                             <%--Preporuka Tema--%>
+                        <div class="widget" id="themesRecommend" runat="server" visible="false">
+                            <div class="widget-header">
+                                <div class="title">
+                                    <%--<span class="fs1" aria-hidden="true" data-icon="&#xe06a;"></span>--%>Preporučene teme
+                                </div>
+                            </div>
+                            <div class="widget-body">
+                                <div id="scrollbar-three">
+                                    <div class="scrollbar">
+                                        <div class="track">
+                                            <div class="thumb">
+                                                <div class="end">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="viewport">
+                                        <div class="overview">
+                                            <div class="featured-articles-container">
+                                                <asp:DataList ID="themesList" runat="server" Width="100%">
+                                                    <ItemTemplate>
+                                                        <div class="articles">
+                                                            <a href='/Themes/Index.aspx?id=<%# Eval("TemaID") %>'>
+                                                                <span class="label-bullet-blue">&nbsp;
+                                                                </span>
+                                                                <%# Eval("Naziv") %>
+                                                                <span class="label label-info"><%# Eval("BrojPonavljanja") %></span>
+                                                            </a>
+                                                        </div>
+                                                    </ItemTemplate>
+                                                </asp:DataList>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
         <footer>
-      <p>
-        &copy; Fakultet informacijskih tehnologija 2013
-      </p>
-    </footer>
+            <p>
+                &copy; Fakultet informacijskih tehnologija 2013
+            </p>
+        </footer>
 
-        <script src="/Content/js/wysiwyg/wysihtml5-0.3.0.js">
-        </script>
-        <script src="/Content/js/jquery.min.js">
-        </script>
-        <script src="/Content/js/bootstrap.js">
-        </script>
-        <script src="/Content/js/jquery.scrollUp.js">
-        </script>
-
-        <script src="/Content/js/wysiwyg/bootstrap-wysihtml5.js">
-        </script>
-        <script type="text/javascript" src="/Content/js/date-picker/date.js">
-        </script>
-
-        <script type="text/javascript" src="/Content/js/date-picker/daterangepicker.js">
-        </script>
-
+        <script src="/Content/js/wysiwyg/wysihtml5-0.3.0.js"></script>
+        <script src="/Content/js/jquery.min.js"></script>
+        <script src="/Content/js/bootstrap.js"></script>
+        <script src="/Content/js/jquery.scrollUp.js"></script>
+        <script src="/Content/js/wysiwyg/bootstrap-wysihtml5.js"></script>
+        <script type="text/javascript" src="/Content/js/date-picker/date.js"></script>
+        <script type="text/javascript" src="/Content/js/date-picker/daterangepicker.js"></script>
         <!-- Google Visualization JS -->
-        <script type="text/javascript" src="https://www.google.com/jsapi">
-        </script>
-
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <!-- Sparkline JS -->
-        <script src="/Content/js/jquery.sparkline.js">
-        </script>
-
+        <script src="/Content/js/jquery.sparkline.js"></script>
         <!-- Tiny Scrollbar JS -->
-
-        <script src="/Content/js/tiny-scrollbar.js">
-        </script>
-
+        <script src="/Content/js/tiny-scrollbar.js"></script>
         <script type="text/javascript">
             //ScrollUp
             $(function () {
@@ -208,7 +384,7 @@
                 });
             });
 
-           // wysihtml5
+            // wysihtml5
             $('#wysiwyg').wysihtml5();
 
             google.load("visualization", "1", {
@@ -219,104 +395,23 @@
                 drawChart1();
                 drawChart2();
             })
-            
+
             //Tooltip
             $('a').tooltip('hide');
             $('i').tooltip('hide');
-
 
             //Tiny Scrollbar
             $('#scrollbar').tinyscrollbar();
             $('#scrollbar-one').tinyscrollbar();
             $('#scrollbar-two').tinyscrollbar();
             $('#scrollbar-three').tinyscrollbar();
-
-
+            $('#scrollbar-four').tinyscrollbar();
 
             //Tabs
             $('#myTab a').click(function (e) {
                 e.preventDefault();
                 $(this).tab('show');
             })
-
-            // SparkLine Graphs-Charts
-            $(function () {
-                $('#unique-visitors').sparkline('html', {
-                    type: 'bar',
-                    barColor: '#e26666',
-                    barWidth: 6,
-                    height: 30,
-                });
-                $('#monthly-sales').sparkline('html', {
-                    type: 'bar',
-                    barColor: '#b5799e',
-                    barWidth: 6,
-                    height: 30,
-                });
-                $('#current-balance').sparkline('html', {
-                    type: 'bar',
-                    barColor: '#579da9',
-                    barWidth: 6,
-                    height: 30,
-                });
-                $('#registrations').sparkline('html', {
-                    type: 'bar',
-                    barColor: '#dba26b',
-                    barWidth: 6,
-                    height: 30,
-                });
-            });
-
-            //Range Date Picker
-
-            $('.report_range').daterangepicker({
-                ranges: {
-                    'Today': ['today', 'today'],
-                    'Yesterday': ['yesterday', 'yesterday'],
-                    'Last 7 Days': [Date.today().add({
-                        days: -6
-                    }), 'today'],
-                    'Last 30 Days': [Date.today().add({
-                        days: -29
-                    }), 'today'],
-                    'This Month': [Date.today().moveToFirstDayOfMonth(), Date.today().moveToLastDayOfMonth()],
-                    'Last Month': [Date.today().moveToFirstDayOfMonth().add({
-                        months: -1
-                    }), Date.today().moveToFirstDayOfMonth().add({
-                        days: -1
-                    })]
-                },
-                opens: 'left',
-                format: 'MM/dd/yyyy',
-                separator: ' to ',
-                startDate: Date.today().add({
-                    days: -29
-                }),
-                endDate: Date.today(),
-                minDate: '01/01/2012',
-                maxDate: '12/31/2013',
-                locale: {
-                    applyLabel: 'Submit',
-                    fromLabel: 'From',
-                    toLabel: 'To',
-                    customRangeLabel: 'Custom Range',
-                    daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-                    monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                    firstDay: 1
-                },
-                showWeekNumbers: true,
-                buttonClasses: ['btn-danger']
-            },
-
-            function (start, end) {
-                $('.report_range span').html(start.toString('MMMM d, yyyy') + ' - ' + end.toString('MMMM d, yyyy'));
-            });
-
-            //Set the initial state of the picker label
-            $('.report_range span').html(Date.today().add({
-                days: -29
-            }).toString('MMMM d, yyyy') + ' - ' + Date.today().toString('MMMM d, yyyy'));
-
 
             //Main menu navigation
 

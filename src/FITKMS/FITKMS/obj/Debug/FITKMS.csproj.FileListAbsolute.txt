@@ -21,15 +21,6 @@ C:\Users\larisa.FIT\Desktop\FITKMS\FITKMS\bin\EntityFramework.xml
 C:\Users\larisa.FIT\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.csprojResolveAssemblyReference.cache
 C:\Users\larisa.FIT\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.dll
 C:\Users\larisa.FIT\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.pdb
-C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\FITKMS.dll
-C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\FITKMS.pdb
-C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\FITKMS_business.dll
-C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\EntityFramework.dll
-C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\FITKMS_business.pdb
-C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\EntityFramework.xml
-C:\Users\Larisa\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.csprojResolveAssemblyReference.cache
-C:\Users\Larisa\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.dll
-C:\Users\Larisa\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.pdb
 C:\Users\admir.FIT\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\FITKMS.dll
 C:\Users\admir.FIT\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\FITKMS.pdb
 C:\Users\admir.FIT\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\FITKMS_business.dll
@@ -141,3 +132,166 @@ C:\Users\Larisa\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FIT
 C:\Users\Larisa\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\obj\Debug\FITKMS.csprojResolveAssemblyReference.cache
 C:\Users\Larisa\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\obj\Debug\FITKMS.dll
 C:\Users\Larisa\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\obj\Debug\FITKMS.pdb
+C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\AjaxControlToolkit.dll
+C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\HtmlAgilityPack.dll
+C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\SanitizerProviders.dll
+C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\ar\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\cs\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\de\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\es\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\fr\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\he\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\hi\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\it\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\ja\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\ko\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\nl\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\pt\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\ru\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\tr-TR\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\zh-CHS\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\zh-CHT\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\FITKMS.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\FITKMS.pdb
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\AjaxControlToolkit.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\FITKMS_business.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\HtmlAgilityPack.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\SanitizerProviders.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\EntityFramework.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\FITKMS_business.pdb
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\EntityFramework.xml
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\ar\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\cs\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\de\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\es\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\fr\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\he\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\hi\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\it\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\ja\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\ko\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\nl\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\pt\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\ru\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\tr-TR\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\zh-CHS\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\zh-CHT\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\obj\Debug\FITKMS.csprojResolveAssemblyReference.cache
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\obj\Debug\FITKMS.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\obj\Debug\FITKMS.pdb
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\FITKMS.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\FITKMS.pdb
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\AjaxControlToolkit.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\FITKMS_business.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\HtmlAgilityPack.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\SanitizerProviders.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\EntityFramework.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\FITKMS_business.pdb
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\EntityFramework.xml
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\ar\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\cs\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\de\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\es\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\fr\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\he\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\hi\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\it\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\ja\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\ko\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\nl\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\pt\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\ru\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\tr-TR\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\zh-CHS\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\bin\zh-CHT\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\obj\Debug\FITKMS.csprojResolveAssemblyReference.cache
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\obj\Debug\FITKMS.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS\obj\Debug\FITKMS.pdb
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\FITKMS.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\FITKMS.pdb
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\AjaxControlToolkit.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\FITKMS_business.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\HtmlAgilityPack.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\SanitizerProviders.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\EntityFramework.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\FITKMS_business.pdb
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\EntityFramework.xml
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\ar\AjaxControlToolkit.resources.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\cs\AjaxControlToolkit.resources.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\de\AjaxControlToolkit.resources.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\es\AjaxControlToolkit.resources.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\fr\AjaxControlToolkit.resources.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\he\AjaxControlToolkit.resources.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\hi\AjaxControlToolkit.resources.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\it\AjaxControlToolkit.resources.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\ja\AjaxControlToolkit.resources.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\ko\AjaxControlToolkit.resources.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\nl\AjaxControlToolkit.resources.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\pt\AjaxControlToolkit.resources.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\ru\AjaxControlToolkit.resources.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\tr-TR\AjaxControlToolkit.resources.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\zh-CHS\AjaxControlToolkit.resources.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\bin\zh-CHT\AjaxControlToolkit.resources.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.csprojResolveAssemblyReference.cache
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.pdb
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\FITKMS.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\FITKMS.pdb
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\AjaxControlToolkit.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\FITKMS_business.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\HtmlAgilityPack.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\SanitizerProviders.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\EntityFramework.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\FITKMS_business.pdb
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\EntityFramework.xml
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\ar\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\cs\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\de\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\es\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\fr\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\he\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\hi\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\it\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\ja\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\ko\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\nl\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\pt\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\ru\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\tr-TR\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\zh-CHS\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\zh-CHT\AjaxControlToolkit.resources.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.csprojResolveAssemblyReference.cache
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.pdb
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\Newtonsoft.Json.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS\bin\Newtonsoft.Json.xml
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\FITKMS.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\FITKMS.pdb
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\AjaxControlToolkit.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\FITKMS_business.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\HtmlAgilityPack.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\Newtonsoft.Json.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\SanitizerProviders.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\EntityFramework.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\FITKMS_business.pdb
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\Newtonsoft.Json.xml
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\EntityFramework.xml
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\ar\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\cs\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\de\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\es\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\fr\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\he\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\hi\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\it\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\ja\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\ko\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\nl\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\pt\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\ru\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\tr-TR\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\zh-CHS\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\bin\zh-CHT\AjaxControlToolkit.resources.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.csprojResolveAssemblyReference.cache
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.dll
+C:\Users\Admir Sehidic\Desktop\FITKMS\FITKMS\obj\Debug\FITKMS.pdb

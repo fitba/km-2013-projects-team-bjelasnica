@@ -59,5 +59,85 @@ namespace FITKMS_business.Data
                 con.Close();
             }
         }
+
+        public static void AddFavoriteTag(KorisniciTagovi favoriteTag)
+        {
+            KorisniciTagovi userTag = new KorisniciTagovi();
+            userTag = Connection.dm.KorisniciTagovi.Where(k => k.KorisnikID == favoriteTag.KorisnikID && k.TagID == favoriteTag.TagID).SingleOrDefault();
+            if (userTag == null)
+            {
+                Connection.dm.KorisniciTagovi.Add(favoriteTag);
+                Connection.dm.SaveChanges();
+            }
+            else
+            {
+                Connection.dm.KorisniciTagovi.First(k => k.KorisnikID == favoriteTag.KorisnikID && k.TagID == favoriteTag.TagID).Status = true;
+                Connection.dm.SaveChanges();
+            }
+        }
+
+        public static bool CheckFavoriteTag(int userID, int tagID)
+        {
+            KorisniciTagovi userTag = new KorisniciTagovi();
+            userTag = Connection.dm.KorisniciTagovi.Where(k => k.KorisnikID == userID && k.TagID == tagID).SingleOrDefault();
+            if (userTag != null)
+            {
+                if (userTag.Status == true)
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
+
+        public static void UpdateTagStatus(int userID, int tagID)
+        {
+            Connection.dm.KorisniciTagovi.First(k => k.KorisnikID == userID && k.TagID == tagID).Status = false;
+            Connection.dm.SaveChanges();
+        }
+
+        public static void UpdateLastLogin(int userID, DateTime lastLogin)
+        {
+            Connection.dm.Korisnici.First(k => k.KorisnikID == userID).PosljednjaPrijava = lastLogin;
+            Connection.dm.SaveChanges();
+        }
+
+        public static int CountNewArticles(DateTime lastLogin)
+        {
+            System.Data.Objects.ObjectParameter total = new System.Data.Objects.ObjectParameter("BrojClanaka", 0);
+            Connection.dm.fsp_Clanci_CountNewByUser(lastLogin, total);
+            return Convert.ToInt32(total.Value);
+        }
+
+        public static int CountNewQuestions(DateTime lastLogin)
+        {
+            System.Data.Objects.ObjectParameter total = new System.Data.Objects.ObjectParameter("BrojPitanja", 0);
+            Connection.dm.fsp_Pitanja_CountNewByUser(lastLogin, total);
+            return Convert.ToInt32(total.Value);
+        }
+
+        public static int Count()
+        {
+            return Connection.dm.Korisnici.Count();
+        }
+
+        public static bool IsAdmin(string user)
+        {
+            if (user != "")
+            {
+                int userId = Convert.ToInt32(user);
+                List<KorisniciUloge> listaUloga = Connection.dm.KorisniciUloge.Where(x => x.KorisnikID == userId).ToList();
+
+                foreach (KorisniciUloge i in listaUloga)
+                {
+                    if (Connection.dm.Uloge.Where(x => x.UlogaID == i.UlogaID).Single().Naziv.Contains("Admin"))
+                        return true;
+                }
+            }
+
+            return false;
+
+        }
     }
 }

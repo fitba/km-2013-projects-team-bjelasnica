@@ -46,6 +46,12 @@
         <EntityTypeShape EntityType="FITKMSModel.ClanciIzmjene" Width="1.5" PointX="7.4977531896427987" PointY="27.669654516349386" />
         <AssociationConnector Association="FITKMSModel.FK_ClanciIzmjene_Clanci" />
         <AssociationConnector Association="FITKMSModel.FK_ClanciIzmjene_Korisnici" />
+        <EntityTypeShape EntityType="FITKMSModel.KorisniciTagovi" Width="1.5" PointX="8.875" PointY="24.75" />
+        <AssociationConnector Association="FITKMSModel.FK_KorisniciTagovi_Korisnici" />
+        <AssociationConnector Association="FITKMSModel.FK_KorisniciTagovi_Tagovi" />
+        <EntityTypeShape EntityType="FITKMSModel.PitanjaOcjene" Width="1.5" PointX="7.5203443633021525" PointY="0.074126124416536709" />
+        <AssociationConnector Association="FITKMSModel.FK_PitanjaOcjene_Korisnici" />
+        <AssociationConnector Association="FITKMSModel.FK_PitanjaOcjene_Pitanja" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

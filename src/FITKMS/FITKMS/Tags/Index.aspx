@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="FITKMS.Tags.Index" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="FITKMS.Tags.Index" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -9,7 +9,7 @@
                 <div class="widget">
                     <div class="widget-header">
                         <div class="title">
-                            <span class="fs1" aria-hidden="true" data-icon="&#xe0b5;"></span>&nbsp;Tagovi
+                            <span class="fs1" aria-hidden="true" data-icon="&#xe031;"></span>&nbsp;Tagovi
                  
                         </div>
                     </div>
@@ -22,10 +22,10 @@
                         <ItemTemplate>
                             <div style="margin: 7px;">
                                 <div style="height: 27px; background-color: #d3d0d0; font-size: 14px; width: 100%; padding: 5px;">
-                                    <a href='Details.aspx?id=<%# Eval("TagID") %>'><%# Eval("Naziv") %></a>
+                                    <a href='Details.aspx?id=<%# Eval("TagID") %>'><span class="label label-info"> <%# Eval("Naziv") %></span> x <%# Eval("BrojPonavljanja") %></a>
                                 </div>
                                 <div style="height: 130px; width: 100%; background-color: #e8e6e6; padding: 5px;">
-                                    <a href='Details.aspx?id=<%# Eval("TagID") %>'><%# (string) Eval("Opis").ToString().Substring(0, 110) %>...</a>
+                                    <a href='Details.aspx?id=<%# Eval("TagID") %>'><%# (string) Eval("Opis").ToString().Substring(0, 100) %>...</a>
                                 </div>
                             </div>
                         </ItemTemplate>

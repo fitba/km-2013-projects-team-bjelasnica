@@ -13,6 +13,24 @@ namespace FITKMS.Tags {
     public partial class Details {
         
         /// <summary>
+        /// favoriteTag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton favoriteTag;
+        
+        /// <summary>
+        /// noFavoriteTag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton noFavoriteTag;
+        
+        /// <summary>
         /// labelTag control.
         /// </summary>
         /// <remarks>

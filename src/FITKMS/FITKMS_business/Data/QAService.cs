@@ -46,27 +46,22 @@ namespace FITKMS_business.Data
 
         }
         // unos novog pitanja
-        public static void savePitanje(Pitanja pitanje, List<Tagovi> ListaOznacenihTagova)
+        public static void savePitanje(Pitanja pitanje, List<string> tagovi)
         {
-
-            Pitanja p = new Pitanja();
-            p.BrojPregleda = pitanje.BrojPregleda;
-            p.TemaID = pitanje.TemaID;
-            p.DatumIzmjene = pitanje.DatumIzmjene;
-            p.DatumKreiranja = pitanje.DatumKreiranja;
-            p.Naslov = pitanje.Naslov;
-            p.Negativni = pitanje.Negativni;
-            p.Pozitivni = pitanje.Pozitivni;
-            p.Status = pitanje.Status;
-            p.Tekst = pitanje.Tekst;
-            p.KorisnikID = pitanje.KorisnikID;
-
-            foreach (var i in ListaOznacenihTagova)
-                p.Tagovi.Add(i);
-
-            Connection.dm.Pitanja.Add(p);
+            Connection.dm.Pitanja.Add(pitanje);
             Connection.dm.SaveChanges();
 
+            foreach (var t in tagovi)
+            {
+                try
+                {
+                    Connection.dm.fsp_PitanjaTagovi_Insert(pitanje.PitanjeID, t);
+                }
+                catch
+                {
+
+                }
+            }
         }
 
         // get korisnika po ID-u
@@ -79,23 +74,13 @@ namespace FITKMS_business.Data
         // vraca listu tagova koji su koristeni u pitanju
         public static List<Tagovi> getListaTagovaUpitanju(int Pid)
         {
-            List<fsp_getAllTagoviZaPitanjeID_Result> r = Connection.dm.fsp_getAllTagoviZaPitanjeID(Pid).ToList();
-
-            List<Tagovi> listaTagova = new List<Tagovi>();
-            foreach (var i in r)
-            {
-
-                Tagovi t = Connection.dm.Tagovi.Where(y => y.TagID == i.TagID).SingleOrDefault();
-                listaTagova.Add(t);
-
-            }
-            return listaTagova;
+            return DAPitanja.SelectTags(Pid).ToList();
         }
 
         // lista svih odgovora za postavljeno pitanje
-        public static List<fsp_getAllOdgovoriZaPitanje_Result> getAllOdgovoriZaPitanje(int id)
+        public static List<fsp_Odgovori_SelectByPitanjeId_Result> getAllOdgovoriZaPitanje(int id)
         {
-            return Connection.dm.fsp_getAllOdgovoriZaPitanje(id).ToList();
+            return Connection.dm.fsp_Odgovori_SelectByPitanjeId(id).ToList();
 
         }
         // unos novog odgovora
@@ -239,12 +224,6 @@ namespace FITKMS_business.Data
             Connection.dm.SaveChanges();
         }
 
-        public static List<Tagovi> getTagoviAll()
-        {
-            return Connection.dm.fsp_get_AllTagovi().ToList();
-
-        }
-
         public static List<Pitanja> getAllPitanjaTEST()
         {
             return Connection.dm.Pitanja.ToList();
@@ -262,6 +241,50 @@ namespace FITKMS_business.Data
         }
 
 
-     
+
+
+        public static void UpdateQuestionLikeStatus(Pitanja pitanje, int userId, bool status)
+        {
+            if (Connection.dm.PitanjaGlasovi.First(p => p.PitanjeID == pitanje.PitanjeID && p.KorisnikID == userId).Pozitivni != status)
+            {
+                Connection.dm.PitanjaGlasovi.First(p => p.PitanjeID == pitanje.PitanjeID && p.KorisnikID == userId).Pozitivni = status;
+                Connection.dm.SaveChanges();
+                if (status)
+                {
+                    pitanje.Pozitivni++;
+                    pitanje.Negativni--;
+                    Connection.dm.SaveChanges();
+                }
+                else
+                {
+                    pitanje.Pozitivni--;
+                    pitanje.Negativni++;
+                    Connection.dm.SaveChanges();
+                }
+            }
+        }
+
+        public static void UpdateAnswerLikeStatus(Odgovori odgovor, int userId, bool status)
+        {
+            if (Connection.dm.OdgovoriGlasovi.First(o => o.OdgovorID == odgovor.OdgovorID && o.KorisnikID == userId).Pozitivni != status)
+            {
+                Connection.dm.OdgovoriGlasovi.First(o => o.OdgovorID == odgovor.OdgovorID && o.KorisnikID == userId).Pozitivni = status;
+                Connection.dm.SaveChanges();
+
+                if (status)
+                {
+                    odgovor.Pozitivni++;
+                    odgovor.Negativni--;
+                    Connection.dm.SaveChanges();
+                }
+                else
+                {
+                    odgovor.Pozitivni--;
+                    odgovor.Negativni++;
+                    Connection.dm.SaveChanges();
+                }
+            }
+        }
+
     }
 }

@@ -5,7 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+
 using FITKMS_business.Data;
+using FITKMS_business.Util;
 
 namespace FITKMS.Wiki
 {
@@ -126,7 +128,8 @@ namespace FITKMS.Wiki
 
                 textLiteral.Text = article.Tekst;
 
-                tagsRepeater.DataSource = DAClanci.SelectTags(articleId);
+                List<Tagovi> tags = DAClanci.SelectTags(articleId);
+                tagsRepeater.DataSource = tags;
                 tagsRepeater.DataBind();
 
                 if (User.Identity.Name != "")
@@ -148,7 +151,63 @@ namespace FITKMS.Wiki
                     pdfDownloadLink.HRef = "Download.aspx?articleId=" + articleId;
                 }
 
+                //Preporuka Wikipedia
+                WikiRecommendation(tags, article.Naslov);
+
+                //Item-based preporuka
+                ItemBasedRecommendation();
+
+                HtmlControl div = (HtmlControl)this.Master.FindControl("questionRecommend");
+                div.Visible = false;
+
             }
+        }
+
+        private void ItemBasedRecommendation()
+        {
+            DataList articlesList = (DataList)this.Master.FindControl("articlesList");
+            RecommendationService recommendation = new RecommendationService();
+
+            //Ukoliko je korisnik prijavljen ukloniti pregledane članke iz preporuke
+            int userId = 0;
+            if (User.Identity.Name != "")
+                userId = Convert.ToInt32(User.Identity.Name);
+            articlesList.DataSource = recommendation.GetTopArticleMatches(articleId, userId);
+            articlesList.DataBind();
+        }
+
+        private void WikiRecommendation(List<Tagovi> tags, string title)
+        {
+            DataList wikiList = (DataList)this.Master.FindControl("wikiList");
+
+            List<string> words = new List<string>();
+
+            foreach (Tagovi t in tags)
+            {
+                if (t.Naziv.Length >= 4)
+                    words.Add(t.Naziv);
+            }
+
+            words.Add(title);
+            words = words.Distinct().ToList();
+
+            ExternalIntegration integration = new ExternalIntegration();
+            List<WikiP> articlesWiki = new List<WikiP>();
+            List<WikiP> articlesWikiRecommend = new List<WikiP>();
+
+            foreach (string w in words)
+            {
+                articlesWiki.Clear();
+                articlesWiki.AddRange(integration.SearchWikipedia(w));
+                articlesWikiRecommend.AddRange(articlesWiki.Take(3).ToList());
+            }
+
+            articlesWikiRecommend = articlesWikiRecommend.Distinct().ToList();
+            wikiList.DataSource = articlesWikiRecommend;
+            wikiList.DataBind();
+
+            HtmlControl div = (HtmlControl)this.Master.FindControl("wikiRecommend");
+            div.Visible = true;
         }
 
         private void BindGrade()

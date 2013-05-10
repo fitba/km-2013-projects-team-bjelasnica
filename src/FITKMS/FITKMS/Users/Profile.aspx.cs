@@ -27,7 +27,7 @@ namespace FITKMS.Users
             Korisnici user = DAKorisnici.GetByID(Convert.ToInt32(User.Identity.Name));
 
             if (user.SlikaType != null && user.SlikaType != "")
-                userImage.ImageUrl = "Image.aspx?username=" + user.KorisnickoIme;
+                userImage.ImageUrl = "ImageHandler.ashx?userId=" + user.KorisnikID;
             else
                 userImage.ImageUrl = "../Content/img/profile.png";
 

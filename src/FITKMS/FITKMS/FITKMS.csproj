@@ -45,6 +45,9 @@
       <HintPath>..\packages\AjaxControlToolkit.7.0123\lib\45\SanitizerProviders\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="SanitizerProviders">
       <HintPath>..\packages\AjaxControlToolkit.7.0123\lib\45\SanitizerProviders\SanitizerProviders.dll</HintPath>
     </Reference>
@@ -66,6 +69,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Index.aspx" />
     <Content Include="Content\css\alertify.core.css" />
     <Content Include="Content\css\bootstrap-editable.css" />
     <Content Include="Content\css\calendar-theme.css" />
@@ -170,27 +174,34 @@
     <Content Include="Content\js\wysiwyg\locales\bootstrap-wysihtml5.zh-CN.js" />
     <Content Include="Content\js\wysiwyg\locales\bootstrap-wysihtml5.zh-TW.js" />
     <Content Include="Content\js\wysiwyg\wysihtml5-0.3.0.js" />
-    <Content Include="default.aspx" />
+    <Content Include="Default.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="QA\Add.aspx" />
     <Content Include="QA\Details.aspx" />
+    <Content Include="QA\Edit.aspx" />
     <Content Include="QA\Index.aspx" />
     <Content Include="Tags\Details.aspx" />
     <Content Include="Tags\Index.aspx" />
-    <Content Include="Test.aspx" />
-    <Content Include="Users\Image.aspx" />
+    <Content Include="Themes\Index.aspx" />
     <Content Include="Users\Profile.aspx" />
     <Content Include="Users\Registration.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="default.aspx.cs">
-      <DependentUpon>default.aspx</DependentUpon>
+    <Compile Include="Admin\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="default.aspx.designer.cs">
-      <DependentUpon>default.aspx</DependentUpon>
+    <Compile Include="Admin\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -228,12 +239,26 @@
     <Compile Include="QA\Details.aspx.designer.cs">
       <DependentUpon>Details.aspx</DependentUpon>
     </Compile>
+    <Compile Include="QA\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QA\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="QA\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="QA\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="Tags\Details.aspx.cs">
       <DependentUpon>Details.aspx</DependentUpon>
@@ -249,19 +274,12 @@
     <Compile Include="Tags\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Test.aspx.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
+    <Compile Include="Themes\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Test.aspx.designer.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Users\Image.aspx.cs">
-      <DependentUpon>Image.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Users\Image.aspx.designer.cs">
-      <DependentUpon>Image.aspx</DependentUpon>
+    <Compile Include="Themes\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Users\ImageHandler.ashx.cs">
       <DependentUpon>ImageHandler.ashx</DependentUpon>
@@ -326,6 +344,8 @@
     <Content Include="Users\Web.config" />
     <Content Include="packages.config" />
     <Content Include="Users\ImageHandler.ashx" />
+    <Content Include="Site.Master" />
+    <Content Include="QA\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

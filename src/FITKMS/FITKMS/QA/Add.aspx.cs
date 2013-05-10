@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 using FITKMS_business.Data;
+
 namespace FITKMS.QA
 {
     public partial class Add : System.Web.UI.Page
     {
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsCallback && !IsPostBack)
@@ -24,10 +25,10 @@ namespace FITKMS.QA
                 ddOblast.DataValueField = "OblastID";
                 ddOblast.DataBind();
 
-                chkTagovi.DataSource = QAService.getAllTagovi();
-                chkTagovi.DataTextField = "Naziv";
-                chkTagovi.DataValueField = "TagID";
-                chkTagovi.DataBind();
+                List<string> temaEmpty = new List<string>();
+                temaEmpty.Add("Odaberite temu");
+                ddTema.DataSource = temaEmpty;
+                ddTema.DataBind();
             }
         }
 
@@ -36,11 +37,21 @@ namespace FITKMS.QA
             int OblastID = int.Parse(ddOblast.SelectedValue);
             if (OblastID != 0)
                 FillTeme(OblastID);
+            else
+            {
+                FillTeme(0);
+            }
         }
 
         public void FillTeme(int id)
         {
-            List<Teme> teme = QAService.getAllTemeByID(id);
+            List<Teme> teme = new List<Teme>();
+
+            if (id != 0)
+                teme = QAService.getAllTemeByID(id);
+            else
+                teme = DATeme.Select(true);
+
             Teme empty = new Teme();
             empty.Naziv = "Odaberite temu";
             empty.TemaID = 0;
@@ -51,23 +62,6 @@ namespace FITKMS.QA
             ddTema.DataBind();
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            List<Tagovi> ListaOznacenihTagova = new List<Tagovi>();
-            Tagovi tag;
-
-            foreach (ListItem i in chkTagovi.Items)
-            {
-                if (i.Selected)
-                {
-                    int id = Int32.Parse(i.Value);
-                    tag = QAService.getTagByID(id);
-                    ListaOznacenihTagova.Add(tag);
-                }
-            }
-            Session.Add("ListaOznacenihTagova", ListaOznacenihTagova);
-        }
-
         protected void Save_Click(object sender, EventArgs e)
         {
             try
@@ -75,8 +69,15 @@ namespace FITKMS.QA
                 Pitanja pitanje = new Pitanja();
                 pitanje.Naslov = txtNaslovPitanja.Text;
                 pitanje.Tekst = wysiwyg.Text;
-                pitanje.KorisnikID = 4;//////////////uzeti ovo iz sesije
-                pitanje.TemaID = int.Parse(ddTema.SelectedValue);
+                pitanje.KorisnikID = Convert.ToInt32(User.Identity.Name);
+                if (ddTema.SelectedValue == "Odaberite temu")
+                {
+                    error_label.Visible = true;
+                    errorLabel.Text = "Obavezno odabrati temu!";
+                    return;
+                }
+                else
+                    pitanje.TemaID = int.Parse(ddTema.SelectedValue);
                 pitanje.Pozitivni = 0;
                 pitanje.Negativni = 0;
                 pitanje.BrojPregleda = 0;
@@ -84,14 +85,20 @@ namespace FITKMS.QA
                 pitanje.DatumIzmjene = DateTime.Now;
                 pitanje.DatumKreiranja = DateTime.Now;
 
-                List<Tagovi> ListaTagova = (List<Tagovi>)Session["ListaOznacenihTagova"];
-                QAService.savePitanje(pitanje, ListaTagova);
+                List<string> tags = new List<string>();
 
-                Session.Remove("ListaOznacenihTagova");
-                txtNaslovPitanja.Text = "";
-                wysiwyg.Text = "";
+                foreach (string tag in tagsInput.Text.Split(','))
+                {
+                    if (tag != "")
+                        tags.Add(tag.Trim());
+                }
+
+                QAService.savePitanje(pitanje, tags);
+
+                ClearFields();
+
                 success_label.Visible = true;
-                successLabel.Text = "Uspješno ste postavili pitanje.";
+                successLabel.Text = "Uspješno ste dodali pitanje.";
             }
             catch 
             {
@@ -101,5 +108,34 @@ namespace FITKMS.QA
             
             }
         }
+
+        private void ClearFields()
+        {
+            ddOblast.SelectedIndex = 0;
+            ddTema.SelectedIndex = 0;
+            txtNaslovPitanja.Text = "";
+            wysiwyg.Text = "";
+            tagsInput.Text = "";
+        }
+
+        #region WebMethod
+        [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethod()]
+        public static string[] GetTagNames(string prefixText, int count)
+        {
+            List<Tagovi> tags = DATagovi.SelectByName(prefixText);
+            List<string> tagNames = new List<string>();
+
+            foreach (Tagovi tag in tags)
+            {
+                string item = AjaxControlToolkit.AutoCompleteExtender.CreateAutoCompleteItem
+                    (tag.Naziv, tag.TagID.ToString());
+                tagNames.Add(item);
+
+            }
+
+            return tagNames.ToArray();
+
+        }
+        #endregion
     }
 }

@@ -18,13 +18,16 @@ namespace FITKMS_business.Data
         {
             this.Clanci = new HashSet<Clanci>();
             this.Pitanja = new HashSet<Pitanja>();
+            this.KorisniciTagovi = new HashSet<KorisniciTagovi>();
         }
     
         public int TagID { get; set; }
         public string Naziv { get; set; }
         public string Opis { get; set; }
+        public Nullable<bool> Status { get; set; }
     
         public virtual ICollection<Clanci> Clanci { get; set; }
         public virtual ICollection<Pitanja> Pitanja { get; set; }
+        public virtual ICollection<KorisniciTagovi> KorisniciTagovi { get; set; }
     }
 }

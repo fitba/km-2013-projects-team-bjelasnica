@@ -1,36 +1,32 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Registration.aspx.cs" Inherits="FITKMS.Users.Registration" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Registration.aspx.cs" Inherits="FITKMS.Users.Registration" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="dashboard-wrapper">
         <div class="main-container">
-            <div class="row-fluid">
-                <div class="span12">
-                    <div class="widget-body">
+            <div class="widget-body">
 
-                        <div id="success_label" class="alert alert-block alert-success fade in" runat="server" visible="false">
-                            <button data-dismiss="alert" class="close" type="button">
-                                ×
-                            </button>
-                            <h4 class="alert-heading">Poruka!
-                            </h4>
-                            <p>
-                               <asp:Label ID="successLabel" runat="server" Text="Label"></asp:Label>
-                            </p>
-                        </div>
+                <div id="success_label" class="alert alert-block alert-success fade in" runat="server" visible="false">
+                    <button data-dismiss="alert" class="close" type="button">
+                        ×
+                    </button>
+                    <h4 class="alert-heading">Poruka!
+                    </h4>
+                    <p>
+                        <asp:Label ID="successLabel" runat="server" Text="Label"></asp:Label>
+                    </p>
+                </div>
 
-                        <div id="error_label" class="alert alert-block alert-error fade in" runat="server" visible="false">
-                            <button data-dismiss="alert" class="close" type="button">
-                                ×
-                            </button>
-                            <h4 class="alert-heading">Greška!
-                            </h4>
-                            <p>
-                                <asp:Label ID="errorLabel" runat="server" Text="Label"></asp:Label>
-                            </p>
-                        </div>
-                    </div>
+                <div id="error_label" class="alert alert-block alert-error fade in" runat="server" visible="false">
+                    <button data-dismiss="alert" class="close" type="button">
+                        ×
+                    </button>
+                    <h4 class="alert-heading">Greška!
+                    </h4>
+                    <p>
+                        <asp:Label ID="errorLabel" runat="server" Text="Label"></asp:Label>
+                    </p>
                 </div>
             </div>
             <div class="row-fluid">
@@ -58,7 +54,7 @@
                                         E-mail
                                     </label>
                                     <div class="controls">
-                                        <asp:TextBox ID="mailInput" class="span6 input-left-top-margins" required="required"  runat="server" placeholder="E-mail"></asp:TextBox>
+                                        <asp:TextBox ID="mailInput" class="span6 input-left-top-margins" required="required" runat="server" placeholder="E-mail"></asp:TextBox>
 
                                         <span class="help-inline ">Unesite e-mail adresu
                                         </span>
@@ -201,7 +197,7 @@
                                         Korisničko ime
                                     </label>
                                     <div class="controls">
-                                        <asp:TextBox ID="usernameInput" class="span12" runat="server" required="required"  placeholder="Korisničko ime"></asp:TextBox>
+                                        <asp:TextBox ID="usernameInput" class="span12" runat="server" required="required" placeholder="Korisničko ime"></asp:TextBox>
                                     </div>
                                 </div>
 
@@ -210,7 +206,7 @@
                                         Lozinka
                                     </label>
                                     <div class="controls">
-                                        <asp:TextBox ID="password1Input" class="span12" required="required"  runat="server" placeholder="Lozinka" TextMode="Password"></asp:TextBox>
+                                        <asp:TextBox ID="password1Input" class="span12" required="required" runat="server" placeholder="Lozinka" TextMode="Password"></asp:TextBox>
 
                                     </div>
                                 </div>
@@ -220,7 +216,7 @@
                                         Potvrda lozinke
                                     </label>
                                     <div class="controls">
-                                        <asp:TextBox ID="password2Input" class="span12" required="required"  runat="server" placeholder="Potvrda lozinke" TextMode="Password"></asp:TextBox>
+                                        <asp:TextBox ID="password2Input" class="span12" required="required" runat="server" placeholder="Potvrda lozinke" TextMode="Password"></asp:TextBox>
 
                                     </div>
                                 </div>
@@ -236,6 +232,6 @@
                     </div>
                 </div>
             </div>
-    </div>
         </div>
+    </div>
 </asp:Content>

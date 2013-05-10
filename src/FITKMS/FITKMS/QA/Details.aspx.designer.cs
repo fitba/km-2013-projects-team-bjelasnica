@@ -13,13 +13,13 @@ namespace FITKMS.QA {
     public partial class Details {
         
         /// <summary>
-        /// ScriptManager1 control.
+        /// ToolkitScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager1;
         
         /// <summary>
         /// lblNaslovPitanja control.
@@ -31,13 +31,13 @@ namespace FITKMS.QA {
         protected global::System.Web.UI.WebControls.Label lblNaslovPitanja;
         
         /// <summary>
-        /// lblTextPitanja control.
+        /// editLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTextPitanja;
+        protected global::System.Web.UI.WebControls.LinkButton editLink;
         
         /// <summary>
         /// UpdatePanel2 control.
@@ -47,6 +47,24 @@ namespace FITKMS.QA {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+        
+        /// <summary>
+        /// warning_block control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl warning_block;
+        
+        /// <summary>
+        /// warning control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label warning;
         
         /// <summary>
         /// lblKorisnik control.
@@ -65,6 +83,24 @@ namespace FITKMS.QA {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDatum;
+        
+        /// <summary>
+        /// lblBrojPregleda control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBrojPregleda;
+        
+        /// <summary>
+        /// tagsRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater tagsRepeater;
         
         /// <summary>
         /// likePitanje control.
@@ -103,31 +139,58 @@ namespace FITKMS.QA {
         protected global::System.Web.UI.WebControls.Label lblBrojNegativnih;
         
         /// <summary>
-        /// lblBrojPregleda control.
+        /// rating_block control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblBrojPregleda;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl rating_block;
         
         /// <summary>
-        /// tagsRepeater control.
+        /// ratingLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater tagsRepeater;
+        protected global::System.Web.UI.WebControls.Label ratingLabel;
         
         /// <summary>
-        /// UpdatePanel3 control.
+        /// dateRatedLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
+        protected global::System.Web.UI.WebControls.Label dateRatedLabel;
+        
+        /// <summary>
+        /// articleRating control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.Rating articleRating;
+        
+        /// <summary>
+        /// lblTextPitanja control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTextPitanja;
+        
+        /// <summary>
+        /// labelTag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelTag;
         
         /// <summary>
         /// UpdatePanel1 control.
@@ -148,6 +211,15 @@ namespace FITKMS.QA {
         protected global::System.Web.UI.WebControls.DataList dtOdgovori;
         
         /// <summary>
+        /// answerPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel answerPanel;
+        
+        /// <summary>
         /// wysiwyg control.
         /// </summary>
         /// <remarks>
@@ -164,5 +236,14 @@ namespace FITKMS.QA {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button1;
+        
+        /// <summary>
+        /// answerMessagePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel answerMessagePanel;
     }
 }

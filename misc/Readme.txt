@@ -1,0 +1,1 @@
+Priloženi èlanak je korišten kao referenca za implementaciju jedne od preporuka u projektu (Collaborative-Content).

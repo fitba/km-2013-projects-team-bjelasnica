@@ -8,12 +8,14 @@
     <EntitySet Name="ClanciOcjene" EntityType="FITKMSModel.Store.ClanciOcjene" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ClanciTagovi" EntityType="FITKMSModel.Store.ClanciTagovi" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Korisnici" EntityType="FITKMSModel.Store.Korisnici" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KorisniciTagovi" EntityType="FITKMSModel.Store.KorisniciTagovi" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="KorisniciUloge" EntityType="FITKMSModel.Store.KorisniciUloge" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Oblasti" EntityType="FITKMSModel.Store.Oblasti" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Odgovori" EntityType="FITKMSModel.Store.Odgovori" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="OdgovoriGlasovi" EntityType="FITKMSModel.Store.OdgovoriGlasovi" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Pitanja" EntityType="FITKMSModel.Store.Pitanja" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PitanjaGlasovi" EntityType="FITKMSModel.Store.PitanjaGlasovi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PitanjaOcjene" EntityType="FITKMSModel.Store.PitanjaOcjene" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PitanjaTagovi" EntityType="FITKMSModel.Store.PitanjaTagovi" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Pretrage" EntityType="FITKMSModel.Store.Pretrage" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Tagovi" EntityType="FITKMSModel.Store.Tagovi" store:Type="Tables" Schema="dbo" />
@@ -64,6 +66,14 @@
       <End Role="Tagovi" EntitySet="Tagovi" />
       <End Role="ClanciTagovi" EntitySet="ClanciTagovi" />
     </AssociationSet>
+    <AssociationSet Name="FK_KorisniciTagovi_Korisnici" Association="FITKMSModel.Store.FK_KorisniciTagovi_Korisnici">
+      <End Role="Korisnici" EntitySet="Korisnici" />
+      <End Role="KorisniciTagovi" EntitySet="KorisniciTagovi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KorisniciTagovi_Tagovi" Association="FITKMSModel.Store.FK_KorisniciTagovi_Tagovi">
+      <End Role="Tagovi" EntitySet="Tagovi" />
+      <End Role="KorisniciTagovi" EntitySet="KorisniciTagovi" />
+    </AssociationSet>
     <AssociationSet Name="FK_KorisniciUloge_Korisnici" Association="FITKMSModel.Store.FK_KorisniciUloge_Korisnici">
       <End Role="Korisnici" EntitySet="Korisnici" />
       <End Role="KorisniciUloge" EntitySet="KorisniciUloge" />
@@ -107,6 +117,14 @@
     <AssociationSet Name="FK_PitanjaGlasovi_Pitanja" Association="FITKMSModel.Store.FK_PitanjaGlasovi_Pitanja">
       <End Role="Pitanja" EntitySet="Pitanja" />
       <End Role="PitanjaGlasovi" EntitySet="PitanjaGlasovi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PitanjaOcjene_Korisnici" Association="FITKMSModel.Store.FK_PitanjaOcjene_Korisnici">
+      <End Role="Korisnici" EntitySet="Korisnici" />
+      <End Role="PitanjaOcjene" EntitySet="PitanjaOcjene" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PitanjaOcjene_Pitanja" Association="FITKMSModel.Store.FK_PitanjaOcjene_Pitanja">
+      <End Role="Pitanja" EntitySet="Pitanja" />
+      <End Role="PitanjaOcjene" EntitySet="PitanjaOcjene" />
     </AssociationSet>
     <AssociationSet Name="FK_PitanjaTagovi_Pitanja" Association="FITKMSModel.Store.FK_PitanjaTagovi_Pitanja">
       <End Role="Pitanja" EntitySet="Pitanja" />
@@ -213,6 +231,16 @@
     <Property Name="Aktivan" Type="bit" Nullable="false" />
     <Property Name="DatumIzmjene" Type="datetime" />
   </EntityType>
+  <EntityType Name="KorisniciTagovi">
+    <Key>
+      <PropertyRef Name="KorisnikID" />
+      <PropertyRef Name="TagID" />
+    </Key>
+    <Property Name="KorisnikID" Type="int" Nullable="false" />
+    <Property Name="TagID" Type="int" Nullable="false" />
+    <Property Name="Datum" Type="datetime" />
+    <Property Name="Status" Type="bit" />
+  </EntityType>
   <EntityType Name="KorisniciUloge">
     <Key>
       <PropertyRef Name="KorisnikID" />
@@ -284,6 +312,17 @@
     <Property Name="PitanjeID" Type="int" Nullable="false" />
     <Property Name="Pozitivni" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="PitanjaOcjene">
+    <Key>
+      <PropertyRef Name="PitanjeOcjenaID" />
+    </Key>
+    <Property Name="PitanjeOcjenaID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Ocjena" Type="int" Nullable="false" />
+    <Property Name="PitanjeID" Type="int" Nullable="false" />
+    <Property Name="KorisnikID" Type="int" Nullable="false" />
+    <Property Name="DatumKreiranja" Type="datetime" />
+    <Property Name="DatumIzmjene" Type="datetime" />
+  </EntityType>
   <EntityType Name="PitanjaTagovi">
     <Key>
       <PropertyRef Name="PitanjeID" />
@@ -310,6 +349,7 @@
     <Property Name="TagID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Naziv" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Opis" Type="nvarchar(max)" />
+    <Property Name="Status" Type="bit" />
   </EntityType>
   <EntityType Name="Teme">
     <Key>
@@ -473,6 +513,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_KorisniciTagovi_Korisnici">
+    <End Role="Korisnici" Type="FITKMSModel.Store.Korisnici" Multiplicity="1" />
+    <End Role="KorisniciTagovi" Type="FITKMSModel.Store.KorisniciTagovi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Korisnici">
+        <PropertyRef Name="KorisnikID" />
+      </Principal>
+      <Dependent Role="KorisniciTagovi">
+        <PropertyRef Name="KorisnikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KorisniciTagovi_Tagovi">
+    <End Role="Tagovi" Type="FITKMSModel.Store.Tagovi" Multiplicity="1" />
+    <End Role="KorisniciTagovi" Type="FITKMSModel.Store.KorisniciTagovi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tagovi">
+        <PropertyRef Name="TagID" />
+      </Principal>
+      <Dependent Role="KorisniciTagovi">
+        <PropertyRef Name="TagID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_KorisniciUloge_Korisnici">
     <End Role="Korisnici" Type="FITKMSModel.Store.Korisnici" Multiplicity="1" />
     <End Role="KorisniciUloge" Type="FITKMSModel.Store.KorisniciUloge" Multiplicity="*" />
@@ -605,6 +669,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_PitanjaOcjene_Korisnici">
+    <End Role="Korisnici" Type="FITKMSModel.Store.Korisnici" Multiplicity="1" />
+    <End Role="PitanjaOcjene" Type="FITKMSModel.Store.PitanjaOcjene" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Korisnici">
+        <PropertyRef Name="KorisnikID" />
+      </Principal>
+      <Dependent Role="PitanjaOcjene">
+        <PropertyRef Name="KorisnikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PitanjaOcjene_Pitanja">
+    <End Role="Pitanja" Type="FITKMSModel.Store.Pitanja" Multiplicity="1" />
+    <End Role="PitanjaOcjene" Type="FITKMSModel.Store.PitanjaOcjene" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pitanja">
+        <PropertyRef Name="PitanjeID" />
+      </Principal>
+      <Dependent Role="PitanjaOcjene">
+        <PropertyRef Name="PitanjeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_PitanjaTagovi_Pitanja">
     <End Role="Pitanja" Type="FITKMSModel.Store.Pitanja" Multiplicity="1" />
     <End Role="PitanjaTagovi" Type="FITKMSModel.Store.PitanjaTagovi" Multiplicity="*" />
@@ -672,6 +760,9 @@
     <Parameter Name="ClanakKomentarID" Type="int" Mode="In" />
     <Parameter Name="Status" Type="bit" Mode="In" />
   </Function>
+  <Function Name="fsp_ClanciOcjene_SelectByArticle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClanakID" Type="int" Mode="In" />
+  </Function>
   <Function Name="fsp_ClanciOcjene_SelectByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ClanakID" Type="int" Mode="In" />
     <Parameter Name="KorisnikID" Type="int" Mode="In" />
@@ -680,12 +771,24 @@
     <Parameter Name="ClanakID" Type="int" Mode="In" />
     <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="fsp_Clanci_CountByTag" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TagID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fsp_Clanci_CountNewByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PosljednjaPrijava" Type="datetime" Mode="In" />
+    <Parameter Name="BrojClanaka" Type="int" Mode="InOut" />
+  </Function>
   <Function Name="fsp_Clanci_DeleteDocument" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ClanakID" Type="int" Mode="In" />
   </Function>
   <Function Name="fsp_Clanci_DeleteTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ClanakID" Type="int" Mode="In" />
   </Function>
+  <Function Name="fsp_Clanci_SelectActive" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="KorisnikID" Type="int" Mode="In" />
+    <Parameter Name="ClanakID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fsp_Clanci_SelectBestRated" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="fsp_Clanci_SelectById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ClanakID" Type="int" Mode="In" />
   </Function>
@@ -695,6 +798,14 @@
     <Parameter Name="MaxRows" Type="int" Mode="In" />
     <Parameter Name="TotalRows" Type="int" Mode="InOut" />
   </Function>
+  <Function Name="fsp_Clanci_SelectByTheme" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Tema" Type="nvarchar" Mode="In" />
+    <Parameter Name="TemaID" Type="int" Mode="In" />
+    <Parameter Name="Offset" Type="int" Mode="In" />
+    <Parameter Name="MaxRows" Type="int" Mode="In" />
+    <Parameter Name="TotalRows" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="fsp_Clanci_SelectLastComments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="fsp_Clanci_SelectSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Pretraga" Type="nvarchar" Mode="In" />
     <Parameter Name="Offset" Type="int" Mode="In" />
@@ -703,6 +814,10 @@
   </Function>
   <Function Name="fsp_Clanci_SelectTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ClanakID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fsp_Clanci_SelectUserCollection" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="KorisnikID" Type="int" Mode="In" />
+    <Parameter Name="Ocjena" Type="int" Mode="In" />
   </Function>
   <Function Name="fsp_Clanci_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ClanakID" Type="int" Mode="In" />
@@ -720,6 +835,9 @@
     <Parameter Name="KorisnikID" Type="int" Mode="In" />
     <Parameter Name="LozinkaSalt" Type="nvarchar" Mode="In" />
     <Parameter Name="LozinkaHash" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="fsp_Korisnici_CountByTag" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TagID" Type="int" Mode="In" />
   </Function>
   <Function Name="fsp_Korisnici_Registration" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Ime" Type="nvarchar" Mode="In" />
@@ -747,12 +865,50 @@
     <Parameter Name="Slika" Type="varbinary(max)" Mode="In" />
     <Parameter Name="SlikaType" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="fsp_Odgovori_SelectByPitanjeId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PitanjeID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fsp_Odgovori_UpdateStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OdgovorID" Type="int" Mode="In" />
+    <Parameter Name="Status" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="fsp_PitanjaOcjene_SelectByQuestion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PitanjeID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fsp_PitanjaOcjene_SelectByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PitanjeID" Type="int" Mode="In" />
+    <Parameter Name="KorisnikID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fsp_PitanjaTagovi_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PitanjeID" Type="int" Mode="In" />
+    <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="fsp_Pitanja_CountNewByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PosljednjaPrijava" Type="datetime" Mode="In" />
+    <Parameter Name="BrojPitanja" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="fsp_Pitanja_DeleteTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PitanjeID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fsp_Pitanja_SelectActive" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="KorisnikID" Type="int" Mode="In" />
+    <Parameter Name="PitanjeID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fsp_Pitanja_SelectBestLiked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="fsp_Pitanja_SelectByTag" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="TagID" Type="int" Mode="In" />
     <Parameter Name="Offset" Type="int" Mode="In" />
     <Parameter Name="MaxRows" Type="int" Mode="In" />
     <Parameter Name="TotalRows" Type="int" Mode="InOut" />
   </Function>
+  <Function Name="fsp_Pitanja_SelectByTheme" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Tema" Type="nvarchar" Mode="In" />
+    <Parameter Name="TemaID" Type="int" Mode="In" />
+    <Parameter Name="Offset" Type="int" Mode="In" />
+    <Parameter Name="MaxRows" Type="int" Mode="In" />
+    <Parameter Name="TotalRows" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="fsp_Pitanja_SelectLastAnswers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="fsp_Pitanja_SelectSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Pretraga" Type="nvarchar" Mode="In" />
     <Parameter Name="Offset" Type="int" Mode="In" />
@@ -762,19 +918,43 @@
   <Function Name="fsp_Pitanja_SelectTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="PitanjeID" Type="int" Mode="In" />
   </Function>
+  <Function Name="fsp_Pitanja_SelectUnAnswered" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="fsp_Pitanja_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PitanjeID" Type="int" Mode="In" />
+    <Parameter Name="Naslov" Type="nvarchar" Mode="In" />
+    <Parameter Name="Tekst" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="TemaID" Type="int" Mode="In" />
+    <Parameter Name="KorisnikID" Type="int" Mode="In" />
+    <Parameter Name="DatumIzmjene" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="fsp_Tagovi_CountByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="KorisnikID" Type="int" Mode="In" />
+    <Parameter Name="TagID" Type="int" Mode="In" />
+    <Parameter Name="BrojTagova" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="fsp_Tagovi_CountWithinArticles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TagID" Type="int" Mode="In" />
+  </Function>
   <Function Name="fsp_Tagovi_SelectByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="fsp_Tagovi_SelectByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="KorisnikID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fsp_Tagovi_SelectPagination" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PageNo" Type="int" Mode="In" />
+    <Parameter Name="RecordsPerPage" Type="int" Mode="In" />
+    <Parameter Name="TotalRows" Type="int" Mode="InOut" />
+    <Parameter Name="Search" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="fsp_Teme_SelectByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="fsp_Teme_SelectByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Status" Type="bit" Mode="In" />
   </Function>
+  <Function Name="fsp_Teme_SelectMostUsed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="fsp_VrsteClanaka_SelectByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Status" Type="bit" Mode="In" />
-  </Function>
-  <Function Name="fsp_getAllOdgovoriZaPitanje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="PId" Type="int" Mode="In" />
-  </Function>
-  <Function Name="fsp_getAllTagoviZaPitanjeID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="Pid" Type="int" Mode="In" />
   </Function>
 </Schema>

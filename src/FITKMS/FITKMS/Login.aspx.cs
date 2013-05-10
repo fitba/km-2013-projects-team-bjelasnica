@@ -35,8 +35,12 @@ namespace FITKMS
 
                     FormsAuthenticationTicket tick = new FormsAuthenticationTicket(user.KorisnikID.ToString(), false, 30);
                     string encTick = FormsAuthentication.Encrypt(tick);
+
+                    Session["LastLogin"] = user.PosljednjaPrijava;
+                    DAKorisnici.UpdateLastLogin(user.KorisnikID, DateTime.Now);
+
                     Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTick));
-                    Response.Redirect("default.aspx");
+                    Response.Redirect(FormsAuthentication.GetRedirectUrl(user.KorisnikID.ToString(), false));
                 }
                 else
                 {

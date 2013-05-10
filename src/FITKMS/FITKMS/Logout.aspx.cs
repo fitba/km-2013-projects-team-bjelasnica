@@ -14,7 +14,7 @@ namespace FITKMS
             System.Web.Security.FormsAuthentication.SignOut();
             Session.Clear();
             Response.Cookies[".LASTLOGIN"].Expires = DateTime.Now.AddDays(-1);
-            Response.Redirect("Login.aspx");
+            Response.Redirect("/Default.aspx");
         }
     }
 }

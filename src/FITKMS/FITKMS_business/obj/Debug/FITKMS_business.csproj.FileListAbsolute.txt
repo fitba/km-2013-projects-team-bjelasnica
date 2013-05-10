@@ -14,14 +14,6 @@ C:\Users\larisa.FIT\Desktop\FITKMS\FITKMS_business\bin\Debug\EntityFramework.xml
 C:\Users\larisa.FIT\Desktop\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.csprojResolveAssemblyReference.cache
 C:\Users\larisa.FIT\Desktop\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.dll
 C:\Users\larisa.FIT\Desktop\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.pdb
-C:\Users\Larisa\Desktop\FITKMS\FITKMS_business\bin\Debug\FITKMS_business.dll.config
-C:\Users\Larisa\Desktop\FITKMS\FITKMS_business\bin\Debug\FITKMS_business.dll
-C:\Users\Larisa\Desktop\FITKMS\FITKMS_business\bin\Debug\FITKMS_business.pdb
-C:\Users\Larisa\Desktop\FITKMS\FITKMS_business\bin\Debug\EntityFramework.dll
-C:\Users\Larisa\Desktop\FITKMS\FITKMS_business\bin\Debug\EntityFramework.xml
-C:\Users\Larisa\Desktop\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.csprojResolveAssemblyReference.cache
-C:\Users\Larisa\Desktop\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.dll
-C:\Users\Larisa\Desktop\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.pdb
 C:\Users\admir.FIT\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\bin\Debug\FITKMS_business.dll.config
 C:\Users\admir.FIT\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\bin\Debug\FITKMS_business.dll
 C:\Users\admir.FIT\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\bin\Debug\FITKMS_business.pdb
@@ -69,3 +61,37 @@ C:\Users\Larisa\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FIT
 C:\Users\Larisa\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.dll
 C:\Users\Larisa\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.pdb
 C:\Users\Larisa\Documents\GitHub\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.csprojResolveAssemblyReference.cache
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\bin\Debug\FITKMS_business.dll.config
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\bin\Debug\FITKMS_business.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\bin\Debug\FITKMS_business.pdb
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\bin\Debug\EntityFramework.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\bin\Debug\EntityFramework.xml
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.csprojResolveAssemblyReference.cache
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.dll
+C:\Users\Admir Sehidic\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.pdb
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\bin\Debug\FITKMS_business.dll.config
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\bin\Debug\FITKMS_business.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\bin\Debug\FITKMS_business.pdb
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\bin\Debug\EntityFramework.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\bin\Debug\EntityFramework.xml
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.dll
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.pdb
+C:\Users\admir.FIT.000\Desktop\km-2013-projects-team-bjelasnica\src\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.csprojResolveAssemblyReference.cache
+C:\Users\Larisa\Desktop\FITKMS\FITKMS_business\bin\Debug\FITKMS_business.dll.config
+C:\Users\Larisa\Desktop\FITKMS\FITKMS_business\bin\Debug\FITKMS_business.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS_business\bin\Debug\FITKMS_business.pdb
+C:\Users\Larisa\Desktop\FITKMS\FITKMS_business\bin\Debug\EntityFramework.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS_business\bin\Debug\EntityFramework.xml
+C:\Users\Larisa\Desktop\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.csprojResolveAssemblyReference.cache
+C:\Users\Larisa\Desktop\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.dll
+C:\Users\Larisa\Desktop\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.pdb
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS_business\bin\Debug\FITKMS_business.dll.config
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS_business\bin\Debug\FITKMS_business.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS_business\bin\Debug\FITKMS_business.pdb
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS_business\bin\Debug\EntityFramework.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS_business\bin\Debug\EntityFramework.xml
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.pdb
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS_business\bin\Debug\Newtonsoft.Json.dll
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS_business\bin\Debug\Newtonsoft.Json.xml
+C:\Users\admir.FIT.000\Desktop\FITKMS\FITKMS_business\obj\Debug\FITKMS_business.csprojResolveAssemblyReference.cache

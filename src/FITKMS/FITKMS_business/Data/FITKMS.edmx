@@ -13,12 +13,14 @@
           <EntitySet Name="ClanciOcjene" EntityType="FITKMSModel.Store.ClanciOcjene" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ClanciTagovi" EntityType="FITKMSModel.Store.ClanciTagovi" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Korisnici" EntityType="FITKMSModel.Store.Korisnici" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="KorisniciTagovi" EntityType="FITKMSModel.Store.KorisniciTagovi" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="KorisniciUloge" EntityType="FITKMSModel.Store.KorisniciUloge" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Oblasti" EntityType="FITKMSModel.Store.Oblasti" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Odgovori" EntityType="FITKMSModel.Store.Odgovori" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OdgovoriGlasovi" EntityType="FITKMSModel.Store.OdgovoriGlasovi" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Pitanja" EntityType="FITKMSModel.Store.Pitanja" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PitanjaGlasovi" EntityType="FITKMSModel.Store.PitanjaGlasovi" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PitanjaOcjene" EntityType="FITKMSModel.Store.PitanjaOcjene" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PitanjaTagovi" EntityType="FITKMSModel.Store.PitanjaTagovi" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Pretrage" EntityType="FITKMSModel.Store.Pretrage" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tagovi" EntityType="FITKMSModel.Store.Tagovi" store:Type="Tables" Schema="dbo" />
@@ -69,6 +71,14 @@
             <End Role="Tagovi" EntitySet="Tagovi" />
             <End Role="ClanciTagovi" EntitySet="ClanciTagovi" />
           </AssociationSet>
+          <AssociationSet Name="FK_KorisniciTagovi_Korisnici" Association="FITKMSModel.Store.FK_KorisniciTagovi_Korisnici">
+            <End Role="Korisnici" EntitySet="Korisnici" />
+            <End Role="KorisniciTagovi" EntitySet="KorisniciTagovi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KorisniciTagovi_Tagovi" Association="FITKMSModel.Store.FK_KorisniciTagovi_Tagovi">
+            <End Role="Tagovi" EntitySet="Tagovi" />
+            <End Role="KorisniciTagovi" EntitySet="KorisniciTagovi" />
+          </AssociationSet>
           <AssociationSet Name="FK_KorisniciUloge_Korisnici" Association="FITKMSModel.Store.FK_KorisniciUloge_Korisnici">
             <End Role="Korisnici" EntitySet="Korisnici" />
             <End Role="KorisniciUloge" EntitySet="KorisniciUloge" />
@@ -112,6 +122,14 @@
           <AssociationSet Name="FK_PitanjaGlasovi_Pitanja" Association="FITKMSModel.Store.FK_PitanjaGlasovi_Pitanja">
             <End Role="Pitanja" EntitySet="Pitanja" />
             <End Role="PitanjaGlasovi" EntitySet="PitanjaGlasovi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PitanjaOcjene_Korisnici" Association="FITKMSModel.Store.FK_PitanjaOcjene_Korisnici">
+            <End Role="Korisnici" EntitySet="Korisnici" />
+            <End Role="PitanjaOcjene" EntitySet="PitanjaOcjene" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PitanjaOcjene_Pitanja" Association="FITKMSModel.Store.FK_PitanjaOcjene_Pitanja">
+            <End Role="Pitanja" EntitySet="Pitanja" />
+            <End Role="PitanjaOcjene" EntitySet="PitanjaOcjene" />
           </AssociationSet>
           <AssociationSet Name="FK_PitanjaTagovi_Pitanja" Association="FITKMSModel.Store.FK_PitanjaTagovi_Pitanja">
             <End Role="Pitanja" EntitySet="Pitanja" />
@@ -218,6 +236,16 @@
           <Property Name="Aktivan" Type="bit" Nullable="false" />
           <Property Name="DatumIzmjene" Type="datetime" />
         </EntityType>
+        <EntityType Name="KorisniciTagovi">
+          <Key>
+            <PropertyRef Name="KorisnikID" />
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="KorisnikID" Type="int" Nullable="false" />
+          <Property Name="TagID" Type="int" Nullable="false" />
+          <Property Name="Datum" Type="datetime" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
         <EntityType Name="KorisniciUloge">
           <Key>
             <PropertyRef Name="KorisnikID" />
@@ -289,6 +317,17 @@
           <Property Name="PitanjeID" Type="int" Nullable="false" />
           <Property Name="Pozitivni" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="PitanjaOcjene">
+          <Key>
+            <PropertyRef Name="PitanjeOcjenaID" />
+          </Key>
+          <Property Name="PitanjeOcjenaID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Ocjena" Type="int" Nullable="false" />
+          <Property Name="PitanjeID" Type="int" Nullable="false" />
+          <Property Name="KorisnikID" Type="int" Nullable="false" />
+          <Property Name="DatumKreiranja" Type="datetime" />
+          <Property Name="DatumIzmjene" Type="datetime" />
+        </EntityType>
         <EntityType Name="PitanjaTagovi">
           <Key>
             <PropertyRef Name="PitanjeID" />
@@ -315,6 +354,7 @@
           <Property Name="TagID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Naziv" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Opis" Type="nvarchar(max)" />
+          <Property Name="Status" Type="bit" />
         </EntityType>
         <EntityType Name="Teme">
           <Key>
@@ -478,6 +518,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_KorisniciTagovi_Korisnici">
+          <End Role="Korisnici" Type="FITKMSModel.Store.Korisnici" Multiplicity="1" />
+          <End Role="KorisniciTagovi" Type="FITKMSModel.Store.KorisniciTagovi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnici">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="KorisniciTagovi">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KorisniciTagovi_Tagovi">
+          <End Role="Tagovi" Type="FITKMSModel.Store.Tagovi" Multiplicity="1" />
+          <End Role="KorisniciTagovi" Type="FITKMSModel.Store.KorisniciTagovi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tagovi">
+              <PropertyRef Name="TagID" />
+            </Principal>
+            <Dependent Role="KorisniciTagovi">
+              <PropertyRef Name="TagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_KorisniciUloge_Korisnici">
           <End Role="Korisnici" Type="FITKMSModel.Store.Korisnici" Multiplicity="1" />
           <End Role="KorisniciUloge" Type="FITKMSModel.Store.KorisniciUloge" Multiplicity="*" />
@@ -610,6 +674,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PitanjaOcjene_Korisnici">
+          <End Role="Korisnici" Type="FITKMSModel.Store.Korisnici" Multiplicity="1" />
+          <End Role="PitanjaOcjene" Type="FITKMSModel.Store.PitanjaOcjene" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnici">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="PitanjaOcjene">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PitanjaOcjene_Pitanja">
+          <End Role="Pitanja" Type="FITKMSModel.Store.Pitanja" Multiplicity="1" />
+          <End Role="PitanjaOcjene" Type="FITKMSModel.Store.PitanjaOcjene" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pitanja">
+              <PropertyRef Name="PitanjeID" />
+            </Principal>
+            <Dependent Role="PitanjaOcjene">
+              <PropertyRef Name="PitanjeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PitanjaTagovi_Pitanja">
           <End Role="Pitanja" Type="FITKMSModel.Store.Pitanja" Multiplicity="1" />
           <End Role="PitanjaTagovi" Type="FITKMSModel.Store.PitanjaTagovi" Multiplicity="*" />
@@ -688,12 +776,24 @@
           <Parameter Name="ClanakID" Type="int" Mode="In" />
           <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="fsp_Clanci_CountByTag" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TagID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fsp_Clanci_CountNewByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PosljednjaPrijava" Type="datetime" Mode="In" />
+          <Parameter Name="BrojClanaka" Type="int" Mode="InOut" />
+        </Function>
         <Function Name="fsp_Clanci_DeleteDocument" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ClanakID" Type="int" Mode="In" />
         </Function>
         <Function Name="fsp_Clanci_DeleteTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ClanakID" Type="int" Mode="In" />
         </Function>
+        <Function Name="fsp_Clanci_SelectActive" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="KorisnikID" Type="int" Mode="In" />
+          <Parameter Name="ClanakID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fsp_Clanci_SelectBestRated" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="fsp_Clanci_SelectById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ClanakID" Type="int" Mode="In" />
         </Function>
@@ -703,6 +803,14 @@
           <Parameter Name="MaxRows" Type="int" Mode="In" />
           <Parameter Name="TotalRows" Type="int" Mode="InOut" />
         </Function>
+        <Function Name="fsp_Clanci_SelectByTheme" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Tema" Type="nvarchar" Mode="In" />
+          <Parameter Name="TemaID" Type="int" Mode="In" />
+          <Parameter Name="Offset" Type="int" Mode="In" />
+          <Parameter Name="MaxRows" Type="int" Mode="In" />
+          <Parameter Name="TotalRows" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="fsp_Clanci_SelectLastComments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="fsp_Clanci_SelectSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Pretraga" Type="nvarchar" Mode="In" />
           <Parameter Name="Offset" Type="int" Mode="In" />
@@ -711,6 +819,10 @@
         </Function>
         <Function Name="fsp_Clanci_SelectTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ClanakID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fsp_Clanci_SelectUserCollection" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="KorisnikID" Type="int" Mode="In" />
+          <Parameter Name="Ocjena" Type="int" Mode="In" />
         </Function>
         <Function Name="fsp_Clanci_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ClanakID" Type="int" Mode="In" />
@@ -728,6 +840,9 @@
           <Parameter Name="KorisnikID" Type="int" Mode="In" />
           <Parameter Name="LozinkaSalt" Type="nvarchar" Mode="In" />
           <Parameter Name="LozinkaHash" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="fsp_Korisnici_CountByTag" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TagID" Type="int" Mode="In" />
         </Function>
         <Function Name="fsp_Korisnici_Registration" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Ime" Type="nvarchar" Mode="In" />
@@ -755,12 +870,50 @@
           <Parameter Name="Slika" Type="varbinary(max)" Mode="In" />
           <Parameter Name="SlikaType" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="fsp_Odgovori_SelectByPitanjeId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PitanjeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fsp_Odgovori_UpdateStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OdgovorID" Type="int" Mode="In" />
+          <Parameter Name="Status" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="fsp_PitanjaOcjene_SelectByQuestion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PitanjeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fsp_PitanjaOcjene_SelectByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PitanjeID" Type="int" Mode="In" />
+          <Parameter Name="KorisnikID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fsp_PitanjaTagovi_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PitanjeID" Type="int" Mode="In" />
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="fsp_Pitanja_CountNewByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PosljednjaPrijava" Type="datetime" Mode="In" />
+          <Parameter Name="BrojPitanja" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="fsp_Pitanja_DeleteTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PitanjeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fsp_Pitanja_SelectActive" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="KorisnikID" Type="int" Mode="In" />
+          <Parameter Name="PitanjeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fsp_Pitanja_SelectBestLiked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="fsp_Pitanja_SelectByTag" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TagID" Type="int" Mode="In" />
           <Parameter Name="Offset" Type="int" Mode="In" />
           <Parameter Name="MaxRows" Type="int" Mode="In" />
           <Parameter Name="TotalRows" Type="int" Mode="InOut" />
         </Function>
+        <Function Name="fsp_Pitanja_SelectByTheme" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Tema" Type="nvarchar" Mode="In" />
+          <Parameter Name="TemaID" Type="int" Mode="In" />
+          <Parameter Name="Offset" Type="int" Mode="In" />
+          <Parameter Name="MaxRows" Type="int" Mode="In" />
+          <Parameter Name="TotalRows" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="fsp_Pitanja_SelectLastAnswers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="fsp_Pitanja_SelectSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Pretraga" Type="nvarchar" Mode="In" />
           <Parameter Name="Offset" Type="int" Mode="In" />
@@ -770,20 +923,44 @@
         <Function Name="fsp_Pitanja_SelectTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PitanjeID" Type="int" Mode="In" />
         </Function>
+        <Function Name="fsp_Pitanja_SelectUnAnswered" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="fsp_Pitanja_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PitanjeID" Type="int" Mode="In" />
+          <Parameter Name="Naslov" Type="nvarchar" Mode="In" />
+          <Parameter Name="Tekst" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="TemaID" Type="int" Mode="In" />
+          <Parameter Name="KorisnikID" Type="int" Mode="In" />
+          <Parameter Name="DatumIzmjene" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="fsp_Tagovi_CountByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="KorisnikID" Type="int" Mode="In" />
+          <Parameter Name="TagID" Type="int" Mode="In" />
+          <Parameter Name="BrojTagova" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="fsp_Tagovi_CountWithinArticles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TagID" Type="int" Mode="In" />
+        </Function>
         <Function Name="fsp_Tagovi_SelectByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="fsp_Tagovi_SelectByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="KorisnikID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fsp_Tagovi_SelectPagination" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PageNo" Type="int" Mode="In" />
+          <Parameter Name="RecordsPerPage" Type="int" Mode="In" />
+          <Parameter Name="TotalRows" Type="int" Mode="InOut" />
+          <Parameter Name="Search" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="fsp_Teme_SelectByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="fsp_Teme_SelectByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Status" Type="bit" Mode="In" />
         </Function>
+        <Function Name="fsp_Teme_SelectMostUsed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="fsp_VrsteClanaka_SelectByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Status" Type="bit" Mode="In" />
-        </Function>
-        <Function Name="fsp_getAllOdgovoriZaPitanje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="PId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="fsp_getAllTagoviZaPitanjeID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Pid" Type="int" Mode="In" />
         </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -936,30 +1113,17 @@
           <FunctionImport Name="fsp_Clanci_SelectTags" EntitySet="Tagovi" ReturnType="Collection(FITKMSModel.Tagovi)">
           <Parameter Name="ClanakID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="fsp_get_AllTagovi" EntitySet="Tagovi" ReturnType="Collection(FITKMSModel.Tagovi)" />
           <FunctionImport Name="fsp_Tagovi_SelectAll" />
           <FunctionImport Name="fsp_Korisnici_ChangePassword">
             <Parameter Name="KorisnikID" Mode="In" Type="Int32" />
             <Parameter Name="LozinkaSalt" Mode="In" Type="String" />
             <Parameter Name="LozinkaHash" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="fsp_getAllTagoviZaPitanjeID" ReturnType="Collection(FITKMSModel.fsp_getAllTagoviZaPitanjeID_Result)">
-          <Parameter Name="Pid" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="fsp_getAllOdgovoriZaPitanje" ReturnType="Collection(FITKMSModel.fsp_getAllOdgovoriZaPitanje_Result)">
-          <Parameter Name="PId" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="fsp_Clanci_SelectByTag" ReturnType="Collection(FITKMSModel.fsp_Clanci_SelectByTag_Result)">
             <Parameter Name="TagID" Mode="In" Type="Int32" />
             <Parameter Name="Offset" Mode="In" Type="Int32" />
             <Parameter Name="MaxRows" Mode="In" Type="Int32" />
             <Parameter Name="TotalRows" Mode="InOut" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="fsp_Tagovi_SelectPagination" EntitySet="Tagovi" ReturnType="Collection(FITKMSModel.Tagovi)">
-            <Parameter Name="PageNo" Mode="In" Type="Int32" />
-            <Parameter Name="RecordsPerPage" Mode="In" Type="Int32" />
-            <Parameter Name="TotalRows" Mode="InOut" Type="Int32" />
-            <Parameter Name="Search" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="fsp_Pitanja_SelectByTag" ReturnType="Collection(FITKMSModel.fsp_Pitanja_SelectByTag_Result)">
             <Parameter Name="TagID" Mode="In" Type="Int32" />
@@ -1036,8 +1200,121 @@
           <Parameter Name="ClanakID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="fsp_ClanciOcjene_SelectByArticle" EntitySet="ClanciOcjene" ReturnType="Collection(FITKMSModel.ClanciOcjene)">
+          <Parameter Name="ClanakID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Tagovi_SelectPagination" ReturnType="Collection(FITKMSModel.fsp_Tagovi_SelectPagination_Result)">
+            <Parameter Name="PageNo" Mode="In" Type="Int32" />
+            <Parameter Name="RecordsPerPage" Mode="In" Type="Int32" />
+            <Parameter Name="TotalRows" Mode="InOut" Type="Int32" />
+            <Parameter Name="Search" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_PitanjaTagovi_Insert">
+            <Parameter Name="PitanjeID" Mode="In" Type="Int32" />
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="KorisniciTagovi" EntityType="FITKMSModel.KorisniciTagovi" />
+          <AssociationSet Name="FK_KorisniciTagovi_Korisnici" Association="FITKMSModel.FK_KorisniciTagovi_Korisnici">
+            <End Role="Korisnici" EntitySet="Korisnici" />
+            <End Role="KorisniciTagovi" EntitySet="KorisniciTagovi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KorisniciTagovi_Tagovi" Association="FITKMSModel.FK_KorisniciTagovi_Tagovi">
+            <End Role="Tagovi" EntitySet="Tagovi" />
+            <End Role="KorisniciTagovi" EntitySet="KorisniciTagovi" />
+          </AssociationSet>
+          <FunctionImport Name="fsp_Clanci_SelectLastComments" ReturnType="Collection(FITKMSModel.fsp_Clanci_SelectLastComments_Result)" />
+          <FunctionImport Name="fsp_Pitanja_SelectLastAnswers" ReturnType="Collection(FITKMSModel.fsp_Pitanja_SelectLastAnswers_Result)" />
+          <FunctionImport Name="fsp_Clanci_CountNewByUser">
+            <Parameter Name="PosljednjaPrijava" Mode="In" Type="DateTime" />
+            <Parameter Name="BrojClanaka" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Pitanja_CountNewByUser">
+            <Parameter Name="PosljednjaPrijava" Mode="In" Type="DateTime" />
+            <Parameter Name="BrojPitanja" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Clanci_CountByTag" ReturnType="Collection(Int32)">
+          <Parameter Name="TagID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Clanci_SelectActive" ReturnType="Collection(FITKMSModel.fsp_Clanci_SelectActive_Result)" >
+            <Parameter Name="KorisnikID" Mode="In" Type="Int32" />
             <Parameter Name="ClanakID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="fsp_Clanci_SelectUserCollection" ReturnType="Collection(FITKMSModel.fsp_Clanci_SelectUserCollection_Result)">
+            <Parameter Name="KorisnikID" Mode="In" Type="Int32" />
+            <Parameter Name="Ocjena" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Korisnici_CountByTag" ReturnType="Collection(Int32)">
+          <Parameter Name="TagID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Tagovi_CountByUser" ReturnType="Collection(Int32)">
+            <Parameter Name="KorisnikID" Mode="In" Type="Int32" />
+            <Parameter Name="TagID" Mode="In" Type="Int32" />
+            <Parameter Name="BrojTagova" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Tagovi_CountWithinArticles" ReturnType="Collection(Int32)">
+          <Parameter Name="TagID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Tagovi_SelectByUser" EntitySet="Tagovi" ReturnType="Collection(FITKMSModel.Tagovi)">
+          <Parameter Name="KorisnikID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Clanci_SelectBestRated" ReturnType="Collection(FITKMSModel.fsp_Clanci_SelectBestRated_Result)" />
+          <FunctionImport Name="fsp_Pitanja_SelectUnAnswered" ReturnType="Collection(FITKMSModel.fsp_Pitanja_SelectUnAnswered_Result)" />
+          <FunctionImport Name="fsp_Pitanja_SelectBestLiked" ReturnType="Collection(FITKMSModel.fsp_Pitanja_SelectBestLiked_Result)" />
+          <EntitySet Name="PitanjaOcjene" EntityType="FITKMSModel.PitanjaOcjene" />
+          <AssociationSet Name="FK_PitanjaOcjene_Korisnici" Association="FITKMSModel.FK_PitanjaOcjene_Korisnici">
+            <End Role="Korisnici" EntitySet="Korisnici" />
+            <End Role="PitanjaOcjene" EntitySet="PitanjaOcjene" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PitanjaOcjene_Pitanja" Association="FITKMSModel.FK_PitanjaOcjene_Pitanja">
+            <End Role="Pitanja" EntitySet="Pitanja" />
+            <End Role="PitanjaOcjene" EntitySet="PitanjaOcjene" />
+          </AssociationSet>
+          <FunctionImport Name="fsp_PitanjaOcjene_SelectByUser" EntitySet="PitanjaOcjene" ReturnType="Collection(FITKMSModel.PitanjaOcjene)">
+            <Parameter Name="PitanjeID" Mode="In" Type="Int32" />
+            <Parameter Name="KorisnikID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Odgovori_SelectByPitanjeId" ReturnType="Collection(FITKMSModel.fsp_Odgovori_SelectByPitanjeId_Result)">
+          <Parameter Name="PitanjeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Odgovori_UpdateStatus">
+            <Parameter Name="OdgovorID" Mode="In" Type="Int32" />
+            <Parameter Name="Status" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_PitanjaOcjene_SelectByQuestion" EntitySet="PitanjaOcjene" ReturnType="Collection(FITKMSModel.PitanjaOcjene)">
+          <Parameter Name="PitanjeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Pitanja_SelectActive" EntitySet="Pitanja" ReturnType="Collection(FITKMSModel.Pitanja)">
+            <Parameter Name="KorisnikID" Mode="In" Type="Int32" />
+            <Parameter Name="PitanjeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Pitanja_DeleteTags">
+          <Parameter Name="PitanjeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Pitanja_Update">
+            <Parameter Name="PitanjeID" Mode="In" Type="Int32" />
+            <Parameter Name="Naslov" Mode="In" Type="String" />
+            <Parameter Name="Tekst" Mode="In" Type="String" />
+            <Parameter Name="TemaID" Mode="In" Type="Int32" />
+            <Parameter Name="KorisnikID" Mode="In" Type="Int32" />
+            <Parameter Name="DatumIzmjene" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Clanci_SelectByTheme" ReturnType="Collection(FITKMSModel.fsp_Clanci_SelectSearch_Result)">
+            <Parameter Name="Tema" Mode="In" Type="String" />
+            <Parameter Name="TemaID" Mode="In" Type="Int32" />
+            <Parameter Name="Offset" Mode="In" Type="Int32" />
+            <Parameter Name="MaxRows" Mode="In" Type="Int32" />
+            <Parameter Name="TotalRows" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Pitanja_SelectByTheme" ReturnType="Collection(FITKMSModel.fsp_Pitanja_SelectSearch_Result)">
+            <Parameter Name="Tema" Mode="In" Type="String" />
+            <Parameter Name="TemaID" Mode="In" Type="Int32" />
+            <Parameter Name="Offset" Mode="In" Type="Int32" />
+            <Parameter Name="MaxRows" Mode="In" Type="Int32" />
+            <Parameter Name="TotalRows" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Teme_SelectByName" EntitySet="Teme" ReturnType="Collection(FITKMSModel.Teme)">
+          <Parameter Name="Naziv" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fsp_Teme_SelectMostUsed" ReturnType="Collection(FITKMSModel.fsp_Teme_SelectMostUsed_Result)" />
         </EntityContainer>
         <EntityType Name="Aktivnosti">
           <Key>
@@ -1130,6 +1407,8 @@
           <NavigationProperty Name="PitanjaGlasovi" Relationship="FITKMSModel.FK_PitanjaGlasovi_Korisnici" FromRole="Korisnici" ToRole="PitanjaGlasovi" />
           <Property Type="String" Name="SlikaType" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="ClanciIzmjene" Relationship="FITKMSModel.FK_ClanciIzmjene_Korisnici" FromRole="Korisnici" ToRole="ClanciIzmjene" />
+          <NavigationProperty Name="KorisniciTagovi" Relationship="FITKMSModel.FK_KorisniciTagovi_Korisnici" FromRole="Korisnici" ToRole="KorisniciTagovi" />
+          <NavigationProperty Name="PitanjaOcjene" Relationship="FITKMSModel.FK_PitanjaOcjene_Korisnici" FromRole="Korisnici" ToRole="PitanjaOcjene" />
         </EntityType>
         <EntityType Name="KorisniciUloge">
           <Key>
@@ -1205,6 +1484,7 @@
           <NavigationProperty Name="Teme" Relationship="FITKMSModel.FK_Pitanja_Teme" FromRole="Pitanja" ToRole="Teme" />
           <NavigationProperty Name="PitanjaGlasovi" Relationship="FITKMSModel.FK_PitanjaGlasovi_Pitanja" FromRole="Pitanja" ToRole="PitanjaGlasovi" />
           <NavigationProperty Name="Tagovi" Relationship="FITKMSModel.PitanjaTagovi" FromRole="Pitanja" ToRole="Tagovi" />
+          <NavigationProperty Name="PitanjaOcjene" Relationship="FITKMSModel.FK_PitanjaOcjene_Pitanja" FromRole="Pitanja" ToRole="PitanjaOcjene" />
         </EntityType>
         <EntityType Name="PitanjaGlasovi">
           <Key>
@@ -1239,6 +1519,8 @@
           <Property Name="Opis" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Clanci" Relationship="FITKMSModel.ClanciTagovi" FromRole="Tagovi" ToRole="Clanci" />
           <NavigationProperty Name="Pitanja" Relationship="FITKMSModel.PitanjaTagovi" FromRole="Tagovi" ToRole="Pitanja" />
+          <Property Type="Boolean" Name="Status" />
+          <NavigationProperty Name="KorisniciTagovi" Relationship="FITKMSModel.FK_KorisniciTagovi_Tagovi" FromRole="Tagovi" ToRole="KorisniciTagovi" />
         </EntityType>
         <EntityType Name="Teme">
           <Key>
@@ -1542,21 +1824,6 @@
           <Property Type="String" Name="Tema" Nullable="false" MaxLength="100" />
           <Property Type="Double" Name="ProsjecnaOcjena" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="fsp_getAllTagoviZaPitanjeID_Result">
-          <Property Type="Int32" Name="PitanjeID" Nullable="false" />
-          <Property Type="Int32" Name="TagID" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="fsp_getAllOdgovoriZaPitanje_Result">
-          <Property Type="String" Name="Datum" Nullable="true" MaxLength="10" />
-          <Property Type="Int32" Name="Negativni" Nullable="true" />
-          <Property Type="Int32" Name="OdgovorID" Nullable="false" />
-          <Property Type="Int32" Name="Pozitivni" Nullable="true" />
-          <Property Type="String" Name="Tekst" Nullable="false" />
-          <Property Type="String" Name="Ime" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Prezime" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="UkupnoPitanja" Nullable="true" />
-          <Property Type="Int32" Name="UkupnoOdgovora" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="fsp_Clanci_SelectByTag_Result">
           <Property Type="Int32" Name="ClanakID" Nullable="false" />
           <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" Precision="23" />
@@ -1656,6 +1923,177 @@
           <Property Type="DateTime" Name="Datum" Nullable="false" Precision="23" />
           <Property Type="String" Name="Opis" Nullable="true" MaxLength="500" />
           <Property Type="String" Name="Korisnik" Nullable="false" MaxLength="101" />
+        </ComplexType>
+        <ComplexType Name="fsp_Odgovori_SelectByPitanjeId_Result">
+          <Property Type="DateTime" Name="Datum" Nullable="true" />
+          <Property Type="Int32" Name="Negativni" Nullable="true" />
+          <Property Type="Int32" Name="OdgovorID" Nullable="false" />
+          <Property Type="Int32" Name="Pozitivni" Nullable="true" />
+          <Property Type="String" Name="Tekst" Nullable="false" />
+          <Property Type="Int32" Name="KorisnikID" Nullable="false" />
+          <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Ime" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Prezime" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="UkupnoPitanja" Nullable="true" />
+          <Property Type="Int32" Name="UkupnoOdgovora" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="KorisniciTagovi">
+          <Key>
+            <PropertyRef Name="KorisnikID" />
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Type="Int32" Name="KorisnikID" Nullable="false" />
+          <Property Type="Int32" Name="TagID" Nullable="false" />
+          <Property Type="DateTime" Name="Datum" Precision="3" />
+          <Property Type="Boolean" Name="Status" />
+          <NavigationProperty Name="Korisnici" Relationship="FITKMSModel.FK_KorisniciTagovi_Korisnici" FromRole="KorisniciTagovi" ToRole="Korisnici" />
+          <NavigationProperty Name="Tagovi" Relationship="FITKMSModel.FK_KorisniciTagovi_Tagovi" FromRole="KorisniciTagovi" ToRole="Tagovi" />
+        </EntityType>
+        <Association Name="FK_KorisniciTagovi_Korisnici">
+          <End Type="FITKMSModel.Korisnici" Role="Korisnici" Multiplicity="1" />
+          <End Type="FITKMSModel.KorisniciTagovi" Role="KorisniciTagovi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnici">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="KorisniciTagovi">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KorisniciTagovi_Tagovi">
+          <End Type="FITKMSModel.Tagovi" Role="Tagovi" Multiplicity="1" />
+          <End Type="FITKMSModel.KorisniciTagovi" Role="KorisniciTagovi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tagovi">
+              <PropertyRef Name="TagID" />
+            </Principal>
+            <Dependent Role="KorisniciTagovi">
+              <PropertyRef Name="TagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="fsp_Clanci_SelectLastComments_Result">
+          <Property Type="Int32" Name="ClanakID" Nullable="false" />
+          <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="DatumIzmjene" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Naslov" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Tekst" Nullable="false" />
+          <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="KljucneRijeci" Nullable="false" MaxLength="150" />
+          <Property Type="Double" Name="ProsjecnaOcjena" Nullable="true" />
+          <Property Type="Int32" Name="BrojKomentara" Nullable="true" />
+          <Property Type="DateTime" Name="KomentarDatumKreiranja" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="fsp_Pitanja_SelectLastAnswers_Result">
+          <Property Type="Int32" Name="PitanjeID" Nullable="false" />
+          <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="DatumIzmjene" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Naslov" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Tekst" Nullable="false" />
+          <Property Type="Int32" Name="BrojPregleda" Nullable="true" />
+          <Property Type="Int32" Name="Pozitivni" Nullable="true" />
+          <Property Type="Int32" Name="Negativni" Nullable="true" />
+          <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="BrojOdgovora" Nullable="true" />
+          <Property Type="DateTime" Name="OdgovorDatumKreiranja" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="fsp_Clanci_SelectActive_Result">
+          <Property Type="Int32" Name="ClanakID" Nullable="false" />
+          <Property Type="String" Name="Naslov" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Autori" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Tekst" Nullable="false" />
+          <Property Type="String" Name="KljucneRijeci" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="VrstaID" Nullable="false" />
+          <Property Type="Int32" Name="TemaID" Nullable="false" />
+          <Property Type="Int32" Name="KorisnikID" Nullable="false" />
+          <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="DatumIzmjene" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="fsp_Clanci_SelectUserCollection_Result">
+          <Property Type="Int32" Name="ClanakID" Nullable="false" />
+          <Property Type="String" Name="Naslov" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="fsp_Clanci_SelectBestRated_Result">
+          <Property Type="Int32" Name="ClanakID" Nullable="false" />
+          <Property Type="String" Name="Naslov" Nullable="false" MaxLength="100" />
+          <Property Type="Double" Name="ProsjecnaOcjena" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="fsp_Pitanja_SelectUnAnswered_Result">
+          <Property Type="Int32" Name="PitanjeID" Nullable="false" />
+          <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="DatumIzmjene" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Naslov" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Tekst" Nullable="false" />
+          <Property Type="Int32" Name="BrojPregleda" Nullable="true" />
+          <Property Type="Int32" Name="Pozitivni" Nullable="true" />
+          <Property Type="Int32" Name="Negativni" Nullable="true" />
+          <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="fsp_Pitanja_SelectBestLiked_Result">
+          <Property Type="Int32" Name="PitanjeID" Nullable="false" />
+          <Property Type="String" Name="Naslov" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="Pozitivni" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="fsp_Tagovi_SelectPagination_Result">
+          <Property Type="Int32" Name="TagID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Opis" Nullable="true" />
+          <Property Type="Boolean" Name="Status" Nullable="true" />
+          <Property Type="Int32" Name="BrojPonavljanja" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="PitanjaOcjene">
+          <Key>
+            <PropertyRef Name="PitanjeOcjenaID" />
+          </Key>
+          <Property Type="Int32" Name="PitanjeOcjenaID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Ocjena" Nullable="false" />
+          <Property Type="Int32" Name="PitanjeID" Nullable="false" />
+          <Property Type="Int32" Name="KorisnikID" Nullable="false" />
+          <Property Type="DateTime" Name="DatumKreiranja" Precision="3" />
+          <Property Type="DateTime" Name="DatumIzmjene" Precision="3" />
+          <NavigationProperty Name="Korisnici" Relationship="FITKMSModel.FK_PitanjaOcjene_Korisnici" FromRole="PitanjaOcjene" ToRole="Korisnici" />
+          <NavigationProperty Name="Pitanja" Relationship="FITKMSModel.FK_PitanjaOcjene_Pitanja" FromRole="PitanjaOcjene" ToRole="Pitanja" />
+        </EntityType>
+        <Association Name="FK_PitanjaOcjene_Korisnici">
+          <End Type="FITKMSModel.Korisnici" Role="Korisnici" Multiplicity="1" />
+          <End Type="FITKMSModel.PitanjaOcjene" Role="PitanjaOcjene" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnici">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="PitanjaOcjene">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PitanjaOcjene_Pitanja">
+          <End Type="FITKMSModel.Pitanja" Role="Pitanja" Multiplicity="1" />
+          <End Type="FITKMSModel.PitanjaOcjene" Role="PitanjaOcjene" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pitanja">
+              <PropertyRef Name="PitanjeID" />
+            </Principal>
+            <Dependent Role="PitanjaOcjene">
+              <PropertyRef Name="PitanjeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="fsp_Tagovi_SelectPagination1_Result">
+          <Property Type="Int32" Name="TagID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Opis" Nullable="true" />
+          <Property Type="Boolean" Name="Status" Nullable="true" />
+          <Property Type="Int32" Name="BrojPonavljanja" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="fsp_Teme_SelectMostUsed_Result">
+          <Property Type="Int32" Name="TemaID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="Status" Nullable="true" />
+          <Property Type="Int32" Name="OblastID" Nullable="true" />
+          <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="DatumIzmjene" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="BrojPonavljanja" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1829,6 +2267,7 @@
           <EntitySetMapping Name="Tagovi">
             <EntityTypeMapping TypeName="FITKMSModel.Tagovi">
               <MappingFragment StoreEntitySet="Tagovi">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="TagID" ColumnName="TagID" />
                 <ScalarProperty Name="Naziv" ColumnName="Naziv" />
                 <ScalarProperty Name="Opis" ColumnName="Opis" />
@@ -1920,29 +2359,6 @@
           <FunctionImportMapping FunctionImportName="fsp_Clanci_SelectTags" FunctionName="FITKMSModel.Store.fsp_Clanci_SelectTags">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="fsp_Korisnici_ChangePassword" FunctionName="FITKMSModel.Store.fsp_Korisnici_ChangePassword" />
-          <FunctionImportMapping FunctionImportName="fsp_getAllTagoviZaPitanjeID" FunctionName="FITKMSModel.Store.fsp_getAllTagoviZaPitanjeID">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FITKMSModel.fsp_getAllTagoviZaPitanjeID_Result">
-                <ScalarProperty Name="PitanjeID" ColumnName="PitanjeID" />
-                <ScalarProperty Name="TagID" ColumnName="TagID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="fsp_getAllOdgovoriZaPitanje" FunctionName="FITKMSModel.Store.fsp_getAllOdgovoriZaPitanje">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FITKMSModel.fsp_getAllOdgovoriZaPitanje_Result">
-                <ScalarProperty Name="Datum" ColumnName="Datum" />
-                <ScalarProperty Name="Negativni" ColumnName="Negativni" />
-                <ScalarProperty Name="OdgovorID" ColumnName="OdgovorID" />
-                <ScalarProperty Name="Pozitivni" ColumnName="Pozitivni" />
-                <ScalarProperty Name="Tekst" ColumnName="Tekst" />
-                <ScalarProperty Name="Ime" ColumnName="Ime" />
-                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
-                <ScalarProperty Name="UkupnoPitanja" ColumnName="UkupnoPitanja" />
-                <ScalarProperty Name="UkupnoOdgovora" ColumnName="UkupnoOdgovora" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="fsp_Clanci_SelectByTag" FunctionName="FITKMSModel.Store.fsp_Clanci_SelectByTag">
             <ResultMapping>
               <ComplexTypeMapping TypeName="FITKMSModel.fsp_Clanci_SelectByTag_Result">
@@ -2054,7 +2470,210 @@
           <FunctionImportMapping FunctionImportName="fsp_Tagovi_SelectByName" FunctionName="FITKMSModel.Store.fsp_Tagovi_SelectByName">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="fsp_Clanci_DeleteDocument" FunctionName="FITKMSModel.Store.fsp_Clanci_DeleteDocument" />
-          <FunctionImportMapping FunctionImportName="fsp_ClanciOcjene_SelectByArticle" FunctionName="FITKMSModel.Store.fsp_ClanciOcjene_SelectByArticle">
+          <EntitySetMapping Name="KorisniciTagovi">
+            <EntityTypeMapping TypeName="FITKMSModel.KorisniciTagovi">
+              <MappingFragment StoreEntitySet="KorisniciTagovi">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="TagID" ColumnName="TagID" />
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Clanci_SelectLastComments" FunctionName="FITKMSModel.Store.fsp_Clanci_SelectLastComments">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FITKMSModel.fsp_Clanci_SelectLastComments_Result">
+                <ScalarProperty Name="ClanakID" ColumnName="ClanakID" />
+                <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+                <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+                <ScalarProperty Name="Naslov" ColumnName="Naslov" />
+                <ScalarProperty Name="Tekst" ColumnName="Tekst" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+                <ScalarProperty Name="KljucneRijeci" ColumnName="KljucneRijeci" />
+                <ScalarProperty Name="ProsjecnaOcjena" ColumnName="ProsjecnaOcjena" />
+                <ScalarProperty Name="BrojKomentara" ColumnName="BrojKomentara" />
+                <ScalarProperty Name="KomentarDatumKreiranja" ColumnName="KomentarDatumKreiranja" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Pitanja_SelectLastAnswers" FunctionName="FITKMSModel.Store.fsp_Pitanja_SelectLastAnswers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FITKMSModel.fsp_Pitanja_SelectLastAnswers_Result">
+                <ScalarProperty Name="PitanjeID" ColumnName="PitanjeID" />
+                <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+                <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+                <ScalarProperty Name="Naslov" ColumnName="Naslov" />
+                <ScalarProperty Name="Tekst" ColumnName="Tekst" />
+                <ScalarProperty Name="BrojPregleda" ColumnName="BrojPregleda" />
+                <ScalarProperty Name="Pozitivni" ColumnName="Pozitivni" />
+                <ScalarProperty Name="Negativni" ColumnName="Negativni" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+                <ScalarProperty Name="BrojOdgovora" ColumnName="BrojOdgovora" />
+                <ScalarProperty Name="OdgovorDatumKreiranja" ColumnName="OdgovorDatumKreiranja" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Clanci_CountNewByUser" FunctionName="FITKMSModel.Store.fsp_Clanci_CountNewByUser" />
+          <FunctionImportMapping FunctionImportName="fsp_Pitanja_CountNewByUser" FunctionName="FITKMSModel.Store.fsp_Pitanja_CountNewByUser" />
+          <FunctionImportMapping FunctionImportName="fsp_Clanci_CountByTag" FunctionName="FITKMSModel.Store.fsp_Clanci_CountByTag" />
+          <FunctionImportMapping FunctionImportName="fsp_Clanci_SelectActive" FunctionName="FITKMSModel.Store.fsp_Clanci_SelectActive">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FITKMSModel.fsp_Clanci_SelectActive_Result">
+                <ScalarProperty Name="ClanakID" ColumnName="ClanakID" />
+                <ScalarProperty Name="Naslov" ColumnName="Naslov" />
+                <ScalarProperty Name="Autori" ColumnName="Autori" />
+                <ScalarProperty Name="Tekst" ColumnName="Tekst" />
+                <ScalarProperty Name="KljucneRijeci" ColumnName="KljucneRijeci" />
+                <ScalarProperty Name="VrstaID" ColumnName="VrstaID" />
+                <ScalarProperty Name="TemaID" ColumnName="TemaID" />
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+                <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Clanci_SelectUserCollection" FunctionName="FITKMSModel.Store.fsp_Clanci_SelectUserCollection">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FITKMSModel.fsp_Clanci_SelectUserCollection_Result">
+                <ScalarProperty Name="ClanakID" ColumnName="ClanakID" />
+                <ScalarProperty Name="Naslov" ColumnName="Naslov" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Korisnici_CountByTag" FunctionName="FITKMSModel.Store.fsp_Korisnici_CountByTag" />
+          <FunctionImportMapping FunctionImportName="fsp_Tagovi_CountByUser" FunctionName="FITKMSModel.Store.fsp_Tagovi_CountByUser" />
+          <FunctionImportMapping FunctionImportName="fsp_Tagovi_CountWithinArticles" FunctionName="FITKMSModel.Store.fsp_Tagovi_CountWithinArticles" />
+          <FunctionImportMapping FunctionImportName="fsp_Tagovi_SelectByUser" FunctionName="FITKMSModel.Store.fsp_Tagovi_SelectByUser">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_ClanciOcjene_SelectByArticle" FunctionName="FITKMSModel.Store.fsp_ClanciOcjene_SelectByArticle" />
+          <FunctionImportMapping FunctionImportName="fsp_Clanci_SelectBestRated" FunctionName="FITKMSModel.Store.fsp_Clanci_SelectBestRated">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FITKMSModel.fsp_Clanci_SelectBestRated_Result">
+                <ScalarProperty Name="ClanakID" ColumnName="ClanakID" />
+                <ScalarProperty Name="Naslov" ColumnName="Naslov" />
+                <ScalarProperty Name="ProsjecnaOcjena" ColumnName="ProsjecnaOcjena" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Pitanja_SelectUnAnswered" FunctionName="FITKMSModel.Store.fsp_Pitanja_SelectUnAnswered">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FITKMSModel.fsp_Pitanja_SelectUnAnswered_Result">
+                <ScalarProperty Name="PitanjeID" ColumnName="PitanjeID" />
+                <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+                <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+                <ScalarProperty Name="Naslov" ColumnName="Naslov" />
+                <ScalarProperty Name="Tekst" ColumnName="Tekst" />
+                <ScalarProperty Name="BrojPregleda" ColumnName="BrojPregleda" />
+                <ScalarProperty Name="Pozitivni" ColumnName="Pozitivni" />
+                <ScalarProperty Name="Negativni" ColumnName="Negativni" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Pitanja_SelectBestLiked" FunctionName="FITKMSModel.Store.fsp_Pitanja_SelectBestLiked">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FITKMSModel.fsp_Pitanja_SelectBestLiked_Result">
+                <ScalarProperty Name="PitanjeID" ColumnName="PitanjeID" />
+                <ScalarProperty Name="Naslov" ColumnName="Naslov" />
+                <ScalarProperty Name="Pozitivni" ColumnName="Pozitivni" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="PitanjaOcjene">
+            <EntityTypeMapping TypeName="FITKMSModel.PitanjaOcjene">
+              <MappingFragment StoreEntitySet="PitanjaOcjene">
+                <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+                <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="PitanjeID" ColumnName="PitanjeID" />
+                <ScalarProperty Name="Ocjena" ColumnName="Ocjena" />
+                <ScalarProperty Name="PitanjeOcjenaID" ColumnName="PitanjeOcjenaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="fsp_PitanjaOcjene_SelectByUser" FunctionName="FITKMSModel.Store.fsp_PitanjaOcjene_SelectByUser">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Odgovori_SelectByPitanjeId" FunctionName="FITKMSModel.Store.fsp_Odgovori_SelectByPitanjeId">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="FITKMSModel.fsp_Odgovori_SelectByPitanjeId_Result">
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Negativni" ColumnName="Negativni" />
+                <ScalarProperty Name="OdgovorID" ColumnName="OdgovorID" />
+                <ScalarProperty Name="Pozitivni" ColumnName="Pozitivni" />
+                <ScalarProperty Name="Tekst" ColumnName="Tekst" />
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="UkupnoPitanja" ColumnName="UkupnoPitanja" />
+                <ScalarProperty Name="UkupnoOdgovora" ColumnName="UkupnoOdgovora" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Odgovori_UpdateStatus" FunctionName="FITKMSModel.Store.fsp_Odgovori_UpdateStatus" />
+          <FunctionImportMapping FunctionImportName="fsp_Tagovi_SelectPagination" FunctionName="FITKMSModel.Store.fsp_Tagovi_SelectPagination">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FITKMSModel.fsp_Tagovi_SelectPagination_Result">
+                <ScalarProperty Name="TagID" ColumnName="TagID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="BrojPonavljanja" ColumnName="BrojPonavljanja" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_PitanjaOcjene_SelectByQuestion" FunctionName="FITKMSModel.Store.fsp_PitanjaOcjene_SelectByQuestion">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Pitanja_SelectActive" FunctionName="FITKMSModel.Store.fsp_Pitanja_SelectActive">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Pitanja_DeleteTags" FunctionName="FITKMSModel.Store.fsp_Pitanja_DeleteTags" />
+          <FunctionImportMapping FunctionImportName="fsp_Pitanja_Update" FunctionName="FITKMSModel.Store.fsp_Pitanja_Update" />
+          <FunctionImportMapping FunctionImportName="fsp_PitanjaTagovi_Insert" FunctionName="FITKMSModel.Store.fsp_PitanjaTagovi_Insert" />
+          <FunctionImportMapping FunctionImportName="fsp_Clanci_SelectByTheme" FunctionName="FITKMSModel.Store.fsp_Clanci_SelectByTheme" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FITKMSModel.fsp_Clanci_SelectSearch_Result">
+                <ScalarProperty Name="ClanakID" ColumnName="ClanakID" />
+                <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+                <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+                <ScalarProperty Name="Naslov" ColumnName="Naslov" />
+                <ScalarProperty Name="Tekst" ColumnName="Tekst" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+                <ScalarProperty Name="KljucneRijeci" ColumnName="KljucneRijeci" />
+                <ScalarProperty Name="ProsjecnaOcjena" ColumnName="ProsjecnaOcjena" />
+                <ScalarProperty Name="BrojKomentara" ColumnName="BrojKomentara" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Pitanja_SelectByTheme" FunctionName="FITKMSModel.Store.fsp_Pitanja_SelectByTheme" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FITKMSModel.fsp_Pitanja_SelectSearch_Result">
+                <ScalarProperty Name="PitanjeID" ColumnName="PitanjeID" />
+                <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+                <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+                <ScalarProperty Name="Naslov" ColumnName="Naslov" />
+                <ScalarProperty Name="Tekst" ColumnName="Tekst" />
+                <ScalarProperty Name="BrojPregleda" ColumnName="BrojPregleda" />
+                <ScalarProperty Name="Pozitivni" ColumnName="Pozitivni" />
+                <ScalarProperty Name="Negativni" ColumnName="Negativni" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+                <ScalarProperty Name="BrojOdgovora" ColumnName="BrojOdgovora" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Teme_SelectByName" FunctionName="FITKMSModel.Store.fsp_Teme_SelectByName">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fsp_Teme_SelectMostUsed" FunctionName="FITKMSModel.Store.fsp_Teme_SelectMostUsed">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FITKMSModel.fsp_Teme_SelectMostUsed_Result">
+                <ScalarProperty Name="TemaID" ColumnName="TemaID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="OblastID" ColumnName="OblastID" />
+                <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+                <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+                <ScalarProperty Name="BrojPonavljanja" ColumnName="BrojPonavljanja" />
+              </ComplexTypeMapping>
+            </ResultMapping>
           </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
